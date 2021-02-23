@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Policies in Hyperledger Fabric &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Policies in Hyperledger Fabric</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/policies.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="policies-in-hyperledger-fabric">
+<h1>Policies in Hyperledger Fabric<a class="headerlink" href="#policies-in-hyperledger-fabric" title="Permalink to this headline">¶</a></h1>
+<p>Configuration for a Hyperledger Fabric blockchain network is managed by
+policies. These policies generally reside in the channel configuration.
+The primary purpose of this document is to explain how policies are
+defined in and interact with the channel configuration. However,
+policies may also be specified in some other places, such as chaincodes,
+so this information may be of interest outside the scope of channel
+configuration.</p>
+<div class="section" id="what-is-a-policy">
+<h2>What is a Policy?<a class="headerlink" href="#what-is-a-policy" title="Permalink to this headline">¶</a></h2>
+<p>At its most basic level, a policy is a function which accepts as input a
+set of signed data and evaluates successfully, or returns an error
+because some aspect of the signed data did not satisfy the policy.</p>
+<p>More concretely, policies test whether the signer or signers of some
+data meet some condition required for those signatures to be considered
+‘valid’. This is useful for determining that the correct parties have
+agreed to a transaction, or change.</p>
+<p>For example a policy may define any of the following: * Administrators
+from 2 out 5 possible different organizations must sign. * Any member
+from any organization must sign. * Two specific certificates must both
+sign.</p>
+<p>For example a policy may define any of the following:</p>
+<p>Of course these are only examples, and other more powerful rules can be
+constructed.</p>
+<ul class="simple">
+<li><p>Administrators from 2 out 5 possible different organizations must sign.</p></li>
+<li><p>Any member from any organization must sign.</p></li>
+<li><p>Two specific certificates must both sign.</p></li>
+</ul>
+</div>
+<div class="section" id="policy-types">
+<h2>Policy Types<a class="headerlink" href="#policy-types" title="Permalink to this headline">¶</a></h2>
+<p>Of course these are only examples, and other more powerful rules can be
+constructed.</p>
+<p>There are presently two different types of policies implemented:</p>
+</div>
+<div class="section" id="id1">
+<h2>Policy Types<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>SignaturePolicy</strong>: This policy type is the most powerful, and
+specifies the policy as a combination of evaluation rules for MSP
+Principals. It supports arbitrary combinations of <em>AND</em>, <em>OR</em>, and
+<em>NOutOf</em>, allowing the construction of extremely powerful rules like:
+“An admin of org A and 2 other admins, or 11 of 20 org admins”.</p></li>
+<li><p><strong>ImplicitMetaPolicy</strong>: This policy type is less flexible than
+SignaturePolicy, and is only valid in the context of configuration.
+It aggregates the result of evaluating policies deeper in the
+configuration hierarchy, which are ultimately defined by
+SignaturePolicies. It supports good default rules like “A majority of
+the organization admin policies”.</p></li>
+</ol>
+<p>There are presently two different types of policies implemented:</p>
+<p>Policies are encoded in a <code class="docutils literal notranslate"><span class="pre">common.Policy</span></code> message as defined in
+<code class="docutils literal notranslate"><span class="pre">fabric-protos/common/policies.proto</span></code>. They are defined by the
+following message:</p>
+<ol class="arabic simple">
+<li><p><strong>SignaturePolicy</strong>: This policy type is the most powerful, and
+specifies the policy as a combination of evaluation rules for MSP
+Principals. It supports arbitrary combinations of <em>AND</em>, <em>OR</em>, and
+<em>NOutOf</em>, allowing the construction of extremely powerful rules like:
+“An admin of org A and 2 other admins, or 11 of 20 org admins”.</p></li>
+<li><p><strong>ImplicitMetaPolicy</strong>: This policy type is less flexible than
+SignaturePolicy, and is only valid in the context of configuration.
+It aggregates the result of evaluating policies deeper in the
+configuration hierarchy, which are ultimately defined by
+SignaturePolicies. It supports good default rules like “A majority of
+the organization admin policies”.</p></li>
+</ol>
+<p>Policies are encoded in a <code class="docutils literal notranslate"><span class="pre">common.Policy</span></code> message as defined in
+<code class="docutils literal notranslate"><span class="pre">fabric-protos/common/policies.proto</span></code>. They are defined by the
+following message:</p>
+<blockquote>
+<div><dl>
+<dt>message Policy {</dt><dd><dl class="simple">
+<dt>enum PolicyType {</dt><dd><p>UNKNOWN = 0; // Reserved to check for proper initialization
+SIGNATURE = 1;
+MSP = 2;
+IMPLICIT_META = 3;</p>
+</dd>
+</dl>
+<p>}
+int32 type = 1; // For outside implementors, consider the first 1000 types reserved, otherwise one of PolicyType
+bytes policy = 2;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>To encode the policy, simply pick the policy type of either
+<code class="docutils literal notranslate"><span class="pre">SIGNATURE</span></code> or <code class="docutils literal notranslate"><span class="pre">IMPLICIT_META</span></code>, set it to the <code class="docutils literal notranslate"><span class="pre">type</span></code> field, and
+marshal the corresponding policy implementation proto to <code class="docutils literal notranslate"><span class="pre">policy</span></code>.</p>
+<blockquote>
+<div><dl>
+<dt>message Policy {</dt><dd><dl class="simple">
+<dt>enum PolicyType {</dt><dd><p>UNKNOWN = 0; // Reserved to check for proper initialization
+SIGNATURE = 1;
+MSP = 2;
+IMPLICIT_META = 3;</p>
+</dd>
+</dl>
+<p>}
+int32 type = 1; // For outside implementors, consider the first 1000 types reserved, otherwise one of PolicyType
+bytes policy = 2;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+</div>
+<div class="section" id="configuration-and-policies">
+<h2>Configuration and Policies<a class="headerlink" href="#configuration-and-policies" title="Permalink to this headline">¶</a></h2>
+<p>To encode the policy, simply pick the policy type of either
+<code class="docutils literal notranslate"><span class="pre">SIGNATURE</span></code> or <code class="docutils literal notranslate"><span class="pre">IMPLICIT_META</span></code>, set it to the <code class="docutils literal notranslate"><span class="pre">type</span></code> field, and
+marshal the corresponding policy implementation proto to <code class="docutils literal notranslate"><span class="pre">policy</span></code>.</p>
+<p>The channel configuration is expressed as a hierarchy of configuration
+groups, each of which has a set of values and policies associated with
+them. For a validly configured application channel with two application
+organizations and one ordering organization, the configuration looks
+minimally as follows:</p>
+</div>
+<div class="section" id="id2">
+<h2>Configuration and Policies<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The channel configuration is expressed as a hierarchy of configuration
+groups, each of which has a set of values and policies associated with
+them. For a validly configured application channel with two application
+organizations and one ordering organization, the configuration looks
+minimally as follows:</p>
+<blockquote>
+<div><dl>
+<dt>Channel:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+<dt>Groups:</dt><dd><dl class="simple">
+<dt>Orderer:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+<dt>Groups:</dt><dd><dl class="simple">
+<dt>OrdereringOrganization1:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Application:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>———–&gt;    Writers</dt><dd><blockquote>
+<div><p>Admins</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Groups:</dt><dd><dl class="simple">
+<dt>ApplicationOrganization1:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+</dl>
+</dd>
+<dt>ApplicationOrganization2:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Consider the Writers policy referred to with the <code class="docutils literal notranslate"><span class="pre">-------&gt;</span></code> mark in
+the above example. This policy may be referred to by the shorthand
+notation <code class="docutils literal notranslate"><span class="pre">/Channel/Application/Writers</span></code>. Note that the elements
+resembling directory components are group names, while the last
+component resembling a file basename is the policy name.</p>
+<blockquote>
+<div><dl>
+<dt>Channel:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+<dt>Groups:</dt><dd><dl class="simple">
+<dt>Orderer:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+<dt>Groups:</dt><dd><dl class="simple">
+<dt>OrderingOrganization1:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Application:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>———–&gt;    Writers</dt><dd><blockquote>
+<div><p>Admins</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Groups:</dt><dd><dl class="simple">
+<dt>ApplicationOrganization1:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+</dl>
+</dd>
+<dt>ApplicationOrganization2:</dt><dd><dl class="simple">
+<dt>Policies:</dt><dd><p>Readers
+Writers
+Admins</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Different components of the system will refer to these policy names. For
+instance, to call <code class="docutils literal notranslate"><span class="pre">Deliver</span></code> on the orderer, the signature on the
+request must satisfy the <code class="docutils literal notranslate"><span class="pre">/Channel/Readers</span></code> policy. However, to gossip
+a block to a peer will require that the <code class="docutils literal notranslate"><span class="pre">/Channel/Application/Readers</span></code>
+policy be satisfied.</p>
+<p>Consider the Writers policy referred to with the <code class="docutils literal notranslate"><span class="pre">-------&gt;</span></code> mark in
+the above example. This policy may be referred to by the shorthand
+notation <code class="docutils literal notranslate"><span class="pre">/Channel/Application/Writers</span></code>. Note that the elements
+resembling directory components are group names, while the last
+component resembling a file basename is the policy name.</p>
+<p>By setting these different policies, the system can be configured with
+rich access controls.</p>
+<p>Different components of the system will refer to these policy names. For
+instance, to call <code class="docutils literal notranslate"><span class="pre">Deliver</span></code> on the orderer, the signature on the
+request must satisfy the <code class="docutils literal notranslate"><span class="pre">/Channel/Readers</span></code> policy. However, to gossip
+a block to a peer will require that the <code class="docutils literal notranslate"><span class="pre">/Channel/Application/Readers</span></code>
+policy be satisfied.</p>
+</div>
+<div class="section" id="constructing-a-signaturepolicy">
+<h2>Constructing a SignaturePolicy<a class="headerlink" href="#constructing-a-signaturepolicy" title="Permalink to this headline">¶</a></h2>
+<p>By setting these different policies, the system can be configured with
+rich access controls.</p>
+<p>As with all policies, the SignaturePolicy is expressed as protobuf.</p>
+</div>
+<div class="section" id="id3">
+<h2>Constructing a SignaturePolicy<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>As with all policies, the SignaturePolicy is expressed as protobuf.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>message SignaturePolicyEnvelope {</dt><dd><p>int32 version = 1;
+SignaturePolicy policy = 2;
+repeated MSPPrincipal identities = 3;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">SignaturePolicy</span> <span class="p">{</span>
+    <span class="n">message</span> <span class="n">NOutOf</span> <span class="p">{</span>
+        <span class="n">int32</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">repeated</span> <span class="n">SignaturePolicy</span> <span class="n">policies</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">oneof</span> <span class="n">Type</span> <span class="p">{</span>
+        <span class="n">int32</span> <span class="n">signed_by</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">NOutOf</span> <span class="n">n_out_of</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">message</span> <span class="n">SignaturePolicyEnvelope</span> <span class="p">{</span>
+    <span class="n">int32</span> <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">SignaturePolicy</span> <span class="n">policy</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">repeated</span> <span class="n">MSPPrincipal</span> <span class="n">identities</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The outer <code class="docutils literal notranslate"><span class="pre">SignaturePolicyEnvelope</span></code> defines a version (currently only
+<code class="docutils literal notranslate"><span class="pre">0</span></code> is supported), a set of identities expressed as
+<code class="docutils literal notranslate"><span class="pre">MSPPrincipal</span></code>s , and a <code class="docutils literal notranslate"><span class="pre">policy</span></code> which defines the policy rule,
+referencing the <code class="docutils literal notranslate"><span class="pre">identities</span></code> by index. For more details on how to
+specify MSP Principals, see the MSP Principals section.</p>
+<blockquote>
+<div><dl>
+<dt>message SignaturePolicy {</dt><dd><dl class="simple">
+<dt>message NOutOf {</dt><dd><p>int32 N = 1;
+repeated SignaturePolicy policies = 2;</p>
+</dd>
+</dl>
+<p>}
+oneof Type {</p>
+<blockquote>
+<div><p>int32 signed_by = 1;
+NOutOf n_out_of = 2;</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">SignaturePolicy</span></code> is a recursive data structure which either
+represents a single signature requirement from a specific
+<code class="docutils literal notranslate"><span class="pre">MSPPrincipal</span></code>, or a collection of <code class="docutils literal notranslate"><span class="pre">SignaturePolicy</span></code>s, requiring
+that <code class="docutils literal notranslate"><span class="pre">N</span></code> of them are satisfied.</p>
+<p>The outer <code class="docutils literal notranslate"><span class="pre">SignaturePolicyEnvelope</span></code> defines a version (currently only
+<code class="docutils literal notranslate"><span class="pre">0</span></code> is supported), a set of identities expressed as
+<code class="docutils literal notranslate"><span class="pre">MSPPrincipal</span></code>s , and a <code class="docutils literal notranslate"><span class="pre">policy</span></code> which defines the policy rule,
+referencing the <code class="docutils literal notranslate"><span class="pre">identities</span></code> by index. For more details on how to
+specify MSP Principals, see the MSP Principals section.</p>
+<p>For example:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SignaturePolicy</span></code> is a recursive data structure which either
+represents a single signature requirement from a specific
+<code class="docutils literal notranslate"><span class="pre">MSPPrincipal</span></code>, or a collection of <code class="docutils literal notranslate"><span class="pre">SignaturePolicy</span></code>s, requiring
+that <code class="docutils literal notranslate"><span class="pre">N</span></code> of them are satisfied.</p>
+<p>For example:</p>
+<blockquote>
+<div><dl>
+<dt>SignaturePolicyEnvelope{</dt><dd><p>version: 0,
+policy: SignaturePolicy{</p>
+<blockquote>
+<div><dl>
+<dt>n_out_of: NOutOf{</dt><dd><p>N: 2,
+policies: [</p>
+<blockquote>
+<div><p>SignaturePolicy{ signed_by: 0 },
+SignaturePolicy{ signed_by: 1 },</p>
+</div></blockquote>
+<p>],</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>},
+identities: [mspP1, mspP2],</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>This defines a signature policy over MSP Principals <code class="docutils literal notranslate"><span class="pre">mspP1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">mspP2</span></code>. It requires both that there is a signature satisfying
+<code class="docutils literal notranslate"><span class="pre">mspP1</span></code> and a signature satisfying <code class="docutils literal notranslate"><span class="pre">mspP2</span></code>.</p>
+<blockquote>
+<div><dl>
+<dt>SignaturePolicyEnvelope{</dt><dd><p>version: 0,
+policy: SignaturePolicy{</p>
+<blockquote>
+<div><dl>
+<dt>n_out_of: NOutOf{</dt><dd><p>N: 2,
+policies: [</p>
+<blockquote>
+<div><p>SignaturePolicy{ signed_by: 0 },
+SignaturePolicy{ signed_by: 1 },</p>
+</div></blockquote>
+<p>],</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>},
+identities: [mspP1, mspP2],</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>As another more complex example:</p>
+<p>This defines a signature policy over MSP Principals <code class="docutils literal notranslate"><span class="pre">mspP1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">mspP2</span></code>. It requires both that there is a signature satisfying
+<code class="docutils literal notranslate"><span class="pre">mspP1</span></code> and a signature satisfying <code class="docutils literal notranslate"><span class="pre">mspP2</span></code>.</p>
+<p>As another more complex example:</p>
+<blockquote>
+<div><dl>
+<dt>SignaturePolicyEnvelope{</dt><dd><p>version: 0,
+policy: SignaturePolicy{</p>
+<blockquote>
+<div><dl>
+<dt>n_out_of: NOutOf{</dt><dd><p>N: 2,
+policies: [</p>
+<blockquote>
+<div><p>SignaturePolicy{ signed_by: 0 },
+SignaturePolicy{</p>
+<blockquote>
+<div><dl>
+<dt>n_out_of: NOutOf{</dt><dd><p>N: 1,
+policies: [</p>
+<blockquote>
+<div><p>SignaturePolicy{ signed_by: 1 },
+SignaturePolicy{ signed_by: 2 },</p>
+</div></blockquote>
+<p>],</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>},</p>
+</div></blockquote>
+<p>],</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>},
+identities: [mspP1, mspP2, mspP3],</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>This defines a signature policy over MSP Principals <code class="docutils literal notranslate"><span class="pre">mspP1</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mspP2</span></code>, and <code class="docutils literal notranslate"><span class="pre">mspP3</span></code>. It requires one signature which satisfies
+<code class="docutils literal notranslate"><span class="pre">mspP1</span></code>, and another signature which either satisfies <code class="docutils literal notranslate"><span class="pre">mspP2</span></code> or
+<code class="docutils literal notranslate"><span class="pre">mspP3</span></code>.</p>
+<blockquote>
+<div><dl>
+<dt>SignaturePolicyEnvelope{</dt><dd><p>version: 0,
+policy: SignaturePolicy{</p>
+<blockquote>
+<div><dl>
+<dt>n_out_of: NOutOf{</dt><dd><p>N: 2,
+policies: [</p>
+<blockquote>
+<div><p>SignaturePolicy{ signed_by: 0 },
+SignaturePolicy{</p>
+<blockquote>
+<div><dl>
+<dt>n_out_of: NOutOf{</dt><dd><p>N: 1,
+policies: [</p>
+<blockquote>
+<div><p>SignaturePolicy{ signed_by: 1 },
+SignaturePolicy{ signed_by: 2 },</p>
+</div></blockquote>
+<p>],</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>},</p>
+</div></blockquote>
+<p>],</p>
+</dd>
+</dl>
+<p>},</p>
+</div></blockquote>
+<p>},
+identities: [mspP1, mspP2, mspP3],</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>Hopefully it is clear that complicated and relatively arbitrary logic
+may be expressed using the SignaturePolicy policy type. For code which
+constructs signature policies, consult
+<code class="docutils literal notranslate"><span class="pre">fabric/common/cauthdsl/cauthdsl_builder.go</span></code>.</p>
+<p>This defines a signature policy over MSP Principals <code class="docutils literal notranslate"><span class="pre">mspP1</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mspP2</span></code>, and <code class="docutils literal notranslate"><span class="pre">mspP3</span></code>. It requires one signature which satisfies
+<code class="docutils literal notranslate"><span class="pre">mspP1</span></code>, and another signature which either satisfies <code class="docutils literal notranslate"><span class="pre">mspP2</span></code> or
+<code class="docutils literal notranslate"><span class="pre">mspP3</span></code>.</p>
+<hr class="docutils" />
+<p>Hopefully it is clear that complicated and relatively arbitrary logic
+may be expressed using the SignaturePolicy policy type. For code which
+constructs signature policies, consult
+<code class="docutils literal notranslate"><span class="pre">fabric/common/cauthdsl/cauthdsl_builder.go</span></code>.</p>
+<p><strong>Limitations</strong>: When evaluating a signature policy against a signature set,
+signatures are ‘consumed’, in the order in which they appear, regardless of
+whether they satisfy multiple policy principals.</p>
+<hr class="docutils" />
+<p>For example.  Consider a policy which requires</p>
+<p><strong>Limitations</strong>: When evaluating a signature policy against a signature set,
+signatures are ‘consumed’, in the order in which they appear, regardless of
+whether they satisfy multiple policy principals.</p>
+<p>For example.  Consider a policy which requires</p>
+<blockquote>
+<div><p>2 of [org1.Member, org1.Admin]</p>
+</div></blockquote>
+<p>The naive intent of this policy is to require that both an admin, and a member
+sign. For the signature set</p>
+<blockquote>
+<div><p>2 of [org1.Member, org1.Admin]</p>
+</div></blockquote>
+<p>The naive intent of this policy is to require that both an admin, and a member
+sign. For the signature set</p>
+<blockquote>
+<div><p>[org1.MemberSignature, org1.AdminSignature]</p>
+</div></blockquote>
+<p>the policy evaluates to true, just as expected.  However, consider the
+signature set</p>
+<blockquote>
+<div><p>[org1.MemberSignature, org1.AdminSignature]</p>
+</div></blockquote>
+<p>the policy evaluates to true, just as expected.  However, consider the
+signature set</p>
+<blockquote>
+<div><p>[org1.AdminSignature, org1.MemberSignature]</p>
+</div></blockquote>
+<p>This signature set does not satisfy the policy.  This failure is because when
+<code class="docutils literal notranslate"><span class="pre">org1.AdminSignature</span></code> satisfies the <code class="docutils literal notranslate"><span class="pre">org1.Member</span></code> role it is considered
+‘consumed’ by the <code class="docutils literal notranslate"><span class="pre">org1.Member</span></code> requirement.  Because the <code class="docutils literal notranslate"><span class="pre">org1.Admin</span></code>
+principal cannot be satisfied by the <code class="docutils literal notranslate"><span class="pre">org1.MemberSignature</span></code>, the policy
+evaluates to false.</p>
+<blockquote>
+<div><p>[org1.AdminSignature, org1.MemberSignature]</p>
+</div></blockquote>
+<p>To avoid this pitfall, identities should be specified from most privileged to
+least privileged in the policy identities specification, and signatures should
+be ordered from least privileged to most privileged in the signature set.</p>
+<p>This signature set does not satisfy the policy.  This failure is because when
+<code class="docutils literal notranslate"><span class="pre">org1.AdminSignature</span></code> satisfies the <code class="docutils literal notranslate"><span class="pre">org1.Member</span></code> role it is considered
+‘consumed’ by the <code class="docutils literal notranslate"><span class="pre">org1.Member</span></code> requirement.  Because the <code class="docutils literal notranslate"><span class="pre">org1.Admin</span></code>
+principal cannot be satisfied by the <code class="docutils literal notranslate"><span class="pre">org1.MemberSignature</span></code>, the policy
+evaluates to false.</p>
+</div>
+<div class="section" id="msp-principals">
+<h2>MSP Principals<a class="headerlink" href="#msp-principals" title="Permalink to this headline">¶</a></h2>
+<p>To avoid this pitfall, identities should be specified from most privileged to
+least privileged in the policy identities specification, and signatures should
+be ordered from least privileged to most privileged in the signature set.</p>
+<p>The MSP Principal is a generalized notion of cryptographic identity.
+Although the MSP framework is designed to work with types of
+cryptography other than X.509, for the purposes of this document, the
+discussion will assume that the underlying MSP implementation is the
+default MSP type, based on X.509 cryptography.</p>
+</div>
+<div class="section" id="id4">
+<h2>MSP Principals<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>An MSP Principal is defined in <code class="docutils literal notranslate"><span class="pre">fabric-protos/msp_principal.proto</span></code> as
+follows:</p>
+<p>The MSP Principal is a generalized notion of cryptographic identity.
+Although the MSP framework is designed to work with types of
+cryptography other than X.509, for the purposes of this document, the
+discussion will assume that the underlying MSP implementation is the
+default MSP type, based on X.509 cryptography.</p>
+<p>An MSP Principal is defined in <code class="docutils literal notranslate"><span class="pre">fabric-protos/msp_principal.proto</span></code> as
+follows:</p>
+<blockquote>
+<div><p>message MSPPrincipal {</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">enum</span> <span class="n">Classification</span> <span class="p">{</span>
+        <span class="n">ROLE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">ORGANIZATION_UNIT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">IDENTITY</span>  <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="n">message</span> <span class="n">MSPPrincipal</span> <span class="p">{</span>
+
+    <span class="n">Classification</span> <span class="n">principal_classification</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">enum</span> <span class="n">Classification</span> <span class="p">{</span>
+        <span class="n">ROLE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">ORGANIZATION_UNIT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">IDENTITY</span>  <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nb">bytes</span> <span class="n">principal</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+    <span class="n">Classification</span> <span class="n">principal_classification</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">principal_classification</span></code> must be set to either <code class="docutils literal notranslate"><span class="pre">ROLE</span></code> or
+<code class="docutils literal notranslate"><span class="pre">IDENTITY</span></code>. The <code class="docutils literal notranslate"><span class="pre">ORGANIZATIONAL_UNIT</span></code> is at the time of this writing
+not implemented.</p>
+<blockquote>
+<div><blockquote>
+<div><p>bytes principal = 2;</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>In the case of <code class="docutils literal notranslate"><span class="pre">IDENTITY</span></code> the <code class="docutils literal notranslate"><span class="pre">principal</span></code> field is set to the bytes
+of a certificate literal.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">principal_classification</span></code> must be set to either <code class="docutils literal notranslate"><span class="pre">ROLE</span></code> or
+<code class="docutils literal notranslate"><span class="pre">IDENTITY</span></code>. The <code class="docutils literal notranslate"><span class="pre">ORGANIZATIONAL_UNIT</span></code> is at the time of this writing
+not implemented.</p>
+<p>However, more commonly the <code class="docutils literal notranslate"><span class="pre">ROLE</span></code> type is used, as it allows the
+principal to match many different certs issued by the MSP’s certificate
+authority.</p>
+<p>In the case of <code class="docutils literal notranslate"><span class="pre">IDENTITY</span></code> the <code class="docutils literal notranslate"><span class="pre">principal</span></code> field is set to the bytes
+of a certificate literal.</p>
+<p>In the case of <code class="docutils literal notranslate"><span class="pre">ROLE</span></code>, the <code class="docutils literal notranslate"><span class="pre">principal</span></code> is a marshaled <code class="docutils literal notranslate"><span class="pre">MSPRole</span></code>
+message defined as follows:</p>
+<p>However, more commonly the <code class="docutils literal notranslate"><span class="pre">ROLE</span></code> type is used, as it allows the
+principal to match many different certs issued by the MSP’s certificate
+authority.</p>
+<p>In the case of <code class="docutils literal notranslate"><span class="pre">ROLE</span></code>, the <code class="docutils literal notranslate"><span class="pre">principal</span></code> is a marshaled <code class="docutils literal notranslate"><span class="pre">MSPRole</span></code>
+message defined as follows:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>message MSPRole {</dt><dd><p>string msp_identifier = 1;</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">enum</span> <span class="n">MSPRoleType</span> <span class="p">{</span>
+        <span class="n">MEMBER</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Member</span>
+        <span class="n">ADMIN</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Admin</span>
+        <span class="n">CLIENT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Client</span>
+        <span class="n">PEER</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Peer</span>
+    <span class="p">}</span>
+
+<span class="n">message</span> <span class="n">MSPRole</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">msp_identifier</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">MSPRoleType</span> <span class="n">role</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+    <span class="n">enum</span> <span class="n">MSPRoleType</span> <span class="p">{</span>
+        <span class="n">MEMBER</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Member</span>
+        <span class="n">ADMIN</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Admin</span>
+        <span class="n">CLIENT</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Client</span>
+        <span class="n">PEER</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="o">//</span> <span class="n">Represents</span> <span class="n">an</span> <span class="n">MSP</span> <span class="n">Peer</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">msp_identifier</span></code> is set to the ID of the MSP (as defined by the
+<code class="docutils literal notranslate"><span class="pre">MSPConfig</span></code> proto in the channel configuration for an org) which will
+evaluate the signature, and the <code class="docutils literal notranslate"><span class="pre">Role</span></code> is set to either <code class="docutils literal notranslate"><span class="pre">MEMBER</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ADMIN</span></code>, <code class="docutils literal notranslate"><span class="pre">CLIENT</span></code> or <code class="docutils literal notranslate"><span class="pre">PEER</span></code>. In particular:</p>
+<blockquote>
+<div><blockquote>
+<div><p>MSPRoleType role = 2;</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MEMBER</span></code> matches any certificate issued by the MSP.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADMIN</span></code> matches certificates enumerated as admin in the MSP definition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLIENT</span></code> (<code class="docutils literal notranslate"><span class="pre">PEER</span></code>) matches certificates that carry the client (peer) Organizational unit.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">msp_identifier</span></code> is set to the ID of the MSP (as defined by the
+<code class="docutils literal notranslate"><span class="pre">MSPConfig</span></code> proto in the channel configuration for an org) which will
+evaluate the signature, and the <code class="docutils literal notranslate"><span class="pre">Role</span></code> is set to either <code class="docutils literal notranslate"><span class="pre">MEMBER</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ADMIN</span></code>, <code class="docutils literal notranslate"><span class="pre">CLIENT</span></code> or <code class="docutils literal notranslate"><span class="pre">PEER</span></code>. In particular:</p>
+<p>(see <a class="reference external" href="http://hyperledger-fabric.readthedocs.io/en/latest/msp.html">MSP Documentation</a>)</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MEMBER</span></code> matches any certificate issued by the MSP.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ADMIN</span></code> matches certificates enumerated as admin in the MSP definition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLIENT</span></code> (<code class="docutils literal notranslate"><span class="pre">PEER</span></code>) matches certificates that carry the client (peer) Organizational unit.</p></li>
+</ol>
+</div>
+<div class="section" id="constructing-an-implicitmetapolicy">
+<h2>Constructing an ImplicitMetaPolicy<a class="headerlink" href="#constructing-an-implicitmetapolicy" title="Permalink to this headline">¶</a></h2>
+<p>(see <a class="reference external" href="http://hyperledger-fabric.readthedocs.io/en/latest/msp.html">MSP Documentation</a>)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicy</span></code> is only validly defined in the context of
+channel configuration. It is <code class="docutils literal notranslate"><span class="pre">Implicit</span></code> because it is constructed
+implicitly based on the current configuration, and it is <code class="docutils literal notranslate"><span class="pre">Meta</span></code>
+because its evaluation is not against MSP principals, but rather against
+other policies. It is defined in <code class="docutils literal notranslate"><span class="pre">fabric-protos/common/policies.proto</span></code>
+as follows:</p>
+</div>
+<div class="section" id="id6">
+<h2>Constructing an ImplicitMetaPolicy<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicy</span></code> is only validly defined in the context of
+channel configuration. It is <code class="docutils literal notranslate"><span class="pre">Implicit</span></code> because it is constructed
+implicitly based on the current configuration, and it is <code class="docutils literal notranslate"><span class="pre">Meta</span></code>
+because its evaluation is not against MSP principals, but rather against
+other policies. It is defined in <code class="docutils literal notranslate"><span class="pre">fabric-protos/common/policies.proto</span></code>
+as follows:</p>
+<blockquote>
+<div><dl>
+<dt>message ImplicitMetaPolicy {</dt><dd><dl class="simple">
+<dt>enum Rule {</dt><dd><p>ANY = 0;      // Requires any of the sub-policies be satisfied, if no sub-policies exist, always returns true
+ALL = 1;      // Requires all of the sub-policies be satisfied
+MAJORITY = 2; // Requires a strict majority (greater than half) of the sub-policies be satisfied</p>
+</dd>
+</dl>
+<p>}
+string sub_policy = 1;
+Rule rule = 2;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>For example, consider a policy defined at <code class="docutils literal notranslate"><span class="pre">/Channel/Readers</span></code> as</p>
+<blockquote>
+<div><dl>
+<dt>message ImplicitMetaPolicy {</dt><dd><dl class="simple">
+<dt>enum Rule {</dt><dd><p>ANY = 0;      // Requires any of the sub-policies be satisfied, if no sub-policies exist, always returns true
+ALL = 1;      // Requires all of the sub-policies be satisfied
+MAJORITY = 2; // Requires a strict majority (greater than half) of the sub-policies be satisfied</p>
+</dd>
+</dl>
+<p>}
+string sub_policy = 1;
+Rule rule = 2;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>For example, consider a policy defined at <code class="docutils literal notranslate"><span class="pre">/Channel/Readers</span></code> as</p>
+<blockquote>
+<div><dl class="simple">
+<dt>ImplicitMetaPolicy{</dt><dd><p>rule: ANY,
+sub_policy: “foo”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>This policy will implicitly select the sub-groups of <code class="docutils literal notranslate"><span class="pre">/Channel</span></code>, in
+this case, <code class="docutils literal notranslate"><span class="pre">Application</span></code> and <code class="docutils literal notranslate"><span class="pre">Orderer</span></code>, and retrieve the policy of
+name <code class="docutils literal notranslate"><span class="pre">foo</span></code>, to give the policies <code class="docutils literal notranslate"><span class="pre">/Channel/Application/foo</span></code> and
+<code class="docutils literal notranslate"><span class="pre">/Channel/Orderer/foo</span></code>. Then, when the policy is evaluated, it will
+check to see if <code class="docutils literal notranslate"><span class="pre">ANY</span></code> of those two policies evaluate without error.
+Had the rule been <code class="docutils literal notranslate"><span class="pre">ALL</span></code> it would require both.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>ImplicitMetaPolicy{</dt><dd><p>rule: ANY,
+sub_policy: “foo”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>Consider another policy defined at <code class="docutils literal notranslate"><span class="pre">/Channel/Application/Writers</span></code>
+where there are 3 application orgs defined, <code class="docutils literal notranslate"><span class="pre">OrgA</span></code>, <code class="docutils literal notranslate"><span class="pre">OrgB</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">OrgC</span></code>.</p>
+<p>This policy will implicitly select the sub-groups of <code class="docutils literal notranslate"><span class="pre">/Channel</span></code>, in
+this case, <code class="docutils literal notranslate"><span class="pre">Application</span></code> and <code class="docutils literal notranslate"><span class="pre">Orderer</span></code>, and retrieve the policy of
+name <code class="docutils literal notranslate"><span class="pre">foo</span></code>, to give the policies <code class="docutils literal notranslate"><span class="pre">/Channel/Application/foo</span></code> and
+<code class="docutils literal notranslate"><span class="pre">/Channel/Orderer/foo</span></code>. Then, when the policy is evaluated, it will
+check to see if <code class="docutils literal notranslate"><span class="pre">ANY</span></code> of those two policies evaluate without error.
+Had the rule been <code class="docutils literal notranslate"><span class="pre">ALL</span></code> it would require both.</p>
+<p>Consider another policy defined at <code class="docutils literal notranslate"><span class="pre">/Channel/Application/Writers</span></code>
+where there are 3 application orgs defined, <code class="docutils literal notranslate"><span class="pre">OrgA</span></code>, <code class="docutils literal notranslate"><span class="pre">OrgB</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">OrgC</span></code>.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>ImplicitMetaPolicy{</dt><dd><p>rule: MAJORITY,
+sub_policy: “bar”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>In this case, the policies collected would be
+<code class="docutils literal notranslate"><span class="pre">/Channel/Application/OrgA/bar</span></code>, <code class="docutils literal notranslate"><span class="pre">/Channel/Application/OrgB/bar</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">/Channel/Application/OrgC/bar</span></code>. Because the rule requires a
+<code class="docutils literal notranslate"><span class="pre">MAJORITY</span></code>, this policy will require that 2 of the three
+organization’s <code class="docutils literal notranslate"><span class="pre">bar</span></code> policies are satisfied.</p>
+<blockquote>
+<div><dl class="simple">
+<dt>ImplicitMetaPolicy{</dt><dd><p>rule: MAJORITY,
+sub_policy: “bar”,</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+</div>
+<div class="section" id="policy-defaults">
+<h2>Policy Defaults<a class="headerlink" href="#policy-defaults" title="Permalink to this headline">¶</a></h2>
+<p>In this case, the policies collected would be
+<code class="docutils literal notranslate"><span class="pre">/Channel/Application/OrgA/bar</span></code>, <code class="docutils literal notranslate"><span class="pre">/Channel/Application/OrgB/bar</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">/Channel/Application/OrgC/bar</span></code>. Because the rule requires a
+<code class="docutils literal notranslate"><span class="pre">MAJORITY</span></code>, this policy will require that 2 of the three
+organization’s <code class="docutils literal notranslate"><span class="pre">bar</span></code> policies are satisfied.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">configtxgen</span></code> tool uses policies which must be specified explicitly in configtx.yaml.</p>
+</div>
+<div class="section" id="id7">
+<h2>Policy Defaults<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>Note that policies higher in the hierarchy are all defined as
+<code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicy</span></code>s while leaf nodes necessarily are defined as
+<code class="docutils literal notranslate"><span class="pre">SignaturePolicy</span></code>s. This set of defaults works nicely because the
+<code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicies</span></code> do not need to be redefined as the number of
+organizations change, and the individual organizations may pick their
+own rules and thresholds for what is means to be a Reader, Writer, and
+Admin.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">configtxgen</span></code> tool uses policies which must be specified explicitly in configtx.yaml.</p>
+<p>Note that policies higher in the hierarchy are all defined as
+<code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicy</span></code>s while leaf nodes necessarily are defined as
+<code class="docutils literal notranslate"><span class="pre">SignaturePolicy</span></code>s. This set of defaults works nicely because the
+<code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicies</span></code> do not need to be redefined as the number of
+organizations change, and the individual organizations may pick their
+own rules and thresholds for what is means to be a Reader, Writer, and
+Admin.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

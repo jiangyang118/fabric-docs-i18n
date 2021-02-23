@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="configtxlator.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="peernode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../command_ref.html">命令参考</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/commands/configtxgen.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># configtxgen</p>
+<p><cite>configtxgen</cite> 命令允许用户创建和查看通道配置相关构件。所生成的构件取决于 <cite>configtx.yaml</cite> 的内容。</p>
+<p>The <cite>configtxgen</cite> command allows users to create and inspect channel config
+related artifacts.  The content of the generated artifacts is dictated by the
+contents of <cite>configtx.yaml</cite>.</p>
+<p>## 语法</p>
+<p><cite>configtxgen</cite> 工具没有子命令，但是支持标识（flag），通过设置标识可以完成不同的任务。</p>
+<p>## configtxgen
+<a href="#id1"><span class="problematic" id="id2">``</span></a>`
+Usage of configtxgen:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>-asOrg string</dt><dd><p>以特定组织（按名称）执行配置生成，仅包括组织（可能）有权设置的写集中的值。</p>
+</dd>
+<dt>-channelCreateTxBaseProfile string</dt><dd><p>指定要视为排序系统通道当前状态的轮廓（profile），以允许在通道创建交易生成期间修改非应用程序参数。仅在与 “outputCreateChannelTX”  结合时有效。</p>
+</dd>
+<dt>-channelID string</dt><dd><p>配置交易中使用的通道 ID。</p>
+</dd>
+<dt>-configPath string</dt><dd><p>包含所用的配置的路径。（如果设置的话）</p>
+</dd>
+<dt>-inspectBlock string</dt><dd><p>打印指定路径的区块中包含的配置。</p>
+</dd>
+<dt>-inspectChannelCreateTx string</dt><dd><p>打印指定路径的交易中包含的配置。</p>
+</dd>
+<dt>-outputAnchorPeersUpdate string</dt><dd><p>创建一个更新锚节点的配置更新（仅在默认通道创建时有效，并仅用于第一次更新）。</p>
+</dd>
+<dt>-outputBlock string</dt><dd><p>写入创世区块的路径。（如果设置的话）</p>
+</dd>
+<dt>-outputCreateChannelTx string</dt><dd><p>写入通道创建交易的路径。（如果设置的话）</p>
+</dd>
+<dt>-printOrg string</dt><dd><p>以 JSON 方式打印组织的定义。（手动向通道中添加组织时很有用）</p>
+</dd>
+<dt>-profile string</dt><dd><p>configtx.yaml 中用于生成的轮廓。</p>
+</dd>
+</dl>
+<dl class="option-list">
+<dt><kbd><span class="option">-v<var>ersion</var></span></kbd></dt>
+<dd><p>显示版本信息。</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>## 用法</p>
+<p>### 输出初始区块</p>
+<p>将通道 <cite>orderer-system-channel</cite> 和轮廓（Profile） <cite>SampleSingleMSPRaftV1_1</cite> 的创世区块写入 <cite>genesis_block.pb</cite> 。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxgen</span> <span class="pre">-outputBlock</span> <span class="pre">genesis_block.pb</span> <span class="pre">-profile</span> <span class="pre">SampleSingleMSPRaftV1_1</span> <span class="pre">-channelID</span> <span class="pre">orderer-system-channel</span>
+<span class="pre">`</span></code></p>
+<p>### 输出创建通道的交易</p>
+<p>将轮廓 <cite>SampleSingleMSPChannelV1_1</cite> 的通道创建交易写入 <cite>create_chan_tx.pb</cite>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxgen</span> <span class="pre">-outputCreateChannelTx</span> <span class="pre">create_chan_tx.pb</span> <span class="pre">-profile</span> <span class="pre">SampleSingleMSPChannelV1_1</span> <span class="pre">-channelID</span> <span class="pre">application-channel-1</span>
+<span class="pre">`</span></code></p>
+<p>### 查看创世区块</p>
+<p>将创世区块 <cite>genesis_block.pb</cite> 以 JSON 格式打印到屏幕上。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxgen</span> <span class="pre">-inspectBlock</span> <span class="pre">genesis_block.pb</span>
+<span class="pre">`</span></code></p>
+<p>### 查看创建通道交易</p>
+<p>将通道创建交易 <cite>create_chan_tx.pb</cite> 以 JSON 的格式打印到屏幕上。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxgen</span> <span class="pre">-inspectChannelCreateTx</span> <span class="pre">create_chan_tx.pb</span>
+<span class="pre">`</span></code></p>
+<p>### 打印组织定义</p>
+<p>基于 <cite>configtx.yaml</cite> 的配置项（比如 MSPdir）来构建组织并以 JSON 格式打印到屏幕。（常用于创建通道时的重新配置，例如添加成员）</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxgen</span> <span class="pre">-printOrg</span> <span class="pre">Org1</span>
+<span class="pre">`</span></code></p>
+<p>### 输出锚节点交易（弃用）</p>
+<p>将配置更新交易输出到 <cite>anchor_peer_tx.pb</cite>，就是将组织 Org1 的锚节点设置成 <cite>configtx.yaml</cite> 中轮廓 SampleSingleMSPChannelV1_1 所定义的。
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxgen</span> <span class="pre">-outputAnchorPeersUpdate</span> <span class="pre">anchor_peer_tx.pb</span> <span class="pre">-profile</span> <span class="pre">SampleSingleMSPChannelV1_1</span> <span class="pre">-asOrg</span> <span class="pre">Org1</span>
+<span class="pre">`</span></code></p>
+<p>The <cite>-outputAnchorPeersUpdate</cite> output flag has been deprecated. To set anchor
+peers on the channel, use [configtxlator](configtxlator.html) to update the
+channel configuration.</p>
+<p>## 配置</p>
+<p><cite>configtxgen</cite> 工具的输出依赖于 <cite>configtx.yaml</cite>。<cite>configtx.yaml</cite> 可在 <cite>FABRIC_CFG_PATH</cite> 下找到，且在 <cite>configtxgen</cite> 执行时必须存在。</p>
+<p>Refer to the sample <cite>configtx.yaml</cite> shipped with Fabric for all possible
+configuration options.  You may find this file in the <cite>config</cite> directory of
+the release artifacts tar, or you may find it under the <cite>sampleconfig</cite> folder
+if you are building from source.</p>
+<p>&lt;a rel=”license” href=”<a class="reference external" href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>”&gt;&lt;img alt=”Creative Commons License” style=”border-width:0” src=”https://i.creativecommons.org/l/by/4.0/88x31.png” /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel=”license” href=”http://creativecommons.org/licenses/by/4.0/”&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="configtxlator.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="peernode.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>通道配置（configtx） &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="背书策略" href="endorsement-policies.html" />
+    <link rel="prev" title="```" href="hsm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">通道配置（configtx）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">配置解析</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">配置更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">组和值的许可配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">排序系统通道配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">应用通道配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">通道创建</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>通道配置（configtx）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/configtx.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configtx">
+<h1>通道配置（configtx）<a class="headerlink" href="#configtx" title="Permalink to this headline">¶</a></h1>
+<p>Hyperledger Fabric 区块链网络的共享配置存储在一个集合配置交易中，每个通道一个。
+配置交易通常简称为 <em>configtx</em>。</p>
+<p>通道配置有以下重要特性：</p>
+<ol class="arabic simple">
+<li><p><strong>版本化</strong>：配置中的所有元素都有一个关联的、每次修改都提高的版本。此外，每个
+提交的配置都有一个序列号。</p></li>
+<li><p><strong>许可的</strong>：配置中的所有元素都有一个关联的、控制对此元素的修改是否被允许的策略。
+任何拥有之前 configtx 副本（没有附加信息）的人均可以这些策略为基础来验证新配置
+的有效性。</p></li>
+<li><p><strong>分层的</strong>：根配置组包含子组，而且层次结构中的每个组都有关联的值和策略。这些
+策略可以利用层次结构从较低层级的策略派生出一个层级的策略。</p></li>
+</ol>
+<div class="section" id="id1">
+<h2>配置解析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>配置，作为一个类型为 <code class="docutils literal notranslate"><span class="pre">HeaderType_CONFIG</span></code> 的交易，被存储在一个没有其他交易的
+区块中。这些区块被称为 <em>配置区块</em>，其中的第一个就是 <em>创世区块</em>。</p>
+<p>配置的原型结构在 <code class="docutils literal notranslate"><span class="pre">fabric-protos/common/configtx.proto</span></code> 中。类型为
+<code class="docutils literal notranslate"><span class="pre">HeaderType_CONFIG</span></code> 的信封将 <code class="docutils literal notranslate"><span class="pre">ConfigEnvelope</span></code> 消息编码为
+<code class="docutils literal notranslate"><span class="pre">Payload</span></code> <code class="docutils literal notranslate"><span class="pre">data</span></code> 字段。<code class="docutils literal notranslate"><span class="pre">ConfigEnvelope</span></code> 的原型定义如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigEnvelope</span> <span class="p">{</span>
+    <span class="n">Config</span> <span class="n">config</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">Envelope</span> <span class="n">last_update</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">last_update</span></code> 字段在下面的 <strong>配置更新</strong> 一节定义，但只有当验证配置时才是必需的，
+读取时则不是。当前提交的配置存储在 <code class="docutils literal notranslate"><span class="pre">config</span></code> 字段，包含 <code class="docutils literal notranslate"><span class="pre">Config</span></code> 消息。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">Config</span> <span class="p">{</span>
+    <span class="n">uint64</span> <span class="n">sequence</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">ConfigGroup</span> <span class="n">channel_group</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> 数字每次提交配置时增加1。<code class="docutils literal notranslate"><span class="pre">channel_group</span></code> 字段是包含配置的根组。
+<code class="docutils literal notranslate"><span class="pre">ConfigGroup</span></code> 结构是递归定义的，并构建了一个组的树，每个组都包含值和策略。其
+定义如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigGroup</span> <span class="p">{</span>
+    <span class="n">uint64</span> <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="n">groups</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">ConfigValue</span><span class="o">&gt;</span> <span class="n">values</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">ConfigPolicy</span><span class="o">&gt;</span> <span class="n">policies</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">mod_policy</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>因为 <code class="docutils literal notranslate"><span class="pre">ConfigGroup</span></code> 是递归结构，所以它有层次结构。为清楚起见，下面的例子使用
+golang 展现。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Assume</span> <span class="n">the</span> <span class="n">following</span> <span class="n">groups</span> <span class="n">are</span> <span class="n">defined</span>
+<span class="n">var</span> <span class="n">root</span><span class="p">,</span> <span class="n">child1</span><span class="p">,</span> <span class="n">child2</span><span class="p">,</span> <span class="n">grandChild1</span><span class="p">,</span> <span class="n">grandChild2</span><span class="p">,</span> <span class="n">grandChild3</span> <span class="o">*</span><span class="n">ConfigGroup</span>
+
+<span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">following</span> <span class="n">values</span>
+<span class="n">root</span><span class="o">.</span><span class="n">Groups</span><span class="p">[</span><span class="s2">&quot;child1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">child1</span>
+<span class="n">root</span><span class="o">.</span><span class="n">Groups</span><span class="p">[</span><span class="s2">&quot;child2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">child2</span>
+<span class="n">child1</span><span class="o">.</span><span class="n">Groups</span><span class="p">[</span><span class="s2">&quot;grandChild1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grandChild1</span>
+<span class="n">child2</span><span class="o">.</span><span class="n">Groups</span><span class="p">[</span><span class="s2">&quot;grandChild2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grandChild2</span>
+<span class="n">child2</span><span class="o">.</span><span class="n">Groups</span><span class="p">[</span><span class="s2">&quot;grandChild3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grandChild3</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">resulting</span> <span class="n">config</span> <span class="n">structure</span> <span class="n">of</span> <span class="n">groups</span> <span class="n">looks</span> <span class="n">like</span><span class="p">:</span>
+<span class="o">//</span> <span class="n">root</span><span class="p">:</span>
+<span class="o">//</span>     <span class="n">child1</span><span class="p">:</span>
+<span class="o">//</span>         <span class="n">grandChild1</span>
+<span class="o">//</span>     <span class="n">child2</span><span class="p">:</span>
+<span class="o">//</span>         <span class="n">grandChild2</span>
+<span class="o">//</span>         <span class="n">grandChild3</span>
+</pre></div>
+</div>
+<p>每个组定义了配置层次中的一个级别，每个组都有关联的一组值（按字符串键索引）和策略
+（也按字符串键索引）。</p>
+<p>值定义：</p>
+<p>Values are defined by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigValue</span> <span class="p">{</span>
+    <span class="n">uint64</span> <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nb">bytes</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">mod_policy</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>策略定义：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigPolicy</span> <span class="p">{</span>
+    <span class="n">uint64</span> <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">Policy</span> <span class="n">policy</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">mod_policy</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注意，值、策略和组都有 <code class="docutils literal notranslate"><span class="pre">version</span></code> 和 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code>。一个元素每次修改时
+<code class="docutils literal notranslate"><span class="pre">version</span></code> 都会增长。 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code> 被用来控制修改元素时所需要的签名。
+对于组，修改就是增加或删除值、策略或组映射中的元素（或改变 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code>）。
+对于值和策略，修改就是分别改变值和策略字段（或改变 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code>）。每个元素
+的 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code> 都在当前层级配置的上下文中被评估。下面是一个定义在
+<code class="docutils literal notranslate"><span class="pre">Channel.Groups[&quot;Application&quot;]</span></code> 中的修改策略示例（这里，我们使用 golang map
+语法，所以，<code class="docutils literal notranslate"><span class="pre">Channel.Groups[&quot;Application&quot;].Policies[&quot;policy1&quot;]</span></code> 表示根组
+<code class="docutils literal notranslate"><span class="pre">Channel</span></code> 的子组 <code class="docutils literal notranslate"><span class="pre">Application</span></code> 的 <code class="docutils literal notranslate"><span class="pre">Policies</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">policy1</span></code> 所对应的
+策略。）</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">policy1</span></code> 对应 <code class="docutils literal notranslate"><span class="pre">Channel.Groups[&quot;Application&quot;].Policies[&quot;policy1&quot;]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Org1/policy2</span></code> 对应 <code class="docutils literal notranslate"><span class="pre">Channel.Groups[&quot;Application&quot;].Groups[&quot;Org1&quot;].Policies[&quot;policy2&quot;]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Channel/policy3</span></code> 对应 <code class="docutils literal notranslate"><span class="pre">Channel.Policies[&quot;policy3&quot;]</span></code></p></li>
+</ul>
+<p>注意，如果一个 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code> 引用了一个不存在的策略，那么该元素不可修改。</p>
+<p>Note that if a <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code> references a policy which does not exist,
+the item cannot be modified.</p>
+</div>
+<div class="section" id="id2">
+<h2>配置更新<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>配置更新被作为一个类型为 <code class="docutils literal notranslate"><span class="pre">HeaderType_CONFIG_UPDATE</span></code> 的 <code class="docutils literal notranslate"><span class="pre">Envelope</span></code> 消息提交。
+交易中的 <code class="docutils literal notranslate"><span class="pre">Payload</span></code> <code class="docutils literal notranslate"><span class="pre">data</span></code> 是一个封送的 <code class="docutils literal notranslate"><span class="pre">ConfigUpdateEnvelope</span></code>。
+<code class="docutils literal notranslate"><span class="pre">ConfigUpdateEnvelope</span></code> 定义如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigUpdateEnvelope</span> <span class="p">{</span>
+    <span class="nb">bytes</span> <span class="n">config_update</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">repeated</span> <span class="n">ConfigSignature</span> <span class="n">signatures</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">signatures</span></code> 字段包含一组授权配置更新的签名。它的消息定义如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigSignature</span> <span class="p">{</span>
+    <span class="nb">bytes</span> <span class="n">signature_header</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="nb">bytes</span> <span class="n">signature</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">signature_header</span></code> 是为标准交易定义的，而签名是通过 <code class="docutils literal notranslate"><span class="pre">signature_header</span></code> 字节
+和 <code class="docutils literal notranslate"><span class="pre">ConfigUpdateEnvelope</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">config_update</span></code> 字节串联而得。</p>
+<p><code class="docutils literal notranslate"><span class="pre">ConfigUpdateEnvelope</span></code> <code class="docutils literal notranslate"><span class="pre">config_update</span></code> 字节是封送的 <code class="docutils literal notranslate"><span class="pre">ConfigUpdate</span></code>
+消息，定义如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="n">ConfigUpdate</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">channel_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">ConfigGroup</span> <span class="n">read_set</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">ConfigGroup</span> <span class="n">write_set</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">channel_id</span></code> 是更新所绑定的通道 ID，这对于确定支持此重配置的签名的作用域
+是必需的。</p>
+<p><code class="docutils literal notranslate"><span class="pre">read_set</span></code> 定义了现有配置的子集，属稀疏指定，其中只设置 <code class="docutils literal notranslate"><span class="pre">version</span></code> 字段，
+其他字段不需要填充。尤其 <code class="docutils literal notranslate"><span class="pre">ConfigValue</span></code> <code class="docutils literal notranslate"><span class="pre">value</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">ConfigPolicy</span></code>
+<code class="docutils literal notranslate"><span class="pre">policy</span></code> 字段不应在 <code class="docutils literal notranslate"><span class="pre">read_set</span></code> 中设置。<code class="docutils literal notranslate"><span class="pre">ConfigGroup</span></code> 可以有已填充
+映射字段的子集，以便引用配置树中更深层次的元素。例如，要将 <code class="docutils literal notranslate"><span class="pre">Application</span></code> 组
+包含在 <code class="docutils literal notranslate"><span class="pre">read-set</span></code> 中，其父组（<code class="docutils literal notranslate"><span class="pre">Channel</span></code> 组）也必须包含在读集合中，但
+<code class="docutils literal notranslate"><span class="pre">Channel</span></code> 组不需要填充所有键，例如 <code class="docutils literal notranslate"><span class="pre">Orderer</span></code> <code class="docutils literal notranslate"><span class="pre">group</span></code> 键，或任何
+<code class="docutils literal notranslate"><span class="pre">values</span></code> 或 <code class="docutils literal notranslate"><span class="pre">policies</span></code> 键。</p>
+<p><code class="docutils literal notranslate"><span class="pre">write_set</span></code> 指定了要修改的配置片段。由于配置的层次性，对层次结构中深层元素
+的写入也必须在其 <code class="docutils literal notranslate"><span class="pre">write_set</span></code> 中包含更高级别的元素。但是，对于 <code class="docutils literal notranslate"><span class="pre">read-set</span></code>
+中也指定的 <code class="docutils literal notranslate"><span class="pre">write-set</span></code> 中的任何同一版本的元素，应该像在 <a href="#id3"><span class="problematic" id="id4">``</span></a>read-set``中一样
+稀疏地指定该元素。</p>
+<p>例如，给定配置：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Channel</span><span class="p">:</span> <span class="p">(</span><span class="n">version</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">Orderer</span> <span class="p">(</span><span class="n">version</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">Application</span> <span class="p">(</span><span class="n">version</span> <span class="mi">3</span><span class="p">)</span>
+       <span class="n">Org1</span> <span class="p">(</span><span class="n">version</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>为了提交一个修改 <code class="docutils literal notranslate"><span class="pre">Org1</span></code> 的配置更新，<code class="docutils literal notranslate"><span class="pre">read_set</span></code> 应如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Channel</span><span class="p">:</span> <span class="p">(</span><span class="n">version</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">Application</span><span class="p">:</span> <span class="p">(</span><span class="n">version</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">write_set</span></code> 应如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Channel</span><span class="p">:</span> <span class="p">(</span><span class="n">version</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">Application</span><span class="p">:</span> <span class="p">(</span><span class="n">version</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">Org1</span> <span class="p">(</span><span class="n">version</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>收到 <code class="docutils literal notranslate"><span class="pre">CONFIG_UPDATE</span></code> 后，排序节点按以下步骤计算 <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> 结果。</p>
+<ol class="arabic simple">
+<li><p>验证 <code class="docutils literal notranslate"><span class="pre">channel_id</span></code> 和 <code class="docutils literal notranslate"><span class="pre">read_set</span></code>。<code class="docutils literal notranslate"><span class="pre">read_set</span></code> 中的所有元素都必须
+以给定的版本存在。</p></li>
+<li><p>收集 <code class="docutils literal notranslate"><span class="pre">write_set</span></code> 中的所有与 <code class="docutils literal notranslate"><span class="pre">read_set</span></code> 版本不一致的元素以计算更新集。</p></li>
+<li><p>校验更新集合中版本号刚好增长了1的每个元素。</p></li>
+<li><p>校验附加到 <code class="docutils literal notranslate"><span class="pre">ConfigUpdateEnvelope</span></code> 的签名集是否满足更新集中每个元素的
+<code class="docutils literal notranslate"><span class="pre">mod_policy</span></code>。</p></li>
+<li><p>通过应用更新到到当前配置，计算出配置的新的完整版本。</p></li>
+<li><p>将配置写入 <code class="docutils literal notranslate"><span class="pre">ConfigEnvelope</span></code>，包含作为 <code class="docutils literal notranslate"><span class="pre">last_update</span></code> 字段的
+<code class="docutils literal notranslate"><span class="pre">CONFIG_UPDATE</span></code>，和编码为 <code class="docutils literal notranslate"><span class="pre">config</span></code> 字段的新配置, 以及递增的
+<code class="docutils literal notranslate"><span class="pre">sequence</span></code> 值。</p></li>
+<li><p>将新 <code class="docutils literal notranslate"><span class="pre">ConfigEnvelope</span></code> 写入类型为 <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> 的 <code class="docutils literal notranslate"><span class="pre">Envelope</span></code>，并最终将其
+作为唯一交易写入一个新的配置区块。</p></li>
+</ol>
+<p>当节点（或其他任何 <code class="docutils literal notranslate"><span class="pre">Deliver</span></code> 的接收者）收到这个配置区块时，它应该，将
+<code class="docutils literal notranslate"><span class="pre">last_update</span></code> 消息应用到当前配置并校验经过排序计算的 <code class="docutils literal notranslate"><span class="pre">config</span></code> 字段包含
+当前的新配置，以此来校验这个配置是否得到了适当地验证。</p>
+</div>
+<div class="section" id="id5">
+<h2>组和值的许可配置<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>任何有效配置都是以下配置的子集。在这里，我们用符号 <code class="docutils literal notranslate"><span class="pre">peer.&lt;MSG&gt;</span></code> 来定义一个
+<code class="docutils literal notranslate"><span class="pre">ConfigValue</span></code>，其 <code class="docutils literal notranslate"><span class="pre">value</span></code> 字段是一个封送的名为  <code class="docutils literal notranslate"><span class="pre">&lt;MSG&gt;</span></code> 的消息。它定义在
+<code class="docutils literal notranslate"><span class="pre">fabric-protos/peer/configuration.proto</span></code> 中。符号 <code class="docutils literal notranslate"><span class="pre">common.&lt;MSG&gt;</span></code>、
+<code class="docutils literal notranslate"><span class="pre">msp.&lt;MSG&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">orderer.&lt;MSG&gt;</span></code> 类似对应，它们的消息依次定义在
+<code class="docutils literal notranslate"><span class="pre">fabric-protos/common/configuration.proto</span></code>、
+<code class="docutils literal notranslate"><span class="pre">fabric-protos/msp/mspconfig.proto</span></code> 和
+<a href="#id6"><span class="problematic" id="id7">``</span></a>fabric-protos/orderer/configuration.proto``中</p>
+<p>注意，键 <code class="docutils literal notranslate"><span class="pre">{{org_name}}</span></code> 和 <code class="docutils literal notranslate"><span class="pre">{{consortium_name}}</span></code> 表示任意名称，指示一个
+可以用不同名称重复的元素。</p>
+<p>Note, that the keys <code class="docutils literal notranslate"><span class="pre">{{org_name}}</span></code> and <code class="docutils literal notranslate"><span class="pre">{{consortium_name}}</span></code>
+represent arbitrary names, and indicate an element which may be repeated
+with different names.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+    <span class="n">Groups</span><span class="p">:</span> <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="s2">&quot;Application&quot;</span><span class="p">:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+            <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="p">{{</span><span class="n">org_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                    <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span><span class="p">{</span>
+                        <span class="s2">&quot;MSP&quot;</span><span class="p">:</span><span class="n">msp</span><span class="o">.</span><span class="n">MSPConfig</span><span class="p">,</span>
+                        <span class="s2">&quot;AnchorPeers&quot;</span><span class="p">:</span><span class="n">peer</span><span class="o">.</span><span class="n">AnchorPeers</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;Orderer&quot;</span><span class="p">:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+            <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="p">{{</span><span class="n">org_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                    <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span><span class="p">{</span>
+                        <span class="s2">&quot;MSP&quot;</span><span class="p">:</span><span class="n">msp</span><span class="o">.</span><span class="n">MSPConfig</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+
+            <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="s2">&quot;ConsensusType&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">ConsensusType</span><span class="p">,</span>
+                <span class="s2">&quot;BatchSize&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">BatchSize</span><span class="p">,</span>
+                <span class="s2">&quot;BatchTimeout&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">BatchTimeout</span><span class="p">,</span>
+                <span class="s2">&quot;KafkaBrokers&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">KafkaBrokers</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;Consortiums&quot;</span><span class="p">:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+            <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="p">{{</span><span class="n">consortium_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                    <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                        <span class="p">{{</span><span class="n">org_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                            <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span><span class="p">{</span>
+                                <span class="s2">&quot;MSP&quot;</span><span class="p">:</span><span class="n">msp</span><span class="o">.</span><span class="n">MSPConfig</span><span class="p">,</span>
+                            <span class="p">},</span>
+                        <span class="p">},</span>
+                    <span class="p">},</span>
+                    <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span> <span class="p">{</span>
+                        <span class="s2">&quot;ChannelCreationPolicy&quot;</span><span class="p">:</span><span class="n">common</span><span class="o">.</span><span class="n">Policy</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+
+    <span class="n">Values</span><span class="p">:</span> <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="s2">&quot;HashingAlgorithm&quot;</span><span class="p">:</span><span class="n">common</span><span class="o">.</span><span class="n">HashingAlgorithm</span><span class="p">,</span>
+        <span class="s2">&quot;BlockHashingDataStructure&quot;</span><span class="p">:</span><span class="n">common</span><span class="o">.</span><span class="n">BlockDataHashingStructure</span><span class="p">,</span>
+        <span class="s2">&quot;Consortium&quot;</span><span class="p">:</span><span class="n">common</span><span class="o">.</span><span class="n">Consortium</span><span class="p">,</span>
+        <span class="s2">&quot;OrdererAddresses&quot;</span><span class="p">:</span><span class="n">common</span><span class="o">.</span><span class="n">OrdererAddresses</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>排序系统通道配置<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>排序系统通道需要定义一些排序参数，以及创建通道的联盟。一个排序服务有且只能有一个
+排序系统通道，它是需要创建的第一个通道（或更准确地说是启动）。建议不要在排序系统
+通道的创世配置中定义应用，但在测试时是可以的。注意，任何对排序系统通道具有读权限
+的成员可能看到所有的通道创建，所以，这个通道的访问应用受到限制。</p>
+<p>排序参数被定义在如下配置子集中：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+    <span class="n">Groups</span><span class="p">:</span> <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="s2">&quot;Orderer&quot;</span><span class="p">:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+            <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="p">{{</span><span class="n">org_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                    <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span><span class="p">{</span>
+                        <span class="s2">&quot;MSP&quot;</span><span class="p">:</span><span class="n">msp</span><span class="o">.</span><span class="n">MSPConfig</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+
+            <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="s2">&quot;ConsensusType&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">ConsensusType</span><span class="p">,</span>
+                <span class="s2">&quot;BatchSize&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">BatchSize</span><span class="p">,</span>
+                <span class="s2">&quot;BatchTimeout&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">BatchTimeout</span><span class="p">,</span>
+                <span class="s2">&quot;KafkaBrokers&quot;</span><span class="p">:</span><span class="n">orderer</span><span class="o">.</span><span class="n">KafkaBrokers</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+</pre></div>
+</div>
+<p>参与排序的每个组织在 <code class="docutils literal notranslate"><span class="pre">Order</span></code> 组下都有一个组元素。此组定义单个参数 <code class="docutils literal notranslate"><span class="pre">MSP</span></code>，
+其中包含该组织的加密身份信息。 <code class="docutils literal notranslate"><span class="pre">Order</span></code> 组的 <code class="docutils literal notranslate"><span class="pre">Values</span></code> 决定了排序节点的工作
+方式。它们在每个通道中存在，因此，例如 <code class="docutils literal notranslate"><span class="pre">orderer.BatchTimeout</span></code> 可能在不同通
+道上被不同地指定。</p>
+<p>在启动时，排序节点将面临一个包含了很通道信息的文件系统。排序节点通过识别带有定义的
+联盟组的通道来识别系统通道。联盟组的结构如下。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+    <span class="n">Groups</span><span class="p">:</span> <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="s2">&quot;Consortiums&quot;</span><span class="p">:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+            <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="p">{{</span><span class="n">consortium_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                    <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                        <span class="p">{{</span><span class="n">org_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                            <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span><span class="p">{</span>
+                                <span class="s2">&quot;MSP&quot;</span><span class="p">:</span><span class="n">msp</span><span class="o">.</span><span class="n">MSPConfig</span><span class="p">,</span>
+                            <span class="p">},</span>
+                        <span class="p">},</span>
+                    <span class="p">},</span>
+                    <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span> <span class="p">{</span>
+                        <span class="s2">&quot;ChannelCreationPolicy&quot;</span><span class="p">:</span><span class="n">common</span><span class="o">.</span><span class="n">Policy</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>注意，每个联盟定义一组成员，正如排序组织里的组织成员一样。每个联盟也定义一个
+<code class="docutils literal notranslate"><span class="pre">ChannelCreationPolicy</span></code>。这是一个应用于授权通道创建请求的策略。通常，该值
+将被设置为一个 <code class="docutils literal notranslate"><span class="pre">ImplicitMetaPolicy</span></code>，并要求通道的新成员签名以授权通道创建。
+更多关于通道创建的细节，请参见下文。</p>
+</div>
+<div class="section" id="id9">
+<h2>应用通道配置<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>应用配置适用于为应用类型交易而设计的通道。它定义如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+    <span class="n">Groups</span><span class="p">:</span> <span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="s2">&quot;Application&quot;</span><span class="p">:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+            <span class="n">Groups</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigGroup</span><span class="o">&gt;</span> <span class="p">{</span>
+                <span class="p">{{</span><span class="n">org_name</span><span class="p">}}:</span><span class="o">&amp;</span><span class="n">ConfigGroup</span><span class="p">{</span>
+                    <span class="n">Values</span><span class="p">:</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">ConfigValue</span><span class="o">&gt;</span><span class="p">{</span>
+                        <span class="s2">&quot;MSP&quot;</span><span class="p">:</span><span class="n">msp</span><span class="o">.</span><span class="n">MSPConfig</span><span class="p">,</span>
+                        <span class="s2">&quot;AnchorPeers&quot;</span><span class="p">:</span><span class="n">peer</span><span class="o">.</span><span class="n">AnchorPeers</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>正如 <code class="docutils literal notranslate"><span class="pre">Orderer</span></code> 部分，每个组织被编码为组。但是，并非仅仅编码 <code class="docutils literal notranslate"><span class="pre">MSP</span></code> 身份信息，
+每个组织额外编码一个 <code class="docutils literal notranslate"><span class="pre">AnchorPeers</span></code> 列表。这个列表允许不同组织的节点互相联系以
+建立对等 gossip 网络。</p>
+<p>应用通道对排序组织副本和共识选项进行编码，以允许对这些参数进行确定的更新，因此排序
+系统通道配置中相同的 <code class="docutils literal notranslate"><span class="pre">Orderer</span></code> 部分也被包括在内。但从应用程序角度来看，这在很大
+程度上可能被忽略。</p>
+</div>
+<div class="section" id="id10">
+<h2>通道创建<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>当排序节点收到一个尚不存在的通道的 <code class="docutils literal notranslate"><span class="pre">CONFIG_UPDATE</span></code> 时，排序节点假定这是一个通道
+创建请求并执行以下内容。</p>
+<ol class="arabic simple">
+<li><p>排序节点识别将为之执行通道创建请求的联盟。它通过查看顶级组的 <code class="docutils literal notranslate"><span class="pre">Consortium</span></code> 值
+来完成这一操作。</p></li>
+<li><p>排序节点校验：包含在 <code class="docutils literal notranslate"><span class="pre">Application</span></code> 组中的组织是包含在对应联盟中的组织的一个子集，
+并且  <code class="docutils literal notranslate"><span class="pre">ApplicationGroup</span></code> <code class="docutils literal notranslate"><span class="pre">version</span></code> 被设为 <code class="docutils literal notranslate"><span class="pre">1</span></code>。</p></li>
+<li><p>排序节点校验：如果联盟有成员，那么新通道也要有应用成员（创建没有成员的联盟和通道仅
+用于测试）。</p></li>
+<li><p>排序节点从排序系统通道中获取 <code class="docutils literal notranslate"><span class="pre">Orderer</span></code> 组，使用新指定的成员建立 <code class="docutils literal notranslate"><span class="pre">Application</span></code>
+组，并按联盟配置中指定的 <code class="docutils literal notranslate"><span class="pre">ChannelCreationPolicy</span></code> 指定它的 <code class="docutils literal notranslate"><span class="pre">mod_policy</span></code>，
+以此建立模板配置。注意，策略会在新配置的上下文被评估，所以，一个要求 <code class="docutils literal notranslate"><span class="pre">ALL</span></code> 成员
+的策略，会要求新通道所有成员的签名，而不是联盟所有成员的签名。</p></li>
+<li><p>然后排序节点将 <code class="docutils literal notranslate"><span class="pre">CONFIG_UPDATE</span></code> 作为一个更新应用到这个模板配置。 因为
+<code class="docutils literal notranslate"><span class="pre">CONFIG_UPDATE</span></code> 将修改应用到 <code class="docutils literal notranslate"><span class="pre">Application</span></code> 组（它的 <code class="docutils literal notranslate"><span class="pre">version</span></code> 是
+<code class="docutils literal notranslate"><span class="pre">1</span></code>），配置代码按 <code class="docutils literal notranslate"><span class="pre">ChannelCreationPolicy</span></code> 验证这些更新。如果通道的创
+建包含任何其他修改，比如个别组织的锚节点，则这个元素相应的修改策略也会被调用。</p></li>
+<li><p>带有新通道配置的 <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> 交易被封装并发送给的排序系统通道以进行排序，排序后，
+通道被创建了。</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="endorsement-policies.html" class="btn btn-neutral float-right" title="背书策略" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hsm.html" class="btn btn-neutral" title="```" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

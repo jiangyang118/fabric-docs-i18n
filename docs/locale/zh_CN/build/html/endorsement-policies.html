@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>背书策略 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="可插拔交易背书与交易验证" href="pluggable_endorsement_and_validation.html" />
+    <link rel="prev" title="通道配置（configtx）" href="configtx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">背书策略</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">需要背书的多种方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">设置链码级背书策略</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">背书策略语法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-collection-level-endorsement-policies">Setting collection-level endorsement policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-level-endorsement">设置键级别的背书策略</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">验证</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>背书策略</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/endorsement-policies.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>背书策略<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>每个链码都有背书策略，背书策略指定了通道上的一组 Peer 节点必须执行链码，并且为执行结果进行背书，以此证明交易是有效的。这些背书策略指定了必须为提案进行背书的组织。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>回想一下 <strong>状态</strong>，从区块链数据中分离出来，用键值对表示。更多信息请查看 <a class="reference internal" href="ledger/ledger.html"><span class="doc">&lt;no title&gt;</span></a> 文档。</p>
+</div>
+<p>作为 Peer 节点进行交易验证的一部分，每个 Peer 节点的检查确保了交易保存了合适 <strong>数量</strong> 的背书，并且是指定背书节点的背书。这些背书结果的检查，同样确保了它们是有效的（比如，从有效的证书得到的有效签名）。</p>
+<div class="section" id="id2">
+<h2>需要背书的多种方式<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>By default, endorsement policies are specified in the chaincode definition,
+which is agreed to by channel members and then committed to a channel (that is,
+one endorsement policy covers all of the state associated with a chaincode).</p>
+<p>For private data collections, you can also specify an endorsement policy
+at the private data collection level, which would override the chaincode
+level endorsement policy for any keys in the private data collection, thereby
+further restricting which organizations can write to a private data collection.</p>
+<p>Finally, there are cases where it may be necessary for a particular public
+channel state or private data collection state (a particular key-value pair,
+in other words) to have a different endorsement policy.
+This <strong>state-based endorsement</strong> allows the chaincode-level or collection-level
+endorsement policies to be overridden by a different policy for the specified keys.</p>
+<p>为了解释哪些情况下使用这多种背书策略，请考虑在通道上实现汽车交易的情况。创建（也称为“发行”）一辆汽车作为可交易的资产（即把一个键值对存到世界状态）需要满足链码级别的背书策略。下文将详细介绍链码级别的背书策略。</p>
+<p>如果代表汽车的键需要特殊的背书策略，该背书策略可以在汽车创建或之后被定义。当下有很多为什么需要特定状态的背书策略的原因，汽车可能具有历史重要性或价值，因此有必要获得持牌估价师的认可。还有，汽车的主人(如果他们是通道的成员)可能还希望确保他们的同伴在交易上签名。这两种情况，<strong>都需要为特殊资产指定，与当前链码默认背书策略不同的背书策略。</strong></p>
+<p>我们将在后面介绍如何定义基于状态的背书策略。但首先，让我们看看如何设置链式代码级的背书策略。</p>
+</div>
+<div class="section" id="id3">
+<h2>设置链码级背书策略<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Chaincode-level endorsement policies are agreed to by channel members when they
+approve a chaincode definition for their organization. A sufficient number of
+channel members need to approve a chaincode definition to meet the
+<code class="docutils literal notranslate"><span class="pre">Channel/Application/LifecycleEndorsement</span></code> policy, which by default is set to
+a majority of channel members, before the definition can be committed to the
+channel. Once the definition has been committed, the chaincode is ready to use.
+Any invoke of the chaincode that writes data to the ledger will need to be
+validated by enough channel members to meet the endorsement policy.</p>
+<p>You can specify an endorsement policy for a chaincode using the Fabric SDKs.
+For an example, visit the <a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/tutorial-chaincode-lifecycle.html">How to install and start your chaincode</a>
+in the Node.js SDK documentation. You can also create an endorsement policy from
+your CLI when you approve and commit a chaincode definition with the Fabric peer
+binaries by using the <code class="docutils literal notranslate"><span class="pre">--signature-policy</span></code> flag.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>现在不要担心背书策略语法 (比如 <code class="docutils literal notranslate"><span class="pre">'Org1.member'</span></code>)，我们后面部分会介绍。</p>
+</div>
+<p>例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peer</span> <span class="n">lifecycle</span> <span class="n">chaincode</span> <span class="n">approveformyorg</span> <span class="o">--</span><span class="n">channelID</span> <span class="n">mychannel</span> <span class="o">--</span><span class="n">signature</span><span class="o">-</span><span class="n">policy</span> <span class="s2">&quot;AND(&#39;Org1.member&#39;, &#39;Org2.member&#39;)&quot;</span> <span class="o">--</span><span class="n">name</span> <span class="n">mycc</span> <span class="o">--</span><span class="n">version</span> <span class="mf">1.0</span> <span class="o">--</span><span class="n">package</span><span class="o">-</span><span class="nb">id</span> <span class="n">mycc_1</span><span class="p">:</span><span class="mi">3</span><span class="n">a8c52d70c36313cfebbaf09d8616e7a6318ababa01c7cbe40603c373bcfe173</span> <span class="o">--</span><span class="n">sequence</span> <span class="mi">1</span> <span class="o">--</span><span class="n">tls</span> <span class="o">--</span><span class="n">cafile</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gopath</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">/</span><span class="n">peer</span><span class="o">/</span><span class="n">crypto</span><span class="o">/</span><span class="n">ordererOrganizations</span><span class="o">/</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">orderers</span><span class="o">/</span><span class="n">orderer</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">msp</span><span class="o">/</span><span class="n">tlscacerts</span><span class="o">/</span><span class="n">tlsca</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">-</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">--</span><span class="n">waitForEvent</span>
+</pre></div>
+</div>
+<p>The above command approves the chaincode definition of <code class="docutils literal notranslate"><span class="pre">mycc</span></code> with the policy
+<code class="docutils literal notranslate"><span class="pre">AND('Org1.member',</span> <span class="pre">'Org2.member')</span></code> which would require that a member of both
+Org1 and Org2 sign the transaction. After a sufficient number of channel members
+approve a chaincode definition for <code class="docutils literal notranslate"><span class="pre">mycc</span></code>, the definition and endorsement
+policy can be committed to the channel using the command below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peer</span> <span class="n">lifecycle</span> <span class="n">chaincode</span> <span class="n">commit</span> <span class="o">-</span><span class="n">o</span> <span class="n">orderer</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">7050</span> <span class="o">--</span><span class="n">channelID</span> <span class="n">mychannel</span> <span class="o">--</span><span class="n">signature</span><span class="o">-</span><span class="n">policy</span> <span class="s2">&quot;AND(&#39;Org1.member&#39;, &#39;Org2.member&#39;)&quot;</span> <span class="o">--</span><span class="n">name</span> <span class="n">mycc</span> <span class="o">--</span><span class="n">version</span> <span class="mf">1.0</span> <span class="o">--</span><span class="n">sequence</span> <span class="mi">1</span> <span class="o">--</span><span class="n">init</span><span class="o">-</span><span class="n">required</span> <span class="o">--</span><span class="n">tls</span> <span class="o">--</span><span class="n">cafile</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gopath</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">/</span><span class="n">peer</span><span class="o">/</span><span class="n">crypto</span><span class="o">/</span><span class="n">ordererOrganizations</span><span class="o">/</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">orderers</span><span class="o">/</span><span class="n">orderer</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">msp</span><span class="o">/</span><span class="n">tlscacerts</span><span class="o">/</span><span class="n">tlsca</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">-</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">--</span><span class="n">waitForEvent</span> <span class="o">--</span><span class="n">peerAddresses</span> <span class="n">peer0</span><span class="o">.</span><span class="n">org1</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">7051</span> <span class="o">--</span><span class="n">tlsRootCertFiles</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gopath</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">/</span><span class="n">peer</span><span class="o">/</span><span class="n">crypto</span><span class="o">/</span><span class="n">peerOrganizations</span><span class="o">/</span><span class="n">org1</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">peers</span><span class="o">/</span><span class="n">peer0</span><span class="o">.</span><span class="n">org1</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">crt</span> <span class="o">--</span><span class="n">peerAddresses</span> <span class="n">peer0</span><span class="o">.</span><span class="n">org2</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">9051</span> <span class="o">--</span><span class="n">tlsRootCertFiles</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gopath</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">/</span><span class="n">peer</span><span class="o">/</span><span class="n">crypto</span><span class="o">/</span><span class="n">peerOrganizations</span><span class="o">/</span><span class="n">org2</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">peers</span><span class="o">/</span><span class="n">peer0</span><span class="o">.</span><span class="n">org2</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">tls</span><span class="o">/</span><span class="n">ca</span><span class="o">.</span><span class="n">crt</span>
+</pre></div>
+</div>
+<p>注意，如果开启了身份类型 (见 <a class="reference internal" href="msp.html"><span class="doc">成员服务提供者 (MSP)</span></a>), 可以使用 <code class="docutils literal notranslate"><span class="pre">PEER</span></code> 角色限定使用 Peer 进行背书。</p>
+<p>例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peer</span> <span class="n">lifecycle</span> <span class="n">chaincode</span> <span class="n">approveformyorg</span> <span class="o">--</span><span class="n">channelID</span> <span class="n">mychannel</span> <span class="o">--</span><span class="n">signature</span><span class="o">-</span><span class="n">policy</span> <span class="s2">&quot;AND(&#39;Org1.peer&#39;, &#39;Org2.peer&#39;)&quot;</span> <span class="o">--</span><span class="n">name</span> <span class="n">mycc</span> <span class="o">--</span><span class="n">version</span> <span class="mf">1.0</span> <span class="o">--</span><span class="n">package</span><span class="o">-</span><span class="nb">id</span> <span class="n">mycc_1</span><span class="p">:</span><span class="mi">3</span><span class="n">a8c52d70c36313cfebbaf09d8616e7a6318ababa01c7cbe40603c373bcfe173</span> <span class="o">--</span><span class="n">sequence</span> <span class="mi">1</span> <span class="o">--</span><span class="n">tls</span> <span class="o">--</span><span class="n">cafile</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gopath</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">/</span><span class="n">peer</span><span class="o">/</span><span class="n">crypto</span><span class="o">/</span><span class="n">ordererOrganizations</span><span class="o">/</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">orderers</span><span class="o">/</span><span class="n">orderer</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">msp</span><span class="o">/</span><span class="n">tlscacerts</span><span class="o">/</span><span class="n">tlsca</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">-</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">--</span><span class="n">waitForEvent</span>
+</pre></div>
+</div>
+<p>In addition to the specifying an endorsement policy from the CLI or SDK, a
+chaincode can also use policies in the channel configuration as endorsement
+policies. You can use the <code class="docutils literal notranslate"><span class="pre">--channel-config-policy</span></code> flag to select a channel policy with
+format used by the channel configuration and by ACLs.</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peer</span> <span class="n">lifecycle</span> <span class="n">chaincode</span> <span class="n">approveformyorg</span> <span class="o">--</span><span class="n">channelID</span> <span class="n">mychannel</span> <span class="o">--</span><span class="n">channel</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">policy</span> <span class="n">Channel</span><span class="o">/</span><span class="n">Application</span><span class="o">/</span><span class="n">Admins</span> <span class="o">--</span><span class="n">name</span> <span class="n">mycc</span> <span class="o">--</span><span class="n">version</span> <span class="mf">1.0</span> <span class="o">--</span><span class="n">package</span><span class="o">-</span><span class="nb">id</span> <span class="n">mycc_1</span><span class="p">:</span><span class="mi">3</span><span class="n">a8c52d70c36313cfebbaf09d8616e7a6318ababa01c7cbe40603c373bcfe173</span> <span class="o">--</span><span class="n">sequence</span> <span class="mi">1</span> <span class="o">--</span><span class="n">tls</span> <span class="o">--</span><span class="n">cafile</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">gopath</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hyperledger</span><span class="o">/</span><span class="n">fabric</span><span class="o">/</span><span class="n">peer</span><span class="o">/</span><span class="n">crypto</span><span class="o">/</span><span class="n">ordererOrganizations</span><span class="o">/</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">orderers</span><span class="o">/</span><span class="n">orderer</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">msp</span><span class="o">/</span><span class="n">tlscacerts</span><span class="o">/</span><span class="n">tlsca</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">-</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">--</span><span class="n">waitForEvent</span>
+</pre></div>
+</div>
+<p>If you do not specify a policy, the chaincode definition will use the
+<code class="docutils literal notranslate"><span class="pre">Channel/Application/Endorsement</span></code> policy by default, which requires that a
+transaction be validated by a majority of channel members. This policy depends on
+the membership of the channel, so it will be updated automatically when organizations
+are added or removed from a channel. One advantage of using channel policies is
+that they can be written to be updated automatically with channel membership.</p>
+<p>If you specify an endorsement policy using the <code class="docutils literal notranslate"><span class="pre">--signature-policy</span></code> flag or
+the SDK, you will need to update the policy when organizations join or leave the
+channel. A new organization added to the channel after the chaincode has been defined
+will be able to query a chaincode (provided the query has appropriate authorization as
+defined by channel policies and any application level checks enforced by the
+chaincode) but will not be able to execute or endorse the chaincode. Only
+organizations listed in the endorsement policy syntax will be able sign
+transactions.</p>
+<div class="section" id="id4">
+<h3>背书策略语法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>正如你上面所看到了，策略是使用主体来表达的（主题是跟角色匹配的）。主体可以描述为 <code class="docutils literal notranslate"><span class="pre">'MSP.ROLE'</span></code>， <code class="docutils literal notranslate"><span class="pre">MSP</span></code> 代表了 MSP ID， <code class="docutils literal notranslate"><span class="pre">ROLE</span></code> 是以下4个其中之一：<code class="docutils literal notranslate"><span class="pre">member</span></code>, <code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">client</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">peer</span></code>。</p>
+<p>以下是几个有效的主体示例:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'Org0.admin'</span></code>:  <code class="docutils literal notranslate"><span class="pre">Org0</span></code> MSP 的任何管理员</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Org1.member'</span></code>: <code class="docutils literal notranslate"><span class="pre">Org1</span></code> MSP 的任何成员</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Org1.client'</span></code>: <code class="docutils literal notranslate"><span class="pre">Org1</span></code> MSP 的任何客户端</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Org1.peer'</span></code>: <code class="docutils literal notranslate"><span class="pre">Org1</span></code> MSP 的任何 Peer</p></li>
+</ul>
+</div></blockquote>
+<p>语法是:</p>
+<p><code class="docutils literal notranslate"><span class="pre">EXPR(E[,</span> <span class="pre">E...])</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">EXPR</span></code> 可以是 <code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code>, 或者 <code class="docutils literal notranslate"><span class="pre">OutOf</span></code>, 并且 <code class="docutils literal notranslate"><span class="pre">E</span></code> 是一个以上语法的主体或者另外一个 <code class="docutils literal notranslate"><span class="pre">EXPR</span></code>。</p>
+<dl class="simple">
+<dt>比如:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AND('Org1.member',</span> <span class="pre">'Org2.member',</span> <span class="pre">'Org3.member')</span></code> 要求3个组织的都至少一个成员进行签名。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OR('Org1.member',</span> <span class="pre">'Org2.member')</span></code> 要求组织1或者组织2的任一成员进行签名。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OR('Org1.member',</span> <span class="pre">AND('Org2.member',</span> <span class="pre">'Org3.member'))</span></code> 要求组织1的任一成员签名，或者组织2和组织3的任一成员，分别进行签名。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OutOf(1,</span> <span class="pre">'Org1.member',</span> <span class="pre">'Org2.member')</span></code>, 等价于``OR(‘Org1.member’, ‘Org2.member’)``。</p></li>
+<li><p>类似的, <code class="docutils literal notranslate"><span class="pre">OutOf(2,</span> <span class="pre">'Org1.member',</span> <span class="pre">'Org2.member')</span></code> 等价于
+<code class="docutils literal notranslate"><span class="pre">AND('Org1.member',</span> <span class="pre">'Org2.member')</span></code>, <code class="docutils literal notranslate"><span class="pre">OutOf(2,</span> <span class="pre">'Org1.member',</span>
+<span class="pre">'Org2.member',</span> <span class="pre">'Org3.member')</span></code> 等价于 <code class="docutils literal notranslate"><span class="pre">OR(AND('Org1.member',</span>
+<span class="pre">'Org2.member'),</span> <span class="pre">AND('Org1.member',</span> <span class="pre">'Org3.member'),</span> <span class="pre">AND('Org2.member',</span>
+<span class="pre">'Org3.member'))</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="setting-collection-level-endorsement-policies">
+<h2>Setting collection-level endorsement policies<a class="headerlink" href="#setting-collection-level-endorsement-policies" title="Permalink to this headline">¶</a></h2>
+<p>Similar to chaincode-level endorsement policies, when you approve and commit
+a chaincode definition, you can also specify the chaincode’s private data collections
+and corresponding collection-level endorsement policies. If a collection-level
+endorsement policy is set, transactions that write to a private data collection
+key will require that the specified organization peers have endorsed the transaction.</p>
+<p>You can use collection-level endorsement policies to restrict which organization
+peers can write to the private data collection key namespace, for example to
+ensure that non-authorized organizations cannot write to a collection, and to
+have confidence that any state in a private data collection has been endorsed
+by the required collection organization(s).</p>
+<p>The collection-level endorsement policy may be less restrictive or more restrictive
+than the chaincode-level endorsement policy and the collection’s private data
+distribution policy.  For example a majority of organizations may be required
+to endorse a chaincode transaction, but a specific organization may be required
+to endorse a transaction that includes a key in a specific collection.</p>
+<p>The syntax for collection-level endorsement policies exactly matches the syntax
+for chaincode-level endorsement policies — in the collection configuration
+you can specify an <code class="docutils literal notranslate"><span class="pre">endorsementPolicy</span></code> with either a <code class="docutils literal notranslate"><span class="pre">signaturePolicy</span></code> or
+<code class="docutils literal notranslate"><span class="pre">channelConfigPolicy</span></code>. For more details see <a class="reference internal" href="private-data-arch.html"><span class="doc">私有数据</span></a>.</p>
+</div>
+<div class="section" id="key-level-endorsement">
+<span id="id5"></span><h2>设置键级别的背书策略<a class="headerlink" href="#key-level-endorsement" title="Permalink to this headline">¶</a></h2>
+<p>设置链码级别或者集合级别的背书策略跟对应的链码生命周期有关。可以在通道实例化或者升级对应链码的时候进行设置。</p>
+<p>对比来看, 键级别的背书策略可以在链码内更加细粒度的设置和修改。修改键级别的背书策略是常规交易读写集的一部分。</p>
+<p>shim API提供了从常规Key设置和获取背书策略的功能。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>下文中的 <code class="docutils literal notranslate"><span class="pre">ep</span></code> 代表背书策略，它可以用上文介绍的语法所描述，或者下文介绍的函数。每种方法都会生成，可以被 shim API 接受的二进制版本的背书策略。</p>
+</div>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="nx">SetStateValidationParameter</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ep</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
+<span class="nx">GetStateValidationParameter</span><span class="p">(</span><span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>对于在 Collection 中属于 <a class="reference internal" href="private-data/private-data.html"><span class="doc">&lt;no title&gt;</span></a> 使用以下函数:</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="nx">SetPrivateDataValidationParameter</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">key</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ep</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
+<span class="nx">GetPrivateDataValidationParameter</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>为了帮助把背书策略序列化成有效的字节数组，shim提供了便利的函数供链码开发者，从组织 MSP 标示符的角度处理背书策略，详情见 <a class="reference external" href="https://godoc.org/github.com/hyperledger/fabric-chaincode-go/pkg/statebased#KeyEndorsementPolicy">键背书策略</a>:</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">KeyEndorsementPolicy</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// Policy returns the endorsement policy as bytes</span>
+    <span class="nx">Policy</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// AddOrgs adds the specified orgs to the list of orgs that are required</span>
+    <span class="c1">// to endorse</span>
+    <span class="nx">AddOrgs</span><span class="p">(</span><span class="nx">roleType</span> <span class="nx">RoleType</span><span class="p">,</span> <span class="nx">organizations</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
+
+    <span class="c1">// DelOrgs delete the specified channel orgs from the existing key-level endorsement</span>
+    <span class="c1">// policy for this KVS key. If any org is not present, an error will be returned.</span>
+    <span class="nx">DelOrgs</span><span class="p">(</span><span class="nx">organizations</span> <span class="o">...</span><span class="kt">string</span><span class="p">)</span> <span class="kt">error</span>
+
+    <span class="c1">// ListOrgs returns an array of channel orgs that are required to endorse changes</span>
+    <span class="nx">ListOrgs</span><span class="p">()</span> <span class="p">([]</span><span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>比如，当两个组织要求为键值的改变背书时，需要设置键背书策略，通过把 <code class="docutils literal notranslate"><span class="pre">MSPIDs</span></code> 传递给 <code class="docutils literal notranslate"><span class="pre">AddOrgs()</span></code> 然后调用 <code class="docutils literal notranslate"><span class="pre">Policy()</span></code> 来构建字节数组格式的背书策略，之后传递给 <code class="docutils literal notranslate"><span class="pre">SetStateValidationParameter()</span></code>。</p>
+<p>把 shim 作为链码的依赖请参考 <a class="reference internal" href="chaincode4ade.html#vendoring"><span class="std std-ref">管理 Go 链码的扩展依赖</span></a>。</p>
+</div>
+<div class="section" id="id7">
+<h2>验证<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>commit交易时，设置键值的过程和设置键的背书策略的过程是一样的，都会更新键的状态并且使用相同的规则进行验证。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 43%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Validation</p></th>
+<th class="head"><p>no validation parameter set</p></th>
+<th class="head"><p>validation parameter set</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modify value</p></td>
+<td><p>check chaincode or collection ep</p></td>
+<td><p>check key-level ep</p></td>
+</tr>
+<tr class="row-odd"><td><p>modify key-level ep</p></td>
+<td><p>check chaincode or collection ep</p></td>
+<td><p>check key-level ep</p></td>
+</tr>
+</tbody>
+</table>
+<p>正如上面讨论的，如果一个键并改变了，并且没有键级别的背书策略，默认会使用链码级别或集合级别的背书策略。设置键级别背书策略的时候，也是使用链码级背书策略，即新的键级别背书策略必须使用已存在的链码背书策略。</p>
+<p>如果某个键被修改了，并且键级别的背书策略已经设置，键级别的背书策略就会覆盖链码级别或集合级别背书策略。实际上，键级背书策略可以比链码级别或集合级别背书策略宽松或者严格，因为设置键级背书策略必须满足链码级别或集合级别背书策略，所以没有违反可信的假设。</p>
+<p>如果某个键级背书策略被移除（或设为空），链码级别或集合级别背书策略再次变为默认策略。</p>
+<p>如果某个交易修改了多个键，并且这些键关联了多个键级背书策略，交易需要满足所有的键级策略才会有效。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pluggable_endorsement_and_validation.html" class="btn btn-neutral float-right" title="可插拔交易背书与交易验证" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configtx.html" class="btn btn-neutral" title="通道配置（configtx）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

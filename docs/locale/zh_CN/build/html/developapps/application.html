@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>}; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="应用程序设计元素" href="designelements.html" />
+    <link rel="prev" title="}" href="smartcontract.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developing_applications.html">开发应用</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id16">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id21">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id26">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id31">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id52">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id57">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id64">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id69">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id76">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id81">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id96">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id101">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id106">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id111">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id116">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smartcontract.html#id121">}</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">};</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="designelements.html">应用程序设计元素</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developing_applications.html">开发应用</a> &raquo;</li>
+        
+      <li>};</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developapps/application.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 应用</p>
+<p><strong>受众</strong>：架构师、应用程序和智能合约开发人员</p>
+<p>应用程序可以通过将交易提交到帐本或查询帐本内容来与区块链网络进行交互。本主题介绍了应用程序如何执行此操作的机制; 在我们的场景中，组织使用应用程序访问 PaperNet，这些应用程序调用定义在商业票据智能合约中的**发行**、<a href="#id1"><span class="problematic" id="id2">**</span></a>购买**和**兑换**交易。尽管 MagnetoCorp 的应用发行商业票据是基础功能，但它涵盖了所有主要的理解点。</p>
+<p>在本主题中，我们将介绍：</p>
+<ul class="simple">
+<li><p>[从应用程序到调用智能合约](#基本流程)</p></li>
+<li><p>[应用程序如何使用钱包和身份](#钱包)</p></li>
+<li><p>[应用程序如何使用网关连接](#网关)</p></li>
+<li><p>[如何访问特定网络](#网络通道)</p></li>
+<li><p>[如何构造交易请求](#构造请求)</p></li>
+<li><p>[如何提交交易](#提交交易)</p></li>
+<li><p>[如何处理交易响应](#处理响应)</p></li>
+</ul>
+<p>为了帮助您理解，我们将参考 Hyperledger Fabric 提供的商业票据示例应用程序。您可以[下载](../install.html) 并[在本地运行它](../tutorial/commercial_paper.html)。它是用 JavaScript 和 Java 编写的，但逻辑与语言无关，因此您可以轻松地查看正在发生的事情！（该示例也适用于 Go。）</p>
+<p>## 基本流程</p>
+<p>应用程序使用 Fabric SDK 与区块链网络交互。 以下是应用程序如何调用商业票据智能合约的简化图表：</p>
+<p>![develop.application](./develop.diagram.3.png) <em>PaperNet 应用程序调用商业票据智能合约来提交发行交易请求。</em></p>
+<p>应用程序必须遵循六个基本步骤来提交交易：</p>
+<ul class="simple">
+<li><p>从钱包中选择一个身份</p></li>
+<li><p>连接到网关</p></li>
+<li><p>访问所需的网络</p></li>
+<li><p>构建智能合约的交易请求</p></li>
+<li><p>将交易提交到网络</p></li>
+<li><p>处理响应</p></li>
+</ul>
+<p>您将看到典型应用程序如何使用 Fabric SDK 执行这六个步骤。 您可以在 <cite>issue.js</cite> 文件中找到应用程序代码。请在浏览器中[查看](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/application/issue.js">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/application/issue.js</a>)，如果您已下载，请在您喜欢的编辑器中打开它。 花一些时间看一下应用程序的整体结构; 尽管有注释和空白，但是它只有100行代码！</p>
+<p>## 钱包</p>
+<p>在 <cite>issue.js</cite> 的顶部，您将看到两个 Fabric 类导入代码域：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">{</span> <span class="pre">Wallets,</span> <span class="pre">Gateway</span> <span class="pre">}</span> <span class="pre">=</span> <span class="pre">require('fabric-network');</span>
+<span class="pre">`</span></code></p>
+<p>您可以在[node SDK 文档](<a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.html">https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.html</a>)中了解 <cite>fabric-network</cite> 类，但是现在，让我们看看如何使用它们将 MagnetoCorp 的应用程序连接到 PaperNet。该应用程序使用 Fabric <strong>Wallet</strong> 类，如下所示：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">wallet</span> <span class="pre">=</span> <span class="pre">await</span> <span class="pre">Wallets.newFileSystemWallet('../identity/user/isabella/wallet');</span>
+<span class="pre">`</span></code></p>
+<p>了解 <cite>wallet</cite> 如何在本地文件系统中找到[钱包](./wallet.html)。从钱包中检索到的身份显然适用于使用 <cite>issue</cite> 应用程序的 Isabella 用户。钱包拥有一组身份——X.509 数字证书——可用于访问 PaperNet 或任何其他 Fabric 网络。如果您运行该教程，并查看此目录，您将看到 Isabella 的身份凭证。</p>
+<p>想想一个[钱包](./wallet.html)里面装着政府身份证，驾照或 ATM 卡的数字等价物。其中的 X.509 数字证书将持有者与组织相关联，从而使他们有权在网络通道中获得权利。例如， <cite>Isabella</cite> 可能是 MagnetoCorp 的管理员，这可能比其他用户更有特权——来自 DigiBank 的 <cite>Balaji</cite>。 此外，智能合约可以在使用[交易上下文](./transactioncontext.html)的智能合约处理期间检索此身份。</p>
+<p>另请注意，钱包不持有任何形式的现金或代币——它们持有身份。</p>
+<p>## 网关</p>
+<p>第二个关键类是 Fabric <strong>Gateway</strong>。最重要的是，[网关](./gateway.html)识别一个或多个提供网络访问的 Peer 节点——在我们的例子中是 PaperNet。了解 <cite>issue.js</cite> 如何连接到其网关：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">await</span> <span class="pre">gateway.connect(connectionProfile,</span> <span class="pre">connectionOptions);</span>
+<span class="pre">`</span></code></p>
+<p><cite>gateway.connect()</cite> 有两个重要参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>connectionProfile</strong>：[连接配置文件](./connectionprofile.html)的文件系统位置，用于将一组 Peer 节点标识为 PaperNet 的网关</p></li>
+<li><p><strong>connectionOptions</strong>：一组用于控制 <cite>issue.js</cite> 与 PaperNet 交互的选项</p></li>
+</ul>
+</div></blockquote>
+<p>了解客户端应用程序如何使用网关将自身与可能发生变化的网络拓扑隔离开来。网关负责使用[连接配置文件](./connectionprofile.html)和[连接选项](./connectionoptions.html)将交易提案发送到网络中的正确 Peer 节点。</p>
+<p>花一些时间检查连接[配置文件](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/gateway/networkConnection.yaml">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/gateway/networkConnection.yaml</a>) <cite>./gateway/connectionProfile.yaml</cite>。它使用[YAML](<a class="reference external" href="http://yaml.org/spec/1.2/spec.html#Preview">http://yaml.org/spec/1.2/spec.html#Preview</a>)，易于阅读。</p>
+<p>它被加载并转换为 JSON 对象：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">let</span> <span class="pre">connectionProfile</span> <span class="pre">=</span> <span class="pre">yaml.safeLoad(file.readFileSync('./gateway/connectionProfile.yaml',</span> <span class="pre">'utf8'));</span>
+<span class="pre">`</span></code></p>
+<p>现在，我们只关注 <cite>channels:</cite> 和 <cite>peers:</cite> 配置部分:(我们稍微修改了细节，以便更好地解释发生了什么。）</p>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a>YAML
+channels:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>papernet:</dt><dd><dl class="simple">
+<dt>peers:</dt><dd><dl class="simple">
+<dt>peer1.magnetocorp.com:</dt><dd><p>endorsingPeer: true
+eventSource: true</p>
+</dd>
+<dt>peer2.digibank.com:</dt><dd><p>endorsingPeer: true
+eventSource: true</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>peers:</dt><dd><dl>
+<dt>peer1.magnetocorp.com:</dt><dd><p>url: grpcs://localhost:7051
+grpcOptions:</p>
+<blockquote>
+<div><p>ssl-target-name-override: peer1.magnetocorp.com
+request-timeout: 120</p>
+</div></blockquote>
+<dl class="simple">
+<dt>tlsCACerts:</dt><dd><p>path: certificates/magnetocorp/magnetocorp.com-cert.pem</p>
+</dd>
+</dl>
+</dd>
+<dt>peer2.digibank.com:</dt><dd><p>url: grpcs://localhost:8051
+grpcOptions:</p>
+<blockquote>
+<div><p>ssl-target-name-override: peer1.digibank.com</p>
+</div></blockquote>
+<dl class="simple">
+<dt>tlsCACerts:</dt><dd><p>path: certificates/digibank/digibank.com-cert.pem</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id7"><span class="problematic" id="id8">``</span></a><a href="#id9"><span class="problematic" id="id10">`</span></a></p>
+<p>看一下 <cite>channel:</cite> 如何识别 <cite>PaperNet:</cite> 网络通道及其两个 Peer 节点。MagnetoCorp 拥有 <cite>peer1.magenetocorp.com</cite>，DigiBank 拥有 <cite>peer2.digibank.com</cite>，两者都有背书节点的角色。通过 <cite>peers:</cite> 键链接到这些 Peer 节点，其中包含有关如何连接它们的详细信息，包括它们各自的网络地址。</p>
+<p>连接配置文件包含大量信息——不仅仅是 Peer 节点——而是网络通道，网络排序节点，组织和 CA，因此如果您不了解所有信息，请不要担心！</p>
+<p>现在让我们将注意力转向 <cite>connectionOptions</cite> 对象：</p>
+<p><a href="#id11"><span class="problematic" id="id12">``</span></a><a href="#id13"><span class="problematic" id="id14">`</span></a>JavaScript
+let connectionOptions = {</p>
+<blockquote>
+<div><p>identity: userName,
+wallet: wallet,
+discovery: { enabled:true, asLocalhost: true }</p>
+</div></blockquote>
+<div class="section" id="id15">
+<h1>};<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h1>
+<p>了解它如何指定应使用 identity、<cite>userName</cite> 和 wallet、<cite>wallet</cite> 连接到网关。 这些是在代码中分配值较早的。</p>
+<p>应用程序可以使用其他[连接选项](./connectionoptions.html)来指示 SDK 代表它智能地执行操作。 例如：</p>
+<p><a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a>JavaScript
+let connectionOptions = {</p>
+<blockquote>
+<div><p>identity: userName,
+wallet: wallet,
+eventHandlerOptions: {</p>
+<blockquote>
+<div><p>commitTimeout: 100,
+strategy: EventStrategies.MSPID_SCOPE_ANYFORTX</p>
+</div></blockquote>
+<p>},</p>
+</div></blockquote>
+</div>
+<div class="section" id="id20">
+<h1>}<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h1>
+<p>这里， <cite>commitTimeout</cite> 告诉 SDK 等待100秒以监听是否已提交交易。 <cite>strategy:EventStrategies.MSPID_SCOPE_ANYFORTX</cite> 指定 SDK 可以在单个 MagnetoCorp Peer 节点确认交易后通知应用程序，与 <cite>strategy: EventStrategies.NETWORK_SCOPE_ALLFORTX</cite> 相反，<cite>strategy: EventStrategies.NETWORK_SCOPE_ALLFORTX</cite> 要求 MagnetoCorp 和 DigiBank 的所有 Peer 节点确认交易。</p>
+<p>如果您愿意，请[阅读更多](./connectionoptions.html) 有关连接选项如何允许应用程序指定面向目标的行为而不必担心如何实现的信息。</p>
+<p>## 网络通道</p>
+<p>在网关 <cite>connectionProfile.yaml</cite> 中定义的 Peer 节点提供 <cite>issue.js</cite> 来访问 PaperNet。 由于这些 Peer 节点可以连接到多个网络通道，因此网关实际上为应用程序提供了对多个网络通道的访问！</p>
+<p>了解应用程序如何选择特定通道：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">network</span> <span class="pre">=</span> <span class="pre">await</span> <span class="pre">gateway.getNetwork('PaperNet');</span>
+<span class="pre">`</span></code></p>
+<p>从这一点开始， <cite>network</cite> 将提供对 PaperNet 的访问。 此外，如果应用程序想要访问另一个网络，<cite>BondNet</cite>，同时，它很容易：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">network2</span> <span class="pre">=</span> <span class="pre">await</span> <span class="pre">gateway.getNetwork('BondNet');</span>
+<span class="pre">`</span></code></p>
+<p>现在，我们的应用程序可以访问第二个网络 <cite>BondNet</cite>，同时可以访问 <cite>PaperNet</cite>！</p>
+<p>我们在这里可以看到 Hyperledger Fabric 的一个强大功能——应用程序可以通过连接到多个网关 Peer 节点来加入**网络中的网络**，每个网关 Peer 节点都连接到多个网络通道。 根据 <cite>gateway.connect()</cite> 提供的钱包标识，应用程序将在不同的通道中拥有不同的权限。</p>
+<p>## 构造请求</p>
+<p>该应用程序现在准备**发行**商业票据。要做到这一点，它将再次使用 <cite>CommercialPaperContract</cite>，它可以非常直接地访问这个智能合约：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">contract</span> <span class="pre">=</span> <span class="pre">await</span> <span class="pre">network.getContract('papercontract',</span> <span class="pre">'org.papernet.commercialpaper');</span>
+<span class="pre">`</span></code></p>
+<p>请注意应用程序如何提供名称——<cite>papercontract</cite>——以及可选的合约命名空间： <cite>org.papernet.commercialpaper</cite>！ 我们看到如何从包含许多合约的 <cite>papercontract.js</cite> 链码文件中选出一个[合约名称](./contractname.html)。在 PaperNet 中，<cite>papercontract.js</cite> 已安装并使用名称 <cite>papercontract</cite> 部署到了通道，如果您有兴趣，请[如何](../chaincode4noah.html)部署包含多个智能合约的链代码。</p>
+<p>如果我们的应用程序同时需要访问 PaperNet 或 BondNet 中的另一个合约，这将很容易：</p>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a>JavaScript
+const euroContract = await network.getContract(‘EuroCommercialPaperContract’);</p>
+<p>const bondContract = await network2.getContract(‘BondContract’);
+<a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a></p>
+<p>在这些例子中，注意我们是如何不使用一个有效的合约名字——每个文件我们只有一个智能合约，并且 <cite>getContract()</cite> 将会使用它找到的第一个合约。</p>
+<p>回想一下 MagnetoCorp 用于发行其第一份商业票据的交易：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">issue</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Issue</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span> <span class="pre">09:00:00</span> <span class="pre">EST</span>
+<span class="pre">Maturity</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>我们现在将此交易提交给 PaperNet！</p>
+<p>## 提交交易</p>
+<p>提交一个交易是对 SDK 的单个方法调用：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">issueResponse</span> <span class="pre">=</span> <span class="pre">await</span> <span class="pre">contract.submitTransaction('issue',</span> <span class="pre">'MagnetoCorp',</span> <span class="pre">'00001',</span> <span class="pre">'2020-05-31',</span> <span class="pre">'2020-11-30',</span> <span class="pre">'5000000');</span>
+<span class="pre">`</span></code></p>
+<p>了解 <cite>submitTransaction()</cite> 参数如何与交易请求匹配。它们的值将传递给智能合约中的 <cite>issue()</cite> 方法，并用于创建新的商业票据。回想一下它的签名：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">async</span> <span class="pre">issue(ctx,</span> <span class="pre">issuer,</span> <span class="pre">paperNumber,</span> <span class="pre">issueDateTime,</span> <span class="pre">maturityDateTime,</span> <span class="pre">faceValue)</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code></p>
+<p>那可能会显示一个智能合约会在应用程序触发了 <cite>submitTransaction()</cite> 之后很快地收到控制，但是并不是那样的。在外表下，SDK 使用了 <cite>connectionOptions</cite> 和 <cite>connectionProfile</cite> 来将交易提案发送给网络中正确的节点，从那里可以得到所需的背书。但是应用程序并不用担心——它仅仅是触发了 <cite>submitTransaction</cite> 然后 SDK 会除了接下来所有的事情！</p>
+<p>我们注意到，<cite>submitTransaction</cite> API 包含了监听交易提交的一个流程。监听提交是必须的，因为如果没有它的话，你将不会知道你的交易是否被成功地排序了，验证了并且提交到了账本上。</p>
+<p>现在让我们将注意力转向应用程序如何处理响应！</p>
+<p>## 处理响应</p>
+<p>回想一下 <cite>papercontract.js</cite> 如何**发行**交易返回一个商业票据响应：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">return</span> <span class="pre">paper.toBuffer();</span>
+<span class="pre">`</span></code></p>
+<p>您会注意到一个轻微的怪癖——新`票据`需要在返回到应用程序之前转换为缓冲区。请注意 <cite>issue.js</cite> 如何使用类方法 <cite>CommercialPaper.fromBuffer()</cite> 将响应缓冲区重新转换为商业票据：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">let</span> <span class="pre">paper</span> <span class="pre">=</span> <span class="pre">CommercialPaper.fromBuffer(issueResponse);</span>
+<span class="pre">`</span></code></p>
+<p>这样可以在描述性完成消息中以自然的方式使用`票据`：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">console.log(`${paper.issuer}</span> <span class="pre">commercial</span> <span class="pre">paper</span> <span class="pre">:</span> <span class="pre">${paper.paperNumber}</span> <span class="pre">successfully</span> <span class="pre">issued</span> <span class="pre">for</span> <span class="pre">value</span> <span class="pre">${paper.faceValue}`);</span>
+<span class="pre">`</span></code></p>
+<p>了解如何在应用程序和智能合约中使用相同的 <cite>paper</cite> 类——如果您像这样构建代码，它将真正有助于可读性和重用。</p>
+<p>与交易提案一样，智能合约完成后，应用程序可能会很快收到控制权，但事实并非如此。SDK 负责管理整个共识流程，并根据`策略`连接选项在应用程序完成时通知应用程序。 如果您对 SDK 的内容感兴趣，请阅读详细的[交易流程](../../txflow.html)。</p>
+<p>就是这样！在本主题中，您已了解如何通过检查 MagnetoCorp 的应用程序如何在 PaperNet 中发行新的商业票据，从示例应用程序调用智能合约。现在检查关键账本和智能合约数据结构是由它们背后的[架构主题](./architecture.html)设计的。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="designelements.html" class="btn btn-neutral float-right" title="应用程序设计元素" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="smartcontract.html" class="btn btn-neutral" title="}" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

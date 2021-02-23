@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>##### Generate certificates using cryptogen tool ######### &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="开发应用" href="developapps/developing_applications.html" />
+    <link rel="prev" title="安装示例、二进制和 Docker 镜像" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">##### Generate certificates using cryptogen tool #########</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-org1-identities">############ Create Org1 Identities ######################</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id12">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id21">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id24">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id43">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_first_app.html">编写你的第一个应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/commercial_paper.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="private_data_tutorial.html">在 Fabric 中使用私有数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="couchdb_tutorial.html">使用 CouchDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_channel/create_channel_overview.html">创建通道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channel_update_tutorial.html">向通道添加组织</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chaincode4ade.html">链码开发者教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videos.html">视频</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="getting_started.html">入门</a> &raquo;</li>
+        
+      <li>##### Generate certificates using cryptogen tool #########</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/test_network.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 使用Fabric的测试网络</p>
+<p>下载Hyperledger Fabric Docker镜像和示例后，您将可以使用以`fabric-samples`代码库中提供的脚本来部署测试网络。
+您可以通过在本地计算机上运行节点来使用测试网络以了解Fabric。更有经验的开发人员可以使用
+网络测试其智能合约和应用程序。该网络工具仅用作教育与测试目的。它不应该用作部署产品网络的模板。
+该测试网络在Fabric v2.0中被引入作为`first-network`示例的长期替代。该示例网络使用Docker Compose部署了一个Fabric网络。
+因为这些节点是隔离在Docker Compose网络中的，所以测试网络不配置为连接到其他正在运行的fabric节点。</p>
+<p><strong>注意:</strong> 这些指导已基于最新的稳定版Docker镜像和提供的tar文件中的预编译的安装软件进行验证。
+如果您使用当前的master分支的镜像或工具运行这些命令，则可能会遇到错误。</p>
+<p>## 开始之前</p>
+<p>在运行测试网络之前，您需要克隆`fabric-samples`代码库并下载Fabric镜像。确保已安装
+的 [准备阶段](prereqs.html) 和 [安装示例、二进制和 Docker 镜像](install.html).</p>
+<p>## 启动测试网络</p>
+<p>您可以在`fabric-samples`代码库的`test-network`目录中找到启动网络的脚本。
+使用以下命令导航至测试网络目录：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">cd</span> <span class="pre">fabric-samples/test-network</span>
+<span class="pre">`</span></code></p>
+<p>在此目录中，您可以找到带注释的脚本`network.sh`，该脚本在本地计算机上使用Docker镜像建立Fabric网络。
+你可以运行`./network.sh -h`以打印脚本帮助文本：</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+Usage:</p>
+<blockquote>
+<div><blockquote>
+<div><dl>
+<dt>network.sh &lt;Mode&gt; [Flags]</dt><dd><dl class="simple">
+<dt>&lt;Mode&gt;</dt><dd><ul class="simple">
+<li><p>‘up’ - bring up fabric orderer and peer nodes. No channel is created</p></li>
+<li><p>‘up createChannel’ - bring up fabric network with one channel</p></li>
+<li><p>‘createChannel’ - create and join a channel after the network is created</p></li>
+<li><p>‘deployCC’ - deploy the fabcar chaincode on the channel</p></li>
+<li><p>‘down’ - clear the network with docker-compose down</p></li>
+<li><p>‘restart’ - restart the network</p></li>
+</ul>
+</dd>
+</dl>
+<p>Flags:
+-ca &lt;use CAs&gt; -  create Certificate Authorities to generate the crypto material
+-c &lt;channel name&gt; - channel name to use (defaults to “mychannel”)
+-s &lt;dbtype&gt; - the database backend to use: goleveldb (default) or couchdb
+-r &lt;max retry&gt; - CLI times out after certain number of attempts (defaults to 5)
+-d &lt;delay&gt; - delay duration in seconds (defaults to 3)
+-l &lt;language&gt; - the programming language of the chaincode to deploy: go (default), java, javascript, typescript
+-v &lt;version&gt;  - chaincode version. Must be a round number, 1, 2, 3, etc
+-i &lt;imagetag&gt; - the tag to be used to launch the network (defaults to “latest”)
+-cai &lt;ca_imagetag&gt; - the image tag to be used for CA (defaults to “1.4.6”)
+-verbose - verbose mode</p>
+</dd>
+</dl>
+<p>network.sh -h (print this message)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Possible Mode and flags</dt><dd><p>network.sh up -ca -c -r -d -s -i -verbose
+network.sh up createChannel -ca -c -r -d -s -i -verbose
+network.sh createChannel -c -r -d -verbose
+network.sh deployCC -l -v -r -d -verbose</p>
+</dd>
+<dt>Taking all defaults:</dt><dd><p>network.sh up</p>
+</dd>
+<dt>Examples:</dt><dd><p>network.sh up createChannel -ca -c mychannel -s couchdb -i 2.0.0
+network.sh createChannel -c channelName
+network.sh deployCC -l javascript</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>在`test-network`目录中，运行以下命令删除先前运行的所有容器或工程：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">down</span>
+<span class="pre">`</span></code></p>
+<p>然后，您可以通过执行以下命令来启动网络。如果您尝试从另一个目录运行脚本，则会遇到问题：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">up</span>
+<span class="pre">`</span></code></p>
+<p>此命令创建一个由两个对等节点和一个排序节点组成的Fabric网络。
+运行`./network.sh up`时没有创建任何channel，
+虽然我们将在[后面的步骤](#creating-a-channel)实现。
+如果命令执行成功，您将看到已创建的节点的日志：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Creating</span> <span class="pre">network</span> <span class="pre">&quot;net_test&quot;</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">driver</span>
+<span class="pre">Creating</span> <span class="pre">volume</span> <span class="pre">&quot;net_orderer.example.com&quot;</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">driver</span>
+<span class="pre">Creating</span> <span class="pre">volume</span> <span class="pre">&quot;net_peer0.org1.example.com&quot;</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">driver</span>
+<span class="pre">Creating</span> <span class="pre">volume</span> <span class="pre">&quot;net_peer0.org2.example.com&quot;</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">driver</span>
+<span class="pre">Creating</span> <span class="pre">orderer.example.com</span>&#160;&#160;&#160; <span class="pre">...</span> <span class="pre">done</span>
+<span class="pre">Creating</span> <span class="pre">peer0.org2.example.com</span> <span class="pre">...</span> <span class="pre">done</span>
+<span class="pre">Creating</span> <span class="pre">peer0.org1.example.com</span> <span class="pre">...</span> <span class="pre">done</span>
+<span class="pre">CONTAINER</span> <span class="pre">ID</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">IMAGE</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">COMMAND</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">CREATED</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">STATUS</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">PORTS</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">NAMES</span>
+<span class="pre">8d0c74b9d6af</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">hyperledger/fabric-orderer:latest</span>&#160;&#160; <span class="pre">&quot;orderer&quot;</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">4</span> <span class="pre">seconds</span> <span class="pre">ago</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Up</span> <span class="pre">Less</span> <span class="pre">than</span> <span class="pre">a</span> <span class="pre">second</span>&#160;&#160; <span class="pre">0.0.0.0:7050-&gt;7050/tcp</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">orderer.example.com</span>
+<span class="pre">ea1cf82b5b99</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">hyperledger/fabric-peer:latest</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">&quot;peer</span> <span class="pre">node</span> <span class="pre">start&quot;</span>&#160;&#160; <span class="pre">4</span> <span class="pre">seconds</span> <span class="pre">ago</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Up</span> <span class="pre">Less</span> <span class="pre">than</span> <span class="pre">a</span> <span class="pre">second</span>&#160;&#160; <span class="pre">0.0.0.0:7051-&gt;7051/tcp</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">peer0.org1.example.com</span>
+<span class="pre">cd8d9b23cb56</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">hyperledger/fabric-peer:latest</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">&quot;peer</span> <span class="pre">node</span> <span class="pre">start&quot;</span>&#160;&#160; <span class="pre">4</span> <span class="pre">seconds</span> <span class="pre">ago</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Up</span> <span class="pre">1</span> <span class="pre">second</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">7051/tcp,</span> <span class="pre">0.0.0.0:9051-&gt;9051/tcp</span>&#160;&#160; <span class="pre">peer0.org2.example.com</span>
+<span class="pre">`</span></code></p>
+<p>如果未得到此结果，请跳至[故障排除](#troubleshooting)
+寻求可能出现问题的帮助。 默认情况下，网络使用
+cryptogen工具来建立网络。 但是，您也可以
+[通过证书颁发机构建立网络](#bring-up-network-with-certificate-authorities)。</p>
+<p>### 测试网络的组成部分</p>
+<p>部署测试网络后，您可能需要一些时间来检查其网络组件。
+运行以下命令以列出所有正在您的计算机上运行的Docker容器。
+您应该看到由`network.sh`脚本创建的三个节点：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span>
+<span class="pre">`</span></code></p>
+<p>与Fabric网络互动的每个节点和用户都必须属于一个网络成员的组织。
+Fabric网络成员的所有组织通常称为联盟(consortium)。
+测试网络有两个联盟成员，Org1和Org2。
+该网络还包括一个维护网络排序服务的排序组织。</p>
+<p>[Peer 节点](peers/peers.html) 是任何Fabric网络的基本组件。
+对等节点存储区块链账本并在进行交易之前对其进行验证。
+同行运行包含业务用于管理区块链账本的智能合约上的业务逻辑。</p>
+<p>网络中的每个对等方都必须属于该联盟的成员。
+在测试网络里，每个组织各自运营一个对等节点，
+<cite>peer0.org1.example.com`和`peer0.org2.example.com</cite>.</p>
+<p>每个Fabric网络还包括一个[排序服务](orderer/ordering_service.html)。
+虽然对等节点验证交易并将交易块添加到区块链账本，他们不决定交易顺序或包含他们进入新的区块。
+在分布式网络上，对等点可能运行得很远彼此之间没有什么共同点，并且对何时创建事务没有共同的看法。
+在交易顺序上达成共识是一个代价高昂的过程，为同伴增加开销。</p>
+<p>排序服务允许对等节点专注于验证交易并将它们提交到账本。
+排序节点从客户那里收到认可的交易后，他们就交易顺序达成共识，然后添加区块。
+这些区块之后被分配给添加这些区块到账本的对等节点。
+排序节点还可以操作定义Fabric网络的功能的系统通道，例如如何制作块以及节点可以使用的Fabric版本。
+系统通道定义了哪个组织是该联盟的成员。</p>
+<p>该示例网络使用一个单节点Raft排序服务，该服务由排序组织运行。
+您可以看到在您机器上正在运行的排序节点`orderer.example.com`。
+虽然测试网络仅使用单节点排序服务，一个真实的网络将有多个排序节点，由一个或多个多个排序者组织操作。
+不同的排序节点将使用Raft共识算法达成跨交易顺序的共识网络。</p>
+<p>## 创建一个通道</p>
+<p>现在我们的机器上正在运行对等节点和排序节点，
+我们可以使用脚本创建用于在Org1和Org2之间进行交易的Fabric通道。
+通道是特定网络成员之间的专用通信层。通道只能由被邀请加入通道的组织使用，并且对网络的其他成员不可见。
+每个通道都有一个单独的区块链账本。被邀请的组织“加入”他们的对等节点来存储其通道账本并验证交易。</p>
+<p>您可以使用`network.sh`脚本在Org1和Org2之间创建通道并加入他们的对等节点。
+运行以下命令以创建一个默认名称为“ mychannel”的通道：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">createChannel</span>
+<span class="pre">`</span></code></p>
+<p>如果命令成功执行，您将看到以下消息打印在您的日志：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">=========</span> <span class="pre">Channel</span> <span class="pre">successfully</span> <span class="pre">joined</span> <span class="pre">===========</span>
+<span class="pre">`</span></code></p>
+<p>您也可以使用channel标志创建具有自定义名称的通道。
+作为一个例子，以下命令将创建一个名为`channel1`的通道：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">createChannel</span> <span class="pre">-c</span> <span class="pre">channel1</span>
+<span class="pre">`</span></code></p>
+<p>通道标志还允许您创建多个不同名称的多个通道。
+创建`mychannel`或`channel1`之后，您可以使用下面的命令创建另一个名为`channel2`的通道：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">createChannel</span> <span class="pre">-c</span> <span class="pre">channel2</span>
+<span class="pre">`</span></code></p>
+<p>如果您想一步建立网络并创建频道，则可以使用`up`和`createChannel`模式一起：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">up</span> <span class="pre">createChannel</span>
+<span class="pre">`</span></code></p>
+<p>## 在通道启动一个链码</p>
+<p>创建通道后，您可以开始使用[智能合约](smartcontract/smartcontract.html)与通道账本交互。
+智能合约包含管理区块链账本上资产的业务逻辑。
+由成员运行的应用程序网络可以在账本上调用智能合约创建，更改和转让这些资产。
+应用程序还通过智能合约查询，以在分类帐上读取数据。</p>
+<p>为确保交易有效，使用智能合约创建的交易通常需要由多个组织签名才能提交到通道账本。
+多个签名是Fabric信任模型不可或缺的一部分。
+一项交易需要多次背书，以防止一个通道上的单一组织使用通道不同意的业务逻辑篡改其对等节点的分类账本。
+要签署交易，每个组织都需要调用并在其对等节点上执行智能合约，然后签署交易的输出。
+如果输出是一致的并且已经有足够的组织签名，则可以将交易提交到账本。
+该政策被称为背书政策，指定需要执行智能交易的通道上的已设置组织合同，针对每个链码设置为链码定义的一部分。</p>
+<p>在Fabric中，智能合约作为链码以软件包的形式部署在网络上。
+链码安装在组织的对等节点上，然后部署到某个通道，然后可以在该通道中用于认可交易和区块链账本交互。
+在将链码部署到通道前，该频道的成员需要就链码定义达成共识，建立链码治理。
+何时达到要求数量的组织同意后，链码定义可以提交给通道，并且可以使用链码了。</p>
+<p>使用`network.sh`创建频道后，您可以使用以下命令在通道上启动链码：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">deployCC</span>
+<span class="pre">`</span></code></p>
+<p><cite>deployCC`子命令将在``peer0.org1.example.com``和``peer0.org2.example.com``上安装**fabcar**链码。
+然后在使用通道标志（或`mychannel`如果未指定通道）的通道上部署指定的通道的链码。
+如果您是第一次部署链码，脚本将安装链码的依赖项。 默认情况下，脚本安装Go版本的fabcar链码。
+但是您可以使用语言标志</cite>-l`，用于安装Java或javascript版本的链码。
+您可以在`fabric-samples`目录的`chaincode`文件夹中找到Fabcar链码。
+此文件夹包含用来突显Fabric特性教程示例的样例链码。</p>
+<p>将**fabcar**链码定义提交给通道后，脚本通过调用`init`函数初始化链码，然后调用链码将一个初始汽车清单放到账本中。
+然后脚本查询链码以验证是否已添加数据。
+如果链码已正确安装，部署和调用，您应该在您的日志中打印中看到以下汽车列表：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">[{&quot;Key&quot;:&quot;CAR0&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Toyota&quot;,&quot;model&quot;:&quot;Prius&quot;,&quot;colour&quot;:&quot;blue&quot;,&quot;owner&quot;:&quot;Tomoko&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR1&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Ford&quot;,&quot;model&quot;:&quot;Mustang&quot;,&quot;colour&quot;:&quot;red&quot;,&quot;owner&quot;:&quot;Brad&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR2&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Hyundai&quot;,&quot;model&quot;:&quot;Tucson&quot;,&quot;colour&quot;:&quot;green&quot;,&quot;owner&quot;:&quot;Jin</span> <span class="pre">Soo&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR3&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Volkswagen&quot;,&quot;model&quot;:&quot;Passat&quot;,&quot;colour&quot;:&quot;yellow&quot;,&quot;owner&quot;:&quot;Max&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR4&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Tesla&quot;,&quot;model&quot;:&quot;S&quot;,&quot;colour&quot;:&quot;black&quot;,&quot;owner&quot;:&quot;Adriana&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR5&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Peugeot&quot;,&quot;model&quot;:&quot;205&quot;,&quot;colour&quot;:&quot;purple&quot;,&quot;owner&quot;:&quot;Michel&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR6&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Chery&quot;,&quot;model&quot;:&quot;S22L&quot;,&quot;colour&quot;:&quot;white&quot;,&quot;owner&quot;:&quot;Aarav&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR7&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Fiat&quot;,&quot;model&quot;:&quot;Punto&quot;,&quot;colour&quot;:&quot;violet&quot;,&quot;owner&quot;:&quot;Pari&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR8&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Tata&quot;,&quot;model&quot;:&quot;Nano&quot;,&quot;colour&quot;:&quot;indigo&quot;,&quot;owner&quot;:&quot;Valeria&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR9&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Holden&quot;,&quot;model&quot;:&quot;Barina&quot;,&quot;colour&quot;:&quot;brown&quot;,&quot;owner&quot;:&quot;Shotaro&quot;}}]</span>
+<span class="pre">=====================</span> <span class="pre">Query</span> <span class="pre">successful</span> <span class="pre">on</span> <span class="pre">peer0.org1</span> <span class="pre">on</span> <span class="pre">channel</span> <span class="pre">'mychannel'</span> <span class="pre">=====================</span>
+<span class="pre">`</span></code></p>
+<p>## 与网络交互</p>
+<p>在您启用测试网络后，可以使用`peer` CLI与您的网络进行交互。
+<cite>peer</cite> CLI允许您调用已部署的智能合约，更新通道，或安装和部署新的智能合约。</p>
+<p>确保您正在从`test-network`目录进行操作。
+如果你按照说明[安装示例，二进制文件和Docker映像](install.html)，
+您可以在`fabric-samples`代码库的`bin`文件夹中找到`peer`二进制文件。
+使用以下命令将这些二进制文件添加到您的CLI路径：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">export</span> <span class="pre">PATH=${PWD}/../bin:$PATH</span>
+<span class="pre">`</span></code></p>
+<p>您还需要将`fabric-samples`代码库中的`FABRIC_CFG_PATH`设置为指向其中的`core.yaml`文件：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">export</span> <span class="pre">FABRIC_CFG_PATH=$PWD/../config/</span>
+<span class="pre">`</span></code></p>
+<p>现在，您可以设置环境变量，以允许您作为Org1操作`peer` CLI：
+<a href="#id7"><span class="problematic" id="id8">``</span></a>`
+# Environment variables for Org1</p>
+<p>export CORE_PEER_TLS_ENABLED=true
+export CORE_PEER_LOCALMSPID=”Org1MSP”
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+export <a class="reference external" href="mailto:CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1&#46;example&#46;com/users/Admin&#37;&#52;&#48;org1&#46;example&#46;com/msp">CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1<span>&#46;</span>example<span>&#46;</span>com/users/Admin<span>&#64;</span>org1<span>&#46;</span>example<span>&#46;</span>com/msp</a>
+export CORE_PEER_ADDRESS=localhost:7051
+<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<p><cite>CORE_PEER_TLS_ROOTCERT_FILE`和`CORE_PEER_MSPCONFIGPATH`环境变量指向Org1的`organizations`文件夹中的的加密材料。
+如果您使用</cite>./network.sh deployCC`安装和启动fabcar链码，您现在可以从CLI查询账本。
+运行以下命令以获取已添加到通道账本中的汽车列表：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">peer</span> <span class="pre">chaincode</span> <span class="pre">query</span> <span class="pre">-C</span> <span class="pre">mychannel</span> <span class="pre">-n</span> <span class="pre">fabcar</span> <span class="pre">-c</span> <span class="pre">'{&quot;Args&quot;:[&quot;queryAllCars&quot;]}'</span>
+<span class="pre">`</span></code></p>
+<p>如果命令成功，您将在运行脚本时看到日志中与已打印汽车相同的列表：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">[{&quot;Key&quot;:&quot;CAR0&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Toyota&quot;,&quot;model&quot;:&quot;Prius&quot;,&quot;colour&quot;:&quot;blue&quot;,&quot;owner&quot;:&quot;Tomoko&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR1&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Ford&quot;,&quot;model&quot;:&quot;Mustang&quot;,&quot;colour&quot;:&quot;red&quot;,&quot;owner&quot;:&quot;Brad&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR2&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Hyundai&quot;,&quot;model&quot;:&quot;Tucson&quot;,&quot;colour&quot;:&quot;green&quot;,&quot;owner&quot;:&quot;Jin</span> <span class="pre">Soo&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR3&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Volkswagen&quot;,&quot;model&quot;:&quot;Passat&quot;,&quot;colour&quot;:&quot;yellow&quot;,&quot;owner&quot;:&quot;Max&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR4&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Tesla&quot;,&quot;model&quot;:&quot;S&quot;,&quot;colour&quot;:&quot;black&quot;,&quot;owner&quot;:&quot;Adriana&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR5&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Peugeot&quot;,&quot;model&quot;:&quot;205&quot;,&quot;colour&quot;:&quot;purple&quot;,&quot;owner&quot;:&quot;Michel&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR6&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Chery&quot;,&quot;model&quot;:&quot;S22L&quot;,&quot;colour&quot;:&quot;white&quot;,&quot;owner&quot;:&quot;Aarav&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR7&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Fiat&quot;,&quot;model&quot;:&quot;Punto&quot;,&quot;colour&quot;:&quot;violet&quot;,&quot;owner&quot;:&quot;Pari&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR8&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Tata&quot;,&quot;model&quot;:&quot;Nano&quot;,&quot;colour&quot;:&quot;indigo&quot;,&quot;owner&quot;:&quot;Valeria&quot;}},</span>
+<span class="pre">{&quot;Key&quot;:&quot;CAR9&quot;,</span> <span class="pre">&quot;Record&quot;:{&quot;make&quot;:&quot;Holden&quot;,&quot;model&quot;:&quot;Barina&quot;,&quot;colour&quot;:&quot;brown&quot;,&quot;owner&quot;:&quot;Shotaro&quot;}}]</span>
+<span class="pre">`</span></code></p>
+<p>当网络成员要转移或更改帐上的资产时，将调用链码。
+使用以下命令调用fabcar链码来更改账本上汽车的所有者：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">peer</span> <span class="pre">chaincode</span> <span class="pre">invoke</span> <span class="pre">-o</span> <span class="pre">localhost:7050</span> <span class="pre">--ordererTLSHostnameOverride</span> <span class="pre">orderer.example.com</span> <span class="pre">--tls</span> <span class="pre">--cafile</span> <span class="pre">${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem</span> <span class="pre">-C</span> <span class="pre">mychannel</span> <span class="pre">-n</span> <span class="pre">fabcar</span> <span class="pre">--peerAddresses</span> <span class="pre">localhost:7051</span> <span class="pre">--tlsRootCertFiles</span> <span class="pre">${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt</span> <span class="pre">--peerAddresses</span> <span class="pre">localhost:9051</span> <span class="pre">--tlsRootCertFiles</span> <span class="pre">${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt</span> <span class="pre">-c</span> <span class="pre">'{&quot;function&quot;:&quot;changeCarOwner&quot;,&quot;Args&quot;:[&quot;CAR9&quot;,&quot;Dave&quot;]}'</span>
+<span class="pre">`</span></code></p>
+<p>如果命令成功，您应该看到以下响应：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">2019-12-04</span> <span class="pre">17:38:21.048</span> <span class="pre">EST</span> <span class="pre">[chaincodeCmd]</span> <span class="pre">chaincodeInvokeOrQuery</span> <span class="pre">-&gt;</span> <span class="pre">INFO</span> <span class="pre">001</span> <span class="pre">Chaincode</span> <span class="pre">invoke</span> <span class="pre">successful.</span> <span class="pre">result:</span> <span class="pre">status:200</span>
+<span class="pre">`</span></code></p>
+<p><a href="#id13"><span class="problematic" id="id14">**</span></a>注意：<a href="#id15"><span class="problematic" id="id16">**</span></a>如果您部署了Java链码，请使用以下参数调用命令替代`’{“ function”：“ changeCarOwner”，“ Args”：[“ CAR009”，“ Dave”]}’<a href="#id17"><span class="problematic" id="id18">`</span></a>。
+用Java编写的Fabcar链码使用与用Javascipt或Go编写的链码不同的索引。</p>
+<p>因为fabcar链码的背书政策要求交易要由Org1和Org2签名，
+链码调用命令需要同时指向`peer0.org1.example.com`和`peer0.org2.example.com`使用`–peerAddresses`标志。
+由于已为网络启用TLS，因此该命令还需要为每个对等节点使用`–tlsRootCertFiles`标志来提供TLS证书。</p>
+<p>调用链码后，我们可以使用另一个查询来查看调用如何更改了区块链账本上的资产。
+由于我们已经查询过Org1对等节点，我们可以借此机会查询在Org2上运行链码的对等节点。
+设置以下环境变量以作为Org2进行操作：
+<a href="#id19"><span class="problematic" id="id20">``</span></a>`
+# Environment variables for Org2</p>
+<p>export CORE_PEER_TLS_ENABLED=true
+export CORE_PEER_LOCALMSPID=”Org2MSP”
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+export <a class="reference external" href="mailto:CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org2&#46;example&#46;com/users/Admin&#37;&#52;&#48;org2&#46;example&#46;com/msp">CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org2<span>&#46;</span>example<span>&#46;</span>com/users/Admin<span>&#64;</span>org2<span>&#46;</span>example<span>&#46;</span>com/msp</a>
+export CORE_PEER_ADDRESS=localhost:9051
+<a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p>您现在可以查询运行在`peer0.org2.example.com`的fabcar链码:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">peer</span> <span class="pre">chaincode</span> <span class="pre">query</span> <span class="pre">-C</span> <span class="pre">mychannel</span> <span class="pre">-n</span> <span class="pre">fabcar</span> <span class="pre">-c</span> <span class="pre">'{&quot;Args&quot;:[&quot;queryCar&quot;,&quot;CAR9&quot;]}'</span>
+<span class="pre">`</span></code></p>
+<p>结果将显示`”CAR9”<cite>已转移到Dave：
+``</cite>
+{“make”:”Holden”,”model”:”Barina”,”colour”:”brown”,”owner”:”Dave”}
+<a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a></p>
+<p>## 关停网络</p>
+<p>使用完测试网络后，您可以使用以下命令关闭网络：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">down</span>
+<span class="pre">`</span></code></p>
+<p>该命令将停止并删除节点和链码容器，删除组织加密材料，并从Docker Registry移除链码镜像。
+该命令还删除之前运行的通道项目和docker卷。如果您遇到任何问题，还允许您再次运行`./ network.sh up`。</p>
+<p>## 下一步</p>
+<p>既然您已经使用测试网络在您的本地计算机上部署了Hyperledger Fabric，您可以使用教程来开始开发自己的解决方案：</p>
+<ul class="simple">
+<li><p>使用[将智能合约部署到通道](deploy_chaincode.html) 教程了解如何来将自己的智能合约部署到测试网络。</p></li>
+<li><p>访问[编写您的第一个应用程序](write_first_app.html) 教程了解如何从您的客户端程序使用Fabric SDK提供的API调用智能合约。</p></li>
+<li><p>如果您准备将更复杂的智能合约部署到网络，请跟随[商业票据教程](tutorial/commercial_paper.html) 探索两个组织使用区块链网络进行商业票据交易的用例。</p></li>
+</ul>
+<p>您可以在[教程](tutorials.html)页上找到Fabric教程的完整列表。</p>
+<p>## 使用认证机构建立网络</p>
+<p>Hyperledger Fabric使用公钥基础设施(PKI)来验证所有网络参与者的行为。
+每个节点，网络管理员和用户提交的交易需要具有公共证书和私钥以验证其身份。
+这些身份必须具有有效的信任根源，该证书是由作为网络中的成员组织颁发的。
+<a href="#id29"><span class="problematic" id="id30">`</span></a>network.sh`脚本在创建对等和排序节点之前创建所有部署和操作网络所有需要的加密材料。</p>
+<p>默认情况下，脚本使用cryptogen工具创建证书和密钥。
+该工具用于开发和测试，并且可以快速为具有有效根信任的Fabric组织创建所需的加密材料。
+当您运行`./network.sh up`时，您会看到cryptogen工具正在创建Org1，Org2和Orderer Org的证书和密钥。</p>
+<p><a href="#id31"><span class="problematic" id="id32">``</span></a>`
+creating Org1, Org2, and ordering service organization with crypto from ‘cryptogen’</p>
+<p>/Usr/fabric-samples/test-network/../bin/cryptogen</p>
+<div class="section" id="generate-certificates-using-cryptogen-tool">
+<h1>##### Generate certificates using cryptogen tool #########<a class="headerlink" href="#generate-certificates-using-cryptogen-tool" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="create-org1-identities">
+<h1>############ Create Org1 Identities ######################<a class="headerlink" href="#create-org1-identities" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>cryptogen generate –config=./organizations/cryptogen/crypto-config-org1.yaml –output=organizations</p></li>
+</ul>
+<p>org1.example.com
++ res=0
++ set +x
+##########################################################
+############ Create Org2 Identities ######################
+##########################################################
++ cryptogen generate –config=./organizations/cryptogen/crypto-config-org2.yaml –output=organizations
+org2.example.com
++ res=0
++ set +x
+##########################################################
+############ Create Orderer Org Identities ###############
+##########################################################
++ cryptogen generate –config=./organizations/cryptogen/crypto-config-orderer.yaml –output=organizations
++ res=0
++ set +x
+<a href="#id33"><span class="problematic" id="id34">``</span></a><a href="#id35"><span class="problematic" id="id36">`</span></a></p>
+<p>测试网络脚本还提供了使用证书颁发机构（CA）的网络的启动选项。
+在产品网络中，每个组织操作一个CA（或多个中间CA）来创建属于他们的组织身份。
+所有由该组织运行的CA创建的身份享有相同的组织信任根源。
+虽然花费的时间比使用cryptogen多，使用CA建立测试网络，提供了在产品中部署网络的指导。
+部署CA还可以让您注册Fabric SDK的客户端身份，并为您的应用程序创建证书和私钥。</p>
+<p>如果您想使用Fabric CA建立网络，请首先运行以下命令关停所有正在运行的网络：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">down</span>
+<span class="pre">`</span></code></p>
+<p>然后，您可以使用CA标志启动网络：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">up</span> <span class="pre">-ca</span>
+<span class="pre">`</span></code></p>
+<p>执行命令后，您可以看到脚本启动了三个CA，每个网络中的组织一个。
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">##########################################################</span>
+<span class="pre">#####</span> <span class="pre">Generate</span> <span class="pre">certificates</span> <span class="pre">using</span> <span class="pre">Fabric</span> <span class="pre">CA's</span> <span class="pre">############</span>
+<span class="pre">##########################################################</span>
+<span class="pre">Creating</span> <span class="pre">network</span> <span class="pre">&quot;net_default&quot;</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">driver</span>
+<span class="pre">Creating</span> <span class="pre">ca_org2</span>&#160;&#160;&#160; <span class="pre">...</span> <span class="pre">done</span>
+<span class="pre">Creating</span> <span class="pre">ca_org1</span>&#160;&#160;&#160; <span class="pre">...</span> <span class="pre">done</span>
+<span class="pre">Creating</span> <span class="pre">ca_orderer</span> <span class="pre">...</span> <span class="pre">done</span>
+<span class="pre">`</span></code></p>
+<p>值得花一些时间检查`/ network.sh`脚本部署CA之后生成的日志。
+测试网络使用Fabric CA客户端以每个组织的CA注册节点和用户身份。
+之后这个脚本使用enroll命令为每个身份生成一个MSP文件夹。
+MSP文件夹包含每个身份的证书和私钥，以及在运营CA的组织中建立身份的角色和成员身份。
+您可以使用以下命令来检查Org1管理员用户的MSP文件夹：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">tree</span> <span class="pre">organizations/peerOrganizations/org1.example.com/users/Admin&#64;org1.example.com/</span>
+<span class="pre">`</span></code></p>
+<p>该命令将显示MSP文件夹的结构和配置文件：
+<a href="#id37"><span class="problematic" id="id38">``</span></a>`
+<a class="reference external" href="mailto:organizations/peerOrganizations/org1&#46;example&#46;com/users/Admin&#37;&#52;&#48;org1&#46;example&#46;com/">organizations/peerOrganizations/org1<span>&#46;</span>example<span>&#46;</span>com/users/Admin<span>&#64;</span>org1<span>&#46;</span>example<span>&#46;</span>com/</a>
+└── msp</p>
+<blockquote>
+<div><p>├── IssuerPublicKey
+├── IssuerRevocationPublicKey
+├── cacerts
+│   └── localhost-7054-ca-org1.pem
+├── config.yaml
+├── keystore
+│   └── 58e81e6f1ee8930df46841bf88c22a08ae53c1332319854608539ee78ed2fd65_sk
+├── signcerts
+│   └── cert.pem
+└── user</p>
+</div></blockquote>
+<p><a href="#id39"><span class="problematic" id="id40">``</span></a><a href="#id41"><span class="problematic" id="id42">`</span></a></p>
+<p>您可以在`signcerts`文件夹中找到管理员用户的证书，然后在`keystore`文件夹中找到私钥。
+要了解有关MSP的更多信息，请参阅[成员服务提供者](membership/membership.html)概念主题。</p>
+<p>cryptogen和Fabric CA都为每个组织在`organizations`文件夹中生成加密材料。
+您可以在`organizations/fabric-ca`目录中的`registerEnroll.sh`脚本中找到用于设置网络的命令。
+要了解更多有关如何使用Fabric CA部署Fabric网络的信息，请访问[Fabric CA操作指南](<a class="reference external" href="https://hyperledger-fabric-ca.readthedocs.io/en/latest/operations_guide.html">https://hyperledger-fabric-ca.readthedocs.io/en/latest/operations_guide.html</a>)。
+您可以通过访问[identity](identity/identity.html)和[membership](membership/membership.html)概念主题了解有关Fabric如何使用PKI的更多信息。</p>
+<p>## 幕后发生了什么？</p>
+<p>如果您有兴趣了解有关示例网络的更多信息，则可以调查`test-network`目录中的文件和脚本。
+下面的步骤提供了有关在您发出`./network.sh up`命令时会发生什么情况的导览。</p>
+<ul class="simple">
+<li><p><cite>./ network.sh`为两个对等组织和排序组织创建证书和密钥。
+默认情况下，脚本利用cryptogen工具使用位于`organizations/cryptogen`文件夹中的配置文件。
+如果使用</cite>-ca`标志创建证书颁发机构，则脚本使用Fabric CA服务器配置文件和位于`organizations/fabric-ca`文件夹的`registerEnroll.sh`脚本。
+cryptogen和Fabric CA均会在`organisations`文件夹创建所有三个组织中的加密资料和MSP文件夹。</p></li>
+<li><p>该脚本使用configtxgen工具创建系统通道生成块。
+Configtxgen使用了`TwoOrgsOrdererGenesis`通道配置文件中的`configtx/configtx.yaml`文件创建创世区块。
+区块被存储在`system-genesis-block`文件夹中。</p></li>
+<li><p>一旦组织的加密资料和系统通道的创始块生成后，<a href="#id43"><span class="problematic" id="id44">`</span></a>network.sh`就可以启动网络的节点。
+脚本使用`docker`文件夹中的``docker-compose-test-net.yaml``文件创建对等节点和排序节点。
+<a href="#id45"><span class="problematic" id="id46">`</span></a>docker`文件夹还包含  <a href="#id47"><span class="problematic" id="id48">``</span></a>docker-compose-e2e.yaml``文件启动网络节点三个Fabric CA。
+该文件旨在用于Fabric SDK 运行端到端测试。 请参阅[Node SDK](<a class="reference external" href="https://github.com/hyperledger/fabric-sdk-node">https://github.com/hyperledger/fabric-sdk-node</a>)代码库有关运行这些测试的详细信息。</p></li>
+<li><p>如果您使用`createChannel`子命令，则`./ network.sh`使用提供的频道名称，
+运行在`scripts`文件夹中的`createChannel.sh`脚本来创建通道。
+该脚本使用`configtx.yaml`文件来创建通道创作事务，以及两个锚对等节点更新交易。
+该脚本使用对等节点cli创建通道，加入``peer0.org1.example.com``和``peer0.org2.example.com`` 到频道，
+以及使两个对等节点都成为锚对等节点。</p></li>
+<li><p>如果执行`deployCC`命令，<a href="#id49"><span class="problematic" id="id50">`</span></a>./ network.sh`会运行``deployCC.sh``脚本在两个对等节点上安装**fabcar**链码，
+然后定义通道上的链码。 一旦将链码定义提交给通道，对等节点cli使用`Init`初始化链码并调用链码将初始数据放入账本。</p></li>
+</ul>
+<p>## 故障排除</p>
+<p>如果您对本教程有任何疑问，请查看以下内容：</p>
+<ul>
+<li><p>您应该始终重新启动网络。 您可以使用以下命令删除先前运行的工件，加密材料，容器，卷和链码镜像：</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./network.sh</span> <span class="pre">down</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<p>如果您不删除旧的容器，镜像和卷，将看到报错。</p>
+</li>
+<li><p>如果您看到Docker错误，请先检查您的Docker版本([Prerequisites](prereqs.html))，
+然后尝试重新启动Docker进程。 Docker的问题是经常无法立即识别的。
+例如，您可能会看到您的节点无法访问挂载在容器内的加密材料导致的错误。</p>
+<p>如果问题仍然存在，则可以删除镜像并从头开始：
+<a href="#id51"><span class="problematic" id="id52">``</span></a><a href="#id53"><span class="problematic" id="id54">`</span></a></p>
+<blockquote>
+<div><p>docker rm -f $(docker ps -aq)
+docker rmi -f $(docker images -q)</p>
+</div></blockquote>
+<p><a href="#id55"><span class="problematic" id="id56">``</span></a><a href="#id57"><span class="problematic" id="id58">`</span></a></p>
+</li>
+<li><p>如果您在创建，批准，提交，调用或查询命令时发现错误，确保您已正确更新通道名称和链码名称。
+提供的示例命令中有占位符值。</p></li>
+<li><dl>
+<dt>如果您看到以下错误：</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Error:</span> <span class="pre">Error</span> <span class="pre">endorsing</span> <span class="pre">chaincode:</span> <span class="pre">rpc</span> <span class="pre">error:</span> <span class="pre">code</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">desc</span> <span class="pre">=</span> <span class="pre">Error</span> <span class="pre">installing</span> <span class="pre">chaincode</span> <span class="pre">code</span> <span class="pre">mycc:1.0(chaincode</span> <span class="pre">/var/hyperledger/production/chaincodes/mycc.1.0</span> <span class="pre">exits)</span>
+<span class="pre">`</span></code></p>
+<p>您可能有先前运行中链码镜像（例如``dev-peer1.org2.example.com-fabcar-1.0``或 <code class="docutils literal notranslate"><span class="pre">dev-peer0.org1.example.com-fabcar-1.0</span></code>）。 删除它们并再次尝试。
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">docker</span> <span class="pre">rmi</span> <span class="pre">-f</span> <span class="pre">$(docker</span> <span class="pre">images</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">dev-peer[0-9]</span> <span class="pre">|</span> <span class="pre">awk</span> <span class="pre">'{print</span> <span class="pre">$3}')</span>
+<span class="pre">`</span></code></p>
+</dd>
+</dl>
+</li>
+<li><p>如果您看到以下错误：</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">[configtx/tool/localconfig]</span> <span class="pre">Load</span> <span class="pre">-&gt;</span> <span class="pre">CRIT</span> <span class="pre">002</span> <span class="pre">Error</span> <span class="pre">reading</span> <span class="pre">configuration:</span> <span class="pre">Unsupported</span> <span class="pre">Config</span> <span class="pre">Type</span> <span class="pre">&quot;&quot;</span>
+<span class="pre">panic:</span> <span class="pre">Error</span> <span class="pre">reading</span> <span class="pre">configuration:</span> <span class="pre">Unsupported</span> <span class="pre">Config</span> <span class="pre">Type</span> <span class="pre">&quot;&quot;</span>
+<span class="pre">`</span></code></p>
+<p>那么您没有正确设置环境变量``FABRIC_CFG_PATH``。configtxgen工具需要此变量才能找到configtx.yaml。
+返回执行``export FABRIC_CFG_PATH=$PWD/configtx/configtx.yaml``，然后重新创建您的通道工件。</p>
+</div></blockquote>
+</li>
+<li><p>如果看到错误消息指出您仍然具有“active endpoints”，请清理您的Docker网络。
+这将清除您以前的网络，并以全新环境开始：</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">docker</span> <span class="pre">network</span> <span class="pre">prune</span>
+<span class="pre">`</span></code></p>
+<p>您将看到一下信息：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">WARNING!</span> <span class="pre">This</span> <span class="pre">will</span> <span class="pre">remove</span> <span class="pre">all</span> <span class="pre">networks</span> <span class="pre">not</span> <span class="pre">used</span> <span class="pre">by</span> <span class="pre">at</span> <span class="pre">least</span> <span class="pre">one</span> <span class="pre">container.</span>
+<span class="pre">Are</span> <span class="pre">you</span> <span class="pre">sure</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">continue?</span> <span class="pre">[y/N]</span>
+<span class="pre">`</span></code></p>
+<p>选 <code class="docutils literal notranslate"><span class="pre">y</span></code>。</p>
+</div></blockquote>
+</li>
+<li><p>如果您看到类似下面的错误：</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">/bin/bash:</span> <span class="pre">./scripts/createChannel.sh:</span> <span class="pre">/bin/bash^M:</span> <span class="pre">bad</span> <span class="pre">interpreter:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span>
+<span class="pre">`</span></code></p>
+<p>确保有问题的文件（在此示例中为**createChannel.sh**）为以Unix格式编码。
+这很可能是由于未在Git配置中将``core.autocrlf``设置为``false``（查看[Windows Extras](prereqs.html#windows-extras)）。 有几种解决方法。 如果你有例如vim编辑器，打开文件：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">vim</span> <span class="pre">./fabric-samples/test-network/scripts/createChannel.sh</span>
+<span class="pre">`</span></code></p>
+<p>然后通过执行以下vim命令来更改其格式：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">:set</span> <span class="pre">ff=unix</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p>如果您的排序者在创建时退出，或者您看到由于无法连接到排序服务创建通道命令失败，
+请使用`docker logs`命令从排序节点读取日志。
+你可能会看到以下消息：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">PANI</span> <span class="pre">007</span> <span class="pre">[channel</span> <span class="pre">system-channel]</span> <span class="pre">config</span> <span class="pre">requires</span> <span class="pre">unsupported</span> <span class="pre">orderer</span> <span class="pre">capabilities:</span> <span class="pre">Orderer</span> <span class="pre">capability</span> <span class="pre">V2_0</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">but</span> <span class="pre">not</span> <span class="pre">supported:</span> <span class="pre">Orderer</span> <span class="pre">capability</span> <span class="pre">V2_0</span> <span class="pre">is</span> <span class="pre">required</span> <span class="pre">but</span> <span class="pre">not</span> <span class="pre">supported</span>
+<span class="pre">`</span></code></p>
+<p>当您尝试使用Fabric 1.4.x版本docker镜像运行网络时，会发生这种情况。
+测试网络需要使用Fabric 2.x版本运行。</p>
+</li>
+</ul>
+<p>如果您仍然发现错误，请在**fabric-questions**上共享您的日志 [Hyperledger Rocket chat](<a class="reference external" href="https://chat.hyperledger.org/home">https://chat.hyperledger.org/home</a>)或[StackOverflow](<a class="reference external" href="https://stackoverflow.com/questions/tagged/hyperledger-fabric">https://stackoverflow.com/questions/tagged/hyperledger-fabric</a>)。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="developapps/developing_applications.html" class="btn btn-neutral float-right" title="开发应用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="安装示例、二进制和 Docker 镜像" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

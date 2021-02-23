@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="architecture.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="scenario.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developing_applications.html">开发应用</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developapps/analysis.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 分析</p>
+<p><strong>受众</strong>: 架构师，应用和合约开发者，业务专家</p>
+<p>让我们更详细的分析商业票据。MagnetoCorp 和 DigiBank 等 PaperNet 参与者使用商业票据交易来实现其业务目标 – 让我们检查商业票据的结构以及随着时间推移影响票据结构的交易。我们还将根据网络中组织之间的信任关系，考虑 PaperNet 中的哪些组织需要签署交易。稍后我们将关注买家和卖家之间的资金流动情况; 现在，让我们关注 MagnetoCorp 发行的第一个票据。</p>
+<p>## 商业票据生命周期</p>
+<p>票据 00001 是 5 月 31 号由 MagnetoCorp 发行的。花点时间来看看该票据的第一个**状态**，它具有不同的属性和值：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Owner</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Issue</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span>
+<span class="pre">Maturity</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">Current</span> <span class="pre">state</span> <span class="pre">=</span> <span class="pre">issued</span>
+<span class="pre">`</span></code></p>
+<p>该票据的状态是 <strong>发行</strong> 交易的结果，它使得 MagnetoCorp 公司的第一张商业票据面世！注意该票据在今年晚些时候如何兑换面值 500 万美元。当票据 00001 发行后 <cite>Issuer</cite> 和 <cite>Owner</cite> 具有相同的值。该票据有唯一标识 <cite>MagnetoCorp00001</cite>——它是 <cite>Issuer</cite> 属性和 <cite>Paper</cite> 属性的组合。最后，属性 <cite>Current state = issued</cite> 快速识别了 MagnetoCorp 票据 00001 在它生命周期中的阶段。</p>
+<p>发行后不久，该票据被 DigiBank 购买。花点时间来看看由于**购买**交易，同一个商业票据如何发生变化：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Owner</span> <span class="pre">=</span> <span class="pre">DigiBank</span>
+<span class="pre">Issue</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span>
+<span class="pre">Maturity</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">Current</span> <span class="pre">state</span> <span class="pre">=</span> <span class="pre">trading</span>
+<span class="pre">`</span></code></p>
+<p>最重要的变化是 <cite>Owner</cite> 的改变——票据初始拥有者是 <cite>MagnetoCorp</cite> 而现在是 <cite>DigiBank</cite>。我们可以想象该票据后来如何被出售给 BrokerHouse 或 HedgeMatic，以及相应的变更为相应的 <cite>Owner</cite>。注意 <cite>Current state</cite> 允许我们轻松的识别该票据目前状态是 <cite>trading</cite>。</p>
+<p>6 个月后，如果 DigiBank 仍然持有商业票据，它就可以从 MagnetoCorp 那里兑换：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Owner</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Issue</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span>
+<span class="pre">Maturity</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">Current</span> <span class="pre">state</span> <span class="pre">=</span> <span class="pre">redeemed</span>
+<span class="pre">`</span></code></p>
+<p>最终的**兑换**交易结束了这个商业票据的生命周期——它可以被认为票据已经终止。通常必须保留已兑换的商业票据的记录，并且 <cite>redeemed</cite> 状态允许我们快速识别这些。通过将 <cite>Owner</cite> 跟交易创建者的身份进行比较，一个票据的 <cite>Owner</cite> 值可以被用来在**兑换**交易上进行访问控制。Fabric 通过 [<cite>getCreator()</cite> chaincode API](<a class="reference external" href="https://github.com/hyperledger/fabric-chaincode-node/blob/master/fabric-shim/lib/stub.js#L293">https://github.com/hyperledger/fabric-chaincode-node/blob/master/fabric-shim/lib/stub.js#L293</a>)来对此提供支持。如果使用 Go 语言的链码，
+[客户端身份链码库](<a class="reference external" href="https://github.com/hyperledger/fabric-chaincode-go/blob/master/pkg/cid/README.md">https://github.com/hyperledger/fabric-chaincode-go/blob/master/pkg/cid/README.md</a>)来获取交易创建者额外的属性。</p>
+<p>## 交易</p>
+<p>我们已经看到票据 00001 的生命周期相对简单——由于**发行**，<a href="#id1"><span class="problematic" id="id2">**</span></a>购买**和**兑换**交易，它在 <cite>issued</cite>, <cite>trading</cite> 和 <cite>redeemed</cite> 状态之间转移。</p>
+<p>这三笔交易由 MagnetoCorp 和 DigiBank（两次）发起，并推动了 00001 票据的状态变化。让我们更详细地看一下影响票据的交易：</p>
+<p>### 发行</p>
+<p>检查 MagnetoCorp 发起的第一笔交易：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">issue</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Issue</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span> <span class="pre">09:00:00</span> <span class="pre">EST</span>
+<span class="pre">Maturity</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>观察**发行**交易是如何具有属性和值的结构的。这个交易的结构跟票据 00001 的结构是不同的但是非常匹配的。那是因为他们是不同的事情——票据 00001 反应了 PaperNet state，是作为**发行**交易的结果。这是在**发行**交易背后的逻辑（我们是看不到的），它带着这些属性并且创建了票据。因为交易**创建**了票据，着意味着在这些结构之间具有着非常密切的关系。</p>
+<p>在这个**发行**的交易中唯一被引入的组织是 MagnetoCorp。很自然的，MagnetoCorp 需要对交易进行签名。通常，一个票据的发行者会被要求在发行一个新的票据的交易上提供批准。</p>
+<p>### 购买</p>
+<p>接下来，检查**购买**交易，将票据 00001 的所有权从 MagnetoCorp 转移到 DigiBank：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">buy</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Current</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">New</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">DigiBank</span>
+<span class="pre">Purchase</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span> <span class="pre">10:00:00</span> <span class="pre">EST</span>
+<span class="pre">Price</span> <span class="pre">=</span> <span class="pre">4.94M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>看一下**购买**交易如何减少票据中最终的属性。因为交易只能**修改**该票据。只有 <cite>New owner = DigiBank</cite> 改变了；其他所有的都是相同的。这没关系——关于**购买**交易最重要的是所有权的变更，事实上，在这次交易中，有一份对该票据当前所有者 MagnetoCorp 的认可。</p>
+<p>你可能会奇怪为什么 <cite>Purchase time</cite> 和 <cite>Price</cite> 属性没有在票据 00001 中体现？ 这要回到交易和票据之间的差异。494 万美元的价格标签实际上是交易的属性，而不是票据的属性。花点时间来思考一下这两者的不同；它并不像它看上去的那么明显。稍后我们会看到账本会记录这些信息片段——影响票据的所有交易历史，和它最新的状态。清楚这些信息分离非常重要。</p>
+<p>同样值得注意的是票据 00001 可能会被买卖多次。尽管在我们的场景中略微跳过了一点，我们来检查一下如果票据 00001 变更了所有者我们**可能**会看到什么。</p>
+<p>如果 BigFund 购买：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">buy</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Current</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">DigiBank</span>
+<span class="pre">New</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">BigFund</span>
+<span class="pre">Purchase</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">2</span> <span class="pre">June</span> <span class="pre">2020</span> <span class="pre">12:20:00</span> <span class="pre">EST</span>
+<span class="pre">Price</span> <span class="pre">=</span> <span class="pre">4.93M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code>
+接着由 HedgeMatic 购买：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">buy</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Current</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">BigFund</span>
+<span class="pre">New</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">HedgeMatic</span>
+<span class="pre">Purchase</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">June</span> <span class="pre">2020</span> <span class="pre">15:59:00</span> <span class="pre">EST</span>
+<span class="pre">Price</span> <span class="pre">=</span> <span class="pre">4.90M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>看看票据所有者如何变化，以及在我们的例子中，价格如何变化。你能想到 MagnetoCorp 商业票据价格会降低的原因吗？</p>
+<p>很显然，<a href="#id3"><span class="problematic" id="id4">**</span></a>购买**交易要求售卖组织和购买组织都要对该交易进行离线签名，这是证明参与交易的双方共同同意该交易的证据。</p>
+<p>### 兑换</p>
+<p>票据 00001 <a href="#id5"><span class="problematic" id="id6">**</span></a>兑换**交易代表了它生命周期的结束。在我们相对简单的例子中，HedgeMatic 启动将商业票据转回 MagnetoCorp 的交易：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">redeem</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Current</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">HedgeMatic</span>
+<span class="pre">Redeem</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">Nov</span> <span class="pre">2020</span> <span class="pre">12:00:00</span> <span class="pre">EST</span>
+<span class="pre">`</span></code></p>
+<p>再次注意**兑换**交易有更少的属性；票据 00001 所有更改都可以通过兑换交易逻辑计算数据：<cite>Issuer</cite> 将成为新的所有者，<cite>Current state</cite> 将变成 <cite>redeemed</cite>。在我们的例子中指定了 <cite>Current owner</cite> 属性，以便可以针对当前的票据持有者进行检查。</p>
+<p>从信任的角度来说，跟**购买**交易一样，也可以应用到**兑换**交易中：参与交易的双方组织都需要对它离线签名。</p>
+<p>## 账本</p>
+<p>在本主题中，我们已经看到交易和产生的票据状态是 PaperNet 中两个重要的概念。的确，我们将会在任何一个 Hyperledger Fabric 分布式[账本](../ledger/ledger.html)中看到这些基本元素——包含了当前所有对象最新状态的世界状态和记录了所有交易历史并能归集出最新世界状态的区块链。</p>
+<p>在交易上必须的批准通过规则被强制执行，这个在一个交易被附加到账本之前被评估。只有当需要的签名被展示的时候，Fabric 才会接受一个交易作为有效的交易。</p>
+<p>你现在处在一个很棒的地方，将这些想法转化为智能合约。如果您的编程有点生疏，请不要担心，我们将提供了解程序代码的提示和指示。掌握商业票据智能合约是设计自己的应用程序的第一个重要步骤。或者，你是一个有一点编程经验的业务分析师，不要害怕继续深入挖掘！</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="architecture.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scenario.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

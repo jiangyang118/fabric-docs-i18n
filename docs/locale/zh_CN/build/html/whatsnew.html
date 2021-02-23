@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Hyperledger Fabric v2.0 更新说明 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="关键概念" href="key_concepts.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="whatis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hyperledger Fabric v2.0 更新说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">智能合约的去中心化治理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">使用新的链码生命周期</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">用于协作和共识的新链码应用程序模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">私有数据增强</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">外部链码启动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#couchdb">用于提高 CouchDB 性能的状态数据库缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alpine-docker">基于 Alpine 的 docker 镜像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">示例测试网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fabric-v2-0">升级到 Fabric v2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Hyperledger Fabric v2.0 更新说明</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/whatsnew.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hyperledger-fabric-v2-0">
+<h1>Hyperledger Fabric v2.0 更新说明<a class="headerlink" href="#hyperledger-fabric-v2-0" title="Permalink to this headline">¶</a></h1>
+<p>v1.0 是 Hyperledger Fabric 的第一个主版本，Fabric v2.0 为用户和运营商提供了重要的新特性，包括对新应用程序和隐私模式的支持，增强了对智能合约的管理和对节点操作的新选项。</p>
+<p>在 v2.0 上的每一个 v2.x 次要发行版本都有少量特性更新、改进和 bug 修复。</p>
+<p>下面我们就来看看 Fabric v2.0 发布的一些亮点······</p>
+<div class="section" id="id1">
+<h2>智能合约的去中心化治理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Fabric v2.0 引入了智能合约的去中心化治理，它为您在 Peer 节点上安装和启动链码提供了一个新的流程。新的 Fabric 链码生命周期支持多个组织在链码和账本交互之前协商链码的参数，例如链码背书策略。和以前的生命周期相比，新的模式有几个改进:</p>
+<ul class="simple">
+<li><p><strong>多个组织必须认同链码参数</strong> 在 Fabric 1.x 版本中，一个组织可以为通道中的所有其他成员设置链码的参数（例如背书策略），这些成员只能拒绝安装链码，因此不能参与和该链码相关的交易。新的 Fabric 链码生命周期更加灵活，它既支持中心化的信任模型（如以前的生命周期模型），也支持去中心化的模型，去中心化的模型要求在链码在通道上变为活动状态之前，要有足够数量的组织就背书策略和其他细节达成一致意见。</p></li>
+<li><p><strong>更周密的链码升级过程</strong> 在以前的链码生命周期中，升级交易可能由单个组织发起，这会给尚未安装新链码的通道成员带来风险。新的模式要求只有在足够数量的组织批准升级后才能升级链码。</p></li>
+<li><p><strong>更简单的背书策略和私有数据集合更新</strong> Fabric 生命周期支持在不重新打包或重新安装链码的情况下，更改背书策略或私有数据集合配置。用户还可以利用新的默认背书策略，该策略要求获得通道上大多数组织的背书。在通道中添加或删除组织时，会自动更新此策略。</p></li>
+<li><p><strong>可查验的链码包</strong> Fabric 生命周期将链码封装在可读性更强的 tar 文件中。这使得检查链码包和跨多个组织协调安装变得更加容易。</p></li>
+<li><p><strong>使用一个包在通道上启动多个链码</strong> 以前的生命周期在安装链码包时，会使用打包时指定的名称和版本定义通道上的链码。您现在可以使用同一个链码包，以不同的名称在同一通道或不同通道上多次部署它。例如，如果您想在链码的“副本”中跟踪不同类型的资产。</p></li>
+<li><p><strong>通道成员之间的链码包不需要为同一个</strong> 组织可以自己扩展链码，例如为了他们组织的利益执行不同的验证。只要有所需数量的组织的链码执行结果匹配并为交易背书，该交易就会被验证并提交到帐本中。这还允许组织按照自己的时间单独推出小的修补程序，而不需要整个网络同步进行。</p></li>
+</ul>
+<div class="section" id="id2">
+<h3>使用新的链码生命周期<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>对于现有的 Fabric 部署，您可以继续使用 Fabric v2.0 之前的链码生命周期。新的链码生命周期只有在通道应用程序功能更新到 v2.0 时才会生效。关于新的链码生命周期完整细节教程请参考 <span class="xref std std-doc">chaincode4noah</span></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>用于协作和共识的新链码应用程序模式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>支持新的链码生命周期管理的相同的去中心化的达成协议的方法也可以用于您自己的链码应用程序中，以确保组织在数据交易被提交到帐本之前同意它们。</p>
+<ul class="simple">
+<li><p><strong>自动检查</strong> 如上所述，组织可以在链码功能中添加自动检查，以便在背书交易提案之前验证附加信息。</p></li>
+<li><p><strong>去中心化协议</strong> 人们的决定可以通过链码中的多个交易来建模。链码可能要满足来自不同组织的参与者在账本交易中的协议和条件。然后，最终的链码提案可以验证所有交易者的条件是否得到满足，并最终“解决”所有通道成员之间业务交易。有关私有条件的具体示例，请参见资产转移场景文档 <a class="reference internal" href="private-data/private-data.html"><span class="doc">&lt;no title&gt;</span></a>。</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>私有数据增强<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Fabric v2.0 还启用了使用和共享私有数据的新模式，不需要为所有想要进行交易的通道成员组合创建私有数据集合。具体地说，您不是在多个成员的集合中共享私有数据，而是可能想要跨集合共享私有数据，其中每个集合可能包括单个组织，也可能是带有一个监管者或审计师的组织。</p>
+<p>Fabric v2.0 中的几个增强使得这些新的私有数据模式成为可能:</p>
+<ul class="simple">
+<li><p><strong>共享和验证私有数据</strong> 当私有数据与不是集合成员的通道成员共享时，或者与包含一个或多个通道成员的另一个私有数据集合共享时（通过向该集合写入密钥），接收方可以利用链码的 GetPrivateDataHash() API 验证私有数据是否与以前交易中创建的私有数据在链上哈希相匹配。</p></li>
+<li><p><strong>集合级别的背书策略</strong> 现在可以选择使用背书策略来定义私有数据集合，该背书策略会覆盖集合内键的链码级的背书策略。该特性可用于限制哪些组织可以将数据写入集合，并且正是它启用了前面提到的新的链码生命周期和链码应用程序模式。例如，您可能有一个链码背书策略，该策略要求大多数组织背书，但对于任何给定的交易，您可能需要两个交易处理组织在它们自己的私有数据集合中单独背书它们的协议。</p></li>
+<li><p><strong>每个组织的隐式集合</strong> 如果您想利用每个组织的私有数据模式，那么在 Fabric v2.0 中部署链码时甚至不需要定义集合。不需要任何前期定义就可以使用隐式的特定组织集合。</p></li>
+</ul>
+<p>了解更多关于新的私有数据模式请看 <a class="reference internal" href="private-data/private-data.html"><span class="doc">&lt;no title&gt;</span></a> （概念文档）。更多关于私有数据集合配置和隐式集合请看 <a class="reference internal" href="private-data-arch.html"><span class="doc">私有数据</span></a> （参考文档）。</p>
+</div>
+<div class="section" id="id5">
+<h2>外部链码启动器<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>外部链码启动器功能使运营者能够使用他们选择的技术构建和启动链码。默认构建和运行链码的方式与之前的版本相同，都是使用 Docker API，但是使用外部构建器和启动器就不必这样了。</p>
+<ul class="simple">
+<li><p><strong>消除 Docker 守护进程依赖</strong> Fabric 以前的版本要求 Peer 节点能够访问 Docker 守护进程，以便构建和启动链码，但是 Peer 节点进程所需的特权在生产环境中可能是不合适的。</p></li>
+<li><p><strong>容器的替代品</strong> 不再要求链码在 Docker 容器中运行，可以在运营者选择的环境（包括容器）中执行。</p></li>
+<li><p><strong>可执行的外部构建器</strong> 操作员可以提供一组可执行的外部构建器，以覆盖 Peer 节点构建和启动链码方式。</p></li>
+<li><p><strong>作为外部服务的链码</strong> 传统上，链码由 Peer 节点启动，然后连接回 Peer 节点。现在可以将链码作为外部服务运行，例如在 Kubernetes pod 中，Peer 节点可以连接到该 pod，并利用该 pod 执行链码。了解更多信息请查看 <a class="reference internal" href="cc_service.html"><span class="doc">}</span></a> 。</p></li>
+</ul>
+<p>了解更多关于外部链码启动功能请查看 <a class="reference internal" href="cc_launcher.html"><span class="doc">fi</span></a> 。</p>
+</div>
+<div class="section" id="couchdb">
+<h2>用于提高 CouchDB 性能的状态数据库缓存<a class="headerlink" href="#couchdb" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>在使用外部 CouchDB 状态数据库时，背书和验证阶段的读取延迟历来是性能瓶颈。</p></li>
+<li><p>在 Fabric v2.0 中，用快速的本地缓存读取取代了 Peer 节点中那些耗费资源的查找操作。可以使用 core.yaml 文件中的属性 <code class="docutils literal notranslate"><span class="pre">cachesize</span></code> 来配置缓存大小。</p></li>
+</ul>
+</div>
+<div class="section" id="alpine-docker">
+<h2>基于 Alpine 的 docker 镜像<a class="headerlink" href="#alpine-docker" title="Permalink to this headline">¶</a></h2>
+<p>从 v2.0 开始，Hyperledger Fabric Docker 镜像将使用 Alpine Linux 作为基础镜像，这是一个面向安全的轻量级 Linux 发行版。这意味着现在的 Docker 镜像要小得多，这就提供了更快的下载和启动时间，以及占用主机系统上更少的磁盘空间。Alpine Linux 的设计从一开始就考虑到了安全性，Alpine 发行版的最小化特性大大降低了安全漏洞的风险。</p>
+</div>
+<div class="section" id="id6">
+<h2>示例测试网络<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>fabric-samples 仓库现在包括一个新的 Fabric 测试网络。测试网络被构建为模块化的和用户友好的示例 Fabric 网络，这使测试您的应用程序和智能合约变得容易。除了 cryptogen 之外，该网络还支持使用 CA（Certificate Authorities） 部署网络。</p>
+<p>了解更多关于这个网络的信息，请查看 <a class="reference internal" href="test_network.html"><span class="doc">##### Generate certificates using cryptogen tool #########</span></a> 。</p>
+</div>
+<div class="section" id="fabric-v2-0">
+<h2>升级到 Fabric v2.0<a class="headerlink" href="#fabric-v2-0" title="Permalink to this headline">¶</a></h2>
+<p>一个主版本的新发布带来了一些额外的升级注意事项。不过请放心，我们支持从 v1.4.x 到 v2.0 的滚动升级，因此可以每次升级一个网络组件而不会停机。</p>
+<p>我们扩展和修改了升级文档，现在在文档中有了一个独立的主页 <a class="reference internal" href="upgrade.html"><span class="doc">升级到最新版本</span></a>。这里您将会发现文档 <a class="reference internal" href="upgrading_your_components.html"><span class="doc">&lt;no title&gt;</span></a> 和 <a class="reference internal" href="updating_capabilities.html"><span class="doc">&lt;no title&gt;</span></a>，以及对升级到 v2.0 的注意事项的具体了解， <a class="reference internal" href="upgrade_to_newest_version.html"><span class="doc">}</span></a>。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h1>发行说明<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h1>
+<p>版本说明为迁移到新版本的用户提供了更多细节。可以具体地看一看新的 Fabric v2.0 版本中变动和废弃的内容。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric/releases/tag/v2.0.0">Fabric v2.0.0 发行说明</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric/releases/tag/v2.0.1">Fabric v2.0.1 发行说明</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric/releases/tag/v2.1.0">Fabric v2.1.0 发行说明</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric/releases/tag/v2.1.1">Fabric v2.1.1 发行说明</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric/releases/tag/v2.2.0">Fabric v2.2.0 发行说明</a>.</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="key_concepts.html" class="btn btn-neutral float-right" title="关键概念" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="whatis.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

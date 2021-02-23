@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="cryptogen.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="configtxgen.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../command_ref.html">命令参考</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/commands/configtxlator.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># configtxlator</p>
+<p><cite>configtxlator</cite> 命令允许用户在 protobuf 和 JSON 版本的 fabric 数据结构之间进行转换，并创建配置更新。该命令可以启动 REST 服务器并通过 HTTP 公开，也可以直接用作命令行工具。</p>
+<p>## 语法</p>
+<p><cite>configtxlator</cite> 工具有五个子命令，如下：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>start</p></li>
+<li><p>proto_encode</p></li>
+<li><p>proto_decode</p></li>
+<li><p>compute_update</p></li>
+<li><p>version</p></li>
+</ul>
+</div></blockquote>
+<p>## configtxlator start
+<a href="#id1"><span class="problematic" id="id2">``</span></a>`
+usage: configtxlator start [&lt;flags&gt;]</p>
+<p>启动 configtxlator REST 服务</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+</dl>
+<p>–hostname=”0.0.0.0”  REST 服务器监听的主机名或者 IP。
+–port=7059           REST 服务器监听的端口。
+–CORS=CORS …       允许跨域的域名, 例如 ‘*’ 或者 ‘www.example.com’ （可能是重复的）。</p>
+</dd>
+</dl>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>## configtxlator proto_encode
+<a href="#id7"><span class="problematic" id="id8">``</span></a>`
+usage: configtxlator proto_encode –type=TYPE [&lt;flags&gt;]</p>
+<p>将 JSON 文档转换为 protobuf。</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+<dt><kbd><span class="option">--type=<var>TYPE</var></span></kbd></dt>
+<dd><p>要将 protobuf 编码成的类型。例如‘common.Config’。</p>
+</dd>
+</dl>
+<p>–input=/dev/stdin    包含 JSON 文档的文件。
+–output=/dev/stdout  要将输出写入的文件。</p>
+</dd>
+</dl>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<p>## configtxlator proto_decode
+<a href="#id13"><span class="problematic" id="id14">``</span></a>`
+usage: configtxlator proto_decode –type=TYPE [&lt;flags&gt;]</p>
+<p>将 proto 消息转换为 JSON。</p>
+<p>Converts a proto message to JSON.</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+<dt><kbd><span class="option">--type=<var>TYPE</var></span></kbd></dt>
+<dd><p>要将 protobuf 解码成的类型。例如‘common.Config’。</p>
+</dd>
+</dl>
+<p>–input=/dev/stdin    包含 proto 消息的文件。
+–output=/dev/stdout  要将 JSON 文档写入的文件。</p>
+</dd>
+</dl>
+<p><a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a></p>
+<p>## configtxlator compute_update
+<a href="#id19"><span class="problematic" id="id20">``</span></a>`
+usage: configtxlator compute_update –channel_id=CHANNEL_ID [&lt;flags&gt;]</p>
+<p>比较两个编码（marshaled）的 common.Config 信息，并计算它们的更新。</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+<dt><kbd><span class="option">--original=<var>ORIGINAL</var></span></kbd></dt>
+<dd><p>原始配置信息。</p>
+</dd>
+<dt><kbd><span class="option">--updated=<var>UPDATED</var></span></kbd></dt>
+<dd><p>更新的配置信息。</p>
+</dd>
+<dt><kbd><span class="option">--channel_id=<var>CHANNEL_ID</var></span></kbd></dt>
+<dd><p>本次更新的通道名。</p>
+</dd>
+</dl>
+<p>–output=/dev/stdout     要将 JSON 文档写入的文件。</p>
+</dd>
+</dl>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p>## configtxlator version
+<a href="#id25"><span class="problematic" id="id26">``</span></a>`
+usage: configtxlator version</p>
+<p>显示版本信息。</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a></p>
+<p>## 示例</p>
+<p>### 解码</p>
+<p>将一个名为 <cite>fabric_block.pb</cite> 的块解码为 JSON 并打印到标准输出。
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxlator</span> <span class="pre">proto_decode</span> <span class="pre">--input</span> <span class="pre">fabric_block.pb</span> <span class="pre">--type</span> <span class="pre">common.Block</span>
+<span class="pre">`</span></code></p>
+<p>或者，在启动 REST 服务器之后，使用下面的 curl 命令通过 REST API 执行相同的操作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">-X</span> <span class="pre">POST</span> <span class="pre">--data-binary</span> <span class="pre">&#64;fabric_block.pb</span> <span class="pre">&quot;${CONFIGTXLATOR_URL}/protolator/decode/common.Block&quot;</span>
+<span class="pre">`</span></code></p>
+<p>### 编码</p>
+<p>将策略的 JSON 文档从标准输入转换为名为 <cite>policy.pb</cite> 的文件。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxlator</span> <span class="pre">proto_encode</span> <span class="pre">--type</span> <span class="pre">common.Policy</span> <span class="pre">--output</span> <span class="pre">policy.pb</span>
+<span class="pre">`</span></code></p>
+<p>或者，在启动 REST 服务器之后，使用下面的 curl 命令通过 REST API 执行相同的操作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">-X</span> <span class="pre">POST</span> <span class="pre">--data-binary</span> <span class="pre">/dev/stdin</span> <span class="pre">&quot;${CONFIGTXLATOR_URL}/protolator/encode/common.Policy&quot;</span> <span class="pre">&gt;</span> <span class="pre">policy.pb</span>
+<span class="pre">`</span></code></p>
+<p>### Pipelines</p>
+<p>从 <cite>original_config.pb</cite> 和 <cite>modified_config.pb</cite> 计算配置更新，然后将其解码为 JSON，再将其打印到标准输出。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">configtxlator</span> <span class="pre">compute_update</span> <span class="pre">--channel_id</span> <span class="pre">testchan</span> <span class="pre">--original</span> <span class="pre">original_config.pb</span> <span class="pre">--updated</span> <span class="pre">modified_config.pb</span> <span class="pre">|</span> <span class="pre">configtxlator</span> <span class="pre">proto_decode</span> <span class="pre">--type</span> <span class="pre">common.ConfigUpdate</span>
+<span class="pre">`</span></code></p>
+<p>或者，在启动 REST 服务器之后，使用下面的 curl 命令通过 REST API 执行相同的操作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">curl</span> <span class="pre">-X</span> <span class="pre">POST</span> <span class="pre">-F</span> <span class="pre">channel=testchan</span> <span class="pre">-F</span> <span class="pre">&quot;original=&#64;original_config.pb&quot;</span> <span class="pre">-F</span> <span class="pre">&quot;updated=&#64;modified_config.pb&quot;</span> <span class="pre">&quot;${CONFIGTXLATOR_URL}/configtxlator/compute/update-from-configs&quot;</span> <span class="pre">|</span> <span class="pre">curl</span> <span class="pre">-X</span> <span class="pre">POST</span> <span class="pre">--data-binary</span> <span class="pre">/dev/stdin</span> <span class="pre">&quot;${CONFIGTXLATOR_URL}/protolator/decode/common.ConfigUpdate&quot;</span>
+<span class="pre">`</span></code></p>
+<p>## 附加笔记</p>
+<p>该工具名称是 <em>configtx</em> 和 <em>translator</em> 的组合，旨在表示该工具只是在不同的等效数据表示之间进行转换。它不生成配置。它不提交或检索配置。它不修改配置本身，只是在 configtx 格式的不同视图之间提供一些双射操作。</p>
+<p>对于 REST 服务器，既没有配置文件 <cite>configtxlator</cite>，也没有包含任何身份验证或授权工具。因为 <cite>configtxlator</cite> 不能访问任何可能被认为敏感的数据、关键材料或其他信息，所以服务器的所有者将其暴露给其他客户端没有风险。但是，由于用户发送到 REST 服务器的数据可能是机密的，所以用户应该信任服务器的管理员、运行本地实例或者通过 CLI 进行操作。</p>
+<p>&lt;a rel=”license” href=”<a class="reference external" href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>”&gt;&lt;img alt=”Creative Commons License” style=”border-width:0” src=”https://i.creativecommons.org/l/by/4.0/88x31.png” /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel=”license” href=”http://creativecommons.org/licenses/by/4.0/”&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cryptogen.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configtxgen.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

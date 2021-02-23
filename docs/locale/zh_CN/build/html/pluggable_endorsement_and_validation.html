@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>可插拔交易背书与交易验证 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="}," href="access_control.html" />
+    <link rel="prev" title="背书策略" href="endorsement-policies.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">可插拔交易背书与交易验证</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">动机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">可插拔的背书和验证逻辑</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">背书插件的实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">验证插件的实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">重要提示</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>可插拔交易背书与交易验证</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pluggable_endorsement_and_validation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>可插拔交易背书与交易验证<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>动机<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>交易在提交时会被验证，在应用交易带来的状态改变之前，节点会对交易进行以下检查：</p>
+<ul class="simple">
+<li><p>验证交易签名者的身份；</p></li>
+<li><p>验证交易背书者的签名；</p></li>
+<li><p>确认交易满足对应链码命名空间的相关背书策略。</p></li>
+</ul>
+<p>在某些情况下，需要自定义不同于 Fabric 默认的交易验证规则，例如：</p>
+<ul class="simple">
+<li><p><strong>UTXO（未花费的交易输出）</strong>： 当需要验证账户是否有双花的情况时；</p></li>
+<li><p><strong>匿名交易</strong>： 当背书中不包含节点身份，并且共享的签名和公钥也无法与节点的身份联系起来时。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>可插拔的背书和验证逻辑<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Fabric 支持以可插拔的方式在 Peer 节点中实现和部署与链码相关的自定义的背书和验证逻辑。这种逻辑既可作为可选逻辑内置到  Peer 节点中，也可作为一个 <a class="reference external" href="https://golang.org/pkg/plugin/">Golang 插件</a> 与 Peer 节点一起编译和部署。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Go plugins have a number of practical restrictions that require them
+to be compiled and linked in the same build environment as the peer.
+Differences in Go package versions, compiler versions, tags, and even GOPATH
+values will result in runtime failures when loading or executing the plugin
+logic.</p>
+</div>
+<p>默认情况下，链码将使用内置的背书和验证逻辑。不过，用户可以选择使用自定义的背书和验证插件来作为链码定义的一部分。管理员可通过自定义 Peer 节点的本地配置来扩展背书或验证逻辑。</p>
+</div>
+<div class="section" id="id4">
+<h2>配置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>每个 Peer 节点都有一个本地配置（<code class="docutils literal notranslate"><span class="pre">core.yaml</span></code>），其中包括了背书或验证逻辑的名称与具体实现的映射关系。</p>
+<p>默认的逻辑叫做 <code class="docutils literal notranslate"><span class="pre">ESCC</span></code> （其中“E”代表 endorsement，背书）和 <code class="docutils literal notranslate"><span class="pre">VSCC</span></code> （validation，验证）， Peer 节点本地配置中的 <code class="docutils literal notranslate"><span class="pre">handlers</span></code> 部分包含了该默认逻辑：</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">handlers</span><span class="p">:</span>
+    <span class="nt">endorsers</span><span class="p">:</span>
+      <span class="nt">escc</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DefaultEndorsement</span>
+    <span class="nt">validators</span><span class="p">:</span>
+      <span class="nt">vscc</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DefaultValidation</span>
+</pre></div>
+</div>
+<p>当背书或验证的实现被编译到 Peer 节点中时，<code class="docutils literal notranslate"><span class="pre">name</span></code> 属性就代表了即将运行的初始化函数，以便获得生成背书或验证逻辑相关实例的工厂。</p>
+<p>该函数是 <code class="docutils literal notranslate"><span class="pre">core/handlers/library/library.go</span></code> 中 <code class="docutils literal notranslate"><span class="pre">HandlerLibrary</span></code> 结构的实例方法，而且为了添加自定义的背书或验证逻辑，就需要额外的方法对该结构进行扩展。</p>
+<p>If the custom code is built as a Go plugin, the <code class="docutils literal notranslate"><span class="pre">library</span></code> property must be
+provided and set to the location of the shared library.</p>
+<p>比如，我们以插件来实现自定义背书和验证逻辑，那么 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 的配置中就会有以下内容：</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">handlers</span><span class="p">:</span>
+    <span class="nt">endorsers</span><span class="p">:</span>
+      <span class="nt">escc</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DefaultEndorsement</span>
+      <span class="nt">custom</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">customEndorsement</span>
+        <span class="nt">library</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/hyperledger/fabric/plugins/customEndorsement.so</span>
+    <span class="nt">validators</span><span class="p">:</span>
+      <span class="nt">vscc</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DefaultValidation</span>
+      <span class="nt">custom</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">customValidation</span>
+        <span class="nt">library</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/hyperledger/fabric/plugins/customValidation.so</span>
+</pre></div>
+</div>
+<p>并且我们需要把 <code class="docutils literal notranslate"><span class="pre">.so</span></code> 插件文件放置在 Peer 节点的本地文件系统中。</p>
+<p>自定义插件的名称需要在使用的链码定义中引用。如果你使用 CLI 来执行链码定义，请使用 <code class="docutils literal notranslate"><span class="pre">--escc</span></code> 和 <code class="docutils literal notranslate"><span class="pre">--vscc</span></code> 标识来选择自定义的背书或者验证库。如果使用 Fabric Node.js SDK，请访问 <a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/tutorial-chaincode-lifecycle.html">如何安装和启动你的链码</a> 。更多信息查阅 <span class="xref std std-doc">chaincode4noah</span> 。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>后边内容中，自定义背书和验证逻辑的实现都将表述为“插件”，即使被编译到 Peer 节点中。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>背书插件的实现<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>要实现一个背书插件，用户必须实现 <code class="docutils literal notranslate"><span class="pre">core/handlers/endorsement/api/endorsement.go</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">Plugin</span></code> 接口。</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Plugin endorses a proposal response</span>
+<span class="kd">type</span> <span class="nx">Plugin</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// Endorse signs the given payload(ProposalResponsePayload bytes), and optionally mutates it.</span>
+    <span class="c1">// Returns:</span>
+    <span class="c1">// The Endorsement: A signature over the payload, and an identity that is used to verify the signature</span>
+    <span class="c1">// The payload that was given as input (could be modified within this function)</span>
+    <span class="c1">// Or error on failure</span>
+    <span class="nx">Endorse</span><span class="p">(</span><span class="nx">payload</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">sp</span> <span class="o">*</span><span class="nx">peer</span><span class="p">.</span><span class="nx">SignedProposal</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">peer</span><span class="p">.</span><span class="nx">Endorsement</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// Init injects dependencies into the instance of the Plugin</span>
+    <span class="nx">Init</span><span class="p">(</span><span class="nx">dependencies</span> <span class="o">...</span><span class="nx">Dependency</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>当 Peer 节点调用 <code class="docutils literal notranslate"><span class="pre">PluginFactory</span></code> 接口中的 <code class="docutils literal notranslate"><span class="pre">New</span></code> 方法时，会为每个通道创建给定类型（无论是 <code class="docutils literal notranslate"><span class="pre">HandlerLibrary</span></code> 示例方法的方法名还是 <code class="docutils literal notranslate"><span class="pre">.so</span></code> 文件路径）的背书插件实例，<code class="docutils literal notranslate"><span class="pre">PluginFactory</span></code> 接口需要由插件开发者实现：</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// PluginFactory creates a new instance of a Plugin</span>
+<span class="kd">type</span> <span class="nx">PluginFactory</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">New</span><span class="p">()</span> <span class="nx">Plugin</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Init</span></code> 方法将接收 <code class="docutils literal notranslate"><span class="pre">core/handlers/endorsement/api/</span></code> 中声明的所有依赖项作为输入，这些依赖项会被识别为内嵌 <code class="docutils literal notranslate"><span class="pre">Dependency</span></code> 接口。</p>
+<p>创建了 <code class="docutils literal notranslate"><span class="pre">Plugin</span></code> 实例后，Peer 节点在实例上调用 <code class="docutils literal notranslate"><span class="pre">Init</span></code> 方法，并把 <code class="docutils literal notranslate"><span class="pre">dependencies</span></code> 作为参数传递。</p>
+<p>目前，Fabric 存在以下背书插件的依赖项：</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// SigningIdentity signs messages and serializes its public identity to bytes</span>
+<span class="kd">type</span> <span class="nx">SigningIdentity</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// Serialize returns a byte representation of this identity which is used to verify</span>
+    <span class="c1">// messages signed by this SigningIdentity</span>
+    <span class="nx">Serialize</span><span class="p">()</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// Sign signs the given payload and returns a signature</span>
+    <span class="nx">Sign</span><span class="p">([]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StateFetcher</span></code>：获取一个与世界状态交互的 <strong>状态</strong> 对象</p></li>
+</ul>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// State defines interaction with the world state</span>
+<span class="kd">type</span> <span class="nx">State</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// GetPrivateDataMultipleKeys gets the values for the multiple private data items in a single call</span>
+    <span class="nx">GetPrivateDataMultipleKeys</span><span class="p">(</span><span class="nx">namespace</span><span class="p">,</span> <span class="nx">collection</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">keys</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([][]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// GetStateMultipleKeys gets the values for multiple keys in a single call</span>
+    <span class="nx">GetStateMultipleKeys</span><span class="p">(</span><span class="nx">namespace</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">keys</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([][]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// GetTransientByTXID gets the values private data associated with the given txID</span>
+    <span class="nx">GetTransientByTXID</span><span class="p">(</span><span class="nx">txID</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="o">*</span><span class="nx">rwset</span><span class="p">.</span><span class="nx">TxPvtReadWriteSet</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// Done releases resources occupied by the State</span>
+    <span class="nx">Done</span><span class="p">()</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>验证插件的实现<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>要实现一个验证插件，用户必须实现 <code class="docutils literal notranslate"><span class="pre">core/handlers/validation/api/validation.go</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">Plugin</span></code> 接口：</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Plugin validates transactions</span>
+<span class="kd">type</span> <span class="nx">Plugin</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// Validate returns nil if the action at the given position inside the transaction</span>
+    <span class="c1">// at the given position in the given block is valid, or an error if not.</span>
+    <span class="nx">Validate</span><span class="p">(</span><span class="nx">block</span> <span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">Block</span><span class="p">,</span> <span class="nx">namespace</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">txPosition</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">actionPosition</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">contextData</span> <span class="o">...</span><span class="nx">ContextDatum</span><span class="p">)</span> <span class="kt">error</span>
+
+    <span class="c1">// Init injects dependencies into the instance of the Plugin</span>
+    <span class="nx">Init</span><span class="p">(</span><span class="nx">dependencies</span> <span class="o">...</span><span class="nx">Dependency</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>每个 <code class="docutils literal notranslate"><span class="pre">ContextDatum</span></code> 都是运行时派生的额外元数据，由节点负责传递给验证插件。目前，代表链码背书策略的 <code class="docutils literal notranslate"><span class="pre">ContextDatum</span></code> 是唯一被传递的数据 。</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span> <span class="c1">// SerializedPolicy defines a serialized policy</span>
+<span class="kd">type</span> <span class="nx">SerializedPolicy</span> <span class="kd">interface</span> <span class="p">{</span>
+      <span class="nx">validation</span><span class="p">.</span><span class="nx">ContextDatum</span>
+
+      <span class="c1">// Bytes returns the bytes of the SerializedPolicy</span>
+      <span class="nx">Bytes</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>当 Peer 节点调用 <code class="docutils literal notranslate"><span class="pre">PluginFactory</span></code> 接口中的 <code class="docutils literal notranslate"><span class="pre">New</span></code> 方法时，会为每个通道创建给定类型（无论是 <code class="docutils literal notranslate"><span class="pre">HandlerLibrary</span></code> 示例方法的方法名还是 <code class="docutils literal notranslate"><span class="pre">.so</span></code> 文件路径）的验证插件实例，<code class="docutils literal notranslate"><span class="pre">PluginFactory</span></code> 接口需要由插件开发者实现。</p>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// PluginFactory creates a new instance of a Plugin</span>
+<span class="kd">type</span> <span class="nx">PluginFactory</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">New</span><span class="p">()</span> <span class="nx">Plugin</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Init</span></code> 方法将接收 <code class="docutils literal notranslate"><span class="pre">core/handlers/validation/api/</span></code> 中声明的所有依赖项作为输入，这些依赖项会被识别为内嵌 <code class="docutils literal notranslate"><span class="pre">Dependency</span></code> 接口。</p>
+<p>创建了 <code class="docutils literal notranslate"><span class="pre">Plugin</span></code> 实例后，Peer 节点在实例上调用 <code class="docutils literal notranslate"><span class="pre">Init</span></code> 方法，并把 <code class="docutils literal notranslate"><span class="pre">dependencies</span></code> 作为参数传递。</p>
+<p>目前，Fabric 存在以下验证插件的依赖项：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IdentityDeserializer</span></code>：将表示身份的字节转换为 <code class="docutils literal notranslate"><span class="pre">Identity</span></code> 对象，该对象可用于验证由这些身份的签名，并根据各自的 MSP 对自身进行验证，以查看它们是否满足给定的 <strong>MSP 准则</strong>。<code class="docutils literal notranslate"><span class="pre">core/handlers/validation/api/identities/identities.go</span></code> 中包含了全部的规范。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PolicyEvaluator</span></code>：评估是否满足给定的策略：</p></li>
+</ul>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// PolicyEvaluator evaluates policies</span>
+<span class="kd">type</span> <span class="nx">PolicyEvaluator</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">validation</span><span class="p">.</span><span class="nx">Dependency</span>
+
+    <span class="c1">// Evaluate takes a set of SignedData and evaluates whether this set of signatures satisfies</span>
+    <span class="c1">// the policy with the given bytes</span>
+    <span class="nx">Evaluate</span><span class="p">(</span><span class="nx">policyBytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">signatureSet</span> <span class="p">[]</span><span class="o">*</span><span class="nx">common</span><span class="p">.</span><span class="nx">SignedData</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StateFetcher</span></code>：获取一个与世界状态中的 <code class="docutils literal notranslate"><span class="pre">State</span></code> 对象：</p></li>
+</ul>
+<div class="highlight-Go notranslate"><div class="highlight"><pre><span></span><span class="c1">// State defines interaction with the world state</span>
+<span class="kd">type</span> <span class="nx">State</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="c1">// GetStateMultipleKeys gets the values for multiple keys in a single call</span>
+    <span class="nx">GetStateMultipleKeys</span><span class="p">(</span><span class="nx">namespace</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">keys</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">([][]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// GetStateRangeScanIterator returns an iterator that contains all the key-values between given key ranges.</span>
+    <span class="c1">// startKey is included in the results and endKey is excluded. An empty startKey refers to the first available key</span>
+    <span class="c1">// and an empty endKey refers to the last available key. For scanning all the keys, both the startKey and the endKey</span>
+    <span class="c1">// can be supplied as empty strings. However, a full scan should be used judiciously for performance reasons.</span>
+    <span class="c1">// The returned ResultsIterator contains results of type *KV which is defined in fabric-protos/ledger/queryresult.</span>
+    <span class="nx">GetStateRangeScanIterator</span><span class="p">(</span><span class="nx">namespace</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">startKey</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">endKey</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">ResultsIterator</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// GetStateMetadata returns the metadata for given namespace and key</span>
+    <span class="nx">GetStateMetadata</span><span class="p">(</span><span class="nx">namespace</span><span class="p">,</span> <span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// GetPrivateDataMetadata gets the metadata of a private data item identified by a tuple &lt;namespace, collection, key&gt;</span>
+    <span class="nx">GetPrivateDataMetadata</span><span class="p">(</span><span class="nx">namespace</span><span class="p">,</span> <span class="nx">collection</span><span class="p">,</span> <span class="nx">key</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+
+    <span class="c1">// Done releases resources occupied by the State</span>
+    <span class="nx">Done</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>重要提示<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>各节点上的验证插件保持一致：</strong> 在以后的版本中，Fabric 通道基础设施将确保在给定区块链高度上，通道内所有节点对给定链码使用相同的验证逻辑，以消除可能导致节点间状态分歧的错误配置风险，若发生错配置，则可能会致使节点运行不同的实现。但就目前来说，系统操作员和管理员的唯一责任就是确保以上问题不会发生。</p></li>
+<li><p><strong>验证插件错误处理：</strong> 当因发生某些暂时性执行问题（比如无法访问数据库）而导致验证插件不能确定一笔交易是否有效时，插件应返回 <code class="docutils literal notranslate"><span class="pre">core/handlers/validation/api/validation.go</span></code> 中定义的 <strong>ExecutionFailureError</strong> 类型的错误。任何其他被返回的错误将被视为背书策略错误，并且被验证逻辑标记为无效。但是，如果返回的错误是 <code class="docutils literal notranslate"><span class="pre">ExecutionFailureError</span></code>，链处理程序不会将该交易标志为无效，而是暂停处理。目的是防止不同节点之间发生状态分歧。</p></li>
+<li><p><strong>私有元数据索取的错误处理：</strong> 当一个插件利用 <code class="docutils literal notranslate"><span class="pre">StateFetcher</span></code> 接口来为私有数据索取元数据时，错误处理需要按一下方式来处理：<code class="docutils literal notranslate"><span class="pre">CollConfigNotDefinedError''</span> <span class="pre">和</span> <span class="pre">``InvalidCollNameError''，表明指定的集合不存在，应该按照确定性的错误来处理，而不是</span> <span class="pre">``ExecutionFailureError</span></code>。</p></li>
+<li><p><strong>将 Fabric 代码导入插件：</strong> 强烈不建议将 Fabric 代码导入插件而不使用 protobufs，这样做会在 Fabric 代码更新时出现问题，或者当运行不同版本的节点时，引起操作问题。理想情况下，插件代码应该只使用提供的依赖，并除了 protobufs 之外的最小化导入项。</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="access_control.html" class="btn btn-neutral float-right" title="}," accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="endorsement-policies.html" class="btn btn-neutral" title="背书策略" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

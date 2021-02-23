@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>} &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="};" href="application.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developing_applications.html">开发应用</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id31">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id52">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id57">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id64">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id69">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id76">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id81">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id96">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id101">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id106">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id111">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id116">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id121">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">};</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html#id20">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="designelements.html">应用程序设计元素</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developing_applications.html">开发应用</a> &raquo;</li>
+        
+      <li>}</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developapps/smartcontract.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 智能合约处理</p>
+<p><strong>受众</strong>：架构师、应用程序和智能合约开发人员</p>
+<p>区块链网络的核心是智能合约。在 PaperNet 中，商业票据智能合约中的代码定义了商业票据的有效状态，以及将票据从一种状态状态转变为另一种状态的交易逻辑。在本主题中，我们将向您展示如何实现一个真实世界的智能合约，该合约管理发行、购买和兑换商业票据的过程。</p>
+<p>我们将会介绍:</p>
+<ul class="simple">
+<li><p>[什么是智能合约以及智能合约为什么重要](#智能合约)</p></li>
+<li><p>[如何定义智能合约](#合约类)</p></li>
+<li><p>[如何定义交易](#交易定义)</p></li>
+<li><p>[如何实现一笔交易](#交易逻辑)</p></li>
+<li><p>[如何在智能合约中表示业务对象](#表示对象)</p></li>
+<li><p>[如何在账本中存储和检索对象](#访问账本)</p></li>
+</ul>
+<p>如果您愿意，可以[下载示例](../install.html)，甚至可以[在本地运行](../tutorial/commercial_paper.html)。它是用 JavaScript 和 Java 编写的，但逻辑与语言无关，因此您可以轻松地查看正在发生的事情！（该示例也可用于 Go。）</p>
+<p>## 智能合约</p>
+<p>智能合约定义业务对象的不同状态，并管理对象在不同状态之间变化的过程。智能合约很重要，因为它们允许架构师和智能合约开发人员定义在区块链网络中协作的不同组织之间共享的关键业务流程和数据。</p>
+<p>在 PaperNet 网络中，智能合约由不同的网络参与者共享，例如 MagnetoCorp 和 DigiBank。 连接到网络的所有应用程序必须使用相同版本的智能合约，以便它们共同实现相同的共享业务流程和数据。</p>
+<p>## 实现语言</p>
+<p>支持两种运行时，Java 虚拟机和 Node.js。支持使用 JavaScript、TypeScript、Java 或其他可以运行在支持的运行时上其中一种语言。</p>
+<p>在 Java 和 TypeScript 中，标注或者装饰器用来为智能合约和它的结构提供信息。这就更加丰富了开发体验——比如，作者信息或者强调返回类型。使用 JavaScript 的话就必须遵守一些规范，同时，对于什么可以自动执行也有一些限制。</p>
+<p>这里给出的示例包括 JavaScript 和 Java 两种语言。</p>
+<p>## 合约类</p>
+<blockquote>
+<div><dl class="simple">
+<dt>PaperNet 商业票据智能合约的副本包含在单个文件中。如果您已下载，请使用浏览器或在您喜欢的编辑器中打开它。</dt><dd><ul class="simple">
+<li><p><cite>papercontract.js</cite> - [JavaScript 版本](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/papercontract.js">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/papercontract.js</a>)</p></li>
+<li><p><cite>CommercialPaperContract.java</cite> - [Java 版本](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp//contract-java/src/main/java/org/example/CommercialPaperContract.java">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp//contract-java/src/main/java/org/example/CommercialPaperContract.java</a>)</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p>您可能会从文件路径中注意到这是 MagnetoCorp 的智能合约副本。 MagnetoCorp 和 DigiBank 必须同意他们将要使用的智能合约版本。现在，你看哪个组织的合约副本无关紧要，它们都是一样的。</p>
+<p>花一些时间看一下智能合约的整体结构; 注意，它很短！在文件的顶部，您将看到商业票据智能合约的定义：
+&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">class</span> <span class="pre">CommercialPaperContract</span> <span class="pre">extends</span> <span class="pre">Contract</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`Java</span>
+<span class="pre">&#64;Contract(...)</span>
+<span class="pre">&#64;Default</span>
+<span class="pre">public</span> <span class="pre">class</span> <span class="pre">CommercialPaperContract</span> <span class="pre">implements</span> <span class="pre">ContractInterface</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p><cite>CommercialPaperContract</cite> 类中包含商业票据中交易的定义——<strong>发行</strong>，<strong>购买**和**兑换</strong>。这些交易带给了商业票据创建和在它们的生命周期中流动的能力。我们马上会查看这些[交易](#transaction-definition)，但是现在我们需要关注一下 JavaScript， <cite>CommericalPaperContract</cite> 扩展的 Hyperledger Fabric <cite>Contract</cite> [类](<a class="reference external" href="https://hyperledger.github.io/fabric-chaincode-node/master/api/fabric-contract-api.Contract.html">https://hyperledger.github.io/fabric-chaincode-node/master/api/fabric-contract-api.Contract.html</a>)。</p>
+<p>在 Java 中，类必须使用 <cite>&#64;Contract(…)</cite> 标注进行包装。它支持额外的智能合约信息，比如许可和作者。 <cite>&#64;Default()</cite> 标注表明该智能合约是默认合约类。在智能合约中标记默认合约类在一些有多个合约类的智能合约中会很有用。</p>
+<p>如果你使用 TypeScript 实现，也有类似 <cite>&#64;Contract(…)</cite> 的标注，和 Java 中功能相似。</p>
+<p>关于可用的标注的更多信息，请查看 API 文档：
+* [Java 智能合约 API 文档](<a class="reference external" href="https://hyperledger.github.io/fabric-chaincode-java/">https://hyperledger.github.io/fabric-chaincode-java/</a>)
+* [Node.js 智能合约 API 文档](<a class="reference external" href="https://hyperledger.github.io/fabric-chaincode-node/">https://hyperledger.github.io/fabric-chaincode-node/</a>)</p>
+<p>我们先导入这些类、标注和  <cite>Context</cite> 类：</p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">const</span> <span class="pre">{</span> <span class="pre">Contract,</span> <span class="pre">Context</span> <span class="pre">}</span> <span class="pre">=</span> <span class="pre">require('fabric-contract-api');</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`Java</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.Context;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.ContractInterface;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.annotation.Contact;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.annotation.Contract;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.annotation.Default;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.annotation.Info;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.annotation.License;</span>
+<span class="pre">import</span> <span class="pre">org.hyperledger.fabric.contract.annotation.Transaction;</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>我们的商业票据合约将使用这些类的内置功能，例如自动方法调用，[每个交易上下文](./transactioncontext.html)，[交易处理器](./transactionhandler.html)，和类共享状态。</p>
+<p>还要注意 JavaScript 类构造函数如何使用其[超类](<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super</a>)通过一个[命名空间](./namespace.html)来初始化自身：</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>JavaScript
+constructor() {</p>
+<blockquote>
+<div><p>super(‘org.papernet.commercialpaper’);</p>
+</div></blockquote>
+<div class="section" id="id5">
+<h1>}<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h1>
+<p>在 Java 类中，构造器是空的，合约名会通过 <cite>&#64;Contract()</cite> 注解进行识别。如果不是就会使用类名。</p>
+<p>最重要的是，<cite>org.papernet.commercialpaper</cite> 非常具有描述性——这份智能合约是所有 PaperNet 组织关于商业票据商定的定义。</p>
+<p>通常每个文件只有一个智能合约（合约往往有不同的生命周期，这使得将它们分开是明智的）。但是，在某些情况下，多个智能合约可能会为应用程序提供语法帮助，例如 <cite>EuroBond</cite>、<cite>DollarBond</cite>、<cite>YenBond</cite> 但基本上提供相同的功能。在这种情况下，智能合约和交易可以消除歧义。</p>
+<p>## 交易定义</p>
+<p>在类中定位 <strong>issue</strong> 方法。
+&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">async</span> <span class="pre">issue(ctx,</span> <span class="pre">issuer,</span> <span class="pre">paperNumber,</span> <span class="pre">issueDateTime,</span> <span class="pre">maturityDateTime,</span> <span class="pre">faceValue)</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a>Java
+&#64;Transaction
+public CommercialPaper issue(CommercialPaperContext ctx,</p>
+<blockquote>
+<div><p>String issuer,
+String paperNumber,
+String issueDateTime,
+String maturityDateTime,
+int faceValue) {…}</p>
+</div></blockquote>
+<p><a href="#id10"><span class="problematic" id="id11">``</span></a>`
+&lt;/details&gt;</p>
+<p>Java 标注 <cite>&#64;Transaction</cite> 用于标记该方法为交易定义；TypeScript 中也有等价的标注。</p>
+<p>无论何时调用此合约来`发行`商业票据，都会调用该方法。回想一下如何使用以下交易创建商业票据 00001：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">issue</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Issue</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span> <span class="pre">09:00:00</span> <span class="pre">EST</span>
+<span class="pre">Maturity</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>我们已经更改了编程样式的变量名称，但是看看这些属性几乎直接映射到 <cite>issue</cite> 方法变量。</p>
+<p>只要应用程序请求发行商业票据，合约就会自动调用 <cite>issue</cite> 方法。交易属性值通过相应的变量提供给方法。使用示例应用程序，了解应用程序如何使用[应用程序](./application.html)主题中的 Hyperledger Fabric SDK 提交一笔交易。</p>
+<p>您可能已经注意到 <strong>issue</strong> 方法中定义的一个额外变量 ctx。它被称为[<strong>交易上下文</strong>](./transactioncontext.html)，它始终是第一个参数。默认情况下，它维护与[交易逻辑](#交易逻辑)相关的每个合约和每个交易的信息。例如，它将包含 MagnetoCorp 指定的交易标识符，MagnetoCorp 可以发行用户的数字证书，也可以调用账本 API。</p>
+<p>通过实现自己的 <cite>createContext()</cite> 方法而不是接受默认实现，了解智能合约如何扩展默认交易上下文：</p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a>JavaScript
+createContext() {</p>
+<blockquote>
+<div><p>return new CommercialPaperContext()</p>
+</div></blockquote>
+</div>
+<div class="section" id="id16">
+<h1>}<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>Java
+&#64;Override
+public Context createContext(ChaincodeStub stub) {</p>
+<blockquote>
+<div><p>return new CommercialPaperContext(stub);</p>
+</div></blockquote>
+</div>
+<div class="section" id="id21">
+<h1>}<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>此扩展上下文将自定义属性 <cite>paperList</cite> 添加到默认值：</p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a>JavaScript
+class CommercialPaperContext extends Context {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>constructor() {</dt><dd><p>super();
+// All papers are held in a list of papers
+this.paperList = new PaperList(this);</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id26">
+<h1>}<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a>Java
+class CommercialPaperContext extends Context {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>public CommercialPaperContext(ChaincodeStub stub) {</dt><dd><p>super(stub);
+this.paperList = new PaperList(this);</p>
+</dd>
+</dl>
+<p>}
+public PaperList paperList;</p>
+</div></blockquote>
+</div>
+<div class="section" id="id31">
+<h1>}<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>我们很快就会看到 <cite>ctx.paperList</cite> 如何随后用于帮助存储和检索所有 PaperNet 商业票据。</p>
+<p>为了巩固您对智能合约交易结构的理解，找到**购买**和**兑换**交易定义，看看您是否可以理解它们如何映射到相应的商业票据交易。</p>
+<p><a href="#id32"><span class="problematic" id="id33">**</span></a>购买**交易：
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">buy</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Current</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">New</span> <span class="pre">owner</span> <span class="pre">=</span> <span class="pre">DigiBank</span>
+<span class="pre">Purchase</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span> <span class="pre">10:00:00</span> <span class="pre">EST</span>
+<span class="pre">Price</span> <span class="pre">=</span> <span class="pre">4.94M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">async</span> <span class="pre">buy(ctx,</span> <span class="pre">issuer,</span> <span class="pre">paperNumber,</span> <span class="pre">currentOwner,</span> <span class="pre">newOwner,</span> <span class="pre">price,</span> <span class="pre">purchaseTime)</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>Java
+&#64;Transaction
+public CommercialPaper buy(CommercialPaperContext ctx,</p>
+<blockquote>
+<div><p>String issuer,
+String paperNumber,
+String currentOwner,
+String newOwner,
+int price,
+String purchaseDateTime) {…}</p>
+</div></blockquote>
+<p><a href="#id38"><span class="problematic" id="id39">``</span></a>`
+&lt;/details&gt;</p>
+<p><a href="#id40"><span class="problematic" id="id41">**</span></a>兑换**交易：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">redeem</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Redeemer</span> <span class="pre">=</span> <span class="pre">DigiBank</span>
+<span class="pre">Redeem</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">Dec</span> <span class="pre">2020</span> <span class="pre">12:00:00</span> <span class="pre">EST</span>
+<span class="pre">`</span></code></p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">async</span> <span class="pre">redeem(ctx,</span> <span class="pre">issuer,</span> <span class="pre">paperNumber,</span> <span class="pre">redeemingOwner,</span> <span class="pre">redeemDateTime)</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a>Java
+&#64;Transaction
+public CommercialPaper redeem(CommercialPaperContext ctx,</p>
+<blockquote>
+<div><p>String issuer,
+String paperNumber,
+String redeemingOwner,
+String redeemDateTime) {…}</p>
+</div></blockquote>
+<p><a href="#id46"><span class="problematic" id="id47">``</span></a>`
+&lt;/details&gt;</p>
+<p>在两个案例中，注意商业票据交易和智能合约方法调用之间 1：1 的关系。</p>
+<p>所有 JavaScript 方法都使用 <cite>async</cite> 和 <cite>await</cite>
+[关键字](<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function</a>)。</p>
+<p>## 交易逻辑</p>
+<p>现在您已经了解了合约的结构和交易的定义，下面让我们关注智能合约中的逻辑。</p>
+<p>回想一下第一个**发行**交易：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Txn</span> <span class="pre">=</span> <span class="pre">issue</span>
+<span class="pre">Issuer</span> <span class="pre">=</span> <span class="pre">MagnetoCorp</span>
+<span class="pre">Paper</span> <span class="pre">=</span> <span class="pre">00001</span>
+<span class="pre">Issue</span> <span class="pre">time</span> <span class="pre">=</span> <span class="pre">31</span> <span class="pre">May</span> <span class="pre">2020</span> <span class="pre">09:00:00</span> <span class="pre">EST</span>
+<span class="pre">Maturity</span> <span class="pre">date</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">November</span> <span class="pre">2020</span>
+<span class="pre">Face</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">5M</span> <span class="pre">USD</span>
+<span class="pre">`</span></code></p>
+<p>它导致 <strong>issue</strong> 方法被传递调用：</p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a>JavaScript
+async issue(ctx, issuer, paperNumber, issueDateTime, maturityDateTime, faceValue) {</p>
+<blockquote>
+<div><blockquote>
+<div><p>// create an instance of the paper</p>
+</div></blockquote>
+<p>let paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue);</p>
+<p>// Smart contract, rather than paper, moves paper into ISSUED state
+paper.setIssued();</p>
+<p>// Newly issued paper is owned by the issuer
+paper.setOwner(issuer);</p>
+<p>// Add the paper to the list of all similar commercial papers in the ledger world state
+await ctx.paperList.addPaper(paper);</p>
+<p>// Must return a serialized paper to caller of smart contract
+return paper.toBuffer();</p>
+</div></blockquote>
+</div>
+<div class="section" id="id52">
+<h1>}<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id53"><span class="problematic" id="id54">``</span></a><a href="#id55"><span class="problematic" id="id56">`</span></a>Java
+&#64;Transaction
+public CommercialPaper issue(CommercialPaperContext ctx,</p>
+<blockquote>
+<div><blockquote>
+<div><p>String issuer,
+String paperNumber,
+String issueDateTime,
+String maturityDateTime,
+int faceValue) {</p>
+</div></blockquote>
+<p>System.out.println(ctx);</p>
+<p>// create an instance of the paper
+CommercialPaper paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime,</p>
+<blockquote>
+<div><p>faceValue,issuer,””);</p>
+</div></blockquote>
+<p>// Smart contract, rather than paper, moves paper into ISSUED state
+paper.setIssued();</p>
+<p>// Newly issued paper is owned by the issuer
+paper.setOwner(issuer);</p>
+<p>System.out.println(paper);
+// Add the paper to the list of all similar commercial papers in the ledger
+// world state
+ctx.paperList.addPaper(paper);</p>
+<p>// Must return a serialized paper to caller of smart contract
+return paper;</p>
+</div></blockquote>
+</div>
+<div class="section" id="id57">
+<h1>}<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>逻辑很简单：获取交易输入变量，创建新的商业票据 <cite>paper</cite>，使用 <cite>paperList</cite> 将其添加到所有商业票据的列表中，并将新的商业票据（序列化为buffer）作为交易响应返回。</p>
+<p>了解如何从交易上下文中检索 <cite>paperList</cite> 以提供对商业票据列表的访问。<cite>issue()</cite>、<cite>buy()</cite> 和 <cite>redeem()</cite> 不断重新访问 <cite>ctx.paperList</cite> 以使商业票据列表保持最新。</p>
+<p><a href="#id58"><span class="problematic" id="id59">**</span></a>购买**交易的逻辑更详细描述：
+&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<a href="#id60"><span class="problematic" id="id61">``</span></a><a href="#id62"><span class="problematic" id="id63">`</span></a>JavaScript
+async buy(ctx, issuer, paperNumber, currentOwner, newOwner, price, purchaseDateTime) {</p>
+<blockquote>
+<div><p>// Retrieve the current paper using key fields provided
+let paperKey = CommercialPaper.makeKey([issuer, paperNumber]);
+let paper = await ctx.paperList.getPaper(paperKey);</p>
+<p>// Validate current owner
+if (paper.getOwner() !== currentOwner) {</p>
+<blockquote>
+<div><p>throw new Error(‘Paper ‘ + issuer + paperNumber + ‘ is not owned by ‘ + currentOwner);</p>
+</div></blockquote>
+<p>}</p>
+<p>// First buy moves state from ISSUED to TRADING
+if (paper.isIssued()) {</p>
+<blockquote>
+<div><p>paper.setTrading();</p>
+</div></blockquote>
+<p>}</p>
+<p>// Check paper is not already REDEEMED
+if (paper.isTrading()) {</p>
+<blockquote>
+<div><p>paper.setOwner(newOwner);</p>
+</div></blockquote>
+<dl class="simple">
+<dt>} else {</dt><dd><p>throw new Error(‘Paper ‘ + issuer + paperNumber + ‘ is not trading. Current state = ‘ +paper.getCurrentState());</p>
+</dd>
+</dl>
+<p>}</p>
+<p>// Update the paper
+await ctx.paperList.updatePaper(paper);
+return paper.toBuffer();</p>
+</div></blockquote>
+</div>
+<div class="section" id="id64">
+<h1>}<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id65"><span class="problematic" id="id66">``</span></a><a href="#id67"><span class="problematic" id="id68">`</span></a>Java
+&#64;Transaction
+public CommercialPaper buy(CommercialPaperContext ctx,</p>
+<blockquote>
+<div><blockquote>
+<div><p>String issuer,
+String paperNumber,
+String currentOwner,
+String newOwner,
+int price,
+String purchaseDateTime) {</p>
+</div></blockquote>
+<p>// Retrieve the current paper using key fields provided
+String paperKey = State.makeKey(new String[] { paperNumber });
+CommercialPaper paper = ctx.paperList.getPaper(paperKey);</p>
+<p>// Validate current owner
+if (!paper.getOwner().equals(currentOwner)) {</p>
+<blockquote>
+<div><p>throw new RuntimeException(“Paper ” + issuer + paperNumber + ” is not owned by ” + currentOwner);</p>
+</div></blockquote>
+<p>}</p>
+<p>// First buy moves state from ISSUED to TRADING
+if (paper.isIssued()) {</p>
+<blockquote>
+<div><p>paper.setTrading();</p>
+</div></blockquote>
+<p>}</p>
+<p>// Check paper is not already REDEEMED
+if (paper.isTrading()) {</p>
+<blockquote>
+<div><p>paper.setOwner(newOwner);</p>
+</div></blockquote>
+<dl class="simple">
+<dt>} else {</dt><dd><dl class="simple">
+<dt>throw new RuntimeException(</dt><dd><p>“Paper ” + issuer + paperNumber + ” is not trading. Current state = ” + paper.getState());</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<p>// Update the paper
+ctx.paperList.updatePaper(paper);
+return paper;</p>
+</div></blockquote>
+</div>
+<div class="section" id="id69">
+<h1>}<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>在使用 <cite>paper.setOwner(newOwner)</cite> 更改拥有者之前，理解交易如何检查 <cite>currentOwner</cite> 并检查该 <cite>paper</cite> 应该是 <cite>TRADING</cite> 状态的。基本流程很简单：检查一些前提条件，设置新拥有者，更新账本上的商业票据，并将更新的商业票据（序列化为 buffer ）作为交易响应返回。</p>
+<p>为什么不看一下你否能理解**兑换**交易的逻辑？</p>
+<p>## 对象的表示</p>
+<p>我们已经了解了如何使用 <cite>CommercialPaper</cite> 和 <cite>PaperList</cite> 类定义和实现**发行**、<a href="#id70"><span class="problematic" id="id71">**</span></a>购买**和**兑换**交易。让我们通过查看这些类如何工作来结束这个主题。</p>
+<p>定位到 <cite>CommercialPaper</cite> 类：
+&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+In the
+[paper.js file](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/paper.js">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/paper.js</a>):</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">class</span> <span class="pre">CommercialPaper</span> <span class="pre">extends</span> <span class="pre">State</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+In the [CommercialPaper.java file](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/release-1.4/commercial-paper/organization/magnetocorp/contract-java/src/main/java/org/example/CommercialPaper.java">https://github.com/hyperledger/fabric-samples/blob/release-1.4/commercial-paper/organization/magnetocorp/contract-java/src/main/java/org/example/CommercialPaper.java</a>):</p>
+<p><code class="docutils literal notranslate"><span class="pre">`Java</span>
+<span class="pre">&#64;DataType()</span>
+<span class="pre">public</span> <span class="pre">class</span> <span class="pre">CommercialPaper</span> <span class="pre">extends</span> <span class="pre">State</span> <span class="pre">{...}</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>该类包含商业票据状态的内存表示。了解 <cite>createInstance</cite> 方法如何使用提供的参数初始化一个新的商业票据：</p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<a href="#id72"><span class="problematic" id="id73">``</span></a><a href="#id74"><span class="problematic" id="id75">`</span></a>JavaScript
+static createInstance(issuer, paperNumber, issueDateTime, maturityDateTime, faceValue) {</p>
+<blockquote>
+<div><p>return new CommercialPaper({ issuer, paperNumber, issueDateTime, maturityDateTime, faceValue });</p>
+</div></blockquote>
+</div>
+<div class="section" id="id76">
+<h1>}<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id77"><span class="problematic" id="id78">``</span></a><a href="#id79"><span class="problematic" id="id80">`</span></a>Java
+public static CommercialPaper createInstance(String issuer, String paperNumber, String issueDateTime,</p>
+<blockquote>
+<div><blockquote>
+<div><p>String maturityDateTime, int faceValue, String owner, String state) {</p>
+</div></blockquote>
+<dl class="simple">
+<dt>return new CommercialPaper().setIssuer(issuer).setPaperNumber(paperNumber).setMaturityDateTime(maturityDateTime)</dt><dd><p>.setFaceValue(faceValue).setKey().setIssueDateTime(issueDateTime).setOwner(owner).setState(state);</p>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id81">
+<h1>}<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h1>
+<p>&lt;/details&gt;</p>
+<p>回想一下**发行**交易如何使用这个类：</p>
+<p>&lt;details open=”true”&gt;
+&lt;summary&gt;JavaScript&lt;/summary&gt;
+<code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">let</span> <span class="pre">paper</span> <span class="pre">=</span> <span class="pre">CommercialPaper.createInstance(issuer,</span> <span class="pre">paperNumber,</span> <span class="pre">issueDateTime,</span> <span class="pre">maturityDateTime,</span> <span class="pre">faceValue);</span>
+<span class="pre">`</span></code>
+&lt;/details&gt;</p>
+<p>&lt;details&gt;
+&lt;summary&gt;Java&lt;/summary&gt;
+<a href="#id82"><span class="problematic" id="id83">``</span></a><a href="#id84"><span class="problematic" id="id85">`</span></a>Java
+CommercialPaper paper = CommercialPaper.createInstance(issuer, paperNumber, issueDateTime, maturityDateTime,</p>
+<blockquote>
+<div><p>faceValue,issuer,””);</p>
+</div></blockquote>
+<p><a href="#id86"><span class="problematic" id="id87">``</span></a>`
+&lt;/details&gt;</p>
+<p>查看每次调用发行交易时，如何创建包含交易数据的商业票据的新内存实例。</p>
+<p>需要注意的几个要点：</p>
+<blockquote>
+<div><ul>
+<li><p>这是一个内存中的表示; 我们[稍后](#访问账本)会看到它如何在帐本上显示。</p></li>
+<li><p><cite>CommercialPaper</cite> 类扩展了 <cite>State</cite> 类。 <cite>State</cite> 是一个应用程序定义的类，它为状态创建一个公共抽象。所有状态都有一个它们代表的业务对象类、一个复合键，可以被序列化和反序列化，等等。当我们在帐本上存储多个业务对象类型时， <cite>State</cite> 可以帮助我们的代码更清晰。检查 <cite>state.js</cite> [文件](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/ledger-api/state.js">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/ledger-api/state.js</a>)中的 <cite>State</cite> 类。</p></li>
+<li><p>票据在创建时会计算自己的密钥，在访问帐本时将使用此密钥。密钥由 <cite>issuer</cite> 和 <cite>paperNumber</cite> 的组合形成。</p>
+<p><a href="#id88"><span class="problematic" id="id89">``</span></a><a href="#id90"><span class="problematic" id="id91">`</span></a>JavaScript
+constructor(obj) {</p>
+<blockquote>
+<div><p>super(CommercialPaper.getClass(), [obj.issuer, obj.paperNumber]);
+Object.assign(this, obj);</p>
+</div></blockquote>
+</li>
+<li><p>票据通过交易而不是票据类变更到 <cite>ISSUED</cite> 状态。那是因为智能合约控制票据的状态生命周期。例如，<cite>import</cite> 交易可能会立即创建一组新的 <cite>TRADING</cite> 状态的票据。</p></li>
+</ul>
+</div></blockquote>
+<p><cite>CommercialPaper</cite> 类的其余部分包含简单的辅助方法：</p>
+<p><a href="#id92"><span class="problematic" id="id93">``</span></a><a href="#id94"><span class="problematic" id="id95">`</span></a>JavaScript
+getOwner() {</p>
+<blockquote>
+<div><p>return this.owner;</p>
+</div></blockquote>
+</div>
+<div class="section" id="id96">
+<h1>}<a class="headerlink" href="#id96" title="Permalink to this headline">¶</a></h1>
+<p>回想一下智能合约如何使用这样的方法来维护商业票据的整个生命周期。例如，在**兑换**交易中，我们看到：</p>
+<p><a href="#id97"><span class="problematic" id="id98">``</span></a><a href="#id99"><span class="problematic" id="id100">`</span></a>JavaScript
+if (paper.getOwner() === redeemingOwner) {</p>
+<blockquote>
+<div><p>paper.setOwner(paper.getIssuer());
+paper.setRedeemed();</p>
+</div></blockquote>
+</div>
+<div class="section" id="id101">
+<h1>}<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h1>
+<p>## 访问账本</p>
+<p>现在在 <cite>paperlist.js</cite> [文件](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/paperlist.js">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/paperlist.js</a>)中找到 <cite>PaperList</cite> 类：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`JavaScript</span>
+<span class="pre">class</span> <span class="pre">PaperList</span> <span class="pre">extends</span> <span class="pre">StateList</span> <span class="pre">{</span>
+<span class="pre">`</span></code></p>
+<p>此工具类用于管理 Hyperledger Fabric 状态数据库中的所有 PaperNet 商业票据。PaperList 数据结构在[架构主题](./architecture.html)中有更详细的描述。</p>
+<p>与 <cite>CommercialPaper</cite> 类一样，此类扩展了应用程序定义的 <cite>StateList</cite> 类，该类为一系列状态创建了一个通用抽象——在本例中是 PaperNet 中的所有商业票据。</p>
+<p><cite>addPaper()</cite> 方法是对 <cite>StateList.addState()</cite> 方法的简单封装：</p>
+<p><a href="#id102"><span class="problematic" id="id103">``</span></a><a href="#id104"><span class="problematic" id="id105">`</span></a>JavaScript
+async addPaper(paper) {</p>
+<blockquote>
+<div><p>return this.addState(paper);</p>
+</div></blockquote>
+</div>
+<div class="section" id="id106">
+<h1>}<a class="headerlink" href="#id106" title="Permalink to this headline">¶</a></h1>
+<p>您可以在 <cite>StateList.js</cite> [文件](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/ledger-api/statelist.js">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/ledger-api/statelist.js</a>)中看到 <cite>StateList</cite> 类如何使用 Fabric API <cite>putState()</cite> 将商业票据作为状态数据写在帐本中：</p>
+<p><a href="#id107"><span class="problematic" id="id108">``</span></a><a href="#id109"><span class="problematic" id="id110">`</span></a>JavaScript
+async addState(state) {</p>
+<blockquote>
+<div><p>let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+let data = State.serialize(state);
+await this.ctx.stub.putState(key, data);</p>
+</div></blockquote>
+</div>
+<div class="section" id="id111">
+<h1>}<a class="headerlink" href="#id111" title="Permalink to this headline">¶</a></h1>
+<p>帐本中的每个状态数据都需要以下两个基本要素：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>键（Key）</strong>: <cite>键</cite> 由 <cite>createCompositeKey()</cite> 使用固定名称和 <cite>state</cite> 密钥形成。在构造 <cite>PaperList</cite> 对象时分配了名称，<cite>state.getSplitKey()</cite> 确定每个状态的唯一键。</p></li>
+<li><p><strong>数据（Data）</strong>: <cite>数据</cite> 只是商业票据状态的序列化形式，使用 <cite>State.serialize()</cite> 方法创建。<cite>State</cite> 类使用 JSON 对数据进行序列化和反序列化，并根据需要使用 State 的业务对象类，在我们的例子中为 <cite>CommercialPaper</cite>，在构造 <cite>PaperList</cite> 对象时再次设置。</p></li>
+</ul>
+</div></blockquote>
+<p>注意 <cite>StateList</cite> 不存储有关单个状态或状态总列表的任何内容——它将所有这些状态委托给 Fabric 状态数据库。这是一个重要的设计模式 – 它减少了 Hyperledger Fabric 中[账本 MVCC 冲突](../readwrite.html)的机会。</p>
+<p>StateList <cite>getState()</cite> 和 <cite>updateState()</cite> 方法以类似的方式工作：</p>
+<p><a href="#id112"><span class="problematic" id="id113">``</span></a><a href="#id114"><span class="problematic" id="id115">`</span></a>JavaScript
+async getState(key) {</p>
+<blockquote>
+<div><p>let ledgerKey = this.ctx.stub.createCompositeKey(this.name, State.splitKey(key));
+let data = await this.ctx.stub.getState(ledgerKey);
+let state = State.deserialize(data, this.supportedClasses);
+return state;</p>
+</div></blockquote>
+</div>
+<div class="section" id="id116">
+<h1>}<a class="headerlink" href="#id116" title="Permalink to this headline">¶</a></h1>
+<p><a href="#id117"><span class="problematic" id="id118">``</span></a><a href="#id119"><span class="problematic" id="id120">`</span></a>JavaScript
+async updateState(state) {</p>
+<blockquote>
+<div><p>let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+let data = State.serialize(state);
+await this.ctx.stub.putState(key, data);</p>
+</div></blockquote>
+</div>
+<div class="section" id="id121">
+<h1>}<a class="headerlink" href="#id121" title="Permalink to this headline">¶</a></h1>
+<p>了解他们如何使用 Fabric APIs <cite>putState()</cite>、 <cite>getState()</cite> 和 <cite>createCompositeKey()</cite> 来存取账本。我们稍后将扩展这份智能合约，以列出 paperNet 中的所有商业票据。实现账本检索的方法可能是什么样的？</p>
+<p>是的！在本主题中，您已了解如何为 PaperNet 实现智能合约。您可以转到下一个子主题，以查看应用程序如何使用 Fabric SDK 调用智能合约。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="application.html" class="btn btn-neutral float-right" title="};" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="architecture.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

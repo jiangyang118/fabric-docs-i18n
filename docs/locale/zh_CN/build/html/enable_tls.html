@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>使用 TLS（Transport Layer Security）保护通信 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="raft_configuration.html" />
+    <link rel="prev" title="日志控制" href="logging-control.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">使用 TLS（Transport Layer Security）保护通信</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#peer-tls">为 Peer 节点配置 TLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tls">为排序节点配置 TLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cli-tls">为节点 CLI 配置 TLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">调试 TLS 问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>使用 TLS（Transport Layer Security）保护通信</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/enable_tls.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tls-transport-layer-security">
+<h1>使用 TLS（Transport Layer Security）保护通信<a class="headerlink" href="#tls-transport-layer-security" title="Permalink to this headline">¶</a></h1>
+<p>Fabric 支持节点之间使用 TLS 进行安全通信。TLS 通信可以使用单向（仅服务器）和双向（服务器和客户端）身份验证。</p>
+<div class="section" id="peer-tls">
+<h2>为 Peer 节点配置 TLS<a class="headerlink" href="#peer-tls" title="Permalink to this headline">¶</a></h2>
+<p>Peer 节点既是 TLS 服务器又是 TLS 客户端。当另一个 Peer 节点、应用程序或客户端与其建立连接时，它是前者；而当它与另一个 Peer 节点或排序节点建立连接时，则是后者。</p>
+<p>要在 Peer 节点上启用 TLS，需要设置以下配置：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peer.tls.enabled</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peer.tls.cert.file</span></code> = 包含 TLS 服务器证书文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peer.tls.key.file</span></code> = 包含 TLS 服务器私钥文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peer.tls.rootcert.file</span></code> = 包含颁发 TLS 服务器证书 CA 证书链的标准路径</p></li>
+</ul>
+</div></blockquote>
+<p>默认情况下，在 Peer 节点上启用 TLS 时，TLS 客户端身份验证是关闭的。这意味着在 TLS 握手期间， Peer 节点将不会验证客户端（另一个 Peer 节点、应用程序或CLI）的证书。要在 Peer 节点上启用TLS客户端身份验证，需要将节点配置中的属性 <code class="docutils literal notranslate"><span class="pre">peer.tls.clientAuthRequired</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">true</span></code> ，并将``peer.tls.clientRootCAs.files`` 属性设置为为客户端发布 TLS 证书 CA 证书链文件。</p>
+<p>默认情况下，Peer 节点在充当 TLS 服务器和客户端时将使用相同的证书和私钥对。要在客户端使用其他证书和私钥对，请将 <code class="docutils literal notranslate"><span class="pre">peer.tls.clientCert.file</span></code> 和 <code class="docutils literal notranslate"><span class="pre">peer.tls.clientKey.file</span></code> 配置属性分别设置为客户端证书和密钥文件的标准路径。</p>
+<p>也可以通过设置以下环境变量来启用具有客户端身份验证的 TLS：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_ENABLED</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CERT_FILE</span></code> = 服务器证书的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_KEY_FILE</span></code> = 服务器私钥的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_ROOTCERT_FILE</span></code> = CA 证书链文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTAUTHREQUIRED</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTROOTCAS_FILES</span></code> = CA 证书链文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTCERT_FILE</span></code> = 客户证书的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTKEY_FILE</span></code> = 客户端密钥的标准路径</p></li>
+</ul>
+</div></blockquote>
+<p>在 Peer 节点上启用客户端身份验证后，要求客户端在 TLS 握手期间发送其证书。如果客户端未发送其证书，则握手将失败，并且 Peer 节点将关闭连接。</p>
+<p>当 Peer 节点加入通道时，将从通道的配置区块中读取通道成员的根 CA 的证书链，并将其添加到 TLS 客户端和服务端根 CA 的数据结构中。之后， Peer 节点间通信和 Peer 节点与排序节点间通信将会无缝地工作。</p>
+</div>
+<div class="section" id="tls">
+<h2>为排序节点配置 TLS<a class="headerlink" href="#tls" title="Permalink to this headline">¶</a></h2>
+<p>要在排序节点上启用 TLS，需要设置排序节点的配置:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">General.TLS.Enabled</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">General.TLS.PrivateKey</span></code> = 包含服务器私钥的文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">General.TLS.Certificate</span></code> = 包含服务器证书的文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">General.TLS.RootCAs</span></code> = 包含颁发 TLS 服务器证书 CA 证书链的标准路径</p></li>
+</ul>
+</div></blockquote>
+<p>默认情况下，与 Peer 节点一样，排序节点上的 TLS 客户端身份验证处于关闭状态。要启用 TLS 客户端身份验证，需要设置以下配置属性：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">General.TLS.ClientAuthRequired</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">General.TLS.ClientRootCAs</span></code> = 包含颁发 TLS 服务器证书 CA 证书链的标准路径</p></li>
+</ul>
+</div></blockquote>
+<p>也可以通过设置以下环境变量来启用具有客户端身份验证的 TLS ：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDERER_GENERAL_TLS_ENABLED</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDERER_GENERAL_TLS_PRIVATEKEY</span></code> = 包含服务器私钥的文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDERER_GENERAL_TLS_CERTIFICATE</span></code> = 包含服务器证书的文件的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDERER_GENERAL_TLS_ROOTCAS</span></code> = 包含颁发 TLS 服务器证书 CA 证书链的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDERER_GENERAL_TLS_CLIENTAUTHREQUIRED</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDERER_GENERAL_TLS_CLIENTROOTCAS</span></code> = 包含颁发 TLS 服务器证书 CA 证书链的标准路径</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="cli-tls">
+<h2>为节点 CLI 配置 TLS<a class="headerlink" href="#cli-tls" title="Permalink to this headline">¶</a></h2>
+<p>针对启用了 TLS 的 Peer 节点运行 CLI 命令时，必须设置以下环境变量：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_ENABLED</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_ROOTCERT_FILE</span></code> = 包含颁发 TLS 服务器证书 CA 证书链的标准路径</p></li>
+</ul>
+<p>如果在远程服务器上也启用了 TLS 客户端身份验证，则除上述变量外，还必须设置以下变量：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTAUTHREQUIRED</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTCERT_FILE</span></code> = 客户端证书的标准路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CORE_PEER_TLS_CLIENTKEY_FILE</span></code> = 客户端私钥的标准路径</p></li>
+</ul>
+<p>当运行连接到排序服务的命令时，例如 <cite>peer channel &lt;create|update|fetch&gt;</cite> 或 <cite>peer chaincode &lt;invoke&gt;</cite>，如果在排序节点上启用了 TLS ，则还必须指定以下命令行参数：</p>
+<ul class="simple">
+<li><p>–tls</p></li>
+<li><p>–cafile &lt;包含排序节点 CA 证书链的文件的标准路径&gt;</p></li>
+</ul>
+<p>如果在排序节点上启用了 TLS 客户端身份验证，则还必须指定以下参数：</p>
+<ul class="simple">
+<li><p>–clientauth</p></li>
+<li><p>–keyfile &lt;包含客户端私钥的文件的标准路径&gt;</p></li>
+<li><p>–certfile &lt;包含客户端证书的文件的标准路径&gt;</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>调试 TLS 问题<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>在调试 TLS 问题之前，建议同时在 TLS 客户端和服务器端启用 <code class="docutils literal notranslate"><span class="pre">GRPC</span> <span class="pre">debug</span></code> 以获取附加信息。要启用 <code class="docutils literal notranslate"><span class="pre">GRPC</span> <span class="pre">debug</span></code>，需要在环境变量``FABRIC_LOGGING_SPEC`` 中加入 <code class="docutils literal notranslate"><span class="pre">grpc=debug</span></code> 。例如，如要将默认日志记录级别设置为 <code class="docutils literal notranslate"><span class="pre">INFO</span></code>，将 GRPC 日志记录级别设置为 <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>，则需先将日志记录规范设置为 <code class="docutils literal notranslate"><span class="pre">grpc=debug:info</span></code>。</p>
+<p>如果您在客户端看到错误消息 <code class="docutils literal notranslate"><span class="pre">remote</span> <span class="pre">error:</span> <span class="pre">tls:</span> <span class="pre">bad</span> <span class="pre">certificate</span></code>，则通常表示 TLS 服务器已启用客户端身份验证，并且该服务器未收到正确的客户端证书，或者收到了不信任的客户端证书。请确保客户端正在发送其证书，并且该证书已被 Peer 节点或排序节点信任的 CA 证书所签名。</p>
+<p>如果在链码日志中看到错误消息 <code class="docutils literal notranslate"><span class="pre">remote</span> <span class="pre">error:</span> <span class="pre">tls:</span> <span class="pre">bad</span> <span class="pre">certificate</span></code>，请确保链码是使用 Fabric v1.1 或更高版本的程序构建的。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="raft_configuration.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="logging-control.html" class="btn btn-neutral" title="日志控制" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

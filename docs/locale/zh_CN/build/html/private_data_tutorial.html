@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>在 Fabric 中使用私有数据 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用 CouchDB" href="couchdb_tutorial.html" />
+    <link rel="prev" title="}" href="tutorial/commercial_paper.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="test_network.html">##### Generate certificates using cryptogen tool #########</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_network.html#create-org1-identities">############ Create Org1 Identities ######################</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id12">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id21">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id24">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id43">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_first_app.html">编写你的第一个应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/commercial_paper.html">}</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">在 Fabric 中使用私有数据</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#json">创建集合定义的 JSON 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">使用链码 API 读写私有数据</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">读取集合数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">写入私有数据</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">启动网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-install-define-cc">安装并定义一个带集合的链码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">批准链码定义</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">提交链码定义</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-store-private-data">存储私有数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-query-authorized">授权节点查询私有数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-query-unauthorized">未授权节点查询私有数据</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#org2">切换到 Org2 的节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">查询 Org2 被授权的私有数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">查询 Org2 未被授权的私有数据</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-purge">清除私有数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-indexes">使用私有数据索引</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pd-ref-material">其他资源</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="couchdb_tutorial.html">使用 CouchDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_channel/create_channel_overview.html">创建通道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channel_update_tutorial.html">向通道添加组织</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chaincode4ade.html">链码开发者教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videos.html">视频</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="tutorials.html">教程</a> &raquo;</li>
+        
+      <li>在 Fabric 中使用私有数据</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/private_data_tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fabric">
+<h1>在 Fabric 中使用私有数据<a class="headerlink" href="#fabric" title="Permalink to this headline">¶</a></h1>
+<p>本教程将演示如何使用集合在区块链网络中授权的 Peer 节点上存储和检索私有数据。</p>
+<p>本教程需要你已经掌握私有数据存储及其使用方法。更多信息，请查看 <a class="reference internal" href="private-data/private-data.html"><span class="doc">&lt;no title&gt;</span></a>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本教程使用 Fabric-2.0 中新的链码生命管理周期操作。如果你想在之前的版本中使用私有数据，请参阅 v1.4 版本的教程`在 Fabric 中使用私有数据教程 &lt;<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/private_data_tutorial.html">https://hyperledger-fabric.readthedocs.io/en/release-1.4/private_data_tutorial.html</a>&gt;`__.</p>
+</div>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#pd-build-json"><span class="std std-ref">创建集合定义的 JSON 文件</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-read-write-private-data"><span class="std std-ref">使用链码 API 读写私有数据</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-install-define-cc"><span class="std std-ref">安装并定义一个带集合的链码</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-store-private-data"><span class="std std-ref">存储私有数据</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-query-authorized"><span class="std std-ref">授权节点查询私有数据</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-query-unauthorized"><span class="std std-ref">未授权节点查询私有数据</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-purge"><span class="std std-ref">清除私有数据</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-indexes"><span class="std std-ref">使用私有数据索引</span></a></p></li>
+<li><p><a class="reference internal" href="#pd-ref-material"><span class="std std-ref">其他资源</span></a></p></li>
+</ol>
+<p>本教程将会在 Fabric Building Your First Network （BYFN）教程网络中使用 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/tree/master/chaincode/marbles02_private">弹珠私有数据示例</a> 来演示如何创建、部署以及 使用私有数据合集。你应该先完成 fabric 的安装 <a class="reference internal" href="install.html"><span class="doc">安装示例、二进制和 Docker 镜像</span></a>。</p>
+<div class="section" id="json">
+<span id="pd-build-json"></span><h2>创建集合定义的 JSON 文件<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<p>在通道中使用私有数据的第一步是定义集合以决定私有数据的访问权限。</p>
+<p>该集合的定义描述了谁可以保存数据，数据要分发给多少个节点，需要多少个节点来进行数据分发，以及私有数据在私有数据库中的保存时间。之后，我们将会展示链码的接口：<code class="docutils literal notranslate"><span class="pre">PutPrivateData</span></code> 和 <code class="docutils literal notranslate"><span class="pre">GetPrivateData</span></code> 将集合映射到私有数据以确保其安全。</p>
+<p>集合定义由以下几个属性组成：</p>
+<ul class="simple" id="blocktolive">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: 集合的名称。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">policy</span></code>: 定义了哪些组织中的 Peer 节点能够存储集合数据。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requiredPeerCount</span></code>: 私有数据要分发到的节点数，这是链码背书成功的条件之一。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxPeerCount</span></code>: 为了数据冗余，当前背书节点将尝试向其他节点分发数据的数量。如果当前背书节点发生故障，其他的冗余节点可以承担私有数据查询的任务。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockToLive</span></code>: 对于非常敏感的信息，比如价格或者个人信息，这个值代表书库可以在私有数据库中保存的时间。数据会在私有数据库中保存 <code class="docutils literal notranslate"><span class="pre">blockToLive</span></code> 个区块，之后就会被清除。如果要永久保留，将此值设置为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 即可。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memberOnlyRead</span></code>: 设置为 <code class="docutils literal notranslate"><span class="pre">true</span></code> 时，节点会自动强制集合中定义的成员组织内的客户端对私有数据仅拥有只读权限。</p></li>
+</ul>
+<p>为了说明私有数据的用法，弹珠私有数据示例包含两个私有数据集合定义：<code class="docutils literal notranslate"><span class="pre">collectionMarbles和</span></code> 和 <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code>。<code class="docutils literal notranslate"><span class="pre">collectionMarbles</span></code> 定义中的 <code class="docutils literal notranslate"><span class="pre">policy</span></code> 属性允许通道的所有成员（Org1 和 Org2）在私有数据库中保存私有数据。<code class="docutils literal notranslate"><span class="pre">collectionMarblesPrivateDetails</span></code> 集合仅允许 Org1 的成员在其私有数据库中保存私有数据。</p>
+<p>关于 <code class="docutils literal notranslate"><span class="pre">policy</span></code> 属性的更多相关信息，请查看 <a class="reference internal" href="endorsement-policies.html"><span class="doc">背书策略</span></a>。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>// collections_config.json
+
+[
+  {
+       &quot;name&quot;: &quot;collectionMarbles&quot;,
+       &quot;policy&quot;: &quot;OR(&#39;Org1MSP.member&#39;, &#39;Org2MSP.member&#39;)&quot;,
+       &quot;requiredPeerCount&quot;: 0,
+       &quot;maxPeerCount&quot;: 3,
+       &quot;blockToLive&quot;:1000000,
+       &quot;memberOnlyRead&quot;: true
+  },
+
+  {
+       &quot;name&quot;: &quot;collectionMarblePrivateDetails&quot;,
+       &quot;policy&quot;: &quot;OR(&#39;Org1MSP.member&#39;)&quot;,
+       &quot;requiredPeerCount&quot;: 0,
+       &quot;maxPeerCount&quot;: 3,
+       &quot;blockToLive&quot;:3,
+       &quot;memberOnlyRead&quot;: true
+  }
+]
+</pre></div>
+</div>
+<p>由这些策略保护的数据将会在链码中映射出来，在本教程后半段将有说明。</p>
+<p>当链码被使用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-commit">peer lifecycle chaincode commit 命令</a> 提交到通道中时，集合定义文件也会被部署到通道中。更多信息请看下面的第三节。</p>
+</div>
+<div class="section" id="api">
+<span id="pd-read-write-private-data"></span><h2>使用链码 API 读写私有数据<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<p>接下来将通过在链码中构建数据定义来让您理解数据在通道中的私有化。弹珠私有数据示例将私有数据拆分为两个数据定义来进行数据权限控制。</p>
+<div class="highlight-GO notranslate"><div class="highlight"><pre><span></span><span class="c1">// Peers in Org1 and Org2 will have this private data in a side database</span>
+<span class="kd">type</span> <span class="nx">marble</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">ObjectType</span> <span class="kt">string</span> <span class="s">`json:&quot;docType&quot;`</span>
+  <span class="nx">Name</span>       <span class="kt">string</span> <span class="s">`json:&quot;name&quot;`</span>
+  <span class="nx">Color</span>      <span class="kt">string</span> <span class="s">`json:&quot;color&quot;`</span>
+  <span class="nx">Size</span>       <span class="kt">int</span>    <span class="s">`json:&quot;size&quot;`</span>
+  <span class="nx">Owner</span>      <span class="kt">string</span> <span class="s">`json:&quot;owner&quot;`</span>
+<span class="p">}</span>
+
+<span class="c1">// Only peers in Org1 will have this private data in a side database</span>
+<span class="kd">type</span> <span class="nx">marblePrivateDetails</span> <span class="kd">struct</span> <span class="p">{</span>
+  <span class="nx">ObjectType</span> <span class="kt">string</span> <span class="s">`json:&quot;docType&quot;`</span>
+  <span class="nx">Name</span>       <span class="kt">string</span> <span class="s">`json:&quot;name&quot;`</span>
+  <span class="nx">Price</span>      <span class="kt">int</span>    <span class="s">`json:&quot;price&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>对私有数据的访问将遵循以下策略：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size,</span> <span class="pre">and</span> <span class="pre">owner</span></code> 通道中所有成员都可见（Org1 和 Org2）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">price</span></code> 仅对 Org1 中的成员可见</p></li>
+</ul>
+<p>弹珠示例中有两个不同的私有数据定义。这些数据和限制访问权限的集合策略将由链码接口进行控制。具体来说，就是读取和写入带有集合定义的私有数据需要使用 <code class="docutils literal notranslate"><span class="pre">GetPrivateData()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">PutPrivateData()</span></code> 接口，你可以在 <a class="reference external" href="https://godoc.org/github.com/hyperledger/fabric-chaincode-go/shim#ChaincodeStub">这里</a> 找到他们。</p>
+<p>下图说明了弹珠私有数据示例中使用的私有数据模型。</p>
+<img alt="_images/SideDB-org1-org2.png" src="_images/SideDB-org1-org2.png" />
+<div class="section" id="id2">
+<h3>读取集合数据<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>使用链码 API <code class="docutils literal notranslate"><span class="pre">GetPrivateData()</span></code> 在数据库中访问私有数据。 <code class="docutils literal notranslate"><span class="pre">GetPrivateData()</span></code> 有两个参数，<strong>集合名（collection name）</strong> 和 <strong>数据键（data key）</strong>。 重申一下，集合 <code class="docutils literal notranslate"><span class="pre">collectionMarbles</span></code> 允许 Org1 和 Org2 的成员在侧数据库中保存私有数据，集合 <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code> 只允许 Org1 在侧数据库中保存私有数据。有关接口的实现详情请查看 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02_private/go/marbles_chaincode_private.go">弹珠私有数据方法</a> ：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>readMarble</strong> 用来查询 <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size</span> <span class="pre">and</span> <span class="pre">owner</span></code> 这些属性</p></li>
+<li><p><strong>readMarblePrivateDetails</strong> 用来查询 <code class="docutils literal notranslate"><span class="pre">price</span></code> 属性</p></li>
+</ul>
+</div></blockquote>
+<p>下面教程中，使用 peer 命令查询数据库的时候，会使用这两个方法。</p>
+</div>
+<div class="section" id="id3">
+<h3>写入私有数据<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>使用链码接口 <code class="docutils literal notranslate"><span class="pre">PutPrivateData()</span></code> 将私有数据保存到私有数据库中。该接口需要集合名称。由于弹珠私有数据示例中包含两个不同的私有数据集，因此这个接口在链码中会被调用两次：</p>
+<ol class="arabic simple">
+<li><p>使用集合 <code class="docutils literal notranslate"><span class="pre">collectionMarbles</span></code> 写入私有数据 <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size</span> <span class="pre">和</span> <span class="pre">owner</span></code>。</p></li>
+<li><p>使用集合  <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code> 写入私有数据``price``。</p></li>
+</ol>
+<p>例如,在链码的 <code class="docutils literal notranslate"><span class="pre">initMarble</span></code> 方法片段中,``PutPrivateData()`` 被调用了两次，每个私有数据调用一次。</p>
+<div class="highlight-GO notranslate"><div class="highlight"><pre><span></span><span class="c1">// ==== Create marble object, marshal to JSON, and save to state ====</span>
+      <span class="nx">marble</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">marble</span><span class="p">{</span>
+              <span class="nx">ObjectType</span><span class="p">:</span> <span class="s">&quot;marble&quot;</span><span class="p">,</span>
+              <span class="nx">Name</span><span class="p">:</span>       <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+              <span class="nx">Color</span><span class="p">:</span>      <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Color</span><span class="p">,</span>
+              <span class="nx">Size</span><span class="p">:</span>       <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Size</span><span class="p">,</span>
+              <span class="nx">Owner</span><span class="p">:</span>      <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Owner</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="nx">marbleJSONasBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="nx">marble</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+      <span class="p">}</span>
+
+      <span class="c1">// === Save marble to state ===</span>
+      <span class="nx">err</span> <span class="p">=</span> <span class="nx">stub</span><span class="p">.</span><span class="nx">PutPrivateData</span><span class="p">(</span><span class="s">&quot;collectionMarbles&quot;</span><span class="p">,</span> <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">marbleJSONasBytes</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+      <span class="p">}</span>
+
+      <span class="c1">// ==== Create marble private details object with price, marshal to JSON, and save to state ====</span>
+      <span class="nx">marblePrivateDetails</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">marblePrivateDetails</span><span class="p">{</span>
+              <span class="nx">ObjectType</span><span class="p">:</span> <span class="s">&quot;marblePrivateDetails&quot;</span><span class="p">,</span>
+              <span class="nx">Name</span><span class="p">:</span>       <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
+              <span class="nx">Price</span><span class="p">:</span>      <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Price</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="nx">marblePrivateDetailsBytes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="nx">marblePrivateDetails</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+      <span class="p">}</span>
+      <span class="nx">err</span> <span class="p">=</span> <span class="nx">stub</span><span class="p">.</span><span class="nx">PutPrivateData</span><span class="p">(</span><span class="s">&quot;collectionMarblePrivateDetails&quot;</span><span class="p">,</span> <span class="nx">marbleInput</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span> <span class="nx">marblePrivateDetailsBytes</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">())</span>
+      <span class="p">}</span>
+</pre></div>
+</div>
+<p>总结一下，在上边的 <code class="docutils literal notranslate"><span class="pre">collection.json</span></code> 中定义的策略，允许 Org1 和 Org2 中的所有成员都能在他们的私有数据库中对私有数据 <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size,</span> <span class="pre">owner</span></code> 进行存储和交易。但是只有 Org1 中的成员才能够对 <code class="docutils literal notranslate"><span class="pre">price</span></code> 进行存储和交易。</p>
+<p>数据私有化的另一个好处就是，使用集合时，只有私有数据的哈希值会通过排序节点, 而数据本身不会参与排序。这样就保证了私有数据对排序节点的保密性。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>启动网络<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>现在我们准备使用一些命令来如何使用私有数据。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>在安装、定义和使用弹珠私有数据示例链码之前，我们需要启动 Fabric 测试网络。为了大家可以正确使用本教程，我们将从一个已知的初始化状态开始操作。接下来的命令将会停止你主机上所有正在运行的 Docker 容器，并会清除之前生成的构件。所以我们运行以下命令来清除之前的环境。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> fabric-samples/test-network
+./network.sh down
+</pre></div>
+</div>
+<p>如果你之前没有运行过本教程，你需要在我们部署链码前下载链码所需的依赖。运行如下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../chaincode/marbles02_private/go
+<span class="nv">GO111MODULE</span><span class="o">=</span>on go mod vendor
+<span class="nb">cd</span> ../../../test-network
+</pre></div>
+</div>
+<p>如果你之前已经运行过本教程，你也需要删除之前弹珠私有数据链码的 Docker 容器。运行如下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rm -f <span class="k">$(</span>docker ps -a <span class="p">|</span> awk <span class="s1">&#39;($2 ~ /dev-peer.*.marblesp.*/) {print $1}&#39;</span><span class="k">)</span>
+docker rmi -f <span class="k">$(</span>docker images <span class="p">|</span> awk <span class="s1">&#39;($1 ~ /dev-peer.*.marblesp.*/) {print $3}&#39;</span><span class="k">)</span>
+</pre></div>
+</div>
+<p>在 <code class="docutils literal notranslate"><span class="pre">test-network</span></code> 目录中，你可以使用如下命令启动使用 CouchDB 的 Fabric 测试网络：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./network.sh up createChannel -s couchdb
+</pre></div>
+</div>
+<p>这个命令将会部署一个 Fabric 网络，包括一个名为的通道 <code class="docutils literal notranslate"><span class="pre">mychannel</span></code>，两个组织（各拥有一个 Peer 节点），Peer 节点将使用 CouchDB 作为状态数据库。用默认的 LevelDB 和 CouchDB 都可以使用私有数据集合。我们选择 CouchDB 来演示如何使用私有数据的索引。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>为了保证私有数据集正常工作，需要正确地配置组织间的 gossip 通信。请参考文档 <a class="reference internal" href="gossip.html"><span class="doc">Gossip 数据传播协议</span></a>，需要特别注意 “锚节点（anchor peers）” 章节。本教程不关注 gossip，它在测试网络中已经配置好了。但当我们配置通道的时候，gossip 的锚节点是否被正确配置影响到私有数据集能否正常工作。</p>
+</div>
+</div>
+<div class="section" id="pd-install-define-cc">
+<span id="id5"></span><h2>安装并定义一个带集合的链码<a class="headerlink" href="#pd-install-define-cc" title="Permalink to this headline">¶</a></h2>
+<p>客户端应用程序是通过链码与区块链账本进行数据交互的。因此我们需要在每个节点上安装链码，用他们来执行和背书我们的交易。然而，在我们与链码进行交互之前，通道中的成员需要一致同意链码的定义，以此来建立链码的治理，当然还包括链私有数据集合的定义。我们将要使用命令：<a class="reference internal" href="commands/peerlifecycle.html"><span class="doc">&lt;no title&gt;</span></a> 打包、安装，以及在通道上定义链码。</p>
+<p>链码安装到 Peer 节点之前需要先进行打包操作。我们可以用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-package">peer lifecycle chaincode package</a> 命令对弹珠链码进行打包。</p>
+<p>测试网络包含两个组织，Org1 和 Org2，各自拥有一个节点。所以要安装链码包到两个节点上：</p>
+<ul class="simple">
+<li><p>peer0.org1.example.com</p></li>
+<li><p>peer0.org2.example.com</p></li>
+</ul>
+<p>链码打包之后，我们可以使用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-install">peer lifecycle chaincode install</a> 命令将弹珠链码安装到每个节点上。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>如果你已经成功启动测试网络，复制粘贴如下环境变量到你的 CLI 以 Org1 管理员的身份与测试网络进行交互。请确保你在 <cite>test-network</cite> 目录中。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/../bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">FABRIC_CFG_PATH</span><span class="o">=</span><span class="nv">$PWD</span>/../config/
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>用以下命令打包弹珠私有数据链码。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode package marblesp.tar.gz --path ../chaincode/marbles02_private/go/ --lang golang --label marblespv1
+</pre></div>
+</div>
+<p>这个命令将会生成一个链码包文件 marblesp.tar.gz。</p>
+<ol class="arabic simple" start="2">
+<li><p>用以下命令在节点 <code class="docutils literal notranslate"><span class="pre">peer0.org1.example.com</span></code> 上安装链码包。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode install marblesp.tar.gz
+</pre></div>
+</div>
+<p>安装成功会返回链码标识，类似如下响应：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2019</span>-04-22 <span class="m">19</span>:09:04.336 UTC <span class="o">[</span>cli.lifecycle.chaincode<span class="o">]</span> submitInstallProposal -&gt; INFO <span class="m">001</span> Installed remotely: response:&lt;status:200 payload:<span class="s2">&quot;\nKmarblespv1:57f5353b2568b79cb5384b5a8458519a47186efc4fcadb98280f5eae6d59c1cd\022\nmarblespv1&quot;</span> &gt;
+<span class="m">2019</span>-04-22 <span class="m">19</span>:09:04.336 UTC <span class="o">[</span>cli.lifecycle.chaincode<span class="o">]</span> submitInstallProposal -&gt; INFO <span class="m">002</span> Chaincode code package identifier: marblespv1:57f5353b2568b79cb5384b5a8458519a47186efc4fcadb98280f5eae6d59c1cd
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>现在在 CLI 中切换到 Org2 管理员。复制粘贴如下代码到你的命令行窗口并运行：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org2MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:9051
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>用以下命令在 Org2 的节点上安装链码：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode install marblesp.tar.gz
+</pre></div>
+</div>
+<div class="section" id="id6">
+<h3>批准链码定义<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>每个通道中的成员想要使用链码，都需要为他们的组织审批链码定义。由于本教程中的两个组织都要使用链码，所以我们需要使用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-approveformyorg">peer lifecycle chaincode approveformyorg</a> 为Org1 和 Org2 审批链码定义。链码定义也包含私有数据集合的定义，它们都在 <code class="docutils literal notranslate"><span class="pre">marbles02_private</span></code> 示例中。我们会使用 <code class="docutils literal notranslate"><span class="pre">--collections-config</span></code> 参数来指明私有数据集 JSON 文件的路径。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">test-network</span></code> 目录下运行如下命令来为 Org1 和 Org2 审批链码定义。</p>
+<ol class="arabic simple">
+<li><p>使用如下命令来查询节点上已安装链码包的 ID。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode queryinstalled
+</pre></div>
+</div>
+<p>这个命令将返回和安装命令一样的链码包的标识，你会看到类似如下的输出信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Installed chaincodes on peer:
+Package ID: marblespv1:f8c8e06bfc27771028c4bbc3564341887881e29b92a844c66c30bac0ff83966e, Label: marblespv1
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>将包 ID 声明为一个环境变量。粘贴 <code class="docutils literal notranslate"><span class="pre">peer</span> <span class="pre">lifecycle</span> <span class="pre">chaincode</span> <span class="pre">queryinstalled</span></code> 命令返回的包 ID 到下边的命令中。包 ID 在不同用户中是不一样的，所以你的 ID 可能与本教程中的不同，所以你需要使用你的终端中返回的包 ID 来完成这一步。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CC_PACKAGE_ID</span><span class="o">=</span>marblespv1:f8c8e06bfc27771028c4bbc3564341887881e29b92a844c66c30bac0ff83966e
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>为了确保我们在以 Org1 的身份运行 CLI。复制粘贴如下信息到节点容器中并执行：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>用如下命令审批 Org1 的弹珠私有数据链码定义。此命令包含了一个集合文件的路径。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ORDERER_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marblesp --version <span class="m">1</span>.0 --collections-config ../chaincode/marbles02_private/collections_config.json --signature-policy <span class="s2">&quot;OR(&#39;Org1MSP.member&#39;,&#39;Org2MSP.member&#39;)&quot;</span> --package-id <span class="nv">$CC_PACKAGE_ID</span> --sequence <span class="m">1</span> --tls --cafile <span class="nv">$ORDERER_CA</span>
+</pre></div>
+</div>
+<p>当命令成功完成后，你会收到类似如下的返回信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2020</span>-01-03 <span class="m">17</span>:26:55.022 EST <span class="o">[</span>chaincodeCmd<span class="o">]</span> ClientWait -&gt; INFO <span class="m">001</span> txid <span class="o">[</span>06c9e86ca68422661e09c15b8e6c23004710ea280efda4bf54d501e655bafa9b<span class="o">]</span> committed with status <span class="o">(</span>VALID<span class="o">)</span> at
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>将 CLI 转换到 Org2。复制粘贴如下信息到节点容器中并执行：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org2MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:9051
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>现在你可以为 Org2 审批链码定义：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marblesp --version <span class="m">1</span>.0 --collections-config ../chaincode/marbles02_private/collections_config.json --signature-policy <span class="s2">&quot;OR(&#39;Org1MSP.member&#39;,&#39;Org2MSP.member&#39;)&quot;</span> --package-id <span class="nv">$CC_PACKAGE_ID</span> --sequence <span class="m">1</span> --tls --cafile <span class="nv">$ORDERER_CA</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>提交链码定义<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>当组织中大部分成员审批通过了链码定义，该组织才可以提交该链码定义到通道上。</p>
+<p>使用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-commit">peer lifecycle chaincode commit</a> 命令来提交链码定义。这个命令同样也会部署私有数据集合到通道上。</p>
+<p>在链码定义被提交到通道后，我们就可以使用这个链码了。因为弹珠私有数据示例包含一个初始化方法，我们在调用链码中的其他方法前，需要使用 <a class="reference external" href="commands/peerchaincode.html?%20chaincode%20instantiate#peer-chaincode-instantiate">peer chaincode invoke</a> 命令
+去调用 <code class="docutils literal notranslate"><span class="pre">Init()</span></code> 方法。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<ol class="arabic simple">
+<li><p>运行如下命令提交弹珠私有数据示例链码定义到 <code class="docutils literal notranslate"><span class="pre">mychannel</span></code> 通道。</p></li>
+</ol>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   <span class="nb">export</span> <span class="nv">ORDERER_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+   <span class="nb">export</span> <span class="nv">ORG1_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+   <span class="nb">export</span> <span class="nv">ORG2_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+   peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marblesp --version <span class="m">1</span>.0 --sequence <span class="m">1</span> --collections-config ../chaincode/marbles02_private/collections_config.json --signature-policy <span class="s2">&quot;OR(&#39;Org1MSP.member&#39;,&#39;Org2MSP.member&#39;)&quot;</span> --tls --cafile <span class="nv">$ORDERER_CA</span> --peerAddresses localhost:7051 --tlsRootCertFiles <span class="nv">$ORG1_CA</span> --peerAddresses localhost:9051 --tlsRootCertFiles <span class="nv">$ORG2_CA</span>
+
+提交成功后，你会看到类似如下的输出信息：
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2020</span>-01-06 <span class="m">16</span>:24:46.104 EST <span class="o">[</span>chaincodeCmd<span class="o">]</span> ClientWait -&gt; INFO <span class="m">001</span> txid <span class="o">[</span>4a0d0f5da43eb64f7cbfd72ea8a8df18c328fb250cb346077d91166d86d62d46<span class="o">]</span> committed with status <span class="o">(</span>VALID<span class="o">)</span> at localhost:9051
+<span class="m">2020</span>-01-06 <span class="m">16</span>:24:46.184 EST <span class="o">[</span>chaincodeCmd<span class="o">]</span> ClientWait -&gt; INFO <span class="m">002</span> txid <span class="o">[</span>4a0d0f5da43eb64f7cbfd72ea8a8df18c328fb250cb346077d91166d86d62d46<span class="o">]</span> committed with status <span class="o">(</span>VALID<span class="o">)</span> at localhost:7051
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pd-store-private-data">
+<span id="id8"></span><h2>存储私有数据<a class="headerlink" href="#pd-store-private-data" title="Permalink to this headline">¶</a></h2>
+<p>Org1 的成员已经被授权使用弹珠私有数据示例中的所有私有数据进行交易，切换回 Org1 节点并提交添加一个弹珠的请求：</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>在 CLI 的 <cite>test-network</cite> 的目录中，复制粘贴如下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+</pre></div>
+</div>
+<p>调用 <code class="docutils literal notranslate"><span class="pre">initMarble</span></code> 方法，将会创建一个带有私有数据的弹珠，该弹珠名为 <code class="docutils literal notranslate"><span class="pre">marble1</span></code>，所有者为 <code class="docutils literal notranslate"><span class="pre">tom</span></code>，颜色为 <code class="docutils literal notranslate"><span class="pre">blue</span></code>，尺寸为 <code class="docutils literal notranslate"><span class="pre">35</span></code>，价格为 <code class="docutils literal notranslate"><span class="pre">99</span></code>。重申一下，私有数据 <strong>price</strong> 将会和私有数据 <strong>name, owner, color, size</strong> 分开存储。因此, <code class="docutils literal notranslate"><span class="pre">initMarble</span></code> 方法会调用 <code class="docutils literal notranslate"><span class="pre">PutPrivateData()</span></code> 接口两次来存储私有数据。另外注意，传递私有数据时使用 <code class="docutils literal notranslate"><span class="pre">--transient</span></code> 参数。作为瞬态的输入不会被记录到交易中，以此来保证数据的隐私性。瞬态数据会以二进制的方式被传输，所以在 CLI 中使用时，必须使用 base64 编码。我们设置一个环境变量来获取 base64 编码后的值，并使用 <code class="docutils literal notranslate"><span class="pre">tr</span></code> 命令来去掉 linux base64 命令添加的换行符。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MARBLE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&quot;{\&quot;name\&quot;:\&quot;marble1\&quot;,\&quot;color\&quot;:\&quot;blue\&quot;,\&quot;size\&quot;:35,\&quot;owner\&quot;:\&quot;tom\&quot;,\&quot;price\&quot;:99}&quot;</span> <span class="p">|</span> base64 <span class="p">|</span> tr -d <span class="se">\\</span>n<span class="k">)</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;InitMarble&quot;]}&#39;</span> --transient <span class="s2">&quot;{\&quot;marble\&quot;:\&quot;</span><span class="nv">$MARBLE</span><span class="s2">\&quot;}&quot;</span>
+</pre></div>
+</div>
+<p>你会看到类似如下的输出结果:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>chaincodeCmd<span class="o">]</span> chaincodeInvokeOrQuery-&gt;INFO <span class="m">001</span> Chaincode invoke successful. result: status:200
+</pre></div>
+</div>
+</div>
+<div class="section" id="pd-query-authorized">
+<span id="id9"></span><h2>授权节点查询私有数据<a class="headerlink" href="#pd-query-authorized" title="Permalink to this headline">¶</a></h2>
+<p>我们的集合定义定义允许 Org1 和 Org2 的所有成员在他们的侧数据库中保存 <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size,</span> <span class="pre">owner</span></code> 私有数据，但是只有 Org1 的成员才可以在他们的侧数据库中保存 <a href="#id10"><span class="problematic" id="id11">``</span></a>price``私有数据。作为一个已授权的 Org1 的节点，我们可以查询两个私有数据集。</p>
+<p>第一个 <code class="docutils literal notranslate"><span class="pre">query</span></code> 命令调用了 <code class="docutils literal notranslate"><span class="pre">readMarble</span></code> 方法并将 <code class="docutils literal notranslate"><span class="pre">collectionMarbles</span></code> 作为参数传入。</p>
+<div class="highlight-GO notranslate"><div class="highlight"><pre><span></span><span class="c1">// ===============================================</span>
+<span class="c1">// readMarble - read a marble from chaincode state</span>
+<span class="c1">// ===============================================</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">SimpleChaincode</span><span class="p">)</span> <span class="nx">readMarble</span><span class="p">(</span><span class="nx">stub</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">ChaincodeStubInterface</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="nx">pb</span><span class="p">.</span><span class="nx">Response</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">jsonResp</span> <span class="kt">string</span>
+     <span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="s">&quot;Incorrect number of arguments. Expecting name of the marble to query&quot;</span><span class="p">)</span>
+     <span class="p">}</span>
+
+     <span class="nx">name</span> <span class="p">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+     <span class="nx">valAsbytes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">stub</span><span class="p">.</span><span class="nx">GetPrivateData</span><span class="p">(</span><span class="s">&quot;collectionMarbles&quot;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="c1">//get the marble from chaincode state</span>
+
+     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+             <span class="nx">jsonResp</span> <span class="p">=</span> <span class="s">&quot;{\&quot;Error\&quot;:\&quot;Failed to get state for &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;}&quot;</span>
+             <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">jsonResp</span><span class="p">)</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">valAsbytes</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+             <span class="nx">jsonResp</span> <span class="p">=</span> <span class="s">&quot;{\&quot;Error\&quot;:\&quot;Marble does not exist: &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;}&quot;</span>
+             <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">jsonResp</span><span class="p">)</span>
+     <span class="p">}</span>
+
+     <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Success</span><span class="p">(</span><span class="nx">valAsbytes</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>第二个 <code class="docutils literal notranslate"><span class="pre">query</span></code> 命令调用了 <code class="docutils literal notranslate"><span class="pre">readMarblePrivateDetails</span></code> 方法，
+并将 <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code> 作为参数传入。</p>
+<div class="highlight-GO notranslate"><div class="highlight"><pre><span></span><span class="c1">// ===============================================</span>
+<span class="c1">// readMarblePrivateDetails - read a marble private details from chaincode state</span>
+<span class="c1">// ===============================================</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">SimpleChaincode</span><span class="p">)</span> <span class="nx">readMarblePrivateDetails</span><span class="p">(</span><span class="nx">stub</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">ChaincodeStubInterface</span><span class="p">,</span> <span class="nx">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="nx">pb</span><span class="p">.</span><span class="nx">Response</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">jsonResp</span> <span class="kt">string</span>
+     <span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+
+     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="s">&quot;Incorrect number of arguments. Expecting name of the marble to query&quot;</span><span class="p">)</span>
+     <span class="p">}</span>
+
+     <span class="nx">name</span> <span class="p">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+     <span class="nx">valAsbytes</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">stub</span><span class="p">.</span><span class="nx">GetPrivateData</span><span class="p">(</span><span class="s">&quot;collectionMarblePrivateDetails&quot;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="c1">//get the marble private details from chaincode state</span>
+
+     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+             <span class="nx">jsonResp</span> <span class="p">=</span> <span class="s">&quot;{\&quot;Error\&quot;:\&quot;Failed to get private details for &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">Error</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;\&quot;}&quot;</span>
+             <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">jsonResp</span><span class="p">)</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">valAsbytes</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+             <span class="nx">jsonResp</span> <span class="p">=</span> <span class="s">&quot;{\&quot;Error\&quot;:\&quot;Marble private details does not exist: &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;}&quot;</span>
+             <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">jsonResp</span><span class="p">)</span>
+     <span class="p">}</span>
+     <span class="k">return</span> <span class="nx">shim</span><span class="p">.</span><span class="nx">Success</span><span class="p">(</span><span class="nx">valAsbytes</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now <span class="guilabel">Try it yourself</span></p>
+<p>用 Org1 的成员来查询 <code class="docutils literal notranslate"><span class="pre">marble1</span></code> 的私有数据 <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size</span> <span class="pre">和</span> <span class="pre">owner</span></code>。注意，因为查询操作不会在账本上留下记录，因此没必要以瞬态的方式传入弹珠名称。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarble&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你会看到如下输出结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;blue&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marble&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;tom&quot;</span>,<span class="s2">&quot;size&quot;</span>:35<span class="o">}</span>
+</pre></div>
+</div>
+<p>Query for the <code class="docutils literal notranslate"><span class="pre">price</span></code> private data of <code class="docutils literal notranslate"><span class="pre">marble1</span></code> as a member of Org1.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你会看到如下输出结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marblePrivateDetails&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;price&quot;</span>:99<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pd-query-unauthorized">
+<span id="id12"></span><h2>未授权节点查询私有数据<a class="headerlink" href="#pd-query-unauthorized" title="Permalink to this headline">¶</a></h2>
+<p>现在我们将切换到 Org2 的成员。Org2 在侧数据库中存有私有数据 <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size,</span> <span class="pre">owner</span></code>，但是不存储弹珠的 <code class="docutils literal notranslate"><span class="pre">price</span></code> 数据。我们来同时查询两个私有数据集。</p>
+<div class="section" id="org2">
+<h3>切换到 Org2 的节点<a class="headerlink" href="#org2" title="Permalink to this headline">¶</a></h3>
+<p>运行如下命令以 Org2 管理员的身份操作并查询 Org2 节点：</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org2MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:9051
+</pre></div>
+</div>
+<p><span class="guilabel">Try it yourself</span></p>
+</div>
+<div class="section" id="id13">
+<h3>查询 Org2 被授权的私有数据<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>Org2 的节点应该拥有第一个私有数据集（<code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">color,</span> <span class="pre">size</span> <span class="pre">and</span> <span class="pre">owner</span></code>）的访问权限，可以使用 <code class="docutils literal notranslate"><span class="pre">readMarble()</span></code> 方法，该方法使用了 <code class="docutils literal notranslate"><span class="pre">collectionMarbles</span></code> 参数。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarble&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你会看到类似如下的输出结果：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;docType&quot;</span><span class="p">:</span><span class="s2">&quot;marble&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;marble1&quot;</span><span class="p">,</span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="s2">&quot;tom&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>查询 Org2 未被授权的私有数据<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>Org2 的节点的侧数据库中不存在 <code class="docutils literal notranslate"><span class="pre">price</span></code> 数据。当你尝试查询这个数据时，将会返回一个公共状态中对应键的 hash 值，但并不会返回私有状态。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你会看到类似如下的输出结果：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>Error: endorsement failure during query. response: status:500
+message:&quot;{\&quot;Error\&quot;:\&quot;Failed to get private details for marble1:
+GET_STATE failed: transaction ID: d9c437d862de66755076aeebe79e7727791981606ae1cb685642c93f102b03e5:
+tx creator does not have read access permission on privatedata in chaincodeName:marblesp collectionName: collectionMarblePrivateDetails\&quot;}&quot;
+</pre></div>
+</div>
+<p>Org2 的成员，将只能看到私有数据的公共 hash。</p>
+</div>
+</div>
+<div class="section" id="pd-purge">
+<span id="id15"></span><h2>清除私有数据<a class="headerlink" href="#pd-purge" title="Permalink to this headline">¶</a></h2>
+<p>对于一些案例，私有数据仅需在账本上保存到在链下数据库复制之后就可以了，我们可以将 数据在过了一定数量的区块后进行“清除”，仅仅把数据的哈希作为交易不可篡改的证据保存下来。</p>
+<p>私有数据可能会包含私人的或者机密的信息，比如我们例子中的价格数据，这是交易伙伴不想让通道中的其他组织知道的。而且，它具有有限的生命周期，就可以根据集合定义中的 <code class="docutils literal notranslate"><span class="pre">blockToLive</span></code> 属性在固定的区块数量之后清除。</p>
+<p>我们的 <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code> 中定义的 <code class="docutils literal notranslate"><span class="pre">blockToLive</span></code> 值为3，表明这个数据会在侧数据库中保存三个区块的时间，之后它就会被清除。将所有内容放在一起，回想一下绑定了私有数据 <code class="docutils literal notranslate"><span class="pre">price</span></code> 的私有数据集 <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code>，在函数 <code class="docutils literal notranslate"><span class="pre">initMarble()</span></code> 中，当调用 <code class="docutils literal notranslate"><span class="pre">PutPrivateData()</span></code> API 并传递了参数 <code class="docutils literal notranslate"><span class="pre">collectionMarblePrivateDetails</span></code>。</p>
+<p>我们将在链上增加区块，然后来通过执行四笔新交易（创建一个新弹珠，然后转移三个 弹珠）看一看价格信息被清除的过程，增加新交易的过程中会在链上增加四个新区块。在第四笔交易完成之后（第三个弹珠转移后），我们将验证一下价格私有数据是否被清除了。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>使用如下命令切换到 Org1 。复制和粘贴下边的一组命令到节点容器并执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+</pre></div>
+</div>
+<p>打开一个新终端窗口，通过运行如下命令来查看这个节点上私有数据日志。注意当前区块高度。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker logs peer0.org1.example.com <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> grep -i -a -E <span class="s1">&#39;private|pvt|privdata&#39;</span>
+</pre></div>
+</div>
+<p>回到节点容器中，使用如下命令查询 <strong>marble1</strong> 的 <code class="docutils literal notranslate"><span class="pre">price</span></code> 数据（查询并不会产生一笔新的交易）。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你将看到类似下边的结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marblePrivateDetails&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;price&quot;</span>:99<span class="o">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">price</span></code> 数据仍然存在于私有数据库上。</p>
+<p>执行如下命令创建一个新的 <strong>marble2</strong>。这个交易将在链上创建一个新区块。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MARBLE</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&quot;{\&quot;name\&quot;:\&quot;marble2\&quot;,\&quot;color\&quot;:\&quot;blue\&quot;,\&quot;size\&quot;:35,\&quot;owner\&quot;:\&quot;tom\&quot;,\&quot;price\&quot;:99}&quot;</span> <span class="p">|</span> base64 <span class="p">|</span> tr -d <span class="se">\\</span>n<span class="k">)</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;InitMarble&quot;]}&#39;</span> --transient <span class="s2">&quot;{\&quot;marble\&quot;:\&quot;</span><span class="nv">$MARBLE</span><span class="s2">\&quot;}&quot;</span>
+</pre></div>
+</div>
+<p>再次切换回终端窗口并查看节点的私有数据日志。你将看到区块高度增加了 1。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker logs peer0.org1.example.com <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> grep -i -a -E <span class="s1">&#39;private|pvt|privdata&#39;</span>
+</pre></div>
+</div>
+<p>返回到节点容器，运行如下命令查询 <strong>marble1</strong> 的价格数据：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>私有数据没有被清除，查询结果也没有改变：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marblePrivateDetails&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;price&quot;</span>:99<span class="o">}</span>
+</pre></div>
+</div>
+<p>运行下边的命令将 marble2 转移给 “joe” 。这个交易将使链上增加第二个区块。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MARBLE_OWNER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&quot;{\&quot;name\&quot;:\&quot;marble2\&quot;,\&quot;owner\&quot;:\&quot;joe\&quot;}&quot;</span> <span class="p">|</span> base64 <span class="p">|</span> tr -d <span class="se">\\</span>n<span class="k">)</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;TransferMarble&quot;]}&#39;</span> --transient <span class="s2">&quot;{\&quot;marble_owner\&quot;:\&quot;</span><span class="nv">$MARBLE_OWNER</span><span class="s2">\&quot;}&quot;</span>
+</pre></div>
+</div>
+<p>再次切换回终端窗口并查看节点的私有数据日志。你将看到区块高度增加了 1 。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker logs peer0.org1.example.com <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> grep -i -a -E <span class="s1">&#39;private|pvt|privdata&#39;</span>
+</pre></div>
+</div>
+<p>返回到节点容器，再次运行如下命令查询 marble1 的价格数据：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你仍然可以看到价格。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marblePrivateDetails&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;price&quot;</span>:99<span class="o">}</span>
+</pre></div>
+</div>
+<p>运行下边的命令将 marble2 转移给 “tom” 。这个交易将使链上增加第三个区块。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MARBLE_OWNER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&quot;{\&quot;name\&quot;:\&quot;marble2\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;}&quot;</span> <span class="p">|</span> base64 <span class="p">|</span> tr -d <span class="se">\\</span>n<span class="k">)</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;TransferMarble&quot;]}&#39;</span> --transient <span class="s2">&quot;{\&quot;marble_owner\&quot;:\&quot;</span><span class="nv">$MARBLE_OWNER</span><span class="s2">\&quot;}&quot;</span>
+</pre></div>
+</div>
+<p>再次切换回终端窗口并查看节点的私有数据日志。你将看到区块高度增加了 1 。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker logs peer0.org1.example.com <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> grep -i -a -E <span class="s1">&#39;private|pvt|privdata&#39;</span>
+</pre></div>
+</div>
+<p>返回到节点容器，再次运行如下命令查询 marble1 的价格数据：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>你仍然可以看到价格数据。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span><span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marblePrivateDetails&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;price&quot;</span>:99<span class="o">}</span>
+</pre></div>
+</div>
+<p>最后，运行下边的命令将 marble2 转移给 “jerry” 。这个交易将使链上增加第四个区块。在此次交易之后，<code class="docutils literal notranslate"><span class="pre">price</span></code> 私有数据将会被清除。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">MARBLE_OWNER</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -n <span class="s2">&quot;{\&quot;name\&quot;:\&quot;marble2\&quot;,\&quot;owner\&quot;:\&quot;jerry\&quot;}&quot;</span> <span class="p">|</span> base64 <span class="p">|</span> tr -d <span class="se">\\</span>n<span class="k">)</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;TransferMarble&quot;]}&#39;</span> --transient <span class="s2">&quot;{\&quot;marble_owner\&quot;:\&quot;</span><span class="nv">$MARBLE_OWNER</span><span class="s2">\&quot;}&quot;</span>
+</pre></div>
+</div>
+<p>再次切换回终端窗口并查看节点的私有数据日志。你将看到区块高度增加了 1 。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker logs peer0.org1.example.com <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> grep -i -a -E <span class="s1">&#39;private|pvt|privdata&#39;</span>
+</pre></div>
+</div>
+<p>返回到节点容器，再次运行如下命令查询 marble1 的价格数据：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C mychannel -n marblesp -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;ReadMarblePrivateDetails&quot;,&quot;marble1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>因为价格数据已经被清除了，所以你就查询不到了。你应该会看到类似下边的结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Error: endorsement failure during query. response: status:500
+message:<span class="s2">&quot;{\&quot;Error\&quot;:\&quot;Marble private details does not exist: marble1\&quot;}&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pd-indexes">
+<span id="id16"></span><h2>使用私有数据索引<a class="headerlink" href="#pd-indexes" title="Permalink to this headline">¶</a></h2>
+<p>可以通过打包链码目录中的索引 <code class="docutils literal notranslate"><span class="pre">META-INF/statedb/couchdb/collections/&lt;collection_name&gt;/indexes</span></code> 目录，将索引也用于私有数据数据集。<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02_private/go/META-INF/statedb/couchdb/collections/collectionMarbles/indexes/indexOwner.json">这里</a> 有一个可用的索引示例。</p>
+<p>在生产环境中部署链码时，建议在链码目录中定义所有索引，这样当链码在通道中的节点上安装和初始化的时候就可以自动作为一个单元自动部署。当使用 <code class="docutils literal notranslate"><span class="pre">--collections-config</span></code> 标识私有数据集的 JSON 文件路径时，通道上链码初始化的时候相关的索引会自动被部署。</p>
+</div>
+<div class="section" id="pd-ref-material">
+<span id="id17"></span><h2>其他资源<a class="headerlink" href="#pd-ref-material" title="Permalink to this headline">¶</a></h2>
+<p>这里有一个额外的私有数据学习的视频。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这个视频用的是旧版本的生命周期模型安装私有数据集合。</p>
+</div>
+<br/><br/>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qyjDi93URJE" frameborder="0" allowfullscreen></iframe>
+<br/><br/></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="couchdb_tutorial.html" class="btn btn-neutral float-right" title="使用 CouchDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial/commercial_paper.html" class="btn btn-neutral" title="}" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

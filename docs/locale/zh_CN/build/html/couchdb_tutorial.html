@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>使用 CouchDB &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="创建通道" href="create_channel/create_channel_overview.html" />
+    <link rel="prev" title="在 Fabric 中使用私有数据" href="private_data_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="test_network.html">##### Generate certificates using cryptogen tool #########</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_network.html#create-org1-identities">############ Create Org1 Identities ######################</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id12">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id21">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id24">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id43">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_first_app.html">编写你的第一个应用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/commercial_paper.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="private_data_tutorial.html">在 Fabric 中使用私有数据</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">使用 CouchDB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">为什么是 CouchDB ？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hyperledger-fabric-couchdb">在 Hyperledger Fabric 中启用 CouchDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-create-index">创建一个索引</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-add-index">将索引添加到你的链码文件夹</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">启动网络</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-install-deploy">安装和定义链码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">验证部署的索引</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-query">查询 CouchDB 状态数据库</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">在链码中构建一个查询</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#peer">使用 peer 命令运行查询</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-best">查询和索引的最佳实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-pagination">在 CouchDB 状态数据库查询中使用分页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-update-index">升级索引</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">迭代索引定义</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cdb-delete-index">删除索引</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create_channel/create_channel_overview.html">创建通道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channel_update_tutorial.html">向通道添加组织</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chaincode4ade.html">链码开发者教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videos.html">视频</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="tutorials.html">教程</a> &raquo;</li>
+        
+      <li>使用 CouchDB</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/couchdb_tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="couchdb">
+<h1>使用 CouchDB<a class="headerlink" href="#couchdb" title="Permalink to this headline">¶</a></h1>
+<p>本教程将讲述在 Hyperledger Fabric 中使用 CouchDB 作为状态数据库的步骤。现在，
+你应该已经熟悉 Fabric 的概念并且已经浏览了一些示例和教程。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这个教程使用了 Fabric v2.0 引进的新功能链码生命周期。
+如果你想要使用以前版本的生命周期模型来操作链码的索引功能，
+访问 v1.4 版本的 <a class="reference external" href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/couchdb_tutorial.html">使用 CouchDB</a> .</p>
+</div>
+<p>本教程将带你按如下步骤与学习：</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#cdb-enable-couch"><span class="std std-ref">在 Hyperledger Fabric 中启用 CouchDB</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-create-index"><span class="std std-ref">创建一个索引</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-add-index"><span class="std std-ref">将索引添加到你的链码文件夹</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-install-deploy"><span class="std std-ref">安装和定义链码</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-query"><span class="std std-ref">查询 CouchDB 状态数据库</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-best"><span class="std std-ref">查询和索引的最佳实践</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-pagination"><span class="std std-ref">在 CouchDB 状态数据库查询中使用分页</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-update-index"><span class="std std-ref">升级索引</span></a></p></li>
+<li><p><a class="reference internal" href="#cdb-delete-index"><span class="std std-ref">删除索引</span></a></p></li>
+</ol>
+<p>想要更深入的研究 CouchDB 的话，请参阅 <a class="reference internal" href="couchdb_as_state_database.html"><span class="doc">使用 CouchDB 作为状态数据库</span></a> ，关于 Fabric 账
+本的跟多信息请参阅 <a class="reference external" href="ledger/ledger.html">Ledger</a> 主题。下边的教程将详细讲述如何在你的区
+块链网络中使用 CouchDB 。</p>
+<p>本教程将使用 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02/go/marbles_chaincode.go">Marbles sample</a> 作为演示在 Fabric 中使用 CouchDB 的用例，并且将会把 Marbles 部署在 <a class="reference internal" href="build_network.html"><span class="doc">构建你的第一个网络</span></a> （BYFN）教程网络上。</p>
+<div class="section" id="id1">
+<h2>为什么是 CouchDB ？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Fabric 支持两种类型的节点数据库。LevelDB 是默认嵌入在 peer 节点的状态数据库。
+LevelDB 用于将链码数据存储为简单的键-值对，仅支持键、键范围和复合键查询。CouchDB 是一
+个可选的状态数据库，支持以 JSON 格式在账本上建模数据并支持富查询，以便您查询实际数据
+内容而不是键。CouchDB 同样支持在链码中部署索引，以便高效查询和对大型数据集的支持。</p>
+<p>为了发挥 CouchDB 的优势，也就是说基于内容的 JSON 查询，你的数据必须以 JSON 格式
+建模。你必须在设置你的网络之前确定使用 LevelDB 还是 CouchDB 。由于数据兼容性的问
+题，不支持节点从 LevelDB 切换为 CouchDB 。网络中的所有节点必须使用相同的数据库类
+型。如果你想 JSON 和二进制数据混合使用，你同样可以使用 CouchDB ，但是二进制数据只
+能根据键、键范围和复合键查询。</p>
+</div>
+<div class="section" id="hyperledger-fabric-couchdb">
+<span id="cdb-enable-couch"></span><h2>在 Hyperledger Fabric 中启用 CouchDB<a class="headerlink" href="#hyperledger-fabric-couchdb" title="Permalink to this headline">¶</a></h2>
+<p>CouchDB 是独立于节点运行的一个数据库进程。在安装、管理和操作的时候有一些额外
+的注意事项。有一个可用的 Docker 镜像 <a class="reference external" href="https://hub.docker.com/_/couchdb/">CouchDB</a>
+并且我们建议它和节点运行在同一个服务器上。我们需要在每一个节点上安装一个 CouchDB
+容器，并且更新每一个节点的配置文件 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> ，将节点指向 CouchDB 容器。
+<code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 文件的路径必须在环境变量 FABRIC_CFG_PATH 中指定：</p>
+<ul class="simple">
+<li><p>对于 Docker 的部署，在节点容器中 <code class="docutils literal notranslate"><span class="pre">FABRIC_CFG_PATH</span></code> 指定的文件夹中的 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code>
+是预先配置好的。如果你要使用 docker 环境，你可以通过重写 <code class="docutils literal notranslate"><span class="pre">docker-compose-couch.yaml</span></code>
+中的环境变量来覆盖 core.yaml</p></li>
+<li><p>对于原生的二进制部署， <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 包含在发布的构件中。</p></li>
+</ul>
+<p>编辑 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">stateDatabase</span></code> 部分。将 <code class="docutils literal notranslate"><span class="pre">stateDatabase</span></code> 指定为 <code class="docutils literal notranslate"><span class="pre">CouchDB</span></code>
+并且填写 <code class="docutils literal notranslate"><span class="pre">couchDBConfig</span></code> 相关的配置。在 Fabric 中配置 CouchDB 的更多细节，请参阅
+<a class="reference external" href="couchdb_as_state_database.html#couchdb-configuration">CouchDB 配置</a> 。</p>
+</div>
+<div class="section" id="cdb-create-index">
+<span id="id2"></span><h2>创建一个索引<a class="headerlink" href="#cdb-create-index" title="Permalink to this headline">¶</a></h2>
+<p>为什么索引很重要？</p>
+<p>索引可以让数据库不用在每次查询的时候都检查每一行，可以让数据库运行的更快和更高效。
+一般来说，对频繁查询的数据进行索引可以使数据查询更高效。为了充分发挥 CouchDB 的优
+势 – 对 JSON 数据进行富查询的能力 – 并不需要索引，但是为了性能考虑强烈建议建立
+索引。另外，如果在一个查询中需要排序，CouchDB 需要在排序的字段有一个索引。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>没有索引的情况下富查询也是可以使用的，但是会在 CouchDB 的日志中抛出一个没
+有找到索引的警告。如果一个富查询中包含了一个排序的说明，需要排序的那个字段
+就必须有索引；否则，查询将会失败并抛出错误。</p>
+</div>
+<p>为了演示构建一个索引，我们将会使用来自 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02/go/marbles_chaincode.go">Marbles
+sample</a>. 的数据。
+在这个例子中， Marbles 的数据结构定义如下：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">marble</span> <span class="nx">struct</span> <span class="p">{</span>
+         <span class="nx">ObjectType</span> <span class="nx">string</span> <span class="sb">`json:&quot;docType&quot;`</span> <span class="c1">//docType is used to distinguish the various types of objects in state database</span>
+         <span class="nx">Name</span>       <span class="nx">string</span> <span class="sb">`json:&quot;name&quot;`</span>    <span class="c1">//the field tags are needed to keep case from bouncing around</span>
+         <span class="nx">Color</span>      <span class="nx">string</span> <span class="sb">`json:&quot;color&quot;`</span>
+         <span class="nx">Size</span>       <span class="kr">int</span>    <span class="sb">`json:&quot;size&quot;`</span>
+         <span class="nx">Owner</span>      <span class="nx">string</span> <span class="sb">`json:&quot;owner&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在这个结构体中，（ <code class="docutils literal notranslate"><span class="pre">docType</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">owner</span></code> ）属性
+定义了和资产相关的账本数据。 <code class="docutils literal notranslate"><span class="pre">docType</span></code> 属性用来在链码中区分可能需要单独查询的
+不同数据类型的模式。当时使用 CouchDB 的时候，建议包含 <code class="docutils literal notranslate"><span class="pre">docType</span></code> 属性来区分在链
+码命名空间中的每一个文档。（每一个链码都需要有他们自己的 CouchDB 数据库，也就是
+说，每一个链码都有它自己的键的命名空间。）</p>
+<p>在 Marbles 数据结构的定义中， <code class="docutils literal notranslate"><span class="pre">docType</span></code> 用来识别这个文档或者资产是一个弹珠资产。
+同时在链码数据库中也可能存在其他文档或者资产。数据库中的文档对于这些属性值来说都是
+可查询的。</p>
+<p>当为链码查询定义一个索引的时候，每一个索引都必须定义在一个扩展名为 <code class="docutils literal notranslate"><span class="pre">*.json</span></code> 的文本文件中，并且索引定义的格式必须为 CouchDB 索引的 JSON 格式。</p>
+<p>需要以下三条信息来定义一个索引：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>fields</cite>: 这些是常用的查询字段</p></li>
+<li><p><cite>name</cite>: 索引名</p></li>
+<li><p><cite>type</cite>: 它的内容一般是 json</p></li>
+</ul>
+</div></blockquote>
+<p>例如，这是一个对字段 <code class="docutils literal notranslate"><span class="pre">foo</span></code> 的一个名为 <code class="docutils literal notranslate"><span class="pre">foo-index</span></code> 的简单索引。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;foo-index&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;json&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>可选地，设计文档（ design document ）属性 <code class="docutils literal notranslate"><span class="pre">ddoc</span></code> 可以写在索引的定义中。<a class="reference external" href="http://guide.couchdb.org/draft/design.html">design document</a> 是 CouchDB 结构,用于包含索引。索引可以以组的形式定义在设计文档中以提升效率，但是 CouchDB 建议每一个设计文档包含一个索引。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>当定义一个索引的时候，最好将 <code class="docutils literal notranslate"><span class="pre">ddoc</span></code> 属性和值包含在索引内。包含这个
+属性以确保在你需要的时候升级索引，这是很重要的。它还使你能够明确指定
+要在查询上使用的索引。</p>
+</div>
+<p>这里有另外一个使用 Marbles 示例定义索引的例子，在索引 <code class="docutils literal notranslate"><span class="pre">indexOwner</span></code> 使用了多个字段 <code class="docutils literal notranslate"><span class="pre">docType</span></code> 和 <code class="docutils literal notranslate"><span class="pre">owner</span></code> 并且包含了 <code class="docutils literal notranslate"><span class="pre">ddoc</span></code> 属性：</p>
+<div class="highlight-json notranslate" id="indexexample"><div class="highlight"><pre><span></span>{
+  &quot;index&quot;:{
+      &quot;fields&quot;:[&quot;docType&quot;,&quot;owner&quot;] // Names of the fields to be queried
+  },
+  &quot;ddoc&quot;:&quot;indexOwnerDoc&quot;, // (optional) Name of the design document in which the index will be created.
+  &quot;name&quot;:&quot;indexOwner&quot;,
+  &quot;type&quot;:&quot;json&quot;
+}
+</pre></div>
+</div>
+<p>在上边的例子中，如果设计文档 <code class="docutils literal notranslate"><span class="pre">indexOwnerDoc</span></code> 不存在，当索引部署的时候会自动创建
+一个。一个索引可以根据字段列表中指定的一个或者多个属性构建，而且可以定义任何属性的
+组合。一个属性可以存在于同一个 docType 的多个索引中。在下边的例子中， <code class="docutils literal notranslate"><span class="pre">index1</span></code>
+只包含 <code class="docutils literal notranslate"><span class="pre">owner</span></code> 属性， <code class="docutils literal notranslate"><span class="pre">index2</span></code> 包含 <code class="docutils literal notranslate"><span class="pre">owner</span> <span class="pre">和</span> <span class="pre">color</span></code> 属性， <code class="docutils literal notranslate"><span class="pre">index3</span></code> 包含
+<code class="docutils literal notranslate"><span class="pre">owner、</span> <span class="pre">color</span> <span class="pre">和</span> <span class="pre">size</span></code> 属性。另外，注意，根据 CouchDB 的建议，每一个索引的定义
+都包含一个它们自己的 <code class="docutils literal notranslate"><span class="pre">ddoc</span></code> 值。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;index&quot;:{
+      &quot;fields&quot;:[&quot;owner&quot;] // Names of the fields to be queried
+  },
+  &quot;ddoc&quot;:&quot;index1Doc&quot;, // (optional) Name of the design document in which the index will be created.
+  &quot;name&quot;:&quot;index1&quot;,
+  &quot;type&quot;:&quot;json&quot;
+}
+
+{
+  &quot;index&quot;:{
+      &quot;fields&quot;:[&quot;owner&quot;, &quot;color&quot;] // Names of the fields to be queried
+  },
+  &quot;ddoc&quot;:&quot;index2Doc&quot;, // (optional) Name of the design document in which the index will be created.
+  &quot;name&quot;:&quot;index2&quot;,
+  &quot;type&quot;:&quot;json&quot;
+}
+
+{
+  &quot;index&quot;:{
+      &quot;fields&quot;:[&quot;owner&quot;, &quot;color&quot;, &quot;size&quot;] // Names of the fields to be queried
+  },
+  &quot;ddoc&quot;:&quot;index3Doc&quot;, // (optional) Name of the design document in which the index will be created.
+  &quot;name&quot;:&quot;index3&quot;,
+  &quot;type&quot;:&quot;json&quot;
+}
+</pre></div>
+</div>
+<p>一般来说，你为索引字段建模应该匹配将用于查询过滤和排序的字段。对于以 JSON 格式
+构建索引的更多信息请参阅 <a class="reference external" href="http://docs.couchdb.org/en/latest/api/database/find.html#db-index">CouchDB documentation</a> 。</p>
+<p>关于索引最后要说的是，Fabric 在数据库中为文档建立索引的时候使用一种成为 <code class="docutils literal notranslate"><span class="pre">索引升温</span>
+<span class="pre">（index</span> <span class="pre">warming）</span></code> 的模式。 CouchDB 直到下一次查询的时候才会索引新的或者更新的
+文档。Fabric 通过在每一个数据区块提交完之后请求索引更新的方式，来确保索引处于 ‘热
+（warm）’ 状态。这就确保了查询速度快，因为在运行查询之前不用索引文档。这个过程保
+持了索引的现状，并在每次新数据添加到状态数据的时候刷新。</p>
+</div>
+<div class="section" id="cdb-add-index">
+<span id="id3"></span><h2>将索引添加到你的链码文件夹<a class="headerlink" href="#cdb-add-index" title="Permalink to this headline">¶</a></h2>
+<p>当你完成索引之后，你需要把它打包到你的链码中，以便于将它部署到合适的元数据文件夹。你可以使用 <a class="reference internal" href="commands/peerlifecycle.html"><span class="doc">&lt;no title&gt;</span></a> 命令安装链码。JSON 索引文件必须放在链码目录的 <code class="docutils literal notranslate"><span class="pre">META-INF/statedb/couchdb/indexes</span></code> 路径下。</p>
+<p>下边的 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/tree/master/chaincode/marbles02/go">Marbles 示例</a> 展示了如何将索引打包到链码中。</p>
+<a class="reference internal image-reference" href="_images/couchdb_tutorial_pkg_example.png"><img alt="Marbles Chaincode Index Package" class="align-center" src="_images/couchdb_tutorial_pkg_example.png" style="width: 681.0px; height: 333.0px;" /></a>
+<p>这个例子包含了一个名为 indexOwnerDoc 的索引:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;index&quot;</span><span class="p">:{</span><span class="nt">&quot;fields&quot;</span><span class="p">:[</span><span class="s2">&quot;docType&quot;</span><span class="p">,</span><span class="s2">&quot;owner&quot;</span><span class="p">]},</span><span class="nt">&quot;ddoc&quot;</span><span class="p">:</span><span class="s2">&quot;indexOwnerDoc&quot;</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;indexOwner&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;json&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id4">
+<h3>启动网络<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>我们将会启动一个 Fabric 测试网络并且使用它来部署 marbles 链码。
+使用下面的命令导航到 Fabric samples 中的目录 <cite>test-network</cite> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> fabric-samples/test-network
+</pre></div>
+</div>
+<p>对于这个教程，我们希望在一个已知的初始状态进行操作。
+下面的命令会删除正在进行的或停止的 docker 容器并且移除之前生成的构件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./network.sh down
+</pre></div>
+</div>
+<p>如果你之前从没运行过这个教程，在我们部署链码到网络之前你需要使用 vendor 来安装链码的依赖文件。
+运行以下的命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ../chaincode/marbles02/go
+<span class="nv">GO111MODULE</span><span class="o">=</span>on go mod vendor
+<span class="nb">cd</span> ../../../test-network
+</pre></div>
+</div>
+<p>在 <cite>test-network</cite> 目录中，使用以下命令部署带有 CouchDB 的测试网络：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./network.sh up createChannel -s couchdb
+</pre></div>
+</div>
+<p>运行这个命令会创建两个使用 CouchDB 作为状态数据库的 fabric 节点。
+同时也会创建一个排序节点和一个名为 <code class="docutils literal notranslate"><span class="pre">mychannel</span></code> 的通道</p>
+</div>
+</div>
+<div class="section" id="cdb-install-deploy">
+<span id="id5"></span><h2>安装和定义链码<a class="headerlink" href="#cdb-install-deploy" title="Permalink to this headline">¶</a></h2>
+<p>客户端应用程序通过链码和区块链账本交互。所以我们需要在每一个执行和背书交易的节点上安装链码。但是在我们和链码交互之前，通道中的成员需要一致同意链码的定义，以此
+来建立链码的治理。在之前的章节中，我们演示了如何将索引添加到链码文件夹中以便索引和链码部署在一起。</p>
+<p>链码在安装到 Peer 节点之前需要打包。我们可以使用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-package">peer lifecycle chaincode package</a> 命令来打包弹珠链码。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>1. 启动测试网络后，在你终端拷贝粘贴下面的环境变量，这样就可以使用 Org1 管理员用户和网络交互。
+确保你在 <cite>test-network</cite> 目录中。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/../bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">FABRIC_CFG_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/../config/
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>使用下面的命令来打包 marbles 链码：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode package marbles.tar.gz --path ../chaincode/marbles02/go --lang golang --label marbles_1
+</pre></div>
+</div>
+<p>这个命令会创建一个名为 marbles.tar.gz 的链码包。</p>
+<p>3. 使用下面的命令来安装链码包到节点上
+<code class="docutils literal notranslate"><span class="pre">peer0.org1.example.com</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode install marbles.tar.gz
+</pre></div>
+</div>
+<p>一个成功的安装命令会返回链码 id ，就像下面的返回信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2019</span>-04-22 <span class="m">18</span>:47:38.312 UTC <span class="o">[</span>cli.lifecycle.chaincode<span class="o">]</span> submitInstallProposal -&gt; INFO <span class="m">001</span> Installed remotely: response:&lt;status:200 payload:<span class="s2">&quot;\nJmarbles_1:0907c1f3d3574afca69946e1b6132691d58c2f5c5703df7fc3b692861e92ecd3\022\tmarbles_1&quot;</span> &gt;
+<span class="m">2019</span>-04-22 <span class="m">18</span>:47:38.312 UTC <span class="o">[</span>cli.lifecycle.chaincode<span class="o">]</span> submitInstallProposal -&gt; INFO <span class="m">002</span> Chaincode code package identifier: marbles_1:0907c1f3d3574afca69946e1b6132691d58c2f5c5703df7fc3b692861e92ecd3
+</pre></div>
+</div>
+<p>安装链码到 <code class="docutils literal notranslate"><span class="pre">peer0.org1.example.com</span></code> 后，我们需要让 Org1 同意链码定义。</p>
+<ol class="arabic simple" start="4">
+<li><p>使用下面的命令来用你的当前节点查询已安装链码的 package ID 。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode queryinstalled
+</pre></div>
+</div>
+<p>这个命令会返回和安装命令相同的 package ID 。
+你应该看到类似下面的输出：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Installed chaincodes on peer:
+Package ID: marbles_1:60ec9430b221140a45b96b4927d1c3af736c1451f8d432e2a869bdbf417f9787, Label: marbles_1
+</pre></div>
+</div>
+<p>5. 将 package ID 声明为一个环境变量。
+将 <code class="docutils literal notranslate"><span class="pre">peer</span> <span class="pre">lifecycle</span> <span class="pre">chaincode</span> <span class="pre">queryinstalled</span></code> 命令返回的 marbles_1 的 package ID 粘贴到下面的命令中。
+package ID 不是所有用户都一样，所以你需要使用终端返回的 package ID 来完成这个步骤。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CC_PACKAGE_ID</span><span class="o">=</span>marbles_1:60ec9430b221140a45b96b4927d1c3af736c1451f8d432e2a869bdbf417f9787
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>使用下面的命令让 Org1 同意 marbles 链码定义。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ORDERER_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marbles --version <span class="m">1</span>.0 --signature-policy <span class="s2">&quot;OR(&#39;Org1MSP.member&#39;,&#39;Org2MSP.member&#39;)&quot;</span> --init-required --package-id <span class="nv">$CC_PACKAGE_ID</span> --sequence <span class="m">1</span> --tls --cafile <span class="nv">$ORDERER_CA</span>
+</pre></div>
+</div>
+<p>命令成功运行的时候你应该看到和下面类似的信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2020</span>-01-07 <span class="m">16</span>:24:20.886 EST <span class="o">[</span>chaincodeCmd<span class="o">]</span> ClientWait -&gt; INFO <span class="m">001</span> txid <span class="o">[</span>560cb830efa1272c85d2f41a473483a25f3b12715d55e22a69d55abc46581415<span class="o">]</span> committed with status <span class="o">(</span>VALID<span class="o">)</span> at
+</pre></div>
+</div>
+<p>在链码定义提交之前，我们需要大多数组织同意链码定义。这意味着我们需要 Org2 也同意该链码定义。因为我们不需要 Org2 背书链码并且不安装链码包到 Org2 的节点，所以 packageID 作为链码定义的一部分，我们不需要向 Org2 提供它。</p>
+<ol class="arabic simple" start="7">
+<li><p>让终端使用 Org2 管理员身份操作。将下面的命令一起拷贝粘贴到节点容器并且一次性全部运行。</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org2MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:9051
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>使用下面的命令让 Org2 同意链码定义：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer lifecycle chaincode approveformyorg -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marbles --version <span class="m">1</span>.0 --signature-policy <span class="s2">&quot;OR(&#39;Org1MSP.member&#39;,&#39;Org2MSP.member&#39;)&quot;</span> --init-required --sequence <span class="m">1</span> --tls --cafile <span class="nv">$ORDERER_CA</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p>现在我们可以使用 <a class="reference external" href="commands/peerlifecycle.html#peer-lifecycle-chaincode-commit">peer lifecycle chaincode commit</a>  命令来提交链码定义到通道：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">ORDERER_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+<span class="nb">export</span> <span class="nv">ORG1_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">ORG2_CA</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marbles --version <span class="m">1</span>.0 --sequence <span class="m">1</span> --signature-policy <span class="s2">&quot;OR(&#39;Org1MSP.member&#39;,&#39;Org2MSP.member&#39;)&quot;</span> --init-required --tls --cafile <span class="nv">$ORDERER_CA</span> --peerAddresses localhost:7051 --tlsRootCertFiles <span class="nv">$ORG1_CA</span> --peerAddresses localhost:9051 --tlsRootCertFiles <span class="nv">$ORG2_CA</span>
+</pre></div>
+</div>
+<p>提交交易成功的时候你应该看到类似下面的信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2019</span>-04-22 <span class="m">18</span>:57:34.274 UTC <span class="o">[</span>chaincodeCmd<span class="o">]</span> ClientWait -&gt; INFO <span class="m">001</span> txid <span class="o">[</span>3da8b0bb8e128b5e1b6e4884359b5583dff823fce2624f975c69df6bce614614<span class="o">]</span> committed with status <span class="o">(</span>VALID<span class="o">)</span> at peer0.org2.example.com:9051
+<span class="m">2019</span>-04-22 <span class="m">18</span>:57:34.709 UTC <span class="o">[</span>chaincodeCmd<span class="o">]</span> ClientWait -&gt; INFO <span class="m">002</span> txid <span class="o">[</span>3da8b0bb8e128b5e1b6e4884359b5583dff823fce2624f975c69df6bce614614<span class="o">]</span> committed with status <span class="o">(</span>VALID<span class="o">)</span> at peer0.org1.example.com:7051
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li><p>因为 marbles 链码包含一个初始化函数，所以在我们使用链码其他函数前需要使用 <a class="reference external" href="commands/peerchaincode.html?%20chaincode%20instantiate#peer-chaincode-invoke">peer chaincode invoke</a> 命令调用 <code class="docutils literal notranslate"><span class="pre">Init()</span></code> ：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name marbles --isInit --tls --cafile <span class="nv">$ORDERER_CA</span> --peerAddresses localhost:7051 --tlsRootCertFiles <span class="nv">$ORG1_CA</span> -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;Init&quot;]}&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="id6">
+<h3>验证部署的索引<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>当链码在节点上安装并且在通道上部署完成之后，索引会被部署到每一个节点的 CouchDB
+状态数据库上。你可以通过检查 Docker 容器中的节点日志来确认 CouchDB 是否被创建成功。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<blockquote>
+<div><p>为了查看节点 Docker 容器的日志，打开一个新的终端窗口，然后运行下边的命令来匹配索 引被创建的确认信息。</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">logs</span> <span class="n">peer0</span><span class="o">.</span><span class="n">org1</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>  <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;CouchDB index&quot;</span>
+</pre></div>
+</div>
+<p>你将会看到类似下边的结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">couchdb</span><span class="p">]</span> <span class="n">CreateIndex</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">0</span><span class="n">be</span> <span class="n">Created</span> <span class="n">CouchDB</span> <span class="n">index</span> <span class="p">[</span><span class="n">indexOwner</span><span class="p">]</span> <span class="ow">in</span> <span class="n">state</span> <span class="n">database</span> <span class="p">[</span><span class="n">mychannel_marbles</span><span class="p">]</span> <span class="n">using</span> <span class="n">design</span> <span class="n">document</span> <span class="p">[</span><span class="n">_design</span><span class="o">/</span><span class="n">indexOwnerDoc</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果 Marbles 没有安装在节点 <code class="docutils literal notranslate"><span class="pre">peer0.org1.example.com</span></code> 上，你可
+能需要切换到其他的安装了 Marbles 的节点。</p>
+</div>
+</div>
+</div>
+<div class="section" id="cdb-query">
+<span id="id7"></span><h2>查询 CouchDB 状态数据库<a class="headerlink" href="#cdb-query" title="Permalink to this headline">¶</a></h2>
+<p>现在索引已经在 JSON 中定义了并且和链码部署在了一起，链码函数可以对 CouchDB 状态数据库执行 JSON 查询，同时 peer 命令可以调用链码函数。</p>
+<p>在查询的时候指定索引的名字是可选的。如果不指定，同时索引已经在被查询的字段上存在了，已存在的索引会自动被使用。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在查询的时候使用 <code class="docutils literal notranslate"><span class="pre">use_index</span></code> 关键字包含一个索引名字是一个好的习惯。如果
+不使用索引名，CouchDB 可能不会使用最优的索引。而且 CouchDB 也可能会不使用
+索引，但是在测试期间数据少的化你很难意识到。只有在数据量大的时候，你才可能
+会意识到因为 CouchDB 没有使用索引而导致性能较低。</p>
+</div>
+<div class="section" id="id8">
+<h3>在链码中构建一个查询<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>你可以使用链码中定义的富查询来查询账本上的数据。 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02/go/marbles_chaincode.go">marbles02 示例</a> 中包含了两个富查询方法：</p>
+<blockquote>
+<div><ul>
+<li><p><strong>queryMarbles</strong> –</p>
+<blockquote>
+<div><p>一个 <strong>富查询</strong> 示例。这是一个可以将一个（选择器）字符串传入函数的查询。
+这个查询对于需要在运行时动态创建他们自己的选择器的客户端应用程序很有用。
+跟多关于选择器的信息请参考 <a class="reference external" href="http://docs.couchdb.org/en/latest/api/database/find.html#find-selectors">CouchDB selector syntax</a> 。</p>
+</div></blockquote>
+</li>
+<li><p><strong>queryMarblesByOwner</strong> –</p>
+<blockquote>
+<div><p>一个查询逻辑保存在链码中的**参数查询**的示例。在这个例子中，函数值接受单个参数，
+就是弹珠的主人。然后使用 JSON 查询语法查询状态数据库中匹配 “marble” 的 docType
+和 拥有者 id 的 JSON 文档。</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="peer">
+<h3>使用 peer 命令运行查询<a class="headerlink" href="#peer" title="Permalink to this headline">¶</a></h3>
+<p>由于缺少一个客户端程序，我们可以使用节点命令来测试链码中定义的查询函数。我们将自定义 <a class="reference external" href="commands/peerchaincode.html?%20chaincode%20query#peer-chaincode-query">peer chaincode query</a>
+命令来使用Marbles索引 <code class="docutils literal notranslate"><span class="pre">indexOwner</span></code> 并且使用 <code class="docutils literal notranslate"><span class="pre">queryMarbles</span></code> 函数查询所有 marbles 中拥有者是 “tom” 的 marble 。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<p>在查询数据库之前，我们应该添加些数据。运行下面的命令使用 Org1 创建一个拥有者是 “tom” 的 marble ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble1&quot;,&quot;blue&quot;,&quot;35&quot;,&quot;tom&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>当链码实例化后，然后部署索引，索引就可以自动被链码的查询使用。CouchDB 可以根 据查询的字段决定使用哪个索引。如果这个查询准则存在索引，它就会被使用。但是建议在查询的时候指定 <code class="docutils literal notranslate"><span class="pre">use_index</span></code> 关键字。下边的 peer 命令就是一个如何通过在选择器语法中包含 <code class="docutils literal notranslate"><span class="pre">use_index</span></code> 关键字来明确地指定索引的例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Rich Query with index name explicitly specified:
+peer chaincode query -C mychannel -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarbles&quot;, &quot;{\&quot;selector\&quot;:{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;}, \&quot;use_index\&quot;:[\&quot;_design/indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>详细看一下上边的查询命令，有三个参数值得关注：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">queryMarbles</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Marbles 链码中的函数名称。注意使用了一个 <a class="reference external" href="https://godoc.org/github.com/hyperledger/fabric-chaincode-go/shim">shim</a>
+<code class="docutils literal notranslate"><span class="pre">shim.ChaincodeStubInterface</span></code> 来访问和修改账本。 <code class="docutils literal notranslate"><span class="pre">getQueryResultForQueryString()</span></code>
+传递 queryString 给 shim API <code class="docutils literal notranslate"><span class="pre">getQueryResult()</span></code>。</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>func <span class="o">(</span>t *SimpleChaincode<span class="o">)</span> queryMarbles<span class="o">(</span>stub shim.ChaincodeStubInterface, args <span class="o">[]</span>string<span class="o">)</span> pb.Response <span class="o">{</span>
+
+        //   <span class="m">0</span>
+        // <span class="s2">&quot;queryString&quot;</span>
+         <span class="k">if</span> len<span class="o">(</span>args<span class="o">)</span> &lt; <span class="m">1</span> <span class="o">{</span>
+                 <span class="k">return</span> shim.Error<span class="o">(</span><span class="s2">&quot;Incorrect number of arguments. Expecting 1&quot;</span><span class="o">)</span>
+         <span class="o">}</span>
+
+         queryString :<span class="o">=</span> args<span class="o">[</span><span class="m">0</span><span class="o">]</span>
+
+         queryResults, err :<span class="o">=</span> getQueryResultForQueryString<span class="o">(</span>stub, queryString<span class="o">)</span>
+         <span class="k">if</span> err !<span class="o">=</span> nil <span class="o">{</span>
+               <span class="k">return</span> shim.Error<span class="o">(</span>err.Error<span class="o">())</span>
+         <span class="o">}</span>
+         <span class="k">return</span> shim.Success<span class="o">(</span>queryResults<span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{&quot;selector&quot;:{&quot;docType&quot;:&quot;marble&quot;,&quot;owner&quot;:&quot;tom&quot;}</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>这是一个 <strong>ad hoc 选择器</strong> 字符串的示例，用来查找所有 <code class="docutils literal notranslate"><span class="pre">owner</span></code> 属性值为 <code class="docutils literal notranslate"><span class="pre">tom</span></code>
+的 <code class="docutils literal notranslate"><span class="pre">marble</span></code> 的文档。</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;use_index&quot;:[&quot;_design/indexOwnerDoc&quot;,</span> <span class="pre">&quot;indexOwner&quot;]</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>指定设计文档名 <code class="docutils literal notranslate"><span class="pre">indexOwnerDoc</span></code> 和索引名 <code class="docutils literal notranslate"><span class="pre">indexOwner</span></code> 。在这个示例中，查询
+选择器通过指定 <code class="docutils literal notranslate"><span class="pre">use_index</span></code> 关键字明确包含了索引名。回顾一下上边的索引定义 <a class="reference internal" href="#cdb-create-index"><span class="std std-ref">创建一个索引</span></a> ，
+它包含了设计文档， <code class="docutils literal notranslate"><span class="pre">&quot;ddoc&quot;:&quot;indexOwnerDoc&quot;</span></code> 。在 CouchDB 中，如果你想在查询
+中明确包含索引名，在索引定义中必须包含 <code class="docutils literal notranslate"><span class="pre">ddoc</span></code> 值，然后它才可以被 <code class="docutils literal notranslate"><span class="pre">use_index</span></code>
+关键字引用。</p>
+</div></blockquote>
+<p>利用索引的查询成功后返回如下结果：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>Query Result: [{&quot;Key&quot;:&quot;marble1&quot;, &quot;Record&quot;:{&quot;color&quot;:&quot;blue&quot;,&quot;docType&quot;:&quot;marble&quot;,&quot;name&quot;:&quot;marble1&quot;,&quot;owner&quot;:&quot;tom&quot;,&quot;size&quot;:35}}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cdb-best">
+<span id="id9"></span><h2>查询和索引的最佳实践<a class="headerlink" href="#cdb-best" title="Permalink to this headline">¶</a></h2>
+<p>由于不必扫描整个数据库，couchDB 中使用索引的查询会完成的更快。理解索引的机制会使你在网络中写出更高性能的查询语句并帮你的应用程序处理更大的数据或区块。</p>
+<p>规划好安装在你链码上的索引同样重要。你应该每个链码只安装少量能支持大部分查询的索引。
+添加太多索引或索引使用过多的字段会降低你网络的性能。这是因为每次区块提交后都会更新索引。
+“索引升温( index warming )”需要更新的索引越多，完成交易的时间就越长。</p>
+<p>这部分的案例有助于演示查询该如何使用索引，什么类型的查询拥有最好的性能。当你写查询的时候记得下面几点：</p>
+<ul class="simple">
+<li><p>使用的索引中所有字段必须同样包含在选择器和排序部分。</p></li>
+<li><p>越复杂的查询性能越低并且使用索引的几率也越低。</p></li>
+<li><p>你应该尽量避免会引起全表查询或全索引查询的操作符，比如： <code class="docutils literal notranslate"><span class="pre">$or</span></code>, <code class="docutils literal notranslate"><span class="pre">$in</span></code> and <code class="docutils literal notranslate"><span class="pre">$regex</span></code> 。</p></li>
+</ul>
+<p>在教程的前面章节，你已经对 marbles 链码执行了下面的查询：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Example one: query fully supported by the index
+<span class="nb">export</span> <span class="nv">CHANNEL_NAME</span><span class="o">=</span>mychannel
+peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarbles&quot;, &quot;{\&quot;selector\&quot;:{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;}, \&quot;use_index\&quot;:[\&quot;indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>Marbles 链码已经安装了 <code class="docutils literal notranslate"><span class="pre">indexOwnerDoc</span></code> 索引：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;index&quot;</span><span class="p">:{</span><span class="nt">&quot;fields&quot;</span><span class="p">:[</span><span class="s2">&quot;docType&quot;</span><span class="p">,</span><span class="s2">&quot;owner&quot;</span><span class="p">]},</span><span class="nt">&quot;ddoc&quot;</span><span class="p">:</span><span class="s2">&quot;indexOwnerDoc&quot;</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;indexOwner&quot;</span><span class="p">,</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;json&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>注意查询中的字段 <code class="docutils literal notranslate"><span class="pre">docType</span></code> 和 <code class="docutils literal notranslate"><span class="pre">owner</span></code> 都包含在索引中，这使得该查询成为一个完全支持查询（ fully supported query ）。
+因此这个查询能使用索引中的数据，不需要搜索整个数据库。像这样的完全支持查询比你链码中的其他查询返回地更快。</p>
+<p>如果你在上述查询中添加了额外字段，它仍会使用索引。然后，查询会另外在索引数据中查找符合额外字段的数据，导致相应时间变长。
+下面的例子中查询仍然使用索引，但是会比前面的查询返回更慢。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Example two: query fully supported by the index with additional data
+peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarbles&quot;, &quot;{\&quot;selector\&quot;:{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;,\&quot;color\&quot;:\&quot;red\&quot;}, \&quot;use_index\&quot;:[\&quot;/indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>没有包含全部索引字段的查询会查询整个数据库。举个例子，下面的查询使用 owner 字段查找数据，
+没有指定该项拥有的类型。因为索引 ownerIndexDoc 包含两个字段 <code class="docutils literal notranslate"><span class="pre">owner</span></code> 和 <code class="docutils literal notranslate"><span class="pre">docType</span></code> ，
+所以下面的查询不会使用索引。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Example three: query not supported by the index
+peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarbles&quot;, &quot;{\&quot;selector\&quot;:{\&quot;owner\&quot;:\&quot;tom\&quot;}, \&quot;use_index\&quot;:[\&quot;indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>一般来说，越复杂的查询返回的时间就越长，并且使用索引的概率也越低。
+操作符 <code class="docutils literal notranslate"><span class="pre">$or</span></code>, <code class="docutils literal notranslate"><span class="pre">$in</span></code> 和 <code class="docutils literal notranslate"><span class="pre">$regex</span></code> 会常常使得查询搜索整个索引或者根本不使用索引。</p>
+<p>举个例子，下面的查询包含了条件 <code class="docutils literal notranslate"><span class="pre">$or</span></code> 使得查询会搜索每一个 marble 和每一条拥有者是 tom 的数据。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Example four: query with <span class="nv">$or</span> supported by the index
+peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarbles&quot;, &quot;{\&quot;selector\&quot;:{\&quot;$or\&quot;:[{\&quot;docType\&quot;:\&quot;marble\&quot;},{\&quot;owner\&quot;:\&quot;tom\&quot;}]}, \&quot;use_index\&quot;:[\&quot;indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>这个查询仍然会使用索引，因为它查找的字段都包含在索引 <code class="docutils literal notranslate"><span class="pre">indexOwnerDoc</span></code> 中。然而查询中的条件 <code class="docutils literal notranslate"><span class="pre">$or</span></code> 需要扫描索引中
+所有的项，导致响应时间变长。</p>
+<p>索引不支持下面这个复杂查询的例子。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Example five: Query with <span class="nv">$or</span> not supported by the index
+peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarbles&quot;, &quot;{\&quot;selector\&quot;:{\&quot;$or\&quot;:[{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;},{\&quot;color\&quot;:\&quot;yellow\&quot;}]}, \&quot;use_index\&quot;:[\&quot;indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>这个查询搜索所有拥有者是 tom 的 marbles 或其它颜色是黄色的项。 这个查询不会使用索引因为它需要查找
+整个表来匹配条件 <code class="docutils literal notranslate"><span class="pre">$or</span></code>。根据你账本的数据量，这个查询会很久才会响应或者可能超时。</p>
+<p>虽然遵循查询的最佳实践非常重要，但是使用索引不是查询大量数据的解决方案。区块链的数据结构优化了
+校验和确定交易，但不适合数据分析或报告。如果你想要构建一个仪表盘（ dashboard ）作为应用程序的一部分或分析网络的
+数据，最佳实践是查询一个从你节点复制了数据的离线区块链数据库。这样可以使你了解区块链上的数据并且不会降低
+网络的性能或中断交易。</p>
+<p>你可以使用来自你应用程序的区块或链码事件来写入交易数据到一个离线的链数据库或分析引擎。
+对于每一个接收到的区块，区块监听应用将遍历区块中的每一个交易并根据每一个有效交易的 <code class="docutils literal notranslate"><span class="pre">读写集</span></code> 中的键值对构建一个数据存储。
+文档 <a class="reference internal" href="peer_event_services.html"><span class="doc">基于通道的 Peer 节点事件服务</span></a> 提供了可重放事件，以确保下游数据存储的完整性。有关如何使用事件监听器将数据写入外部数据库的例子，
+访问 Fabric Samples 的 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/tree/master/off_chain_data">Off chain data sample</a></p>
+</div>
+<div class="section" id="cdb-pagination">
+<span id="id10"></span><h2>在 CouchDB 状态数据库查询中使用分页<a class="headerlink" href="#cdb-pagination" title="Permalink to this headline">¶</a></h2>
+<p>当 CouchDB 的查询返回了一个很大的结果集时，有一些将结果分页的 API 可以提供给链码调用。分
+页提供了一个将结果集合分区的机制，该机制指定了一个 <code class="docutils literal notranslate"><span class="pre">pagesize</span></code> 和起始点 – 一个从结果集
+合的哪里开始的 <code class="docutils literal notranslate"><span class="pre">书签</span></code> 。客户端应用程序以迭代的方式调用链码来执行查询，直到没有更多的结
+果返回。更多信息请参考 <a class="reference external" href="couchdb_as_state_database.html#couchdb-pagination">topic on pagination with CouchDB</a> 。</p>
+<p>我们将使用 <a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02/go/marbles_chaincode.go">Marbles sample</a>
+中的函数 <code class="docutils literal notranslate"><span class="pre">queryMarblesWithPagination</span></code> 来演示在链码和客户端应用程序中如何使用分页。</p>
+<ul>
+<li><p><strong>queryMarblesWithPagination</strong> –</p>
+<blockquote>
+<div><p>一个 <strong>使用分页的 ad hoc 富查询</strong> 的示例。这是一个像上边的示例一样，可以将一个（选择器）
+字符串传入函数的查询。在这个示例中，在查询中也包含了一个 <code class="docutils literal notranslate"><span class="pre">pageSize</span></code> 作为一个 <code class="docutils literal notranslate"><span class="pre">书签</span></code> 。</p>
+</div></blockquote>
+</li>
+</ul>
+<p>为了演示分页，需要更多的数据。本例假设你已经加入了 marble1 。在节点容器中执行下边的命令创建
+4 个 “tom” 的弹珠，这样就创建了 5 个 “tom” 的弹珠：</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CORE_PEER_LOCALMSPID</span><span class="o">=</span><span class="s2">&quot;Org1MSP&quot;</span>
+<span class="nb">export</span> <span class="nv">CORE_PEER_TLS_ROOTCERT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+<span class="nb">export</span> <span class="nv">CORE_PEER_MSPCONFIGPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+<span class="nb">export</span> <span class="nv">CORE_PEER_ADDRESS</span><span class="o">=</span>localhost:7051
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile  <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble2&quot;,&quot;yellow&quot;,&quot;35&quot;,&quot;tom&quot;]}&#39;</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile  <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble3&quot;,&quot;green&quot;,&quot;20&quot;,&quot;tom&quot;]}&#39;</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile  <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble4&quot;,&quot;purple&quot;,&quot;20&quot;,&quot;tom&quot;]}&#39;</span>
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile  <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble5&quot;,&quot;blue&quot;,&quot;40&quot;,&quot;tom&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>除了上边示例中的查询参数， queryMarblesWithPagination 增加了 <code class="docutils literal notranslate"><span class="pre">pagesize</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bookmark</span></code> 。
+<code class="docutils literal notranslate"><span class="pre">PageSize</span></code> 指定了每次查询返回结果的数量。 <code class="docutils literal notranslate"><span class="pre">bookmark</span></code> 是一个用来告诉 CouchDB 从每一页从
+哪开始的 “锚（anchor）” 。（结果的每一页都返回一个唯一的书签）</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">queryMarblesWithPagination</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>Marbles 链码中函数的名称。注意 <a class="reference external" href="https://godoc.org/github.com/hyperledger/fabric-chaincode-go/shim">shim</a>
+<code class="docutils literal notranslate"><span class="pre">shim.ChaincodeStubInterface</span></code> 用于访问和修改账本。 <code class="docutils literal notranslate"><span class="pre">getQueryResultForQueryStringWithPagination()</span></code>
+将 queryString 、 pagesize 和 bookmark 传递给 shim API <code class="docutils literal notranslate"><span class="pre">GetQueryResultWithPagination()</span></code> 。</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>func <span class="o">(</span>t *SimpleChaincode<span class="o">)</span> queryMarblesWithPagination<span class="o">(</span>stub shim.ChaincodeStubInterface, args <span class="o">[]</span>string<span class="o">)</span> pb.Response <span class="o">{</span>
+
+      //   <span class="m">0</span>
+      // <span class="s2">&quot;queryString&quot;</span>
+      <span class="k">if</span> len<span class="o">(</span>args<span class="o">)</span> &lt; <span class="m">3</span> <span class="o">{</span>
+              <span class="k">return</span> shim.Error<span class="o">(</span><span class="s2">&quot;Incorrect number of arguments. Expecting 3&quot;</span><span class="o">)</span>
+      <span class="o">}</span>
+
+      queryString :<span class="o">=</span> args<span class="o">[</span><span class="m">0</span><span class="o">]</span>
+      //return <span class="nb">type</span> of ParseInt is int64
+      pageSize, err :<span class="o">=</span> strconv.ParseInt<span class="o">(</span>args<span class="o">[</span><span class="m">1</span><span class="o">]</span>, <span class="m">10</span>, <span class="m">32</span><span class="o">)</span>
+      <span class="k">if</span> err !<span class="o">=</span> nil <span class="o">{</span>
+              <span class="k">return</span> shim.Error<span class="o">(</span>err.Error<span class="o">())</span>
+      <span class="o">}</span>
+      bookmark :<span class="o">=</span> args<span class="o">[</span><span class="m">2</span><span class="o">]</span>
+
+      queryResults, err :<span class="o">=</span> getQueryResultForQueryStringWithPagination<span class="o">(</span>stub, queryString, int32<span class="o">(</span>pageSize<span class="o">)</span>, bookmark<span class="o">)</span>
+      <span class="k">if</span> err !<span class="o">=</span> nil <span class="o">{</span>
+              <span class="k">return</span> shim.Error<span class="o">(</span>err.Error<span class="o">())</span>
+      <span class="o">}</span>
+      <span class="k">return</span> shim.Success<span class="o">(</span>queryResults<span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>下边的例子是一个 peer 命令，以 pageSize 为 <code class="docutils literal notranslate"><span class="pre">3</span></code> 没有指定 boomark 的方式调用 queryMarblesWithPagination 。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>当没有指定 bookmark 的时候，查询从记录的“第一”页开始。</p>
+</div>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Rich Query with index name explicitly specified and a page size of <span class="m">3</span>:
+peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarblesWithPagination&quot;, &quot;{\&quot;selector\&quot;:{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;}, \&quot;use_index\&quot;:[\&quot;_design/indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;,&quot;3&quot;,&quot;&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>下边是接收到的响应（为清楚起见，增加了换行），返回了五个弹珠中的三个，因为 <code class="docutils literal notranslate"><span class="pre">pagesize</span></code> 设置成了 <code class="docutils literal notranslate"><span class="pre">3</span></code> 。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[{</span><span class="s2">&quot;Key&quot;</span>:<span class="s2">&quot;marble1&quot;</span>, <span class="s2">&quot;Record&quot;</span>:<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;blue&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marble&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble1&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;tom&quot;</span>,<span class="s2">&quot;size&quot;</span>:35<span class="o">}}</span>,
+ <span class="o">{</span><span class="s2">&quot;Key&quot;</span>:<span class="s2">&quot;marble2&quot;</span>, <span class="s2">&quot;Record&quot;</span>:<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;yellow&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marble&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble2&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;tom&quot;</span>,<span class="s2">&quot;size&quot;</span>:35<span class="o">}}</span>,
+ <span class="o">{</span><span class="s2">&quot;Key&quot;</span>:<span class="s2">&quot;marble3&quot;</span>, <span class="s2">&quot;Record&quot;</span>:<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;green&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marble&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble3&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;tom&quot;</span>,<span class="s2">&quot;size&quot;</span>:20<span class="o">}}]</span>
+<span class="o">[{</span><span class="s2">&quot;ResponseMetadata&quot;</span>:<span class="o">{</span><span class="s2">&quot;RecordsCount&quot;</span>:<span class="s2">&quot;3&quot;</span>,
+<span class="s2">&quot;Bookmark&quot;</span>:<span class="s2">&quot;g1AAAABLeJzLYWBgYMpgSmHgKy5JLCrJTq2MT8lPzkzJBYqz5yYWJeWkGoOkOWDSOSANIFk2iCyIyVySn5uVBQAGEhRz&quot;</span><span class="o">}}]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bookmark 是 CouchDB 每次查询的时候唯一生成的，并显示在结果集中。将返回的 bookmark 传递给迭代查询的子集中来获取结果的下一个集合。</p>
+</div>
+<p>下边是一个 pageSize 为 <code class="docutils literal notranslate"><span class="pre">3</span></code> 的调用 queryMarblesWithPagination 的 peer 命令。
+注意一下这里，这次的查询包含了上次查询返回的 bookmark 。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarblesWithPagination&quot;, &quot;{\&quot;selector\&quot;:{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;}, \&quot;use_index\&quot;:[\&quot;_design/indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;,&quot;3&quot;,&quot;g1AAAABLeJzLYWBgYMpgSmHgKy5JLCrJTq2MT8lPzkzJBYqz5yYWJeWkGoOkOWDSOSANIFk2iCyIyVySn5uVBQAGEhRz&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>下边是接收到的响应（为清楚起见，增加了换行），返回了五个弹珠中的三个，返回了剩下的两个记录：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[{</span><span class="s2">&quot;Key&quot;</span>:<span class="s2">&quot;marble4&quot;</span>, <span class="s2">&quot;Record&quot;</span>:<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;purple&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marble&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble4&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;tom&quot;</span>,<span class="s2">&quot;size&quot;</span>:20<span class="o">}}</span>,
+ <span class="o">{</span><span class="s2">&quot;Key&quot;</span>:<span class="s2">&quot;marble5&quot;</span>, <span class="s2">&quot;Record&quot;</span>:<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;blue&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;marble&quot;</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;marble5&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;tom&quot;</span>,<span class="s2">&quot;size&quot;</span>:40<span class="o">}}]</span>
+<span class="o">[{</span><span class="s2">&quot;ResponseMetadata&quot;</span>:<span class="o">{</span><span class="s2">&quot;RecordsCount&quot;</span>:<span class="s2">&quot;2&quot;</span>,
+<span class="s2">&quot;Bookmark&quot;</span>:<span class="s2">&quot;g1AAAABLeJzLYWBgYMpgSmHgKy5JLCrJTq2MT8lPzkzJBYqz5yYWJeWkmoKkOWDSOSANIFk2iCyIyVySn5uVBQAGYhR1&quot;</span><span class="o">}}]</span>
+</pre></div>
+</div>
+<p>最后一个命令是调用 queryMarblesWithPagination 的 peer 命令，其中 pageSize 为 <code class="docutils literal notranslate"><span class="pre">3</span></code> ，bookmark 是前一次查询返回的结果。</p>
+<p><span class="guilabel">Try it yourself</span></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>peer chaincode query -C <span class="nv">$CHANNEL_NAME</span> -n marbles -c <span class="s1">&#39;{&quot;Args&quot;:[&quot;queryMarblesWithPagination&quot;, &quot;{\&quot;selector\&quot;:{\&quot;docType\&quot;:\&quot;marble\&quot;,\&quot;owner\&quot;:\&quot;tom\&quot;}, \&quot;use_index\&quot;:[\&quot;_design/indexOwnerDoc\&quot;, \&quot;indexOwner\&quot;]}&quot;,&quot;3&quot;,&quot;g1AAAABLeJzLYWBgYMpgSmHgKy5JLCrJTq2MT8lPzkzJBYqz5yYWJeWkmoKkOWDSOSANIFk2iCyIyVySn5uVBQAGYhR1&quot;]}&#39;</span>
+</pre></div>
+</div>
+<p>下边是接收到的响应（为清楚起见，增加了换行）。没有记录返回，说明所有的页
+面都获取到了：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[]</span>
+<span class="o">[{</span><span class="s2">&quot;ResponseMetadata&quot;</span>:<span class="o">{</span><span class="s2">&quot;RecordsCount&quot;</span>:<span class="s2">&quot;0&quot;</span>,
+<span class="s2">&quot;Bookmark&quot;</span>:<span class="s2">&quot;g1AAAABLeJzLYWBgYMpgSmHgKy5JLCrJTq2MT8lPzkzJBYqz5yYWJeWkmoKkOWDSOSANIFk2iCyIyVySn5uVBQAGYhR1&quot;</span><span class="o">}}]</span>
+</pre></div>
+</div>
+<p>对于如何使用客户端应用程序使用分页迭代结果集，请在
+<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/marbles02/go/marbles_chaincode.go">Marbles sample</a> 。
+中搜索 <code class="docutils literal notranslate"><span class="pre">getQueryResultForQueryStringWithPagination</span></code> 函数。</p>
+</div>
+<div class="section" id="cdb-update-index">
+<span id="id11"></span><h2>升级索引<a class="headerlink" href="#cdb-update-index" title="Permalink to this headline">¶</a></h2>
+<p>可能需要随时升级索引。相同的索引可能会存在安装的链码的子版本中。为了索引的升级，
+原来的索引定义必须包含在设计文档 <code class="docutils literal notranslate"><span class="pre">ddoc</span></code> 属性和索引名。为了升级索引定义，使用相
+同的索引名并改变索引定义。简单编辑索引 JSON 文件并从索引中增加或者删除字段。 Fabric
+只支持 JSON 类型的索引。不支持改变索引类型。升级后的索引定义在链码定义提交之后
+会重新部署在节点的状态数据库中。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果状态数据库有大量数据，重建索引的过程会花费较长时间，在此期间链码执
+行或者查询可能会失败或者超时。</p>
+</div>
+<div class="section" id="id12">
+<h3>迭代索引定义<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>如果你在开发环境中访问你的节点的 CouchDB 状态数据库，你可以迭代测试各种索引以支
+持你的链码查询。链码的任何改变都可能需要重新部署。使用 <a class="reference external" href="http://docs.couchdb.org/en/latest/fauxton/index.html">CouchDB Fauxton interface</a>
+或者命令行 curl 工具来创建和升级索引。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Fauxton 是用于创建、升级和部署 CouchDB 索引的一个网页，如果你想尝试这个接口，
+有一个 Marbles 示例中索引的 Fauxton 版本格式的例子。如果你使用 CouchDB 部署了测试网络，可以通过在浏览器的导航栏中打开 <code class="docutils literal notranslate"><span class="pre">http://localhost:5984/_utils</span></code> 来
+访问 Fauxton 。</p>
+</div>
+<p>另外，如果你不想使用 Fauxton UI，下边是通过 curl 命令在 <code class="docutils literal notranslate"><span class="pre">mychannel_marbles</span></code> 数据库上创
+建索引的例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Index <span class="k">for</span> docType, owner.
+// Example curl <span class="nb">command</span> line to define index <span class="k">in</span> the CouchDB channel_chaincode database
+ curl -i -X POST -H <span class="s2">&quot;Content-Type: application/json&quot;</span> -d
+        <span class="s2">&quot;{\&quot;index\&quot;:{\&quot;fields\&quot;:[\&quot;docType\&quot;,\&quot;owner\&quot;]},</span>
+<span class="s2">          \&quot;name\&quot;:\&quot;indexOwner\&quot;,</span>
+<span class="s2">          \&quot;ddoc\&quot;:\&quot;indexOwnerDoc\&quot;,</span>
+<span class="s2">          \&quot;type\&quot;:\&quot;json\&quot;}&quot;</span> http://hostname:port/mychannel_marbles/_index
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果你在测试网络中配置了 CouchDB，请使用 <code class="docutils literal notranslate"><span class="pre">localhost:5984</span></code> 替换 hostname:port 。</p>
+</div>
+</div>
+</div>
+<div class="section" id="cdb-delete-index">
+<span id="id13"></span><h2>删除索引<a class="headerlink" href="#cdb-delete-index" title="Permalink to this headline">¶</a></h2>
+<p>Fabric 工具不能删除索引。如果你需要删除索引，就要手动使用 curl 命令或者 Fauxton 接
+口操作数据库。</p>
+<p>删除索引的 curl 命令格式如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X DELETE http://localhost:5984/<span class="o">{</span>database_name<span class="o">}</span>/_index/<span class="o">{</span>design_doc<span class="o">}</span>/json/<span class="o">{</span>index_name<span class="o">}</span> -H  <span class="s2">&quot;accept: */*&quot;</span> -H  <span class="s2">&quot;Host: localhost:5984&quot;</span>
+</pre></div>
+</div>
+<p>要删除本教程中的索引，curl 命令应该是：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X DELETE http://localhost:5984/mychannel_marbles/_index/indexOwnerDoc/json/indexOwner -H  <span class="s2">&quot;accept: */*&quot;</span> -H  <span class="s2">&quot;Host: localhost:5984&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="create_channel/create_channel_overview.html" class="btn btn-neutral float-right" title="创建通道" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="private_data_tutorial.html" class="btn btn-neutral" title="在 Fabric 中使用私有数据" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

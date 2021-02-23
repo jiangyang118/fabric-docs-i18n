@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>编写你的第一个应用 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="}" href="tutorial/commercial_paper.html" />
+    <link rel="prev" title="}" href="deploy_chaincode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="test_network.html">##### Generate certificates using cryptogen tool #########</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_network.html#create-org1-identities">############ Create Org1 Identities ######################</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id12">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id21">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id24">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy_chaincode.html#id43">}</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">编写你的第一个应用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#before-you-begin">Before you begin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">设置区块链网络</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">启动网络</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-application">Sample application</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">登记管理员用户</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">注册和登记应用程序用户</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">查询账本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fabcar">FabCar 智能合约</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">更新账本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clean-up">Clean up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">总结</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">其他资源</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/commercial_paper.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="private_data_tutorial.html">在 Fabric 中使用私有数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="couchdb_tutorial.html">使用 CouchDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_channel/create_channel_overview.html">创建通道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channel_update_tutorial.html">向通道添加组织</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chaincode4ade.html">链码开发者教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="videos.html">视频</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="tutorials.html">教程</a> &raquo;</li>
+        
+      <li>编写你的第一个应用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/write_first_app.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>编写你的第一个应用<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果你对 Fabric 网络的基本架构还不熟悉，在继续本部分之前，你可能想先阅读 <a class="reference internal" href="key_concepts.html"><span class="doc">关键概念</span></a> 部分。</p>
+<p>本教程的价值仅限于介绍 Fabric 应用和使用简单的智能合约和应用。更深入的了解 Fabric 应用和智能合约请查看 <a class="reference internal" href="developapps/developing_applications.html"><span class="doc">开发应用</span></a> 或 <a class="reference internal" href="tutorial/commercial_paper.html"><span class="doc">}</span></a> 部分。</p>
+</div>
+<p>This tutorial provides an introduction to how Fabric applications interact
+with deployed blockchain networks. The tutorial uses sample programs built using the
+Fabric SDKs – described in detail in the <a class="reference internal" href="developapps/application.html"><span class="doc">};</span></a> topic –
+to invoke a smart contract which queries and updates the ledger with the smart
+contract API – described in detail in <a class="reference internal" href="developapps/smartcontract.html"><span class="doc">}</span></a>.
+We will also use our sample programs and a deployed Certificate Authority to generate
+the X.509 certificates that an application needs to interact with a permissioned
+blockchain.</p>
+<p><strong>关于 FabCar</strong></p>
+<p>FabCar例子演示了如何查询保存在账本上的Car（我们业务对象例子），以及如何更新账本（向账本添加新的Car）。 它包含以下两个组件:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>示例应用程序：调用区块链网络，调用智能合约中实现的交易。</p></li>
+</ol>
+<p>2. Smart contract itelf, implementing the transactions that involve interactions with the
+ledger.</p>
+</div></blockquote>
+<p>我们将按照以下三个步骤进行：</p>
+<blockquote>
+<div><p><strong>1. 搭建开发环境。</strong> 我们的应用程序需要和网络交互，所以我们需要一个智能合约和
+应用程序使用的基础网络。</p>
+<p><strong>2. 浏览一个示例智能合约。</strong>
+我们将查看示例智能合约 Fabcar 来学习他们的交易，还有应用程序是怎么使用他们来进行查询和更新账本的。</p>
+<p><strong>3. 使用示例应用程序和智能合约交互。</strong> 我们的应用程序将使用 FabCar 智能合约来查询和更新账本上的汽车资产。我们将进入到应用程序的代码和他们创建的交易，包括查询一辆汽车，查询一批汽车和创建一辆新车。</p>
+</div></blockquote>
+<p>在完成这个教程之后，你将基本理解一个应用是如何通过编程关联智能合约来和 Fabric 网络上的多个节点的账本的进行交互的。</p>
+<div class="section" id="before-you-begin">
+<h2>Before you begin<a class="headerlink" href="#before-you-begin" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the standard <a class="reference internal" href="prereqs.html"><span class="doc">准备阶段</span></a> for Fabric, this tutorial leverages the Hyperledger Fabric SDK for Node.js. See the Node.js SDK <a class="reference external" href="https://github.com/hyperledger/fabric-sdk-node#build-and-test">README</a> for a up to date list of prerequisites.</p>
+<ul>
+<li><p>If you are using macOS, complete the following steps:</p>
+<ol class="arabic simple">
+<li><p>Install <a class="reference external" href="https://brew.sh/">Homebrew</a>.</p></li>
+<li><p>Check the Node SDK <a class="reference external" href="https://github.com/hyperledger/fabric-sdk-node#build-and-test">prerequisites</a> to find out what level of Node to install.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">node</span></code> to download the latest version of node or choose a specific version, for example: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">node&#64;10</span></code> according to what is supported in the prerequisites.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.</p></li>
+</ol>
+</li>
+<li><p>If you are on Windows,  you can install the <a class="reference external" href="https://github.com/felixrieseberg/windows-build-tools#readme">windows-build-tools</a> with npm which installs all required compilers and tooling by running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --global windows-build-tools
+</pre></div>
+</div>
+</li>
+<li><p>If you are on Linux, you need to install <a class="reference external" href="https://www.python.org/download/releases/2.7/">Python v2.7</a>, <a class="reference external" href="https://www.gnu.org/software/make/">make</a>, and a C/C++ compiler toolchain such as <a class="reference external" href="https://gcc.gnu.org/">GCC</a>. You can run the following command to install the other tools:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install build-essential
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>设置区块链网络<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>如果你已经学习了 <a class="reference internal" href="test_network.html"><span class="doc">##### Generate certificates using cryptogen tool #########</span></a> 而且已经运行起来了一个网络，本教程将在启动一个新网络之前关闭正在运行的网络。</p>
+<div class="section" id="id3">
+<h3>启动网络<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这个教程演示了 Javascript 版本的 <code class="docutils literal notranslate"><span class="pre">FabCar</span></code> 智能合约和应用程序，但是 <code class="docutils literal notranslate"><span class="pre">fabric-samples</span></code> 仓库也包含 Go、Java 和 TypeScript 版本的样例。想尝试 Go、Java 或者 TypeScript 版本，改变下边的 <code class="docutils literal notranslate"><span class="pre">./startFabric.sh</span></code> 的 <code class="docutils literal notranslate"><span class="pre">javascript</span></code> 参数为 <code class="docutils literal notranslate"><span class="pre">go</span></code>、 <code class="docutils literal notranslate"><span class="pre">java</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">typescript</span></code>，然后跟着介绍写到终端中。</p>
+</div>
+<p>进入你克隆到本地的 <code class="docutils literal notranslate"><span class="pre">fabric-samples</span></code> 仓库的 <code class="docutils literal notranslate"><span class="pre">fabcar</span></code> 子目录。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> fabric-samples/fabcar
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">startFabric.sh</span></code> 脚本启动网络。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./startFabric.sh javascript
+</pre></div>
+</div>
+<p>This command will deploy the Fabric test network with two peers and an ordering
+service. Instead of using the cryptogen tool, we will bring up the test network
+using Certificate Authorities. We will use one of these CAs to create the certificates
+and keys that will be used by our applications in a future step. The <code class="docutils literal notranslate"><span class="pre">startFabric.sh</span></code>
+script will also deploy and initialize the JavaScript version of the FabCar smart
+contract on the channel <code class="docutils literal notranslate"><span class="pre">mychannel</span></code>, and then invoke the smart contract to
+put initial data on the ledger.</p>
+</div>
+<div class="section" id="sample-application">
+<h3>Sample application<a class="headerlink" href="#sample-application" title="Permalink to this headline">¶</a></h3>
+<p>First component of FabCar, the sample application, is available in following languages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/fabcar/go">Golang</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/fabcar/java">Java</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/fabcar/javascript">JavaScript</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/fabcar/typescript">Typescript</a></p></li>
+</ul>
+<p>In this tutorial, we will explain the sample written in <code class="docutils literal notranslate"><span class="pre">javascript</span></code> for nodejs.</p>
+<p>From the <code class="docutils literal notranslate"><span class="pre">fabric-samples/fabcar</span></code> directory, navigate to the
+<code class="docutils literal notranslate"><span class="pre">javascript</span></code> folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> javascript
+</pre></div>
+</div>
+<p>This directory contains sample programs that were developed using the Fabric
+SDK for Node.js. Run the following command to install the application dependencies.
+It will take about a minute to complete:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install
+</pre></div>
+</div>
+<p>这个指令将安装应用程序的主要依赖，这些依赖定义在 <code class="docutils literal notranslate"><span class="pre">package.json</span></code> 中。其中最重要的是 <code class="docutils literal notranslate"><span class="pre">fabric-network</span></code> 类；它使得应用程序可以使用身份、钱包和连接到通道的网关，以及提交交易和等待通知。本教程也将使用 <code class="docutils literal notranslate"><span class="pre">fabric-ca-client</span></code> 类来注册用户以及他们的授权证书，生成一个 <code class="docutils literal notranslate"><span class="pre">fabric-network</span></code> 在后边会用到的合法身份。</p>
+<p>完成 <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code> ，运行应用程序所需要的一切就准备好了。让我们来看一眼教程中使用的示例 JavaScript 应用文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<p>你会看到下边的文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>enrollAdmin.js  node_modules       package.json  registerUser.js
+invoke.js       package-lock.json  query.js      wallet
+</pre></div>
+</div>
+<p>里边也有一些其他编程语言的文件，比如在 <code class="docutils literal notranslate"><span class="pre">fabcar/java</span></code> 目录中。当你使用过 JavaScript 示例之后，你可以看一下它们，主要的内容都是一样的。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>登记管理员用户<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>下边的部分执行和证书授权服务器通讯。你在运行下边的程序时，你会发现，打开一个新终端，并运行 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span> <span class="pre">ca_org1</span></code> 来查看 CA 的日志流，会很有帮助。</p>
+</div>
+<p>当我们创建网络的时候，一个管理员用户（ <code class="docutils literal notranslate"><span class="pre">admin</span></code>）被证书授权服务器（CA）创建成了 <strong>注册员</strong> 。我们第一步要使用 <code class="docutils literal notranslate"><span class="pre">enroll.js</span></code> 程序为 <code class="docutils literal notranslate"><span class="pre">admin</span></code> 生成私钥、公钥和 x.509 证书。这个程序使用一个 <strong>证书签名请求</strong> （CSR）——现在本地生成公钥和私钥，然后把公钥发送到 CA ，CA 会发布会一个让应用程序使用的证书。这三个证书会保存在钱包中，以便于我们以管理员的身份使用 CA 。</p>
+<p>我们登记一个 <code class="docutils literal notranslate"><span class="pre">admin</span></code> 用户：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node enrollAdmin.js
+</pre></div>
+</div>
+<p>这个命令将 CA 管理员的证书保存在 <code class="docutils literal notranslate"><span class="pre">wallet</span></code> 目录。You can find administrator’s certificate and private key in the <code class="docutils literal notranslate"><span class="pre">wallet/admin.id</span></code>
+file。</p>
+</div>
+<div class="section" id="id5">
+<h2>注册和登记应用程序用户<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>Our <code class="docutils literal notranslate"><span class="pre">admin</span></code> is used to work with the CA. Now that we have the administrator’s
+credentials in a wallet, we can create a new application user which will be used
+to interact with the blockchain. Run the following command to register and enroll
+a new user named <code class="docutils literal notranslate"><span class="pre">appUser</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node registerUser.js
+</pre></div>
+</div>
+<p>Similar to the admin enrollment, this program uses a CSR to enroll <code class="docutils literal notranslate"><span class="pre">appUser</span></code> and
+store its credentials alongside those of <code class="docutils literal notranslate"><span class="pre">admin</span></code> in the wallet. We now have
+identities for two separate users — <code class="docutils literal notranslate"><span class="pre">admin</span></code> and <code class="docutils literal notranslate"><span class="pre">appUser</span></code> — that can be
+used by our application.</p>
+</div>
+<div class="section" id="id6">
+<h2>查询账本<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>区块链网络中的每个节点都拥有一个 <cite>账本 &lt;./ledger/ledger.html&gt;</cite> 的副本，应用程序可以通过执行智能合约查询账本上最新的数据来实现来查询账本，并将查询结果返回给应用程序。</p>
+<p>这里是一个查询工作如何进行的简单说明：</p>
+<p>最常用的查询是查寻账本中询当前的值，也就是 <a class="reference external" href="./ledger/ledger.html#world-state">世界状态</a> 。世界状态是一个键值对的集合，应用程序可以根据一个键或者多个键来查询数据。而且，当键值对是以 JSON 值模式组织的时候，世界状态可以通过配置使用数据库（如 CouchDB ）来支持富查询。这对于查询所有资产来匹配特定的键的值是很有用的，比如查询一个人的所有汽车。</p>
+<p>首先，我们来运行我们的 <code class="docutils literal notranslate"><span class="pre">query.js</span></code> 程序来返回账本上所有汽车的侦听。这个程序使用我们的第二个身份——<code class="docutils literal notranslate"><span class="pre">user1</span></code>——来操作账本。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node query.js
+</pre></div>
+</div>
+<p>输入结果应该类似下边：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>Wallet path: ...fabric-samples/fabcar/javascript/wallet
+Transaction has been evaluated, result is:
+[{&quot;Key&quot;:&quot;CAR0&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;blue&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Toyota&quot;,&quot;model&quot;:&quot;Prius&quot;,&quot;owner&quot;:&quot;Tomoko&quot;}},
+{&quot;Key&quot;:&quot;CAR1&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;red&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Ford&quot;,&quot;model&quot;:&quot;Mustang&quot;,&quot;owner&quot;:&quot;Brad&quot;}},
+{&quot;Key&quot;:&quot;CAR2&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;green&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Hyundai&quot;,&quot;model&quot;:&quot;Tucson&quot;,&quot;owner&quot;:&quot;Jin Soo&quot;}},
+{&quot;Key&quot;:&quot;CAR3&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;yellow&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Volkswagen&quot;,&quot;model&quot;:&quot;Passat&quot;,&quot;owner&quot;:&quot;Max&quot;}},
+{&quot;Key&quot;:&quot;CAR4&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;black&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Tesla&quot;,&quot;model&quot;:&quot;S&quot;,&quot;owner&quot;:&quot;Adriana&quot;}},
+{&quot;Key&quot;:&quot;CAR5&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;purple&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Peugeot&quot;,&quot;model&quot;:&quot;205&quot;,&quot;owner&quot;:&quot;Michel&quot;}},
+{&quot;Key&quot;:&quot;CAR6&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;white&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Chery&quot;,&quot;model&quot;:&quot;S22L&quot;,&quot;owner&quot;:&quot;Aarav&quot;}},
+{&quot;Key&quot;:&quot;CAR7&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;violet&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Fiat&quot;,&quot;model&quot;:&quot;Punto&quot;,&quot;owner&quot;:&quot;Pari&quot;}},
+{&quot;Key&quot;:&quot;CAR8&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;indigo&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Tata&quot;,&quot;model&quot;:&quot;Nano&quot;,&quot;owner&quot;:&quot;Valeria&quot;}},
+{&quot;Key&quot;:&quot;CAR9&quot;,&quot;Record&quot;:{&quot;color&quot;:&quot;brown&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Holden&quot;,&quot;model&quot;:&quot;Barina&quot;,&quot;owner&quot;:&quot;Shotaro&quot;}}]
+</pre></div>
+</div>
+<p>Let’s take a closer look at how <cite>query.js</cite> program uses the APIs provided by the
+<a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/">Fabric Node SDK</a> to
+interact with our Fabric network。使用一个编辑器（比如， atom 或 visual studio）打开 <code class="docutils literal notranslate"><span class="pre">query.js</span></code> 。</p>
+<p>The application starts by bringing in scope two key classes from the
+<code class="docutils literal notranslate"><span class="pre">fabric-network</span></code> module; <code class="docutils literal notranslate"><span class="pre">Wallets</span></code> and <code class="docutils literal notranslate"><span class="pre">Gateway</span></code>. These classes
+will be used to locate the <code class="docutils literal notranslate"><span class="pre">appUser</span></code> identity in the wallet, and use it to
+connect to the network:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="o">{</span> Gateway, Wallets <span class="o">}</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;fabric-network&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>First, the program uses the Wallet class to get our application user from our file system.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">identity</span> <span class="o">=</span> await wallet.get<span class="o">(</span><span class="s1">&#39;appUser&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Once the program has an identity, it uses the Gateway class to connect to our network.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">gateway</span> <span class="o">=</span> new Gateway<span class="o">()</span><span class="p">;</span>
+await gateway.connect<span class="o">(</span>ccpPath, <span class="o">{</span> wallet, identity: <span class="s1">&#39;appUser&#39;</span>, discovery: <span class="o">{</span> enabled: true, asLocalhost: <span class="nb">true</span> <span class="o">}</span> <span class="o">})</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ccpPath</span></code> describes the path to the connection profile that our application will use
+to connect to our network. The connection profile was loaded from inside the
+<code class="docutils literal notranslate"><span class="pre">fabric-samples/test-network</span></code> directory and parsed as a JSON file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">ccpPath</span> <span class="o">=</span> path.resolve<span class="o">(</span>__dirname, <span class="s1">&#39;..&#39;</span>, <span class="s1">&#39;..&#39;</span>, <span class="s1">&#39;test-network&#39;</span>,<span class="s1">&#39;organizations&#39;</span>,<span class="s1">&#39;peerOrganizations&#39;</span>,<span class="s1">&#39;org1.example.com&#39;</span>, <span class="s1">&#39;connection-org1.json&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>如果你想了解更多关于连接配置文件的结构，和它是怎么定义网络的，请查阅 <a class="reference external" href="./developapps/connectionprofile.html">链接配置主题</a> 。</p>
+<p>一个网络可以被差分成很多通道，代码中下一个很重的一行是将应用程序连接到网络中特定的通道 <code class="docutils literal notranslate"><span class="pre">mychannel</span></code> 上：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">network</span> <span class="o">=</span> await gateway.getNetwork<span class="o">(</span><span class="s1">&#39;mychannel&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>在这个通道中，我们可以通过 FabCar 智能合约来和账本进行交互：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">contract</span> <span class="o">=</span> network.getContract<span class="o">(</span><span class="s1">&#39;fabcar&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>在 <code class="docutils literal notranslate"><span class="pre">fabcar</span></code> 中有许多不同的 <strong>交易</strong> ，我们的应用程序先使用 <code class="docutils literal notranslate"><span class="pre">queryAllCars</span></code> 交易来查询账本世界状态的值：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">result</span> <span class="o">=</span> await contract.evaluateTransaction<span class="o">(</span><span class="s1">&#39;queryAllCars&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">evaluateTransaction</span></code> 方法代表了一种区块链网络中和智能合约最简单的交互。它只是的根据配置文件中的定义连接一个节点，然后向节点发送请求，请求内容将在节点中执行。智能合约查询节点账本上的所有汽车，然后把结果返回给应用程序。这次交互没有导致账本的更新。</p>
+</div>
+<div class="section" id="fabcar">
+<h2>FabCar 智能合约<a class="headerlink" href="#fabcar" title="Permalink to this headline">¶</a></h2>
+<p>FabCar smart contract sample is available in following languages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/fabcar/go">Golang</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/fabcar/java">Java</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/fabcar/javascript">JavaScript</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/chaincode/fabcar/typescript">Typescript</a></p></li>
+</ul>
+<p>Let’s take a look at the transactions within the FabCar smart contract written in JavaScript. Open a
+new terminal and navigate to the JavaScript version of the FabCar Smart contract
+inside the <code class="docutils literal notranslate"><span class="pre">fabric-samples</span></code> repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> fabric-samples/chaincode/fabcar/javascript/lib
+</pre></div>
+</div>
+<p>Open the <code class="docutils literal notranslate"><span class="pre">fabcar.js</span></code> file in a text editor editor.</p>
+<p>See how our smart contract is defined using the <code class="docutils literal notranslate"><span class="pre">Contract</span></code> class:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>class FabCar extends Contract <span class="o">{</span>...
+</pre></div>
+</div>
+<p>在这个类结构中，你将看到定义了以下交易： <code class="docutils literal notranslate"><span class="pre">initLedger</span></code>, <code class="docutils literal notranslate"><span class="pre">queryCar</span></code>, <code class="docutils literal notranslate"><span class="pre">queryAllCars</span></code>, <code class="docutils literal notranslate"><span class="pre">createCar</span></code> 和 <code class="docutils literal notranslate"><span class="pre">changeCarOwner</span></code> 。例如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>async queryCar<span class="o">(</span>ctx, carNumber<span class="o">)</span> <span class="o">{</span>...<span class="o">}</span>
+async queryAllCars<span class="o">(</span>ctx<span class="o">)</span> <span class="o">{</span>...<span class="o">}</span>
+</pre></div>
+</div>
+<p>让我们更进一步看一下 <code class="docutils literal notranslate"><span class="pre">queryAllCars</span></code> ，看一下它是怎么和账本交互的。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>async queryAllCars<span class="o">(</span>ctx<span class="o">)</span> <span class="o">{</span>
+
+  const <span class="nv">startKey</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  const <span class="nv">endKey</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+  const <span class="nv">iterator</span> <span class="o">=</span> await ctx.stub.getStateByRange<span class="o">(</span>startKey, endKey<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This code shows how to retrieve all cars from the ledger within a key range using
+<code class="docutils literal notranslate"><span class="pre">getStateByRange</span></code>. Giving empty startKey &amp; endKey is interpreted as all the keys from beginning to end.
+As another example, if you use <code class="docutils literal notranslate"><span class="pre">startKey</span> <span class="pre">=</span> <span class="pre">'CAR0',</span> <span class="pre">endKey</span> <span class="pre">=</span> <span class="pre">'CAR999'</span></code> , then <code class="docutils literal notranslate"><span class="pre">getStateByRange</span></code>
+will retrieve cars with keys between <code class="docutils literal notranslate"><span class="pre">CAR0</span></code> (inclusive) and <code class="docutils literal notranslate"><span class="pre">CAR999</span></code> (exclusive) in lexical order.
+The remainder of the code iterates through the query results and packages them into
+JSON for the sample application to use.</p>
+<p>下面展示了应用程序如何调用智能合约中的不同交易。每一个交易都使用一组 API 比如 <code class="docutils literal notranslate"><span class="pre">getStateByRange</span></code> 来和账本进行交互。了解更多 API 请阅读 <a class="reference external" href="https://fabric-shim.github.io/master/index.html?redirect=true">detail</a>.</p>
+<img alt="_images/RunningtheSample.png" src="_images/RunningtheSample.png" />
+<p>你可以看到我们的 <code class="docutils literal notranslate"><span class="pre">queryAllCars</span></code> 交易，还有另一个叫做 <code class="docutils literal notranslate"><span class="pre">createCar</span></code> 。我们稍后将在教程中使用他们来更细账本，和添加新的区块。</p>
+<p>但是在那之前，返回到 <code class="docutils literal notranslate"><span class="pre">query</span></code> 程序，更改 <code class="docutils literal notranslate"><span class="pre">evaluateTransaction</span></code> 的请求来查询 <code class="docutils literal notranslate"><span class="pre">CAR4</span></code> 。 <code class="docutils literal notranslate"><span class="pre">query</span></code> 程序现在看起来应该是这个样子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">result</span> <span class="o">=</span> await contract.evaluateTransaction<span class="o">(</span><span class="s1">&#39;queryCar&#39;</span>, <span class="s1">&#39;CAR4&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>保存程序，然后返回到 <code class="docutils literal notranslate"><span class="pre">fabcar/javascript</span></code> 目录。现在，再次运行 <code class="docutils literal notranslate"><span class="pre">query</span></code> 程序：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node query.js
+</pre></div>
+</div>
+<p>你应该会看到如下：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>Wallet path: ...fabric-samples/fabcar/javascript/wallet
+Transaction has been evaluated, result is:
+{&quot;color&quot;:&quot;black&quot;,&quot;docType&quot;:&quot;car&quot;,&quot;make&quot;:&quot;Tesla&quot;,&quot;model&quot;:&quot;S&quot;,&quot;owner&quot;:&quot;Adriana&quot;}
+</pre></div>
+</div>
+<p>如果你回头去看一下 <code class="docutils literal notranslate"><span class="pre">queryAllCars</span></code> 的交易结果，你会看到 <code class="docutils literal notranslate"><span class="pre">CAR4</span></code> 是 Adriana 的黑色 Tesla model S，也就是这里返回的结果。</p>
+<p>我们可以使用 <code class="docutils literal notranslate"><span class="pre">queryCar</span></code> 交易来查询任意汽车，使用它的键 （比如 <code class="docutils literal notranslate"><span class="pre">CAR0</span></code> ）得到车辆的制造商、型号、颜色和车主等相关信息。</p>
+<p>很棒。现在你应该已经了解了智能合约中基础的查询交易，也手动修改了查询程序中的参数。</p>
+<p>账本更新时间。。。</p>
+</div>
+<div class="section" id="id9">
+<h2>更新账本<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>现在我们已经完成一些账本的查询和添加了一些代码，我们已经准备好更新账本了。有很多的更新操作我们可以做，但是我们从创建一个 <strong>新</strong> 车开始。</p>
+<p>从一个应用程序的角度来说，更新一个账本很简单。应用程序向区块链网络提交一个交易，当交易被验证和提交后，应用程序会收到一个交易成功的提醒。但是在底层，区块链网络中各组件中不同的 <strong>共识</strong> 程序协同工作，来保证账本的每一个更新提案都是合法的，而且有一个大家一致认可的顺序。</p>
+<img alt="_images/write_first_app.diagram.2.png" src="_images/write_first_app.diagram.2.png" />
+<p>上图中，我们可以看到完成这项工作的主要组件。同时，多个节点中每一个节点都拥有一份账本的副本，并可选的拥有一份智能合约的副本，网络中也有一个排序服务。排序服务保证网络中交易的一致性；它也将连接到网络中不同的应用程序的交易以定义好的顺序生成区块。</p>
+<p>我们对账本的的第一个更新是创建一辆新车。我们有一个单独的程序叫做 <code class="docutils literal notranslate"><span class="pre">invoke.js</span></code> ，用来更新账本。和查询一样，使用一个编辑器打开程序定位到我们构建和提交交易到网络的代码段：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>await contract.submitTransaction<span class="o">(</span><span class="s1">&#39;createCar&#39;</span>, <span class="s1">&#39;CAR12&#39;</span>, <span class="s1">&#39;Honda&#39;</span>, <span class="s1">&#39;Accord&#39;</span>, <span class="s1">&#39;Black&#39;</span>, <span class="s1">&#39;Tom&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>看一下应用程序如何调用智能合约的交易 <code class="docutils literal notranslate"><span class="pre">createCar</span></code> 来创建一量车主为 Tom 的黑色 Honda Accord 汽车。我们使用 <code class="docutils literal notranslate"><span class="pre">CAR12</span></code> 作为这里的键，这也说明了我们不必使用连续的键。</p>
+<p>保存并运行程序：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node invoke.js
+</pre></div>
+</div>
+<p>如果执行成功，你将看到类似输出：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Wallet path: ...fabric-samples/fabcar/javascript/wallet
+Transaction has been submitted
+</pre></div>
+</div>
+<p>注意 <code class="docutils literal notranslate"><span class="pre">inovke</span></code> 程序是怎样使用 <code class="docutils literal notranslate"><span class="pre">submitTransaction</span></code> API 和区块链网络交互的，而不是 <code class="docutils literal notranslate"><span class="pre">evaluateTransaction</span></code> 。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>await contract.submitTransaction<span class="o">(</span><span class="s1">&#39;createCar&#39;</span>, <span class="s1">&#39;CAR12&#39;</span>, <span class="s1">&#39;Honda&#39;</span>, <span class="s1">&#39;Accord&#39;</span>, <span class="s1">&#39;Black&#39;</span>, <span class="s1">&#39;Tom&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">submitTransaction</span></code> 比 <code class="docutils literal notranslate"><span class="pre">evaluateTransaction</span></code> 更加复杂。除了跟一个单独的 peer 进行互动外，SDK 会将 <code class="docutils literal notranslate"><span class="pre">submitTransaction</span></code> 提案发送给在区块链网络中的每个需要的组织的 peer。其中的每个 peer 将会使用这个提案来执行被请求的智能合约，以此来产生一个建议的回复，它会为这个回复签名并将其返回给 SDK。SDK 搜集所有签过名的交易反馈到一个单独的交易中，这个交易会被发送给排序节点。排序节点从每个应用程序那里搜集并将交易排序，然后打包进一个交易的区块中。接下来它会将这些区块分发给网络中的每个 peer，在那里每笔交易会被验证并提交。最后，SDK 会被通知，这允许它能够将控制返回给应用程序。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">submitTransaction</span></code> 也包含一个监听者，它会检查来确保交易被验证并提交到账本中。应用程序应该使用一个提交监听者，或者使用像 <code class="docutils literal notranslate"><span class="pre">submitTransaction</span></code> 这样的 API 来给你做这件事情。如果不做这个，你的交易就可能没有被成功地排序、验证以及提交到账本。</p>
+</div>
+<p>应用程序中的这些工作由 <code class="docutils literal notranslate"><span class="pre">submitTransaction</span></code> 完成！应用程序、智能合约、节点和排序服务一起工作来保证网络中账本一致性的程序被称为共识，它的详细解释在这里 <a class="reference external" href="./peers/peers.html">section</a> 。</p>
+<p>为了查看这个被写入账本的交易，返回到 <code class="docutils literal notranslate"><span class="pre">query.js</span></code> 并将参数 <code class="docutils literal notranslate"><span class="pre">CAR4</span></code> 更改为 <code class="docutils literal notranslate"><span class="pre">CAR12</span></code> 。</p>
+<p>就是说，将：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">result</span> <span class="o">=</span> await contract.evaluateTransaction<span class="o">(</span><span class="s1">&#39;queryCar&#39;</span>, <span class="s1">&#39;CAR4&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>改为：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>const <span class="nv">result</span> <span class="o">=</span> await contract.evaluateTransaction<span class="o">(</span><span class="s1">&#39;queryCar&#39;</span>, <span class="s1">&#39;CAR12&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>再次保存，然后查询：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node query.js
+</pre></div>
+</div>
+<p>应该返回这些：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Wallet path: ...fabric-samples/fabcar/javascript/wallet
+Transaction has been evaluated, result is:
+<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;Black&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;car&quot;</span>,<span class="s2">&quot;make&quot;</span>:<span class="s2">&quot;Honda&quot;</span>,<span class="s2">&quot;model&quot;</span>:<span class="s2">&quot;Accord&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;Tom&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>恭喜。你创建了一辆汽车并验证了它记录在账本上！</p>
+<p>现在我们已经完成了，我们假设 Tom 很大方，想把他的 Honda Accord 送给一个叫 Dave 的人。</p>
+<p>为了完成这个，返回到 <code class="docutils literal notranslate"><span class="pre">invoke.js</span></code> 然后利用输入的参数，将智能合约的交易从 <code class="docutils literal notranslate"><span class="pre">createCar</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">changeCarOwner</span></code> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>await contract.submitTransaction<span class="o">(</span><span class="s1">&#39;changeCarOwner&#39;</span>, <span class="s1">&#39;CAR12&#39;</span>, <span class="s1">&#39;Dave&#39;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>第一个参数 <code class="docutils literal notranslate"><span class="pre">CAR12</span></code> 表示将要易主的车。第二个参数 <code class="docutils literal notranslate"><span class="pre">Dave</span></code> 表示车的新主人。</p>
+<p>再次保存并执行程序：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node invoke.js
+</pre></div>
+</div>
+<p>现在我们来再次查询账本，以确定 Dave 和 <code class="docutils literal notranslate"><span class="pre">CAR12</span></code> 键已经关联起来了：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node query.js
+</pre></div>
+</div>
+<p>将返回如下结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Wallet path: ...fabric-samples/fabcar/javascript/wallet
+Transaction has been evaluated, result is:
+<span class="o">{</span><span class="s2">&quot;color&quot;</span>:<span class="s2">&quot;Black&quot;</span>,<span class="s2">&quot;docType&quot;</span>:<span class="s2">&quot;car&quot;</span>,<span class="s2">&quot;make&quot;</span>:<span class="s2">&quot;Honda&quot;</span>,<span class="s2">&quot;model&quot;</span>:<span class="s2">&quot;Accord&quot;</span>,<span class="s2">&quot;owner&quot;</span>:<span class="s2">&quot;Dave&quot;</span><span class="o">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CAR12</span></code> 的主人已经从 Tom 变成了 Dave。</p>
+<blockquote>
+<div><p>Wallet path: …fabric-samples/fabcar/javascript/wallet
+Transaction has been evaluated, result is:
+{“color”:”Black”,”docType”:”car”,”make”:”Honda”,”model”:”Accord”,”owner”:”Tom”}</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在真实世界中的一个应用程序里，智能合约应该有一些访问控制逻辑。比如，只有某些有权限的用户能够创建新车，并且只有车辆的拥有者才能够将车辆交换给其他人。</p>
+</div>
+</div>
+<div class="section" id="clean-up">
+<h2>Clean up<a class="headerlink" href="#clean-up" title="Permalink to this headline">¶</a></h2>
+<p>When you are finished using the FabCar sample, you can bring down the test
+network using <code class="docutils literal notranslate"><span class="pre">networkDown.sh</span></code> script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./networkDown.sh
+</pre></div>
+</div>
+<p>This command will bring down the CAs, peers, and ordering node of the network
+that we created. It will also remove the <code class="docutils literal notranslate"><span class="pre">admin</span></code> and <code class="docutils literal notranslate"><span class="pre">appUser</span></code> crypto material stored
+in the <code class="docutils literal notranslate"><span class="pre">wallet</span></code> directory. Note that all of the data on the ledger will be lost.
+If you want to go through the tutorial again, you will start from a clean initial state.</p>
+</div>
+<div class="section" id="id10">
+<h2>总结<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>现在我们完成了一些查询和跟新，你应该已经比较了解如何通过智能合约和区块链网络进行交互来查询和更新账本。我们已经看过了查询和更新的基本角智能合约、API 和 SDK ，你也应该对如何在其他的商业场景和操作中使用不同应用有了一些认识。</p>
+</div>
+<div class="section" id="id11">
+<h2>其他资源<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>就像我们在介绍中说的，我们有一整套文章在 <a class="reference internal" href="developapps/developing_applications.html"><span class="doc">开发应用</span></a> 包含了关于智能合约、程序和数据设计的更多信息，一个更深入的使用商业票据的 <a class="reference external" href="./tutorial/commercial_paper.html">教程</a> 和大量应用开发的相关资料。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial/commercial_paper.html" class="btn btn-neutral float-right" title="}" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deploy_chaincode.html" class="btn btn-neutral" title="}" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

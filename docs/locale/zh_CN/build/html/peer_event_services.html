@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>基于通道的 Peer 节点事件服务 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="私有数据" href="private-data-arch.html" />
+    <link rel="prev" title="使用 CouchDB 作为状态数据库" href="couchdb_as_state_database.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="architecture.html">架构参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="http://hyperledger-fabric-ca.readthedocs.io/en/latest">Hyperledger Fabric CA's User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fabric-sdks.html">Hyperledger Fabric SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="txflow.html">交易流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discovery-overview.html">服务发现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capability_requirements.html">定义功能需求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="channels.html">通道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="couchdb_as_state_database.html">使用 CouchDB 作为状态数据库</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">基于通道的 Peer 节点事件服务</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">可用的服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">如何注册事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">传递响应消息概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sdk">SDK事件文档</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="private-data-arch.html">私有数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readwrite.html">读写集语义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gossip.html">Gossip 数据传播协议</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="architecture.html">架构参考</a> &raquo;</li>
+        
+      <li>基于通道的 Peer 节点事件服务</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/peer_event_services.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="peer">
+<h1>基于通道的 Peer 节点事件服务<a class="headerlink" href="#peer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>在 Fabric 的早期版本中，Peer 事件服务被称为事件中心。每当添加新区块到 Peer 节点的帐本中时，该服务都会发送事件，而不管该通道是不是涉及该区块，并且只有运行事件 Peer 的组织成员才能访问该事件（即，与该事件相关联的成员） ）。</p>
+<p>从v1.1开始，有了提供事件的新服务。这些服务使用完全不同的设计来按通道提供事件。这意味着事件的注册发生在通道级别而不是 Peer 节点端，从而可以对 Peer 节点的数据访问进行精细控制。接收事件的请求是从 Peer 节点组织外部的身份接受的（由通道配置进行定义）。这还提供了更高的可靠性，以及一种接收可能错过的事件的方式（无论是由于连接问题还是由于 Peer 节点正在加入已经运行的网络而导致的事件遗漏）。</p>
+</div>
+<div class="section" id="id2">
+<h2>可用的服务<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Deliver</span></code></p></li>
+</ul>
+<p>该服务将已提交到帐本的整个区块发送出去。如果链码有事件设置，则可以在区块的 <code class="docutils literal notranslate"><span class="pre">ChaincodeActionPayload</span></code> 中找到。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DeliverWithPrivateData</span></code></p></li>
+</ul>
+<p>该服务发送与 <code class="docutils literal notranslate"><span class="pre">Deliver</span></code> 服务相同的数据，以及来自客户组织的的任何授权访问的私有数据。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DeliverFiltered</span></code></p></li>
+</ul>
+<p>该服务发送“已过滤”的区块，这是有关已提交到账本的区块的最小信息集。它主要针对 Peer 节点拥有者希望外部客户端接收关于他们的交易和交易状态的主要数据的情况。用于在 Peer 所有者希望外部客户主要接收有关其交易和交易状态信息的网络中。如果链码中有事件设置，则可以在过滤后的区块的 <code class="docutils literal notranslate"><span class="pre">FilteredChaincodeAction</span></code> 中找到。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>链码事件的有效负载将不包含在已过滤的区块中。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>如何注册事件<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>事件的注册是通过将包含消息的信封发送到 Peer 节点来完成的，该信封包含所需的开始和停止位置，寻找行为定义（一直阻塞到准备就绪，还是直接失败）。辅助变量 <code class="docutils literal notranslate"><span class="pre">SeekOldest</span></code> 和 <code class="docutils literal notranslate"><span class="pre">SeekNewest</span></code> 可以用于指示最老的（即第一个）区块或账本的最新的（即最后一个）区块。要使服务无限期发送事件，<code class="docutils literal notranslate"><span class="pre">SeekInfo</span></code> 消息应包含停止位置 <code class="docutils literal notranslate"><span class="pre">MAXINT64</span></code>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果在 Peer 节点上启用了双向 TLS ，则必须在信封的通道头中设置 TLS 证书哈希。</p>
+</div>
+<p>默认情况下，事件服务使用“Channel Readers”策略来确定是否授权客户端的事件请求。</p>
+</div>
+<div class="section" id="id4">
+<h2>传递响应消息概述<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>事件服务发送 <code class="docutils literal notranslate"><span class="pre">DeliverResponse</span></code> 消息作为回应。</p>
+<p>每条消息应该包含如下内容之一：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>状态 –  HTTP 状态代码。如果发生任何故障，每个服务将返回相应的故障代码；否则，一旦服务完成 <code class="docutils literal notranslate"><span class="pre">SeekInfo</span></code> 请求的所有信息，它将返回 <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">-</span> <span class="pre">SUCCESS</span></code> 。</p></li>
+<li><p>区块 – 仅由 <code class="docutils literal notranslate"><span class="pre">Deliver</span></code> 服务返回。</p></li>
+<li><p>区块和私有数据 – 仅由 <code class="docutils literal notranslate"><span class="pre">DeliverWithPrivateData</span></code> 服务返回。</p></li>
+<li><p>已过滤的区块 – 仅由 <code class="docutils literal notranslate"><span class="pre">DeliverFiltered</span></code> 服务返回。</p></li>
+</ul>
+</div></blockquote>
+<p>过滤后的区块包含：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>通道ID</p></li>
+<li><p>编号（如区块高度）</p></li>
+<li><p>过滤交易的数组。</p></li>
+<li><p>交易ID。</p>
+<ul>
+<li><p>类型 (e.g. <code class="docutils literal notranslate"><span class="pre">ENDORSER_TRANSACTION</span></code>, <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code>。）</p></li>
+<li><p>交易验证代码。</p></li>
+</ul>
+</li>
+<li><dl class="simple">
+<dt>过滤的交易行为。</dt><dd><ul>
+<li><dl class="simple">
+<dt>过滤后的链码行为数组。</dt><dd><ul>
+<li><p>交易的链码事件（除去负载）</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="sdk">
+<h2>SDK事件文档<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h2>
+<p>有关使用事件服务的更多详细信息，请参阅 <a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/tutorial-channel-events.html">SDK documentation。</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="private-data-arch.html" class="btn btn-neutral float-right" title="私有数据" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="couchdb_as_state_database.html" class="btn btn-neutral" title="使用 CouchDB 作为状态数据库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

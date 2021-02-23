@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>fi &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="}" href="cc_service.html" />
+    <link rel="prev" title="Metrics Reference" href="metrics_reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>fi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cc_launcher.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 外部构建器和启动器</p>
+<p>在 Hyperledger Fabric 2.0 之前，构建和启动链码的过程都是 peer 实现的一部分，不能轻易自定义。Peer 节点上安装的所有链码都将使用 Peer 节点中硬编码的语言特定逻辑来“构建”。该构建过程将生成一个 Docker 容器镜像，该镜像将被启动为一个连接到 Peer 节点的客户端来执行链码。</p>
+<p>该方法限制了链码只能由少数语言实现，需要 Docker 作为部署环境的一部分并且阻碍了将链码作为一个长期运行的服务进程。</p>
+<p>从 Fabric 2.0 开始，外部构建器和启动器通过支持操作者使用可以构建、启动和发现链码的程序扩展 peer 从而解决了这些限制。要使用这个功能，你需要创建你自己的构建包并修改 peer 的 core.yaml 文件使其包含一个新的 <cite>externalBuilder</cite> 配置元素，该配置可以使 Peer 节点知道外部构建器是可用的。后边的章节详细介绍了这个过程。</p>
+<p>注意，如果没有已配置的外部构建器声明链码包，peer 将尝试处理链码包，就好像链码包是由标准的 Fabric 打包工具（比如，peer CLI 或者 node SDK）创建的一样。</p>
+<p><strong>注意：</strong> 这是一个高级特性，可能会需要自定义的 peer 镜像包。例如，下面的示例中使用的 <cite>go</cite> 和 <cite>bash</cite>，这些并没有包含在官方 <cite>fabric-peer</cite> 镜像中。</p>
+<p>## 外部构建模型</p>
+<p>Hyperledger Fabric 外部构建器和启动器不严格地基于 Heroku [Buildpacks](<a class="reference external" href="https://devcenter.heroku.com/articles/buildpack-api">https://devcenter.heroku.com/articles/buildpack-api</a>)。一个构件包的实现是简单的程序或脚本的集合，这些程序或脚本会将应用程序构件转换为可以运行的东西。构建包模型适用于链码包，并且扩展支持链码执行和发现。</p>
+<p>### 外部构建器和启动器 API</p>
+<p>外部构建器和启动器由四段代码或者脚本组成：</p>
+<ul class="simple">
+<li><p><cite>bin/detect</cite>： 决定该构建包是否用于构建链码包并启动它。</p></li>
+<li><p><cite>bin/build</cite>： 将链码包转换为可执行链码。</p></li>
+<li><p><cite>bin/release</cite> （可选）： 向 peer 提供链码相关元数据。</p></li>
+<li><p><cite>bin/run</cite> （可选）： 运行链码。</p></li>
+</ul>
+<p>#### <cite>bin/detect</cite></p>
+<p><cite>bin/detect</cite> 脚本负责决定该构建包是否用于构建链码包并启动它。peer 调用 <cite>detect</cite> 需要两个参数：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`sh</span>
+<span class="pre">bin/detect</span> <span class="pre">CHAINCODE_SOURCE_DIR</span> <span class="pre">CHAINCODE_METADATA_DIR</span>
+<span class="pre">`</span></code></p>
+<p>当调用 <cite>detect</cite> 的时候，<cite>CHAINCODE_SOURCE_DIR</cite> 目录下包含链码源码， <cite>CHAINCODE_METADATA_DIR</cite> 目录包含 <cite>metadata.json</cite> 文件，这些文件都来自 peer 上安装的链码包。<cite>CHAINCODE_SOURCE_DIR</cite> 和 <cite>CHAINCODE_METADATA_DIR</cite> 应该被视为只读输入。如果构建包要被应用到链码源码包，<cite>detect</cite> 必须返回退出代码 <cite>0</cite>；任何其他退出代码都表示构建包不能被应用。</p>
+<p>下边是一个简单的 go 链码 <cite>detect</cite> 脚本示例：
+<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>sh
+#!/bin/bash</p>
+<p>CHAINCODE_METADATA_DIR=”$2”</p>
+<p># use jq to extract the chaincode type from metadata.json and exit with
+# success if the chaincode type is golang
+if [ “$(jq -r .type “$CHAINCODE_METADATA_DIR/metadata.json” | tr ‘[:upper:]’ ‘[:lower:]’)” = “golang” ]; then</p>
+<blockquote>
+<div><p>exit 0</p>
+</div></blockquote>
+<p>fi</p>
+<p>exit 1
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>#### <cite>bin/build</cite></p>
+<p><cite>bin/build</cite> 脚本负责构建、编译或者转换链码包的内容为可以让 <cite>release</cite> 和 <cite>run</cite> 使用的构件。peer 调用 <cite>build</cite> 需要三个参数：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`sh</span>
+<span class="pre">bin/build</span> <span class="pre">CHAINCODE_SOURCE_DIR</span> <span class="pre">CHAINCODE_METADATA_DIR</span> <span class="pre">BUILD_OUTPUT_DIR</span>
+<span class="pre">`</span></code></p>
+<p>当调用 <cite>build</cite> 的时候，<cite>CHAINCODE_SOURCE_DIR</cite> 指向链码源码， <cite>CHAINCODE_METADATA_DIR</cite> 指向 <cite>metadata.json</cite> 文件，这些文件都来自 peer 上安装的链码包。<cite>BUILD_OUTPUT_DIR</cite> 是 <cite>build</cite> 必须放置 <cite>release</cite> 和 <cite>run</cite> 需要的构件的目录。构件脚本应该将 <cite>CHAINCODE_SOURCE_DIR</cite> 和 <cite>CHAINCODE_METADATA_DIR</cite> 看作是只读的，但 <cite>BUILD_OUTPUT_DIR</cite> 是可写的。</p>
+<p>当 <cite>build</cite> 以退出代码 <cite>0</cite> 完成时，<cite>BUILD_OUTPUT_DIR</cite> 中的内容将被复制到 peer 管理的持久存储中；任何其他退出代码都认为是失败。</p>
+<p>以下是一个简单的 go 链码 <cite>build</cite> 脚本示例：</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>sh
+#!/bin/bash</p>
+<p>CHAINCODE_SOURCE_DIR=”$1”
+CHAINCODE_METADATA_DIR=”$2”
+BUILD_OUTPUT_DIR=”$3”</p>
+<p># extract package path from metadata.json
+GO_PACKAGE_PATH=”$(jq -r .path “$CHAINCODE_METADATA_DIR/metadata.json”)”
+if [ -f “$CHAINCODE_SOURCE_DIR/src/go.mod” ]; then</p>
+<blockquote>
+<div><p>cd “$CHAINCODE_SOURCE_DIR/src”
+go build -v -mod=readonly -o “$BUILD_OUTPUT_DIR/chaincode” “$GO_PACKAGE_PATH”</p>
+</div></blockquote>
+<dl class="simple">
+<dt>else</dt><dd><p>GO111MODULE=off go build -v  -o “$BUILD_OUTPUT_DIR/chaincode” “$GO_PACKAGE_PATH”</p>
+</dd>
+</dl>
+<p>fi</p>
+<p># save statedb index metadata to provide at release
+if [ -d “$CHAINCODE_SOURCE_DIR/META-INF” ]; then</p>
+<blockquote>
+<div><p>cp -a “$CHAINCODE_SOURCE_DIR/META-INF” “$BUILD_OUTPUT_DIR/”</p>
+</div></blockquote>
+<div class="section" id="fi">
+<h1>fi<a class="headerlink" href="#fi" title="Permalink to this headline">¶</a></h1>
+<p>#### <cite>bin/release</cite></p>
+<p><cite>bin/release</cite> 脚本负责向 peer 节点提供链码元数据。<cite>bin/release</cite> 是可选的。如果没有提供，则跳过该步骤。peer 节点使用两个参数调用 <cite>release</cite>：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`sh</span>
+<span class="pre">bin/release</span> <span class="pre">BUILD_OUTPUT_DIR</span> <span class="pre">RELEASE_OUTPUT_DIR</span>
+<span class="pre">`</span></code></p>
+<p>当调用 <cite>release</cite> 时，<cite>BUILD_OUTPUT_DIR</cite> 包含由 <cite>build</cite> 程序填充的构建，应该被视为只读输入。 <cite>RELEASE_OUTPUT_DIR</cite> 是 <cite>release</cite> 必须放置的由 peer 使用的构建的目录。</p>
+<p><cite>release</cite> 完成后，peer 节点将从 <cite>RELEASE_OUTPUT_DIR</cite> 中消耗两种类型的元数据：</p>
+<ul class="simple">
+<li><p>CouchDB 的状态数据库索引定义</p></li>
+<li><p>外部链码服务器连接信息（<cite>chaincode/server/connection.json</cite>）</p></li>
+</ul>
+<p>如果链码需要 CouchDB 索引定义，<cite>release</cite> 负责将索引放置到 <cite>RELEASE_OUTPUT_DIR</cite> 下的 <cite>statedb/couchdb/indexes</cite> 目录中。索引必须有 <cite>.json</cite> 扩展。 有关详细信息，请参阅 [CouchDB indexes](couchdb_as_state_database.html#couchdb-indexes) 文档。</p>
+<p>在使用链码服务器实现的情况下，<cite>release</cite> 负责用与链码服务器地址以及和链码通信所需的任何 TLS 资产来填充 <cite>chaincode/server/connection.json</cite>。当服务器连接信息提供给 peer 节点时，<cite>run</cite> 将不会被调用。 有关详细信息，请参阅 [ChaincodeServer](<a class="reference external" href="https://jira.hyperledger.org/browse/FAB-14086">https://jira.hyperledger.org/browse/FAB-14086</a>) 文档。</p>
+<p>以下是一个简单的 go 链码 <cite>release</cite> 脚本示例：</p>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a>sh
+#!/bin/bash</p>
+<p>BUILD_OUTPUT_DIR=”$1”
+RELEASE_OUTPUT_DIR=”$2”</p>
+<p># copy indexes from META-INF/* to the output directory
+if [ -d “$BUILD_OUTPUT_DIR/META-INF” ] ; then</p>
+<blockquote>
+<div><p>cp -a “$BUILD_OUTPUT_DIR/META-INF/”* “$RELEASE_OUTPUT_DIR/”</p>
+</div></blockquote>
+</div>
+<div class="section" id="id17">
+<h1>fi<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h1>
+<p>#### <cite>bin/run</cite></p>
+<p><cite>bin/run</cite> 脚本负责运行链码。 peer 节点使用两个参数调用 <cite>run</cite>：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`sh</span>
+<span class="pre">bin/run</span> <span class="pre">BUILD_OUTPUT_DIR</span> <span class="pre">RUN_METADATA_DIR</span>
+<span class="pre">`</span></code></p>
+<p>当 <cite>run</cite> 被调用时，<cite>BUILD_OUTPUT_DIR</cite> 包含由 <cite>build</cite> 程序填充的构建，以及一个名为 <cite>chaincode.json</cite> 的文件填充 <cite>RUN_METADATA_DIR</cite>，该文件包含了 chaincode 连接和注册 peer 节点所必需的信息。请注意，<cite>bin/run</cite> 脚本应该将这些 <cite>BUILD_OUTPUT_DIR</cite> 和 <cite>RUN_METADATA_DIR`目录视为只读输入。 `chaincode.json</cite> 中包含的密钥是：</p>
+<ul class="simple">
+<li><p><cite>chaincode_id</cite>：和链码包关联的唯一 ID。</p></li>
+<li><p><cite>peer_address</cite>：被 peer 节点托管的 <cite>ChaincodeSupport</cite> 的 gRPC 服务器端点的以 <cite>host:port</cite> 为格式的地址。</p></li>
+<li><p><cite>client_cert</cite>：当链码建立与 peer 节点的连接时，必须使用 peer 节点生成的 PEM 编码的 TLS 客户端证书。</p></li>
+<li><p><cite>client_key</cite>：当链码建立与 peer 节点的连接时，必须使用 peer 节点生成的 PEM 编码的客户端密钥。</p></li>
+<li><p><cite>root_cert</cite>：由 peer 服务器托管的 <cite>ChaincodeSupport</cite> 的 gRPC 服务器端点的 PEM 编码的 TLS 根证书。</p></li>
+<li><p><cite>mspid</cite>：peer 节点的本地 mspid。</p></li>
+</ul>
+<p>当 <cite>run</cite> 终止时，peer 节点认为链码终止。如果对链码的另一个请求到达，peer 节点将通过再次调用`run` 来尝试启动链码的另一个实例。在调用之间不得缓存 <cite>chaincode.json</cite> 的内容。</p>
+<p>The following is an example of a simple <cite>run</cite> script for go chaincode:
+以下是一个简单的 go 链码 <cite>run</cite> 脚本示例：
+<a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a>sh
+#!/bin/bash</p>
+<p>BUILD_OUTPUT_DIR=”$1”
+RUN_METADATA_DIR=”$2”</p>
+<p># setup the environment expected by the go chaincode shim
+export CORE_CHAINCODE_ID_NAME=”$(jq -r .chaincode_id “$RUN_METADATA_DIR/chaincode.json”)”
+export CORE_PEER_TLS_ENABLED=”true”
+export CORE_TLS_CLIENT_CERT_FILE=”$RUN_METADATA_DIR/client.crt”
+export CORE_TLS_CLIENT_KEY_FILE=”$RUN_METADATA_DIR/client.key”
+export CORE_PEER_TLS_ROOTCERT_FILE=”$RUN_METADATA_DIR/root.crt”
+export CORE_PEER_LOCALMSPID=”$(jq -r .mspid “$RUN_METADATA_DIR/chaincode.json”)”</p>
+<p># populate the key and certificate material used by the go chaincode shim
+jq -r .client_cert “$RUN_METADATA_DIR/chaincode.json” &gt; “$CORE_TLS_CLIENT_CERT_FILE”
+jq -r .client_key  “$RUN_METADATA_DIR/chaincode.json” &gt; “$CORE_TLS_CLIENT_KEY_FILE”
+jq -r .root_cert   “$RUN_METADATA_DIR/chaincode.json” &gt; “$CORE_PEER_TLS_ROOTCERT_FILE”
+if [ -z “$(jq -r .client_cert “$RUN_METADATA_DIR/chaincode.json”)” ]; then</p>
+<blockquote>
+<div><p>export CORE_PEER_TLS_ENABLED=”false”</p>
+</div></blockquote>
+<p>fi</p>
+<p># exec the chaincode to replace the script with the chaincode process
+exec “$BUILD_OUTPUT_DIR/chaincode” -peer.address=”$(jq -r .peer_address “$ARTIFACTS/chaincode.json”)”
+<a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
+<p>## 配置外部构建器和启动器</p>
+<p>配置 peer 节点以使用外部构建器涉及在定义外部构建器的 <cite>core.yaml</cite> 中的链码配置块下添加一个外部构建器元素。 每个外部构建器定义必须包括一个名称（用于日志记录）和包含构建器脚本的 <cite>bin</cite> 目录的父目录的路径。</p>
+<p>还可以提供一个可选的环境变量名列表，以便在调用外部构建器脚本时从 peer 节点传播。</p>
+<p>以下为定义了两个外部构建器的示例：</p>
+<p><a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a>yaml
+chaincode:</p>
+<blockquote>
+<div><p>externalBuilders:
+- name: my-golang-builder</p>
+<blockquote>
+<div><p>path: /builders/golang
+propagateEnvironment:
+- GOPROXY
+- GONOPROXY
+- GOSUMDB
+- GONOSUMDB</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>name: noop-builder
+path: /builders/binary</p></li>
+</ul>
+</div></blockquote>
+<p><a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">`</span></a></p>
+<p>在此示例中，“my-golang-builder“的实现包含在 <cite>/builders/golang</cite> 目录中，其构建脚本位于 <cite>/builders/golang/bin</cite> 中。 当 peer 节点调用与“my-golang-builder”关联的任何构建脚本时，它将只传播在 <cite>propagateEnvironment</cite> 中环境变量的值。</p>
+<p>注意：以下环境变量总是传播到外部构建器：</p>
+<ul class="simple">
+<li><p>LD_LIBRARY_PATH</p></li>
+<li><p>LIBPATH</p></li>
+<li><p>PATH</p></li>
+<li><p>TMPDIR</p></li>
+</ul>
+<p>当存在 <cite>externalBuilder</cite> 配置时，peer 节点将按照提供的顺序遍历构建器列表，调用 <cite>bin/detect</cite>，直到成功完成为止。 如果没有构建器成功完成 <cite>detect</cite>，则 peer 节点将返回使用在 peer 节点中实现的遗留 Docker 构建过程。 这意味着外部构建器是完全可选的。</p>
+<p>在上面的示例中，peer 节点将尝试使用“my-golang-builder”，其次是“noop-builder”，最后是 peer 内部构建过程。
+## 链码包</p>
+<p>作为 Fabric2.0 引入的新生命周期的一部分，链码包格式从序列化协议缓冲区消息更改为 gzip 压缩 POSIX 磁盘存档。 通过 <cite>peer lifecycle chaincode package</cite> 创建的链码包使用此新格式。
+### 生命周期链码包内容</p>
+<p>生命周期链码包包含两个文件。 第一个文件 <cite>code.tar.gz</cite> 是一个 gzip 压缩 POSIX 磁带存档。此文件包括链码的源构件。由 peer CLI 创建的包将链码实现源置于 <cite>src</cite> 目录下，链码元数据（如 CouchDB 索引）置于 <cite>META-INF</cite> 目录下。</p>
+<p>第二个文件，<cite>metadata.json</cite> 是一个JSON文档，有三个键：
+- <cite>type</cite>： 链码类型（例如，GOLANG、JAVA、NODE）
+- <cite>path</cite>： go 链码有关的，GOPATH 或者 GOMOD 到 main 链码包的相关的路径；其他类型合约不需要定义
+- <cite>label</cite>：用于生成 包 id 的链码标签，新链码生命周期过程通过此包 id 来识别。</p>
+<p>请注意，<cite>type</cite> 和 <cite>path</cite> 字段仅由 docker 平台构建使用。</p>
+<p>### 链码包和外部构建器</p>
+<p>当链码包安装到 peer 节点时，<cite>code.tar.gz</cite> 和 <cite>metadata.json</cite> 的内容在调用外部构建器之前不被处理，除了被新生命周期进程用来计算包 id 的 <cite>label</cite> 字段。 这为用户就如何打包外部构建器以及启动器处理的源文件和元数据提供了很大的灵活性。</p>
+<p>例如，可以构建一个自定义链码包，该包包含 <cite>code.tar.gz</cite> 中的预编译链码实现以及一个 <cite>metadata.json</cite> 文件。 允许 _binary <a href="#id34"><span class="problematic" id="id35">buildpack_</span></a> 检测自定义包，验证二进制文件的 hash，并将程序运行为链码。</p>
+<p>另一个例子是一个链码包，它只包含状态数据库索引定义和外部启动程序连接到正在运行的链码服务器所需的数据。 在这种情况下，<cite>build</cite> 进程只是从进程中提取元数据，并且 <cite>release</cite> 将它呈现给 peer 节点。</p>
+<p>唯一的要求是 <cite>code.tar.gz</cite> 只能包含常规文件和目录条目，并且条目不能包含可能导致文件写入链码包逻辑根之外的路径。</p>
+<p>&lt;!—
+Licensed under Creative Commons Attribution 4.0 International License <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>
+–&gt;</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cc_service.html" class="btn btn-neutral float-right" title="}" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="metrics_reference.html" class="btn btn-neutral" title="Metrics Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

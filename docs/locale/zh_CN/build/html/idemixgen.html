@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>身份混合器（Identity Mixer） MSP 配置生成器（idemixgen） &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="操作服务" href="operations_service.html" />
+    <link rel="prev" title="使用身份混合器（Identity Mixer）的 MSP 实现" href="idemix.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">目录结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ca">CA 密钥生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">添加默认签名者</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/idemixgen.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="identity-mixer-msp-idemixgen">
+<h1>身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）<a class="headerlink" href="#identity-mixer-msp-idemixgen" title="Permalink to this headline">¶</a></h1>
+<p>本文讲述了 <code class="docutils literal notranslate"><span class="pre">idemixgen</span></code> 工具的用法，它用来根据 MSP 为身份混合器创建配置文件。有两个可用的命令，一个用来创建新的 CA 密钥对，另一个用来根据之前生成的 CA 密钥创建 MSP 配置。</p>
+<div class="section" id="id1">
+<h2>目录结构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">idemixgen</span></code> 工具将根据下边的结构创建目录：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>- /ca/
+    IssuerSecretKey
+    IssuerPublicKey
+    RevocationKey
+- /msp/
+    IssuerPublicKey
+    RevocationPublicKey
+- /user/
+    SignerConfig
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ca</span></code> 目录包含发布者的私钥（包括已撤销的密钥）并且应该只代表一个 CA。<code class="docutils literal notranslate"><span class="pre">msp</span></code> 目录包含用于验证 idemix 签名的 MSP 信息。<code class="docutils literal notranslate"><span class="pre">user</span></code> 目录指定一个默认的签名者。</p>
+</div>
+<div class="section" id="ca">
+<h2>CA 密钥生成<a class="headerlink" href="#ca" title="Permalink to this headline">¶</a></h2>
+<p>身份混合器的 CA（发布者） 密钥套件可以使用 <code class="docutils literal notranslate"><span class="pre">idemixgen</span> <span class="pre">ca-keygen</span></code> 命令创建。这将会在工作目录创建 <code class="docutils literal notranslate"><span class="pre">ca</span></code> 和 <code class="docutils literal notranslate"><span class="pre">msp</span></code> 目录。</p>
+</div>
+<div class="section" id="id2">
+<h2>添加默认签名者<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在使用 <code class="docutils literal notranslate"><span class="pre">idemixgen</span> <span class="pre">ca-keygen</span></code> 命令创建 <code class="docutils literal notranslate"><span class="pre">ca</span></code> 和 <code class="docutils literal notranslate"><span class="pre">msp</span></code> 目录后，可以使用 <code class="docutils literal notranslate"><span class="pre">idemixgen</span> <span class="pre">signerconfig</span></code> 向配制中添加 <code class="docutils literal notranslate"><span class="pre">user</span></code> 目录中的一个用户为默认签名者。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ idemixgen signerconfig -h
+usage: idemixgen signerconfig <span class="o">[</span>&lt;flags&gt;<span class="o">]</span>
+
+Generate a default signer <span class="k">for</span> this Idemix MSP
+
+Flags:
+    -h, --help               Show context-sensitive <span class="nb">help</span> <span class="o">(</span>also try --help-long and --help-man<span class="o">)</span>.
+    -u, --org-unit<span class="o">=</span>ORG-UNIT  The Organizational Unit of the default signer
+    -a, --admin              Make the default signer admin
+    -e, --enrollment-id<span class="o">=</span>ENROLLMENT-ID
+                             The enrollment id of the default signer
+    -r, --revocation-handle<span class="o">=</span>REVOCATION-HANDLE
+                             The handle used to revoke this signer
+</pre></div>
+</div>
+<p>例如，我们可以创建组织单元 “OrgUnit1” 中的一个成员为默认签名者，他的注册身份是 “johndoe”， 撤销句柄为 “1234”，并且是一个管理员，创建的命令如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>idemixgen signerconfig -u OrgUnit1 --admin -e <span class="s2">&quot;johndoe&quot;</span> -r <span class="m">1234</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="operations_service.html" class="btn btn-neutral float-right" title="操作服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="idemix.html" class="btn btn-neutral" title="使用身份混合器（Identity Mixer）的 MSP 实现" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

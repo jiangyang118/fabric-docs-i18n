@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="启用基于 Kafka 的排序服务" href="kafka.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="raft_configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/kafka_raft_migration.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 从 Kafka 迁移到 Raft</p>
+<p><strong>注意：这篇文章面向的是已熟练掌握通道配置更新交易的读者。由于迁移会涉及到几次通道配置升级交易，因此我们建议您先熟悉 [向通道添加组织](channel_update_tutorial.html) 教程，该教程详细讲述了通道更新的流程，熟练掌握后再尝试进行迁移。</strong></p>
+<p>对于想把通道从使用基于Kafka的排序服务转换成使用[基于Raft](./orderer/ordering_service.html#Raft)的排序服务的用户，v1.4.2通过在网络各通道上进行一系列配置更新交易，使得这一点得到实现。</p>
+<p>该教程将从宏观层面来讲述迁移流程，指出一些必要的细节，不会详细讲述每个命令。</p>
+<p>## 假设与思考</p>
+<p>尝试迁移之前，要考虑以下几点：</p>
+<ol class="arabic simple">
+<li><p>该流程只针对从Kafka迁移到Raft，暂不支持其他类型orderer共识之间的迁移。</p></li>
+<li><p>迁移是单方向的。一旦排序服务被迁移成Raft并开始提交交易时，就没有办法再恢复成Kafka。</p></li>
+<li><p>因为排序节点必须关闭然后重新启动，所以在迁移期间必须允许停机。</p></li>
+<li><p>若迁移失败，只有当在本文后面规定的迁移点进行了备份，才可能对其恢复，如果未进行备份，则无法恢复至初始状态。</p></li>
+<li><p>必须在同一维护窗口对所有通道完成迁移。若只迁移部分通道则不可能恢复正常操作。</p></li>
+<li><p>在迁移过程结束时，每个通道都将拥有相同的Raft节点共识者集，与将出现在排序系统通道上的共识者集一样。这样就可以判断出成功的迁移。</p></li>
+<li><p>利用已部署的排序节点的现有账本就能完成迁移，orderer的增加或移除应在迁移完成后进行。</p></li>
+</ol>
+<p>## 整体迁移流程</p>
+<p>迁移共分为五个步骤。</p>
+<ol class="arabic simple">
+<li><p>将系统置于维护模式，该模式拒绝应用程序交易，只有排序服务管理员能改动通道配置。</p></li>
+<li><p>关闭系统，当迁移过程中发生错误，进行备份。</p></li>
+<li><p>启动系统，每个通道都有自己的共识类型，各自的元数据都已修改。</p></li>
+<li><p>重启系统后系统开始用Raft共识运行；检查各通道以确保达到规定人数。</p></li>
+<li><p>将系统移出维护模式，重启正常功能。</p></li>
+</ol>
+<p>## 准备迁移</p>
+<p>准备迁移前还需进行以下步骤。</p>
+<ul class="simple">
+<li><p>设计Raft部署，决定在Raft共识者者保留哪些排序服务节点。至少需要部署三个排序节点，但要注意的是，部署包含五个以上排序节点的共识者集能保证即使其中一个节点关闭，依然能维持高可用度，而对于只包含三个排序节点的共识者集，一旦由于某些原因（例如，正处于维护期间）导致其中一节点关闭，则极大降低了节点的可用度。</p></li>
+<li><p>准备搭建Raft` Metadata <cite>配置的材料。**注意：所有通道都需收到相同的Raft`Metadata`配置。**. 访问 [Raft配置指南](raft_configuration.html)
+获取更多相关信息。注意：你或许会发现最简单的方法就是用Raft共识协议来引导新的排序网络，然后从其配置中复制并修改共识元数据部分。无论使用哪种方法，都需要（对每个排序节点）：
+- `hostname</cite>
+- <cite>port</cite>
+- <cite>server certificate</cite>
+- <cite>client certificate</cite></p></li>
+<li><p>编译系统中所有通道（系统和应用程序）的列表。确保你有对配置更新签名的正确证书。例如，相关的排序服务管理员身份。</p></li>
+<li><p>确保所有的排序服务节点运行的Fabric版本相同，都是v1.4.2或该版之后的版本。</p></li>
+<li><p>确保所有节点运行的Fabric版本不低于v1.4.2。确保所有通道都配置了支持迁移的通道能力。
+- orderer能力` V1_4_2 <cite>（或之后的版本）
+- 通道能力</cite> V1_4_2 <a href="#id1"><span class="problematic" id="id2">`</span></a>（或之后的版本）</p></li>
+</ul>
+<p>### 维护模式的入口</p>
+<p>建议在维护模式中设置排序服务之前关闭网络的节点和客户端。虽然让节点或客户端继续运行是安全的。但由于排序服务将拒绝所有请求，因此它们的日志将充满良性但会让人误解的故障。</p>
+<p>参照 [向通道添加组织](channel_update_tutorial.html)
+教程中的步骤来pull，翻译并检查每个通道的配置，从系统通道开始。该步中唯一需要你改动的地方是` /Channel/Orderer/ConsensusType <cite>中的通道配置。在通道配置的一个JSON代表中需要改动的可能是</cite> .channel_group.groups.Orderer.values.ConsensusType <a href="#id3"><span class="problematic" id="id4">`</span></a>。</p>
+<p>` ConsensusType <cite>由三个值代表：`Type</cite>，<cite>Metadata`和`State</cite>，其中：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>Type`要么是</cite> kafka <cite>要么是</cite> etcdraft <a href="#id5"><span class="problematic" id="id6">`</span></a>（Raft）。该值只能在维护模式中才能修改。</p></li>
+<li><p>如果` Type <cite>是Kafka，那么</cite> Metadata ` 就是空的，但是如果·<cite>ConsensusType</cite> 是` etcdraft ` ，那就必须包含有效Raft元数据。下文中还会详细谈到。</p></li>
+<li><p>当通道正在处理交易时` State ` 是` STATE_NORMAL <cite>，当通道正处于迁移过程中时则为</cite> STATE_MAINTENANCE <a href="#id7"><span class="problematic" id="id8">`</span></a>。</p></li>
+</ul>
+</div></blockquote>
+<p>在通道配置更新的第一步，只用将`State` 从 <cite>Normal</cite> 改成 <cite>MAINTENANCE</cite> 。暂且先不要改`Type` 或 <cite>Metadata</cite> 区域。要注意的是，当前`Type` 应该是 <cite>Kafka</cite>。</p>
+<p>当处于维护模式时，正常交易，与迁移无关的配置更新，peer用来索取新区块而发出的请求，这些都会被拒绝。这样做是为了避免在迁移过程中需要对节点进行备份和（如果需要的话）恢复，因为节点只有在成功完成迁移时才会收到更新。换句话来说，我们想把排序服务备份点（下一步的内容）放置在节点的账本之前，以期能够在需要的时候撤销操作。不过，排序节点管理员能发出`Deliver` 请求（管理员需要该功能以继续迁移流程）。</p>
+<p><a href="#id9"><span class="problematic" id="id10">**</span></a>验证**每个排序服务节点在各自通道是否已进入维护模式。要想完成验证，可通过获取最后一个配置区块，确保每个通道上的  <cite>Type</cite>, <cite>Metadata</cite>, <cite>State</cite>  分别是  <cite>kafka</cite> ，空（上文中我们刚谈到Kafka没有元数据）， <cite>STATE_MAINTENANCE</cite>。</p>
+<p>当通道成功更新后，就可以备份排序服务了。</p>
+<p>#### 备份文件和关闭服务器</p>
+<p>关闭所有的排序节点，Kafka服务器和Zookeeper服务器。<a href="#id11"><span class="problematic" id="id12">**</span></a>先关闭排序服务节点**至关重要。随后，在允许Kafka服务将其日志刷新到磁盘（一般耗时30秒，但可能会更久，具体时间取决于你的系统情况）后，应关闭Kafka服务器。在关闭orderer的同时关闭Kafka服务器会导致orderer的文件系统状态比Kafka服务器的新，这可能会阻止你的系统启动。</p>
+<p>为这些服务器的文件系统创建一个备份。随后重启Kafka服务，紧接着再重启排序服务节点。</p>
+<p>### 在维护模式中切换成Raft</p>
+<p>迁移流程的下一步是为各通道进行通道配置更新。在配置更新中，将` Type ` 切换成 <cite>etcdraft</cite> (Raft)  的同时保持  <cite>State</cite> 为`STATE_MAINTENANCE`，填写 <cite>Metadata</cite>  配置。我们强烈建议让所有通道上的  <cite>Metadata</cite>  配置保持一致。如果你想用不同的节点组建不同的共识者集，你就能在系统被重启为  <cite>etcdraft</cite> 模式后重新配置  <cite>Metadata</cite> 的配置。因此，提供一个完全相同的元数据对象并因此提供相同的共识者集就意味着，当重启节点时，如果系统通道组成仲裁并且能够退出维护模式时，那么其他通道也可能会执行相同的操作。为各通道提供不同的共识者集会导致有一个通道成功形成集合而另一个通道失败了。</p>
+<p>随后，验证每个排序服务是否都通过拉取和检测每个通道的配置来提交了 <cite>ConsensusType</cite>  改变配置更新。</p>
+<p>注意：对于每一个通道，改变 <cite>ConsensusType</cite> 的交易必须是重启节点（下一步会谈到）之前的最后一次配置交易。如果这一步之后发生其他配置交易，那么节点最有可能会在重启时崩溃，或者导致未定义的行为。</p>
+<p>#### 重启和验证主节点</p>
+<p>注意：<a href="#id13"><span class="problematic" id="id14">**</span></a>重启后必须**退出维护模式。</p>
+<p>在每个通道都完成 <cite>ConsensusType</cite>  更新后，关闭所有排序服务节点，关闭所有Kafka服务器和Zookeeper，然后仅重启排序服务节点。重启和Raft节点一样，在每个通道上组成一个集合，选出每个通道上的主节点。</p>
+<p><strong>Note</strong>: Since the Raft-based ordering service uses client and server TLS certificates for
+authentication between orderer nodes, <strong>additional configurations</strong> are required before
+you start them again, see
+[Section: Local Configuration](./raft_configuration.md#local-configuration) for more details.</p>
+<p>重启完成后, 确保通过检测节点日志来**验证**各通道上都已选出各自的主节点（下文中指出了你需检测的内容）。这将证实迁移流程顺利完成。</p>
+<p>When a leader is elected, the log will show, for each channel:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">&quot;Raft</span> <span class="pre">leader</span> <span class="pre">changed:</span> <span class="pre">0</span> <span class="pre">-&gt;</span> <span class="pre">node-number</span> <span class="pre">channel=channel-name</span>
+<span class="pre">node=node-number</span> <span class="pre">&quot;</span>
+<span class="pre">`</span></code></p>
+<p>例如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">2019-05-26</span> <span class="pre">10:07:44.075</span> <span class="pre">UTC</span> <span class="pre">[orderer.consensus.etcdraft]</span> <span class="pre">serveRequest</span> <span class="pre">-&gt;</span>
+<span class="pre">INFO</span> <span class="pre">047</span> <span class="pre">Raft</span> <span class="pre">leader</span> <span class="pre">changed:</span> <span class="pre">0</span> <span class="pre">-&gt;</span> <span class="pre">1</span> <span class="pre">channel=testchannel1</span> <span class="pre">node=2</span>
+<span class="pre">`</span></code></p>
+<p>在这个例子中  <cite>node 2</cite> 指明了主节点由通道 <cite>testchannel1`的集合选举出来（主节点是`node 1</cite>）。</p>
+<p>### 切出维护模式</p>
+<p>在各通道上执行另一项通道配置更新（向截止目前你已发送过配置更新的排序节点发送配置更新），从而将 <cite>State</cite> 从  <cite>STATE_MAINTENANCE</cite> 切换成 <cite>STATE_NORMAL</cite>。如正常一样，从系统通道先开始。如果在排序系统通道上成功了，有可能所有通道上的迁移都成功了。要进行验证，请从排序节点中获取系统通道的最后一个配置区块，验证当前  <cite>State</cite> 为  <cite>STATE_NORMAL</cite> 。为了完整性，请在各排序节点上进行验证。</p>
+<p>当流程完成时，所有通道上的排序服务就能接受所有交易了。如果你像我们建议的那样关闭了节点和应用程序，现在你可以重启它们了。</p>
+<p>## 中止和恢复</p>
+<p>如果在迁移过程中**还未退出维护模式时**出现一个问题，只需执行以下恢复步骤：</p>
+<ol class="arabic simple">
+<li><p>关闭排序节点和Kafka服务（服务器和Zookeeper的整体）。</p></li>
+<li><p>在改变  <cite>ConsensusType</cite> 之前将这些服务器的文件系统恢复成维护模式下进行的备份。</p></li>
+<li><p>重启这些服务器，排序节点将在维护模式下引导至Kafka。</p></li>
+<li><p>发送退出维护模式的配置更新，以继续使用Kafka来作为你的共识机制，或者在备份后恢复这些指令，修补阻碍形成Raft仲裁的错误，用修正过的Raft配置  <cite>Metadata</cite> 重新进行迁移。</p></li>
+</ol>
+<p>若出现以下状态，则表明迁移可能未成功：</p>
+<ol class="arabic simple">
+<li><p>某些节点崩溃或关闭。</p></li>
+<li><p>日志中没有关于各通道上成功选举出一个主节点的记录。</p></li>
+<li><p>尝试在系统通道上切换成 <cite>STATE_NORMAL</cite> 模式，但是失败了。</p></li>
+</ol>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>) –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kafka.html" class="btn btn-neutral float-right" title="启用基于 Kafka 的排序服务" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="raft_configuration.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

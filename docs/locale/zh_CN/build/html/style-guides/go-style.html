@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Coding guidelines &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="术语表" href="../glossary.html" />
+    <link rel="prev" title="Building Hyperledger Fabric" href="../dev-setup/build.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../CONTRIBUTING.html#id2">贡献的方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONTRIBUTING.html#linux-foundation">获取 Linux Foundation 账号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONTRIBUTING.html#id6">贡献文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONTRIBUTING.html#id7">项目治理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONTRIBUTING.html#id15">贡献指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../CONTRIBUTING.html#id25">法律材料</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../CONTRIBUTING.html#id26">相关主题</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../jira_navigation.html">Using Jira to understand current work items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev-setup/devenv.html">Setting up the development environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev-setup/build.html">Building Hyperledger Fabric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev-setup/build.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev-setup/build.html#id2">Configuration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Coding guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#coding-golang">Coding Golang</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coding-in-go">Coding in Go</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-or-updating-go-packages">Adding or updating Go packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-grpc-code">Generating gRPC code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Adding or updating Go packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../CONTRIBUTING.html">欢迎贡献！</a> &raquo;</li>
+        
+      <li>Coding guidelines</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/style-guides/go-style.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="coding-guidelines">
+<h1>Coding guidelines<a class="headerlink" href="#coding-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="coding-golang">
+<h2>Coding Golang<a class="headerlink" href="#coding-golang" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="coding-in-go">
+<h2>Coding in Go<a class="headerlink" href="#coding-in-go" title="Permalink to this headline">¶</a></h2>
+<p>We code in Go™ and try to follow the best practices and style outlined in
+<a class="reference external" href="https://golang.org/doc/effective_go.html">Effective Go</a> and the
+supplemental rules from the <a class="reference external" href="https://github.com/golang/go/wiki/CodeReviewComments">Go Code Review Comments wiki</a>.</p>
+<p>We also recommend new contributors review the following before submitting
+pull requests:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://dave.cheney.net/practical-go/presentations/qcon-china.html">Practical Go</a></p></li>
+<li><p><a class="reference external" href="https://go-proverbs.github.io/">Go Proverbs</a></p></li>
+</ul>
+</div></blockquote>
+<p>The following tools are executed against all pull requests. Any errors flagged
+by these tools must be addressed before the code will be merged:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://golang.org/cmd/gofmt/">gofmt -s</a></p></li>
+<li><p><a class="reference external" href="https://godoc.org/golang.org/x/tools/cmd/goimports">goimports</a></p></li>
+<li><p><a class="reference external" href="https://golang.org/cmd/vet/">go vet</a></p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p>Unit tests are expected to accompany all production code changes. These tests
+should be fast, provide very good coverage for new and modified code, and
+support parallel execution.</p>
+<p>Two matching libraries are commonly used in our tests. When modifying code,
+please use the matching library that has already been chosen for the package.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://onsi.github.io/gomega/">gomega</a></p></li>
+<li><p><a class="reference external" href="https://godoc.org/github.com/stretchr/testify/assert">testify/assert</a></p></li>
+</ul>
+</div></blockquote>
+<p>Any fixtures or data required by tests should generated or placed under version
+control. When fixtures are generated, they must be placed in a temporary
+directory created by <code class="docutils literal notranslate"><span class="pre">ioutil.TempDir</span></code> and cleaned up when the test
+terminates. When fixtures are placed under version control, they should be
+created inside a <code class="docutils literal notranslate"><span class="pre">testdata</span></code> folder; documentation that describes how to
+regenerate the fixtures should be provided in the tests or a <code class="docutils literal notranslate"><span class="pre">README.txt</span></code>.
+Sharing fixtures across packages is strongly discouraged.</p>
+<p>When fakes or mocks are needed, they must be generated. Bespoke, hand-coded
+mocks are a maintenance burden and tend to include simulations that inevitably
+diverge from reality. Within Fabric, we use <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">generate</span></code> directives to
+manage the generation with the following tools:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/maxbrunsfeld/counterfeiter">counterfeiter</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vektra/mockery">mockery</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="api-documentation">
+<h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<p>The API documentation for Hyperledger Fabric’s Golang APIs is available
+in <a class="reference external" href="https://godoc.org/github.com/hyperledger/fabric">GoDoc</a>.</p>
+<p>The API documentation for Hyperledger Fabric’s Go APIs is available
+in <a class="reference external" href="https://godoc.org/github.com/hyperledger/fabric">GoDoc</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="adding-or-updating-go-packages">
+<h1>Adding or updating Go packages<a class="headerlink" href="#adding-or-updating-go-packages" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="generating-grpc-code">
+<h1>Generating gRPC code<a class="headerlink" href="#generating-grpc-code" title="Permalink to this headline">¶</a></h1>
+<p>Hyperledger Fabric uses go modules to manage and vendor its dependencies. This
+means that all of the external packages required to build our binaries reside
+in the <code class="docutils literal notranslate"><span class="pre">vendor</span></code> folder at the top of the repository. Go uses the packages in
+this folder instead of the module cache when <code class="docutils literal notranslate"><span class="pre">go</span></code> commands are executed.</p>
+<p>If you modify any <code class="docutils literal notranslate"><span class="pre">.proto</span></code> files, run the following command to
+generate/update the respective <code class="docutils literal notranslate"><span class="pre">.pb.go</span></code> files.</p>
+<p>If a code change results in a new or updated dependency, please be sure to run
+<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">mod</span> <span class="pre">tidy</span></code> and <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">mod</span> <span class="pre">vendor</span></code> to keep the <code class="docutils literal notranslate"><span class="pre">vendor</span></code> folder and
+dependency metadata up to date.</p>
+<p>See the <a class="reference external" href="https://github.com/golang/go/wiki/Modules">Go Modules Wiki</a> for
+additional information.</p>
+<blockquote>
+<div><p>cd $GOPATH/src/github.com/hyperledger/fabric
+make protos</p>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h1>Adding or updating Go packages<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
+<p>Hyperledger Fabric vendors dependencies. This means that all required packages
+reside in the <code class="docutils literal notranslate"><span class="pre">$GOPATH/src/github.com/hyperledger/fabric/vendor</span></code> folder. Go
+will use packages in this folder instead of the GOPATH when the <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">install</span></code>
+or <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">build</span></code> commands are executed. To manage the packages in the <code class="docutils literal notranslate"><span class="pre">vendor</span></code>
+folder, we use <a class="reference external" href="https://golang.github.io/dep/">dep</a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../glossary.html" class="btn btn-neutral float-right" title="术语表" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../dev-setup/build.html" class="btn btn-neutral" title="Building Hyperledger Fabric" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

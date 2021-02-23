@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>成员服务提供者 (MSP) &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="```" href="hsm.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="orderer_deploy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">成员服务提供者 (MSP)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">MSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">如何生成MSP证书以及它们的签名密钥？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#peerorderermsp">在Peer和Orderer端建立MSP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ou">组织单元(OU)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">身份类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">通道 MSP 设置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">最佳实践</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>成员服务提供者 (MSP)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/msp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="msp">
+<h1>成员服务提供者 (MSP)<a class="headerlink" href="#msp" title="Permalink to this headline">¶</a></h1>
+<p>本文档将详细说明MSP的建立并提供MSP的最佳实践。</p>
+<p>成员服务提供者（MSP）是 Hyperledger Fabric 的一个组件，旨在提供抽象的成员操作。</p>
+<p>具体的，MSP将分发证书、验证证书和用户授权背后的所有加密机制和协议抽象出来。MSP可以定义它们自己的身份概念，同样还可以定义管理(身份验证)和认证(签名生成和验证)这些身份的规则。</p>
+<p>一个 Hyperledger Fabric区块链网络可以由一个或多个MSP管理。这提供了成员操作的模块化和不同成员标准和架构之间的互操作性。</p>
+<p>此文档的剩余部分将详述MSP在Hyperledger Fabric的建立过程，然后讨论关于其使用的最佳实践。</p>
+<div class="section" id="id1">
+<h2>MSP配置<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>为了建立一个MSP实体，每个peer和orderer需要指定其本地的配置文件(为了使peer和orderer可以进行签名)，也为了在通道上使peer、orderer和client进行身份验证和通道成员之间的签名验证(认证)。</p>
+<p>首先，每个MSP必须指定一个名字以便该MSP在网络内被引用(例如 <code class="docutils literal notranslate"><span class="pre">msp1</span></code>, <code class="docutils literal notranslate"><span class="pre">org2</span></code>, 以及 <code class="docutils literal notranslate"><span class="pre">org3.divA</span></code>)。这是一个可以表述其所代表的在通道中联盟、组织或组织部门的名称。这个名称也被称为 <em>MSP Identifier</em> 或 <em>MSP ID</em>。每个MSP的MSPID必须是唯一的。例如，如果在系统通道建立时发现两个MSP的MSPID相同，orderer的建立将失败。</p>
+<p>在默认的MSP实现中，需指定一些参数来允许身份(证书)验证和签名验证。这些参数从这里导出： <a class="reference external" href="http://www.ietf.org/rfc/rfc5280.txt">RFC5280</a> ,并包括:</p>
+<ul class="simple">
+<li><p>一个自签名（X.509） CA 证书列表来组成信任根（<em>root of trust</em>）</p></li>
+<li><p>一个X.509证书列表来代表证书验证时需要考虑的中间证书，这些证书应该由某一个信任根颁发；中间证书是可选的参数</p></li>
+<li><p>一个X.509证书列表，并拥有从某一信任根起可验证的 CA 证书路径，来代表该MSP的管理员证书；拥有管理员证书则代表拥有申请改变该MSP配置的权力(例如，根CA、中间CA)</p></li>
+<li><p>一个组织单位列表，此列表应出现在该MSP的有效成员的X.509证书中；这是一个可选的配置参数，举例来说，可用于多组织使用相同信任根和中间CA，并给其成员预留OU信息</p></li>
+<li><p>一个证书撤销列表(CRLs)，其中每一个对应一个列出的(根或中间)MSP CA；这是一个可选参数</p></li>
+<li><p>一个自签(X.509)证书列表，用来组成TLS证书的信任根(<em>TLS root of trust</em>)</p></li>
+<li><p>一个X.509证书列表来代表证书验证时需要考虑的TLS中间证书，这些证书应该由某一个TLS信任根颁发；TLS中间证书是可选的参数</p></li>
+</ul>
+<p>该MSP的 <em>有效的</em> 身份需满足如下条件:</p>
+<ul class="simple">
+<li><p>它们以X.509证书的形式存在，并拥有从某一信任根起可验证的证书路径；</p></li>
+<li><p>它们不在任何证书撤销列表(CRL)中；</p></li>
+<li><p>它们在其X.509证书结构的 <code class="docutils literal notranslate"><span class="pre">OU</span></code> 域中 <em>列举</em> MSP配置中的一个或多个组织单位(OU)</p></li>
+</ul>
+<p>更多关于当前MSP实现中身份认证的信息，我们建议读者阅读文档 <a class="reference internal" href="msp-identity-validity-rules.html"><span class="doc">MSP Identity Validity Rules</span></a></p>
+<p>除了认证相关的参数以外，为了使 MSP 启用对其进行实例化的节点进行签名或身份验证，需指定：</p>
+<ul class="simple">
+<li><p>用于节点签名的签名密钥(当前只支持 ECDSA 密钥)</p></li>
+<li><p>节点的 X.509 证书，这是在 MSP 的验证参数下一个有效的标识</p></li>
+</ul>
+<p>值得注意的是 MSP 身份不会过期；它们只能被撤销（添加进证书撤销列表 CRL）。此外，目前没有支持 TLS 证书的撤销。</p>
+</div>
+<div class="section" id="id2">
+<h2>如何生成MSP证书以及它们的签名密钥？<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>为了生成MSP配置所需的X.509证书，可以使用`Openssl &lt;<a class="reference external" href="https://www.openssl.org/">https://www.openssl.org/</a>&gt;`_。需要强调的是Hyperledger Fabric不支持包含RSA密钥的证书。</p>
+<p>另外也可以用 <code class="docutils literal notranslate"><span class="pre">cryptogen</span></code> 工具，它相关的操作请查看文档 <a class="reference internal" href="getting_started.html"><span class="doc">入门</span></a></p>
+<p><a class="reference external" href="http://hyperledger-fabric-ca.readthedocs.io/en/latest/">Hyperledger Fabric CA</a> 也可以用来生成配置MSP的证书和密钥。</p>
+</div>
+<div class="section" id="peerorderermsp">
+<h2>在Peer和Orderer端建立MSP<a class="headerlink" href="#peerorderermsp" title="Permalink to this headline">¶</a></h2>
+<p>为了建立(Peer或Orderer的)本地MSP，管理员应当建立目录(例如，<code class="docutils literal notranslate"><span class="pre">$MY_PATH/mspconfig</span></code>)，其中包含一个文件和八个子目录：</p>
+<ol class="arabic simple">
+<li><p>一个 <code class="docutils literal notranslate"><span class="pre">admincerts</span></code> 目录，其中包含PEM文件，每个PEM文件对应一个管理员证书</p></li>
+<li><p>一个 <code class="docutils literal notranslate"><span class="pre">cacerts</span></code> 目录，其中包含PEM文件，每个PEM文件对应一个根CA证书</p></li>
+<li><p>(可选的)一个 <code class="docutils literal notranslate"><span class="pre">intermediatecerts</span></code> 目录，其中包含PEM文件，每个PEM文件对应一个中间CA证书</p></li>
+<li><p>(可选的)一个文件 <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>，用来配置所支持的组织单位(OU)和身份分类(参见下面对应的部分)</p></li>
+<li><p>(可选的)一个 <code class="docutils literal notranslate"><span class="pre">crls</span></code> 目录，包含证书撤销列表(CRLs)</p></li>
+<li><p>一个 <code class="docutils literal notranslate"><span class="pre">keystore</span></code> 目录，包含一个PEM文件，代表该节点的签名密钥，我们强调当前不支持RSA的密钥形式</p></li>
+<li><p>一个 <code class="docutils literal notranslate"><span class="pre">signcerts</span></code> 目录，包含一个PEM文件，代表该节点的X.509证书</p></li>
+<li><p>(可选的)一个 <code class="docutils literal notranslate"><span class="pre">tlscacerts</span></code> 目录，其中包含PEM文件，每个PEM文件对应一个TLS根CA证书</p></li>
+<li><p>(可选的)一个 <code class="docutils literal notranslate"><span class="pre">tlsintermediatecerts</span></code> 目录，其中包含PEM文件，每个PEM文件对应一个TLS中间CA证书</p></li>
+</ol>
+<p>在节点的配置文件(对Peer来说是core.yaml，对Orderer来说是orderer.yaml)中，必须指定 mspconfig 目录的路径和节点 MSP 的 MSPID。mspconfig 目录的路径应该是环境变量 FABRIC_CFG_PATH 的相对路径，并且是 Peer 端 <code class="docutils literal notranslate"><span class="pre">mspConfigPath</span></code> 对应的参数，或是Orderer端 <code class="docutils literal notranslate"><span class="pre">LocalMSPDir</span></code> 对应的参数。节点的 MSPID 由 Peer 端 <code class="docutils literal notranslate"><span class="pre">localMspId</span></code> 指定，或由 Orderer 端 <code class="docutils literal notranslate"><span class="pre">LocalMSPID</span></code> 指定。这些变量可以被环境变量重写，在 Peer 端使用 CORE 前缀(例如，CORE_PEER_LOCALMSPID)，在 Orderer 端使用 ORDERER 前缀（例如，ORDERER_GENERAL_LOCALMSPID）。值得一提的是，在 Orderer 建立阶段，需要生成并提供给 Orderer 系统通道的创世块。创世块中所需的 MSP配置信息将在下部分详细说明。</p>
+<p>如果想要 <em>重新配置</em> 一个 “本地” MSP，目前只能手动操作，并且Peer或Orderer需要重启。在后续版本我们计划提供在线/动态的重新配置方式(例如，不需要中止节点，使用一个受节点管理的系统链码)。</p>
+</div>
+<div class="section" id="ou">
+<h2>组织单元(OU)<a class="headerlink" href="#ou" title="Permalink to this headline">¶</a></h2>
+<p>为了配置在该 MSP 有效用户的证书中的 OU 列表，<code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> 文件需指定组织单位标识。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OrganizationalUnitIdentifiers</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">Certificate</span><span class="p">:</span> <span class="s2">&quot;cacerts/cacert1.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;commercial&quot;</span>
+  <span class="o">-</span> <span class="n">Certificate</span><span class="p">:</span> <span class="s2">&quot;cacerts/cacert2.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;administrators&quot;</span>
+</pre></div>
+</div>
+<p>上面的例子声明了两个组织单位标识：<strong>commercial</strong> 和 <strong>administrators</strong>。如果MSP拥有至少其中一个组织单位标识，它才是有效的。 <code class="docutils literal notranslate"><span class="pre">Certificate</span></code> 域代表拥有有效标识应具有的 CA 证书或中间 CA 证书路径。该路径是相对 MSP 根目录的，并且不能为空。</p>
+</div>
+<div class="section" id="id3">
+<h2>身份类型<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>The default MSP implementation allows organizations to further classify identities into clients,
+admins, peers, and orderers based on the OUs of their x509 certificates.</p>
+<ul class="simple">
+<li><p>An identity should be classified as a <strong>client</strong> if it transacts on the network.</p></li>
+<li><p>An identity should be classified as an <strong>admin</strong> if it handles administrative tasks such as
+joining a peer to a channel or signing a channel configuration update transaction.</p></li>
+<li><p>An identity should be classified as a <strong>peer</strong> if it endorses or commits transactions.</p></li>
+<li><p>An identity should be classified as an <strong>orderer</strong> if belongs to an ordering node.</p></li>
+</ul>
+<p>In order to define the clients, admins, peers, and orderers of a given MSP, the <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file
+needs to be set appropriately. You can find an example NodeOU section of the <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file
+below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NodeOUs</span><span class="p">:</span>
+  <span class="n">Enable</span><span class="p">:</span> <span class="n">true</span>
+  <span class="n">ClientOUIdentifier</span><span class="p">:</span>
+    <span class="n">Certificate</span><span class="p">:</span> <span class="s2">&quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;client&quot;</span>
+  <span class="n">AdminOUIdentifier</span><span class="p">:</span>
+    <span class="n">Certificate</span><span class="p">:</span> <span class="s2">&quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span>
+  <span class="n">PeerOUIdentifier</span><span class="p">:</span>
+    <span class="n">Certificate</span><span class="p">:</span> <span class="s2">&quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;peer&quot;</span>
+  <span class="n">OrdererOUIdentifier</span><span class="p">:</span>
+    <span class="n">Certificate</span><span class="p">:</span> <span class="s2">&quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;orderer&quot;</span>
+
+<span class="n">NodeOUs</span><span class="p">:</span>
+  <span class="n">Enable</span><span class="p">:</span> <span class="n">true</span>
+  <span class="c1"># For each identity classification that you would like to utilize, specify</span>
+  <span class="c1"># an OU identifier.</span>
+  <span class="c1"># You can optionally configure that the OU identifier must be issued by a specific CA</span>
+  <span class="c1"># or intermediate certificate from your organization. However, it is typical to NOT</span>
+  <span class="c1"># configure a specific Certificate. By not configuring a specific Certificate, you will be</span>
+  <span class="c1"># able to add other CA or intermediate certs later, without having to reissue all credentials.</span>
+  <span class="c1"># For this reason, the sample below comments out the Certificate field.</span>
+  <span class="n">ClientOUIdentifier</span><span class="p">:</span>
+    <span class="c1"># Certificate: &quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;client&quot;</span>
+  <span class="n">AdminOUIdentifier</span><span class="p">:</span>
+    <span class="c1"># Certificate: &quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span>
+  <span class="n">PeerOUIdentifier</span><span class="p">:</span>
+    <span class="c1"># Certificate: &quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;peer&quot;</span>
+  <span class="n">OrdererOUIdentifier</span><span class="p">:</span>
+    <span class="c1"># Certificate: &quot;cacerts/cacert.pem&quot;</span>
+    <span class="n">OrganizationalUnitIdentifier</span><span class="p">:</span> <span class="s2">&quot;orderer&quot;</span>
+</pre></div>
+</div>
+<p>Identity classification is enabled when <code class="docutils literal notranslate"><span class="pre">NodeOUs.Enable</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Then the client
+(admin, peer, orderer) organizational unit identifier is defined by setting the properties of
+the <code class="docutils literal notranslate"><span class="pre">NodeOUs.ClientOUIdentifier</span></code> (<code class="docutils literal notranslate"><span class="pre">NodeOUs.AdminOUIdentifier</span></code>, <code class="docutils literal notranslate"><span class="pre">NodeOUs.PeerOUIdentifier</span></code>,
+<code class="docutils literal notranslate"><span class="pre">NodeOUs.OrdererOUIdentifier</span></code>) key:</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OrganizationalUnitIdentifier</span></code>: Is the OU value that the x509 certificate needs to contain
+to be considered a client (admin, peer, orderer respectively). If this field is empty, then the classification
+is not applied.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Certificate</span></code>: (Optional) Set this to the path of the CA or intermediate CA certificate
+under which client (peer, admin or orderer) identities should be validated.
+The field is relative to the MSP root folder. Only a single Certificate can be specified.
+If you do not set this field, then the identities are validated under any CA defined in
+the organization’s MSP configuration, which could be desirable in the future if you need
+to add other CA or intermediate certificates.</p></li>
+</ol>
+<p>Notice that if the <code class="docutils literal notranslate"><span class="pre">NodeOUs.ClientOUIdentifier</span></code> section (<code class="docutils literal notranslate"><span class="pre">NodeOUs.AdminOUIdentifier</span></code>,
+<code class="docutils literal notranslate"><span class="pre">NodeOUs.PeerOUIdentifier</span></code>, <code class="docutils literal notranslate"><span class="pre">NodeOUs.OrdererOUIdentifier</span></code>) is missing, then the classification
+is not applied. If <code class="docutils literal notranslate"><span class="pre">NodeOUs.Enable</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> and no classification keys are defined,
+then identity classification is assumed to be disabled.</p>
+<p>Identities can use organizational units to be classified as either a client, an admin, a peer, or an
+orderer. The four classifications are mutually exclusive.
+The 1.1 channel capability needs to be enabled before identities can be classified as clients
+or peers. The 1.4.3 channel capability needs to be enabled for identities to be classified as an
+admin or orderer.</p>
+<p>Classification allows identities to be classified as admins (and conduct administrator actions)
+without the certificate being stored in the <code class="docutils literal notranslate"><span class="pre">admincerts</span></code> folder of the MSP. Instead, the
+<code class="docutils literal notranslate"><span class="pre">admincerts</span></code> folder can remain empty and administrators can be created by enrolling identities
+with the admin OU. Certificates in the <code class="docutils literal notranslate"><span class="pre">admincerts</span></code> folder will still grant the role of
+administrator to their bearer, provided that they possess the client or admin OU.</p>
+</div>
+<div class="section" id="id4">
+<h2>通道 MSP 设置<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>在系统创世阶段，需要指定出现在网络中的所有MSP的验证参数，并保存到系统通道的创世块。回顾一下，MSP 验证参数包含 MSP 标识、根证书列表、中间 CA 证书和管理员证书列表、OU 信息和证书撤销列表 CRL。在 Orderer 建立阶段，系统创世块将被提供给 Orderer，使 Orderer 可以认证通道建立请求。如果系统创世块包含有两个相同标识的 MSP，Orderer 将拒绝该创世块，从而导致网络启动失败。</p>
+<p>对于应用通道，通道的创世块只需包含通道管理者的MSP验证信息。需强调的是，在将 peer 加入通道之前保证通道创世块(或最近的配置块)包含正确的MSP配置信息是 <strong>应用自己的责任</strong></p>
+<p>当使用configtxgen工具启动通道时，可以通过将MSP验证参数包含进 mspconfig 目录并在 <code class="docutils literal notranslate"><span class="pre">configtx.yaml</span></code> 相应部分设置其路径的方式配置通道MSP。</p>
+<p>通道上 MSP 的 <em>重新配置</em>，MSP 管理员证书的持有者在创建 <code class="docutils literal notranslate"><span class="pre">config_update</span></code> 事务时，将声明与该 MSP 的已获得CA的证书相关的证书撤销列表。随后被管理员控制的客户端应用将在 MSP 出现的通道上声明这次更新。</p>
+</div>
+<div class="section" id="id5">
+<h2>最佳实践<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>在这部分我们将详细说明对MSP配置的通用场景下的最佳实践</p>
+<p><strong>1) 组织/企业 和 MSP 之间的映射</strong></p>
+<p>我们建议组织和MSP之间是一对一映射的。如果要使用其他类型的映射，需考虑以下情况：</p>
+<ul class="simple">
+<li><p><a href="#id6"><span class="problematic" id="id7">**</span></a>一个组织使用多个MSP.**这对应的情况是一个组织有多个部门，每个MSP代表一个部门，出现这种情况可以是独立管理的原因，也可能出于隐私考虑。在这种情况下，一个peer节点只能被单一MSP拥有，并且不能将其他MSP下peer识别成同组织的peer。这意味着peer节点可以通过gossip组织域将数据分享给同部门内的其他peer节点，但不能分享给组成实际组织的全体。</p></li>
+<li><p><a href="#id8"><span class="problematic" id="id9">**</span></a>多组织使用一个MSP.**这对应的情况是多个组织组成联盟，每个组织都被类似的成员架构管理。要知道，不论是否属于同一实际组织，peer的组织域消息将传播给同MSP下的其他peer节点。这将限制MSP定义和(或)peer配置的粒度。</p></li>
+</ul>
+<p><strong>2) 一个组织有不同分部(组织单元)，想要授予不同通道访问权</strong></p>
+<p>两种处理方法：</p>
+<ul class="simple">
+<li><p><strong>定义一个可以容纳所有组织成员的MSP</strong>.该MSP的配置将由根CA、中间CA和管理员证书列表；以及成员标识包括成员所属的组织单元(<code class="docutils literal notranslate"><span class="pre">OU</span></code>)组成。随后定义策略来捕获某一特定 <code class="docutils literal notranslate"><span class="pre">OU</span></code> 的成员，这些策略将组成通道的读/写策略或链码的背书策略。这种方法的局限性是gossip peer节点将把拥有和其相同成员标识的peer当成同组织成员，并因此与它们传播组织域信息(例如状态信息)。</p></li>
+<li><p><strong>给每一个分部定义一个MSP</strong>.这涉及到给每个分部指定一组证书，包含根CA证书、中间CA证书和管理员证书，这样能够做到MSP之间没有重复的证书路径。这意味着，每个分部采用不同的中间CA。这么做的缺点是需要管理多个MSP，但是确实绕开了上面方法出现的问题。我们也可以使用MSP配置里的OU扩展项来实现对每个分部定义一个MSP。</p></li>
+</ul>
+<p><strong>3) 区分同一组织下的client和peer</strong></p>
+<p>在很多情况下，会要求一个身份的 “type” 是可以被检索的(例如，可能有需求要求背书必须由peer节点提供，不能是client或单独的orderer节点)。</p>
+<p>对这种要求的支持是有限的。</p>
+<p>实现这种区分的一种方式是为每种节点类型创建单独的中间CA，一个给client，一个给peer或orderer，并分别配置两个不同的MSP。组织加入到的通道需要同时包含两个MSP，但背书策略只部署在peer的MSP。这将最终导致组织被映射到两个MSP实例，并且对peer和client的交互产生一些后果。</p>
+<p>由于同一组织的所有peer还是属于同一个MSP，Gossip不会被严重的影响。Peer可以基于本地MSP策略来约束特定系统链码的执行。例如，peer可以只执行 “joinChannel”请求，如果这个请求是被一个只能是client的本地MSP的管理员签名的(终端用户应该是请求的起点)。我们可以绕过这个矛盾，只要我们接受该MSP的管理员是该peer/orderer的唯一client。</p>
+<p>这种方法要考虑的另一个点是peer基于请求发起者本地MSP的资格来授权事件注册请求。很明显，由于请求发起者是一个client，它经常被当作是属于与该peer不同的MSP，因此peer将拒绝请求。</p>
+<p><strong>4) 管理员和CA证书</strong></p>
+<p>将MSP管理员证书设成与该MSP的 <code class="docutils literal notranslate"><span class="pre">root</span> <span class="pre">of</span> <span class="pre">trust</span></code> 或中间CA的证书不同非常重要。将管理成员组件和分发新和(或)验证证书的职责分开是常规(安全的)做法。</p>
+<p><a href="#id10"><span class="problematic" id="id11">**</span></a>5) 将一个中间CA列入黑名单**前面提到，可以通过重新配置机制(对本地MSP实例手动重新配置，并对通道的MSP适当的构建 <code class="docutils literal notranslate"><span class="pre">config_update</span></code> 消息)对MSP进行重新配置。很明显，有两种方式将一个中间CA列入黑名单：</p>
+<ol class="arabic simple">
+<li><p>重新配置MSP，使其中间CA证书列表不再包含该中间CA。对本地已配置的MSP来说，
+这意味着这个CA的证书将从 <code class="docutils literal notranslate"><span class="pre">intermediatecerts</span></code> 目录移除。</p></li>
+<li><p>重新配置MSP,使其包含一个由信任根颁发的证书撤销列表，该列表包含提到的中间CA的证书。</p></li>
+</ol>
+<p>当前的 MSP 实现中，我们只支持方式(1)，因为其更简单，并且不要求将不再考虑的中间 CA 列入黑名单。</p>
+<p><strong>6) CA 和 TLS CA</strong></p>
+<p>MSP身份的根CA和MSP TLS根CA(以及相关的中间CA)需要在不同的目录被定义。这是为了避免不同类证书之间产生混淆。虽然没有禁止MSP身份和TLS证书使用相同的CA，但这里建议避免在生成环境这样做。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hsm.html" class="btn btn-neutral float-right" title="```" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="orderer_deploy.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>使用身份混合器（Identity Mixer）的 MSP 实现 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）" href="idemixgen.html" />
+    <link rel="prev" title="}," href="access_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">使用身份混合器（Identity Mixer）的 MSP 实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#idemix">什么是 Idemix？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">如何使用 Idemix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Idemix 和链码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">当前限制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">技术总结</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#idemix-x-509">对比 Idemix 凭证和 X.509 证书</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">扩展信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">底层加密协议</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>使用身份混合器（Identity Mixer）的 MSP 实现</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/idemix.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="identity-mixer-msp">
+<h1>使用身份混合器（Identity Mixer）的 MSP 实现<a class="headerlink" href="#identity-mixer-msp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="idemix">
+<h2>什么是 Idemix？<a class="headerlink" href="#idemix" title="Permalink to this headline">¶</a></h2>
+<p>Idemix 是一个加密协议套件，提供了强大的身份验证和隐私保护功能，比如，<strong>匿名（anonymity）</strong>，这是一个不用明示交易者的身份即可执行交易的功能；还有，<strong>不可链接性（unlinkability</strong>），该特性可以使一个身份发送多个交易时，不能显示出这些交易是由同一个身份发出的。</p>
+<p>在 Idemix 流程中包括三中角色： <strong>用户（user）</strong>、<strong>发布者（issuer）</strong> 和 <strong>验证者（verifier）</strong>。</p>
+<img alt="_images/idemix-overview.png" src="_images/idemix-overview.png" />
+<ul class="simple">
+<li><p>发布者以数字证书的形式发布一组用户属性，以下称此证书为“凭证（credential）”。</p></li>
+<li><p>用户随后会生成一个 “<a class="reference external" href="https://en.wikipedia.org/wiki/Zero-&quot;knowledge_proof">零知识证明</a>” 来证明自己拥有这个凭证，并且只选择性的公开自己想公开的属性。这个证明，因为是零知识的，所以不会向验证者、发布者或任何人透露任何额外信息。</p></li>
+</ul>
+<p>例如，假设 “Alice” 需要向 Bob（商店职员）证明她有机动车管理局（DMV）发给她的驾照。</p>
+<p>在这个场景中，Alice 是用户，机动车管理局是发布者，Bob 是验证者。为了向 Bob 证明 Alice 有驾驶执照，她可以给他看。但是，这样 Bob 就可以看到 Alice 的名字、地址、确切年龄等等，这比 Bob 有必要知道的信息多得多。</p>
+<p>换句话说，Alice 可以使用 Idemix 为 Bob 生成一个“零知识证明”，该证明只显示她拥有有效的驾照，除此之外什么都没有。</p>
+<p>所以，从这个证明中：</p>
+<ul class="simple">
+<li><p>Bob 只知道 Alice 有一个有效的执照，除此之外他没有了解到关于 Alice 的任何其他信息（匿名性）。</p></li>
+<li><p>如果 Alice 多次访问商店并每次都为 Bob 生成一个证明，Bob 将无法从这些证明中看出这是同一个人（不可链接性）。</p></li>
+</ul>
+<p>Idemix 身份验证技术提供了与标准 X.509 证书类似的信任模型和安全保证，但是使用了底层加密算法，有效地提供了高级隐私特性，包括上面描述的特性。在下面的技术部分中，我们将详细比较 Idemix 和 X.509 技术。</p>
+</div>
+<div class="section" id="id2">
+<h2>如何使用 Idemix<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>要了解如何在 Hyperledger Fabric 中使用 Idemix，我们需要查看哪些 Fabric 组件对应于 Idemix 中的用户、发布者和验证者。</p>
+<ul>
+<li><p>Fabric Java SDK 是 <strong>用户</strong> 的 API 。在将来，其他 Fabric SDK 也会支持 Idemix 。</p></li>
+<li><p>Fabric 提供了两种可能的 Idemix <strong>发布者</strong> ：</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Fabric CA 支持生产环境和开发环境</p></li>
+<li><p><a class="reference internal" href="idemixgen.html"><span class="doc">idemixgen</span></a> 工具支持开发环境。</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>验证者</strong> 在 Fabric 中是 Idemix MSP 。</p></li>
+</ul>
+<p>为了在超级账本 Fabric 中使用 Idemix ，需要以下三个基本步骤：</p>
+<img alt="_images/idemix-three-steps.png" src="_images/idemix-three-steps.png" />
+<p><em>对比这个图和上面那个图中的角色。</em></p>
+<ol class="arabic">
+<li><p>考虑发布者。</p>
+<p>Fabric CA（1.3 或更高版本）改进后可自动充当 Idemix 发布者。当启动 <code class="docutils literal notranslate"><span class="pre">fabric-ca-server</span></code> 时（或通过 <code class="docutils literal notranslate"><span class="pre">fabric-ca-server</span> <span class="pre">init</span></code> 命令初始化时），将在 <code class="docutils literal notranslate"><span class="pre">fabric-ca-server</span></code> 的主目录中自动创建以下两个文件：<code class="docutils literal notranslate"><span class="pre">IssuerPublicKey</span></code> 和 <code class="docutils literal notranslate"><span class="pre">IssuerRevocationPublicKey</span></code>。步骤 2 需要这些文件。</p>
+<p>对于开发环境，如果你还没使用 Fabric CA，你可以使用 <code class="docutils literal notranslate"><span class="pre">idemixgen</span></code> 创建这些文件。</p>
+</li>
+<li><p>考虑验证者。</p>
+<p>您需要使用步骤1中的 <code class="docutils literal notranslate"><span class="pre">IssuerPublicKey</span></code> 和 <code class="docutils literal notranslate"><span class="pre">IssuerRevocationPublicKey</span></code> 创建 Idemix MSP。</p>
+<p>例如，考虑下面的这些摘自 <a class="reference external" href="https://github.com/hyperledger/fabric-sdk-java/blob/master/src/test/fixture/sdkintegration/e2e-2Orgs/v1.3/configtx.yaml">Hyperledger Java SDK 示例中 configtx.yaml</a> 的片段：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>- <span class="p">&amp;</span>Org1Idemix
+    <span class="c1"># defaultorg defines the organization which is used in the sampleconfig</span>
+    <span class="c1"># of the fabric.git development environment</span>
+    name: idemixMSP1
+
+    <span class="c1"># id to load the msp definition as</span>
+    id: idemixMSPID1
+
+    msptype: idemix
+    mspdir: crypto-config/peerOrganizations/org3.example.com
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">msptype</span></code> 设为 <code class="docutils literal notranslate"><span class="pre">idemix</span></code>，并且目录 <code class="docutils literal notranslate"><span class="pre">mspdir``（本例中是</span> <span class="pre">``crypto-config/peerOrganizations/org3.example.com/msp</span></code>）的内容包含 <code class="docutils literal notranslate"><span class="pre">IssuerPublicKey</span></code> 和 <code class="docutils literal notranslate"><span class="pre">IssuerRevocationPublicKey</span></code> 文件。</p>
+<p>注意，在本例中，<code class="docutils literal notranslate"><span class="pre">Org1Idemix</span></code> 代表 <code class="docutils literal notranslate"><span class="pre">Org1``（未显示）的</span> <span class="pre">Idemix</span> <span class="pre">MSP，``Org1</span></code> 还有一个 X509 MSP 。</p>
+</li>
+<li><p>考虑用户。回想一下，Java SDK 是用户的 API。</p>
+<p>要使用 Java SDK 的 Idemix，只需要额外调用 <code class="docutils literal notranslate"><span class="pre">org.hyperledger.fabric_ca.sdk.HFCAClient</span></code> 类中的 <code class="docutils literal notranslate"><span class="pre">idemixEnroll</span></code> 方法。例如，假设 <code class="docutils literal notranslate"><span class="pre">hfcaClient</span></code> 是你的 HFCAClient 对象，<code class="docutils literal notranslate"><span class="pre">x509Enrollment</span></code> 是与你的 X509 证书相关联的 <code class="docutils literal notranslate"><span class="pre">org.hyperledger.fabric.sdk.Enrollment</span></code>。</p>
+<p>下面的调用将会返回一个和你的 Idemix 凭证相关联的 <code class="docutils literal notranslate"><span class="pre">org.hyperledger.fabric.sdk.Enrollment</span></code> 对象。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>IdemixEnrollment <span class="nv">idemixEnrollment</span> <span class="o">=</span> hfcaClient.idemixEnroll<span class="o">(</span>x509enrollment, <span class="s2">&quot;idemixMSPID1&quot;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>还需要注意，<code class="docutils literal notranslate"><span class="pre">IdemixEnrollment</span></code> 实现了 <code class="docutils literal notranslate"><span class="pre">org.hyperledger.fabric.sdk.Enrollment</span></code> 接口，因此可以像使用 X509 注册对象一样使用它，当然 Idemix 自动提供了改进的隐私保护功能。</p>
+</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>Idemix 和链码<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>从验证者的角度来看，还有一个角色需要考虑：链码。当使用 Idemix 凭证时，链码可以获取有关交易参与者的哪些信息？</p>
+<p>当使用 Idemix 凭证时，<a href="#id11"><span class="problematic" id="id12">`cid (Client Identity) 库&lt;https://godoc.org/github.com/hyperledger/fabric-chaincode-go/pkg/cid&gt;`_</span></a> （只支持 golang ）已扩展支持 <code class="docutils literal notranslate"><span class="pre">GetAttributeValue</span></code> 方法。但是，像下面“当前限制”模块提到的那样，在 Idemix 的情况下，只有两个展示出来的属性：<code class="docutils literal notranslate"><span class="pre">ou</span></code> 和 <code class="docutils literal notranslate"><span class="pre">role</span></code>。</p>
+<p>如果 Fabric CA 是凭证发布者：</p>
+<ul class="simple">
+<li><p><cite>ou</cite> 属性的值是身份的 <a href="#id4"><span class="problematic" id="id5">**</span></a>从属（affiliation）**（例如，“org1.department1”）；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">role</span></code> 属性的值将是 ‘member’ 或 ‘admin’。‘admin’ 表示该身份是 MSP 管理员。默认情况下，Fabric CA 创建的身份将返回 ‘member’ 角色。要创建一个 ‘admin’ 身份，使用值为 <code class="docutils literal notranslate"><span class="pre">2</span></code> 的 <code class="docutils literal notranslate"><span class="pre">role</span></code> 属性注册身份。</p></li>
+</ul>
+<p>用 Java SDK 设置从属的例子，请查看 <a class="reference external" href="https://github.com/hyperledger/fabric-sdk-java/blob/master/src/test/java/org/hyperledger/fabric/sdkintegration/End2endIdemixIT.java#L121">示例</a> 。</p>
+<p>在 go 链码中使用 CID 库来检索属性的例子，请查看 <a href="#id13"><span class="problematic" id="id14">`go 链码&lt;https://github.com/hyperledger/fabric-sdk-java/blob/master/src/test/fixture/sdkintegration/gocc/sampleIdemix/src/github.com/example_cc/example_cc.go#L88&gt;`_</span></a> 。</p>
+<p>Idemix组织不能用于背书链码或批准链码
+定义。当你设置
+你通道的生命周期背书和背书策略时，这点需要被考虑进去。更多信息
+信息，请参阅以下的限制章节。</p>
+</div>
+<div class="section" id="id7">
+<h2>当前限制<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>Idemix 的当前版本有一些限制。</p>
+<ul>
+<li><p><strong>Idemix 组织和背书策略</strong></p>
+<p>Idemix 组织不能用于背书链码交易或批准链码定义。默认情况下，<code class="docutils literal notranslate"><span class="pre">Channel/Application/LifecycleEndorsement</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Channel/Application/Endorsement</span></code> 策略需要活跃在通道上的大多数组织的签名。
+这意味着一个包含大量 Idemix 组织的通道可能不能达到实现默认策略所需的多数。例如，如果一个通道有两个 MSP 组织和两个 Idemix 组织，通道政策要求四分之三的组织批准链码定义将该定义提交给通道。因为 Idemix
+组织不能批准链码定义，策略将仅能验证四个签名中的两个。</p>
+<p>如果你的通道包含足够多数量的 Idemix 组织来影响背书策略，你能使用签名策略来明确指定需要的 MSP 组织。</p>
+</li>
+<li><p><strong>固定的属性集合</strong></p>
+<p>还不支持发布 Idemix 凭证的自定义属性。自定义属性在将来会支持。</p>
+<p>下面的四个属性是支持的：</p>
+<ol class="arabic simple">
+<li><p>组织单元（Organizational Unit）属性（&quot;ou&quot;）：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>用法：和 X.509 一样</p></li>
+<li><p>类型：String</p></li>
+<li><p>显示（Revealed）：总是</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>角色（Role） 属性（&quot;role&quot;）：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>用法：和 X.509 一样</p></li>
+<li><p>类型：integer</p></li>
+<li><p>显示（Revealed）：总是</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>注册 ID（Enrollment ID）属性：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>用法：用户的唯一身份，即属于同一用户的所有注册凭证都是相同的（在将来的版本中用于审计）</p></li>
+<li><p>类型：BIG</p></li>
+<li><p>显示（Revealed）：不在签名中使用，只在为 Fabric CA 生成身份验证 token 时使用</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>撤销句柄（Revocation Handle）属性：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>用法：唯一性身份凭证（在将来的版本中用于撤销）</p></li>
+<li><p>类型：integer</p></li>
+<li><p>显示：从不</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>还不支持撤销</strong></p>
+<blockquote>
+<div><p>尽管存在上面提到的撤销句柄属性，可以看出撤销框架的大部分已经就绪，但是还不支持撤销 Idemix 凭证。</p>
+</div></blockquote>
+</li>
+<li><p><strong>节点背书时不使用 Idemix</strong></p>
+<blockquote>
+<div><p>目前 Idemix MSP 只被节点用来验证签名。只完成了在Client SDK 中使用 Idemix 签名。未来会支持更多角色（包括 ‘peer’ 角色）使用 Idemix MSP 。</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>技术总结<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="idemix-x-509">
+<h3>对比 Idemix 凭证和 X.509 证书<a class="headerlink" href="#idemix-x-509" title="Permalink to this headline">¶</a></h3>
+<p>Idemix 和 X.509 中的证书/凭证的概念、颁发过程，非常相似：一组属性使用不能伪造的数字签名进行签名，并且有一个利用密码学绑定的密钥。</p>
+<p>标准 X.509 证书和 Identity Mixer 证书之间的主要区别是用于验证属性的签名方案。Identity Mixer 系统下的签名能够使其有效地证明所有者拥有该签名和相应的属性，而无需揭示签名和（选择的）属性值本身。我们使用零知识证明来确保这些“知识”或“信息”不会被泄露，同时确保属性上的签名有效，并且确保用户拥有相应的凭证密钥。</p>
+<p>这样的证明，比如 X.509 证书，可以使用最初签署证书的机构的公钥进行验证，并且无法成功伪造。只有知道凭证密钥的用户才能生成凭证及其属性的证明。</p>
+<p>关于不可链接性，当提供 X.509 证书时，必须显示所有属性来验证证书签名。这意味着所有用于签署交易的证书的用法都是可链接的。</p>
+<p>为了避免这种可链接性，每次都需要使用新的 X.509 证书，这会导致复杂的密钥管理、通信和存储开销。此外，在某些情况下，即使颁发证书的 CA 也不应该将所有交易链接到用户，这一点很重要。</p>
+<p>Idemix 有助于避免 CA 和验证者之间的可链接性，因为即使是 CA 也不能将证明链接到原始凭证。发布者或验证者都不能分辨两种证明是否是来自同一凭证。</p>
+<p>这篇文章详细介绍了 Identity Mixer 技术的概念和特点 <a href="#id15"><span class="problematic" id="id16">`Concepts and Languages for Privacy-Preserving Attribute-Based Authentication&lt;https://link.springer.com/chapter/10.1007%2F978-3-642-37282-7_4&gt;`_</span></a> 。</p>
+</div>
+<div class="section" id="id9">
+<h3>扩展信息<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>鉴于上述限制，建议每个通道仅使用一个基于 Idemix 的 MSP，或者在极端情况下，每个网络使用一个基于 Idemix 的 MSP。实际上，如果每个通道有多个基于 Idemix 的 MSP，那么任意参与方读取该通道的账本，即可区分出来各个交易分别是由哪个 Idemix MSP 签署的。这是因为，每个交易都会泄漏签名者的 MSP-ID 。换句话说，Idemix 目前只提供同一组织（MSP）中客户端的匿名性。</p>
+<p>将来，Idemix 可以扩展为支持基于 Idemix 的多层匿名结构的认证机构体系，这些机构认证的凭证可以通过使用唯一的公钥进行验证，从而实现跨组织的匿名性（MSP）。这将允许多个基于 Idemix 的 MSP 在同一个通道中共存。</p>
+<p>在主体中，可以将通道配置为具有单个基于 Idemix 的 MSP 和多个基于 X.509 的 MSP。当然，这些 MSP 之间的交互可能会泄露信息。对泄露的信息需要逐案进行评估。</p>
+</div>
+<div class="section" id="id10">
+<h3>底层加密协议<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Idemix 技术是建立在一个盲签名方案的基础上的，该方案支持签名拥有多个消息和有效的的零知识证明。Idemix 的所有密码构建模块都在顶级会议和期刊上发表了，并得到了科学界的验证。</p>
+<p>Fabric 的这个特定 Idemix 实现使用了一个 pairing-based 的签名方案，该方案由 <a href="#id17"><span class="problematic" id="id18">`Camenisch 和 Lysyanskaya https://link.springer.com/chapter/10.1007/978-3-540-28628-8_4&gt;`_</span></a> 简要提出，并由 <a class="reference external" href="https://link.springer.com/chapter/10.1007/11832072_8">Au et al.</a> 详细描述。使用了在零知识证明 <a class="reference external" href="https://eprint.iacr.org/2016/663.pdf">Camenisch et al.</a> 中证明签名的知识的能力。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="idemixgen.html" class="btn btn-neutral float-right" title="身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="access_control.html" class="btn btn-neutral" title="}," accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="gateway.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="connectionoptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developing_applications.html">开发应用</a> &raquo;</li>
+        
+          <li><a href="designelements.html">应用程序设计元素</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developapps/wallet.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 钱包</p>
+<p><strong>受众</strong>：架构师、应用程序和智能合约应用开发者们</p>
+<p>一个钱包包括了一组用户身份。当与通道连接的时候，应用程序会从这些身份中选择一个用户来运行。对通道资源的访问权限，比如账本，由与 MSP（Membership provider）相关联的这个身份所定义。</p>
+<p>在本主题中，我们将涉及：</p>
+<ul class="simple">
+<li><p>[为什么钱包是重要的](#情景)</p></li>
+<li><p>[钱包是如何被组织的](#结构)</p></li>
+<li><p>[钱包的不同类型](#类型)</p></li>
+<li><p>[钱包的操作](#操作)</p></li>
+</ul>
+<p>## 情景</p>
+<p>当应用程序连接到一个比如像 PaperNer 的网络通道的时候，它选择一个用户身份去这么做，例如 <cite>ID1</cite>。通道的 MSP 将 <cite>ID1</cite> 与组织内特定的角色相关联，而且这个角色将最终决定应用程序在通道上的权限。</p>
+<p>![wallet.scenario](./develop.diagram.10.png)
+<em>两个用户， Isabella 和 Balaji 拥有包含能够用于连接不同网络通道的不同身份的钱包，PaperNet 和 BondNet。</em></p>
+<p>思考一下这两个用户的例子；来自于 MagnetoCorp 的 lsabella 和来自 DigiBank 的 Balaji。Isabella 打算使用应用程序1去调用 PaperNet 里的智能合约和一个 BondNet 的智能合约。同理，Balaji 打算使用应用程序2去调用智能合约，但是这是在 PaperNet 中。（对于应用程序来说，访问多个网络和其中多个的智能合约是[简单的](./application.html#construct-request)。)</p>
+<p>看一下：</p>
+<ul class="simple">
+<li><p>MagnetoCorp 使用 CA1 去颁发身份，DigiBank 使用 CA2 去颁发身份。这些身份被存储在用户的钱包中。</p></li>
+<li><p>Balaji 的钱包拥有一个唯一的身份, <cite>ID4</cite> 由 CA2 发行。Isabella 的钱包拥有多种被 CA1 颁发的身份，<cite>ID1</cite>、 <cite>ID2</cite>  和 <cite>ID3</cite>。钱包能够让一个用户拥有多个身份，并且每一个身份都能由不同的 CA 颁发。</p></li>
+<li><p>Isabella 和 Balaji 都连接到 PaperNet，它（PaperNet）的 MSP 确定了 Isabella 是 MagnetoCorp 的成员，且确定了 Balaji 是 DigiBank 组织的一员，因为信任颁发他们身份的 CA。（一个组织使用多个 CA 或者一个 CA 支持多个组织是[可能的](../membership/membership.html#mapping-msps-to-organizations)）</p></li>
+<li><p>Isabella 能够使用 <cite>ID1</cite> 去连接 PaperNet 和 BondNet。在这两种情况下，当 Isabella 使用这个身份时候，她会被是识别为 MangetoCorp 的一员。</p></li>
+<li><p>Isabella 能够使用 <cite>ID2</cite> 去连接 BondNet，在这种情况下，她被标识为 MagnetoCorp 的管理员。这给了 Isabella 两种不同的权利：<cite>ID1</cite> 把她标识为能够读写 BondNet 账本的 MagnetoCorp 的普通一员，然而 <cite>ID2</cite> 标识她为能够给 BondNet 添加组织的 MagnetoCorp 的管理员。</p></li>
+<li><p>Balaji 不能够使用 <cite>ID4</cite> 连接 BondNet。如果他尝试去连接，<cite>ID4</cite> 将不会被认可其属于 DigiBank，因为 CA2 不知道 BondNet 的 MSP。</p></li>
+</ul>
+<p>## 类型</p>
+<p>根据他们身份存储的位置，会有不同的钱包的类型。</p>
+<p>![wallet.types](./develop.diagram.12.png)
+<em>三种不同的钱包类型:文件系统、内存和 CouchDB</em></p>
+<ul class="simple">
+<li><p><strong>文件系统（FileSystem）</strong>：这是存储钱包最常见的地方；文件系统是无处不在的、容易理解且可以挂载在网络上。对于钱包来说，这是很好的默认选择。</p></li>
+<li><p><strong>内存（In-memory）</strong>：存储在应用程序里的钱包。当你的应用程序正在运行在一个没有访问文件系统的约束环境的时候，使用这种类型的钱包；有代表性的是 web 浏览器。需要记住的是这种类型的钱包是不稳定的；在应用程序正常结束或者崩溃的时候，身份将失去丢失。</p></li>
+<li><p><strong>CouchDB</strong>：存储在 Couch DB 的钱包。这是最罕见的一种钱包存储形式，但是对于想去使用数据备份和恢复机制的用户来说，CouchDB 钱包能够提供一个有用的选择去简化崩溃的恢复。</p></li>
+</ul>
+<p>使用 <cite>Wallets</cite> [类](<a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.Wallets.html">https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.Wallets.html</a>)提供的工厂方法来创建钱包。</p>
+<p>### 硬件安全模块</p>
+<p>硬件安全模块（Hardware Security Module，HSM）超安全、防干扰设备存储数字身份信息，特别是私钥。HSM 能够本地连接到你的电脑或可访问的网络。
+A Hardware Security Module (HSM) is an ultra-secure, tamper-proof device that
+stores digital identity information, particularly private keys. HSMs can be
+locally attached to your computer or network accessible. Most HSMs provide the
+ability to perform on-board encryption with private keys, such that the private
+keys never leave the HSM.</p>
+<p>An HSM can be used with any of the wallet types. In this case the certificate
+for an identity will be stored in the wallet and the private key will be stored
+in the HSM.</p>
+<p>To enable the use of HSM-managed identities, an <cite>IdentityProvider</cite> must be
+configured with the HSM connection information and registered with the wallet.
+For further details, refer to the [Using wallets to manage identities](<a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/tutorial-wallet.html">https://hyperledger.github.io/fabric-sdk-node/master/tutorial-wallet.html</a>) tutorial.</p>
+<p>## 结构</p>
+<p>一个单一的钱包能够保存多个身份，每一个都被一个被指定的证书机构发放。每一个身份都有一个规范的带有描述性标签的结构，一个包括公钥、私钥与一些 Fabric-specific 元数据的 X.509 证书。不同的[钱包类型](#类型) 将这个结构合理地映射到他们地存储机制上。</p>
+<p>![wallet.structure](./develop.diagram.11.png)
+<em>Fabric 钱包能够持有多个被不同证书机构颁发的身份，身份包含了证书、私钥和一些 Fabric 元数据</em></p>
+<p>这是几个关键的类方法，使得钱包和身份更容易被管理：</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>JavaScript
+const identity: X509Identity = {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>credentials: {</dt><dd><p>certificate: certificatePEM,
+privateKey: privateKeyPEM,</p>
+</dd>
+</dl>
+<p>},
+mspId: ‘Org1MSP’,
+type: ‘X.509’,</p>
+</div></blockquote>
+<p>};
+await wallet.put(identityLabel, identity);
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>See how an <cite>identity</cite> is created that has metadata <cite>Org1MSP</cite>, a <cite>certificate</cite> and
+a <cite>privateKey</cite>. See how <cite>wallet.put()</cite> adds this identity to the wallet with a
+particular <cite>identityLabel</cite>.</p>
+<p>The <cite>Gateway</cite> class only requires the <cite>mspId</cite> and <cite>type</cite> metadata to be set for
+an identity – <cite>Org1MSP</cite> and <cite>X.509</cite> in the above example. It <em>currently</em> uses the
+MSP ID value to identify particular peers from a [connection profile](./connectionprofile.html),
+for example when a specific notification [strategy](./connectoptions.html) is
+requested. In the DigiBank gateway file <cite>networkConnection.yaml</cite>, see how
+<cite>Org1MSP</cite> notifications will be associated with <cite>peer0.org1.example.com</cite>:</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>yaml
+organizations:</p>
+<blockquote>
+<div><dl>
+<dt>Org1:</dt><dd><p>mspid: Org1MSP</p>
+<dl class="simple">
+<dt>peers:</dt><dd><ul class="simple">
+<li><p>peer0.org1.example.com</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>你真的不需要担心内部不同的钱包类型的结构，但是如果你感兴趣，导航到商业票据例子里的用户身份文件夹：</p>
+<p><a href="#id17"><span class="problematic" id="id18">``</span></a>`
+magnetocorp/identity/user/isabella/</p>
+<blockquote>
+<div><dl class="simple">
+<dt>wallet/</dt><dd><p><a class="reference external" href="mailto:User1&#37;&#52;&#48;org1&#46;example&#46;com&#46;id">User1<span>&#64;</span>org1<span>&#46;</span>example<span>&#46;</span>com<span>&#46;</span>id</a></p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id19"><span class="problematic" id="id20">``</span></a><a href="#id21"><span class="problematic" id="id22">`</span></a></p>
+<p>你能够检查这些文件，但是正如讨论的，它很容易去使用 SDK 实现这些数据。</p>
+<p>## 选项</p>
+<p>The different wallet types all implement a common
+[Wallet](<a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.Wallet.html">https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.Wallet.html</a>)
+interface which provides a standard set of APIs to manage identities. It means
+that applications can be made independent of the underlying wallet storage
+mechanism; for example, File system and HSM wallets are handled in a very
+similar way.</p>
+<p>![wallet.operations](./develop.diagram.13.png)
+<em>钱包遵循一个生命周期：他们能够被创建、被打开，身份能够被读取、添加和删除。</em></p>
+<p>应用程序能够根据一个简单的生命周期去使用钱包。钱包能够被打开、创建，随后可以添加、读取、更新和删除身份。花费一些时间在 [JSDOC](<a class="reference external" href="https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.Wallet.html">https://hyperledger.github.io/fabric-sdk-node/master/module-fabric-network.Wallet.html</a>) 中不同的 <cite>Wallet</cite> 方法上来看一下他们是如何工作的；商业票据的教程在 <cite>addToWallet.js</cite> 中提供了一个很好的例子：</p>
+<p><a href="#id23"><span class="problematic" id="id24">``</span></a><a href="#id25"><span class="problematic" id="id26">`</span></a>JavaScript
+const wallet = await Wallets.newFileSystemWallet(‘../identity/user/isabella/wallet’);</p>
+<p>const cert = fs.readFileSync(path.join(credPath, ‘…/<a class="reference external" href="mailto:User1&#37;&#52;&#48;org1&#46;example&#46;com-cert&#46;pem">User1<span>&#64;</span>org1<span>&#46;</span>example<span>&#46;</span>com-cert<span>&#46;</span>pem</a>’)).toString();
+const key = fs.readFileSync(path.join(credPath, ‘…/_sk’)).toString();</p>
+<p>const identityLabel = <a class="reference external" href="mailto:'User1&#37;&#52;&#48;org1&#46;example&#46;com">‘User1<span>&#64;</span>org1<span>&#46;</span>example<span>&#46;</span>com</a>’;
+const identity = {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>credentials: {</dt><dd><p>certificate: cert,
+privateKey: key,</p>
+</dd>
+</dl>
+<p>},
+mspId: ‘Org1MSP’,
+type: ‘X.509’,</p>
+</div></blockquote>
+<p>};</p>
+<p>await wallet.put(identityLabel, identity);
+<a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a></p>
+<p>注意：</p>
+<ul class="simple">
+<li><p>当程序第一次运行的时候，钱包被创建在本地文件系统 <cite>…/isabella/wallet</cite>。</p></li>
+<li><p><a href="#id31"><span class="problematic" id="id32">`</span></a>证书`和`密钥`从文件系统中下载。</p></li>
+<li><p>一个新的身份使用`证书`,`密钥` 和 <cite>Org1MSP</cite> 来创建。</p></li>
+<li><p>新的身份通过 <cite>wallet.put()</cite> 加入的钱包中，并附带 <cite>User1&#64;org1.example.com</cite> 标签。</p></li>
+</ul>
+<p>这是关于钱包你所要知道的所有事情。你已经看到用户代表在访问 Fabric 网络资源上，钱包如何持有被应用程序使用的身份的。更具你的应用程序和安全需要，这里有一些有用的不同类型的钱包，和一套简单的 API 去帮助应用程序去管理其内部的钱包和身份。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gateway.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="connectionoptions.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

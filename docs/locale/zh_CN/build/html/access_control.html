@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>}, &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用身份混合器（Identity Mixer）的 MSP 实现" href="idemix.html" />
+    <link rel="prev" title="可插拔交易背书与交易验证" href="pluggable_endorsement_and_validation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>},</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/access_control.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 访问控制列表（ACL）</p>
+<p>## 什么是访问控制列表</p>
+<p><em>注意：这个主题在通道管理员级别处理访问控制和策略。学习链码的访问控制，请查看 [chaincode for developers tutorial](./chaincode4ade.html#Chaincode_API)。</em></p>
+<p>Fabric 使用权限控制列表（ACL）通过给资源关联的[策略](policies/policies.html)——给身份集合一个是或否的一个规则声明——来管理资源的访问权限。Fabric 包含很多默认的 ACL。在这篇文章中，我们将讨论他们是如何规定和如何覆盖默认值的。</p>
+<p>但是在那之前，我们有必要理解一点资源和策略的内容。</p>
+<p>### 资源</p>
+<p>Fabric 的用户交互通过[用户链码](./chaincode4ade.html)，[系统链码](./chaincode4noah.html)，或者 [事件流源](./peer_event_services.html)来实现。因此，这些端点被视为应该在其上执行访问控制的“资源”。</p>
+<p>应用开发者应该注意这些资源和与他们关联的默认策略。这些资源的完整列表可以在 <cite>configtx.yaml</cite>
+中找到。你可以在这里找到 [<cite>configtx.yaml</cite> 示例](<a class="reference external" href="http://github.com/hyperledger/fabric/blob/release-2.0/sampleconfig/configtx.yaml">http://github.com/hyperledger/fabric/blob/release-2.0/sampleconfig/configtx.yaml</a>)。</p>
+<dl class="simple">
+<dt><cite>configtx.yaml</cite> 里边的资源名称详细的罗列了目前 Fabric 里边的资源。这里使用的不严格约定是</dt><dd><p><cite>&lt;component&gt;/&lt;resource&gt;</cite>。所以 <cite>cscc/GetConfigBlock</cite> 是 <cite>CSCC</cite> 组件中调用的 <cite>GetConfigBlock</cite></p>
+</dd>
+</dl>
+<p>的资源。</p>
+<p>### 策略</p>
+<p>策略是 Fabric 运行的基础，因为它们允许根据与完成请求所需资源相关联的策略来检查与请求
+关联的身份（或身份集）。背书策略用来决定一个交易是否被合适地背书。通道配置中定义的策
+略被引用为修改策略以及访问控制，并且在通道配置本身中定义。</p>
+<p>策略可以采用以下两种方式之一进行构造：作为 <cite>Signature</cite> 策略或者 <cite>ImplicitMeta</cite> 策略。</p>
+<p>#### <cite>Signature</cite> 策略</p>
+<p>这些策略标示了要满足策略而必须签名的用户。例如：</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+Policies:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>MyPolicy:</dt><dd><p>Type: Signature
+Rule: “OR(‘Org1.peer’, ‘Org2.peer’)”</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>构造的这个策略可以被解释为： <em>一个名为 `MyPolicy` 的策略只有被 “ Org1 的节点”
+或着 “ Org2 的节点”签名才可以通过</em>。</p>
+<p>签名策略支持 <cite>AND</cite>， <cite>OR</cite> 和 <cite>NOutOf</cite> 的任意组合，能够构造强大的规则，比如：“组
+织 A 中的一个管理员和两个其他管理员，或者20个组织管理员中的11个”。</p>
+<p>#### <cite>ImplicitMeta</cite> 策略</p>
+<p><cite>ImplicitMeta</cite> 策略聚合配置层次结构中更深层次的策略结果，这些策略最终由签名策略
+定义。他们支持默认规则，比如“组织中大多数管理员”。这些策略使用的语法和 <cite>Signature</cite>
+策略不同但是依旧很简单： <cite>&lt;ALL|ANY|MAJORITY&gt; &lt;sub_policy&gt;</cite> 。</p>
+<p>比如： <cite>ANY</cite> <cite>Readers</cite> 或者 <cite>MAJORITY</cite> <cite>Admins</cite> 。</p>
+<p><em>注意，在默认策略配置中 `Admins` 有操作员角色。指定只有管理员—或某些管理员子集—可
+以访问资源的策略往往是针对网络的敏感或操作方面（例如在通道上实例化链代码）。`Writers`
+表示可以提交账本更新，比如一个交易，但是不能拥有管理权限。`Reader` 拥有被动角色。他们
+可以访问信息但是没有权利提交账本更新和执行管理任务。这些默认策略可以被添加，编辑或者补
+充，比如通过新的 `peer` 或者 `client` 角色（如果你拥有 `NodeOU` 支持）</em></p>
+<p>这是一个 <cite>ImplicitMeta</cite> 策略结构的例子：</p>
+<p><a href="#id7"><span class="problematic" id="id8">``</span></a>`
+Policies:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>AnotherPolicy:</dt><dd><p>Type: ImplicitMeta
+Rule: “MAJORITY Admins”</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<p>这里， <cite>AnotherPolicy</cite> 策略可以通过 <cite>MAJORITY Admins</cite> （大多数管理员同意）的方式
+来满足。这里 <cite>Admins</cite> 是在通过更低级的 <cite>Signature</cite> 策略来满足的。</p>
+<p>### 在哪里定义访问控制权限？</p>
+<p>默认的访问控制在 <cite>configtx.yaml</cite> 中，这个文件由 <cite>configtxgen</cite> 用来编译通道配置。</p>
+<p>访问控制可以通过两种方式中的一种来更新：编辑 <cite>configtx.yaml</cite> 自身，这会把 ACL 的
+改变传递到所有新通道；或者通过特定通道的通道配置来更新访问控制。</p>
+<p>## 如何在 <cite>configtx.yaml</cite> 中格式化 ACL</p>
+<p>ACLs 被格式化为资源函数名称字符串的键值对。你可以在这里看到他们的样子[示例 configtx.yaml 文件](<a class="reference external" href="https://github.com/hyperledger/fabric/blob/release-2.0/sampleconfig/configtx.yaml">https://github.com/hyperledger/fabric/blob/release-2.0/sampleconfig/configtx.yaml</a>).</p>
+<p>这个示例的两个摘录：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">#</span> <span class="pre">ACL</span> <span class="pre">policy</span> <span class="pre">for</span> <span class="pre">invoking</span> <span class="pre">chaincodes</span> <span class="pre">on</span> <span class="pre">peer</span>
+<span class="pre">peer/Propose:</span> <span class="pre">/Channel/Application/Writers</span>
+<span class="pre">`</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">#</span> <span class="pre">ACL</span> <span class="pre">policy</span> <span class="pre">for</span> <span class="pre">sending</span> <span class="pre">block</span> <span class="pre">events</span>
+<span class="pre">event/Block:</span> <span class="pre">/Channel/Application/Readers</span>
+<span class="pre">`</span></code></p>
+<p>这些 ACL 定义为对资源 <cite>peer/Propose</cite> 和 <cite>event/Block</cite> 的访问分别被限定为满足路径 <cite>/Channel/Application/Writers</cite> 和 <cite>/Channel/Application/Readers</cite> 中定义的策略的身份。</p>
+<p>### 更新 <cite>configtx.yaml</cite> 中的默认 ACL</p>
+<p>如果在引导网络时需要覆盖 ACL 默认值，或者在引导通道之前更改 ACL，最佳做法是更
+新 <cite>configtx.yaml</cite>。</p>
+<p>假如你想修改 <cite>peer/Propose</cite> 的默认 ACL — 为在节点上执行链码指定策略 — 从
+<cite>/Channel/Application/Writers</cite> 到一个叫 <cite>MyPolicy</cite> 的策略。</p>
+<p>这可以通过添加一个叫 <cite>MyPolicy`（它可以是任何名字，但是在这个例子中我们称它为
+`MyPolicy</cite>）的策略来完成。这个策略定义在 <cite>configtx.yaml</cite> 中的 <cite>Application.Policies</cite>
+部分，指定了一个用来检查允许或者拒绝一个用户的规则。在这个例子中，我们将创建
+一个标示为 <cite>SampleOrg.admin</cite> 的 <cite>Signature</cite> 策略。</p>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a>`
+Policies: &amp;ApplicationDefaultPolicies</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Readers:</dt><dd><p>Type: ImplicitMeta
+Rule: “ANY Readers”</p>
+</dd>
+<dt>Writers:</dt><dd><p>Type: ImplicitMeta
+Rule: “ANY Writers”</p>
+</dd>
+<dt>Admins:</dt><dd><p>Type: ImplicitMeta
+Rule: “MAJORITY Admins”</p>
+</dd>
+<dt>MyPolicy:</dt><dd><p>Type: Signature
+Rule: “OR(‘SampleOrg.admin’)”</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a></p>
+<p>然后，编辑 <cite>configtx.yaml</cite> 中的 <cite>Application: ACLs</cite> 部分来将 <cite>peer/Propose</cite> 从：</p>
+<p><cite>peer/Propose: /Channel/Application/Writers</cite></p>
+<p>改变为：</p>
+<p><cite>peer/Propose: /Channel/Application/MyPolicy</cite></p>
+<p>一旦 <cite>configtx.yaml</cite> 中的这些内容被改变了，<cite>configtxgen</cite> 工具就可以在创建交易的
+时候使用这些策略和定义的 ACLs。当交易以合适的方式被联盟中的管理员签名和确认之后，
+被定义了 ACLs 和策略的新通道就被创建了。</p>
+<p>一旦 <cite>MyPolicy</cite> 被引导进通道配置，它就还可以被引用来覆盖其他默认的 ACL。例如：</p>
+<p><a href="#id19"><span class="problematic" id="id20">``</span></a>`
+SampleSingleMSPChannel:</p>
+<blockquote>
+<div><p>Consortium: SampleConsortium
+Application:</p>
+<blockquote>
+<div><p>&lt;&lt;: <a href="#id21"><span class="problematic" id="id22">*</span></a>ApplicationDefaults
+ACLs:</p>
+<blockquote>
+<div><p>&lt;&lt;: <a href="#id23"><span class="problematic" id="id24">*</span></a>ACLsDefault
+event/Block: /Channel/Application/MyPolicy</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<p><a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a></p>
+<p>这将限制订阅区块事件到 <cite>SampleOrg.admin</cite> 的能力。</p>
+<p>如果已经被创建的通道想使用这个 ACL，他们必须使用如下流程每次更新一个通道配置：</p>
+<p>### 在通道配置中更新默认 ACL</p>
+<p>如果已经创建的通道想使用 <cite>MyPolicy</cite> 来显示访问 <cite>peer/Propose</cite>——或者他们想创
+建一个不想让其他通道知道的 ACL——他们将不得不通过配置更新交易来每次更新一个
+通道。</p>
+<p><em>注意：通道配置交易的过程我们在这里就不深究了。如果你想了解更多，请参考这篇文
+章 [channel configuration updates](./config_update.html) 和 [“Adding an Org to a Channel” tutorial](./channel_update_tutorial.html).</em></p>
+<p>下边添加 <cite>MyPolicy</cite>，在这里 <cite>Admins</cite>，<cite>Writers</cite>， 和 <cite>Readers</cite> 都已经存在了。</p>
+<p><a href="#id29"><span class="problematic" id="id30">``</span></a>`
+“MyPolicy”: {</p>
+<blockquote>
+<div><p>“mod_policy”: “Admins”,
+“policy”: {</p>
+<blockquote>
+<div><p>“type”: 1,
+“value”: {</p>
+<blockquote>
+<div><dl>
+<dt>“identities”: [</dt><dd><dl>
+<dt>{</dt><dd><dl class="simple">
+<dt>“principal”: {</dt><dd><p>“msp_identifier”: “SampleOrg”,
+“role”: “ADMIN”</p>
+</dd>
+</dl>
+<p>},
+“principal_classification”: “ROLE”</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>],
+“rule”: {</p>
+<blockquote>
+<div><dl>
+<dt>“n_out_of”: {</dt><dd><p>“n”: 1,
+“rules”: [</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“signed_by”: 0</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>},
+“version”: 0</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>},
+“version”: “0”</p>
+</div></blockquote>
+<div class="section" id="id31">
+<h1>},<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h1>
+<p>特别注意这里的 <cite>msp_identifer</cite> 和 <cite>role</cite>。</p>
+<p>然后，在配置中的 ACL 部分，将 <cite>peer/Propose</cite> 的 ACL 从：</p>
+<p><a href="#id32"><span class="problematic" id="id33">``</span></a>`
+“peer/Propose”: {</p>
+<blockquote>
+<div><p>“policy_ref”: “/Channel/Application/Writers”</p>
+</div></blockquote>
+<p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a></p>
+<p>改为：</p>
+<p><a href="#id38"><span class="problematic" id="id39">``</span></a>`
+“peer/Propose”: {</p>
+<blockquote>
+<div><p>“policy_ref”: “/Channel/Application/MyPolicy”</p>
+</div></blockquote>
+<p><a href="#id40"><span class="problematic" id="id41">``</span></a><a href="#id42"><span class="problematic" id="id43">`</span></a></p>
+<p>注意：如果你不想在你的通道配置中定义 ACL，你就要添加完整的 ACL 结构。</p>
+<p>一旦配置被更新了，它就需要通过常规的通道更新过程来提交。</p>
+<p>### 满足需要访问多个资源的 ACL</p>
+<p>如果一个成员生成了一个访问多个系统链码的请求，必须满足所有系统链码的</p>
+<p>例如，<cite>peer/Propose</cite> 引用通道上的任何提案请求。如果特定提案请求访问需要满足 <cite>Writers</cite>
+身份的两个系统链码和一个需要满足 <cite>MyPolicy</cite> 身份的系统链码，那提交这个提案的成员就必
+须拥有 <cite>Writers</cite> 和 <cite>MyPolicy</cite> 都评估为 “true” 的身份。</p>
+<p>在默认配置中，<cite>Writers</cite> 是一个 <cite>rule</cite> 为 <cite>SampleOrg.membe</cite> 的签名策略。换句话说就是，
+“组织中的任何成员”。上边列出的 <cite>MyPolicy</cite>，拥有 <cite>SampleOrg.admin</cite> 或者 “组织中的任何
+管理员”。为了满足这些 ACL，成员必须同时是一个管理员和 <cite>SampleOrg</cite> 中的成员。默认地，
+所有管理员都是成员（尽管并非所有管理员都是成员），但可以将这些策略覆盖为你希望的任何
+成员。因此，跟踪这些策略非常重要，以确保节点提案的 ACL 不是不可能满足的（除非是这样）。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="idemix.html" class="btn btn-neutral float-right" title="使用身份混合器（Identity Mixer）的 MSP 实现" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pluggable_endorsement_and_validation.html" class="btn btn-neutral" title="可插拔交易背书与交易验证" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

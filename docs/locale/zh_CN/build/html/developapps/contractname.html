@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="chaincodenamespace.html" />
+    <link rel="prev" title="应用程序设计元素" href="designelements.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developing_applications.html">开发应用</a> &raquo;</li>
+        
+          <li><a href="designelements.html">应用程序设计元素</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developapps/contractname.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 合约名称</p>
+<p><strong>受众</strong>:架构师、应用程序与合约开发者、管理员</p>
+<p>链码（Chaincode）是一种用于部署代码到 Hyperledger Fabric 区块链网络中的通用容器。链码中定义一个或多个相关联的智能合约。每个智能合约在链码中有一个唯一的标识名。应用程序通过合约名称去访问已经实例化的链码内指定的智能合约。</p>
+<p>在本主题中，我们将会讲到:
+* [一个链码容器如何包括多个智能合约](#链码)
+* [如何分配一个智能合约的名字](#命名)
+* [如何使用应用程序中的智能合约](#应用程序)
+* [默认的智能合约](#默认合约)</p>
+<p>## 链码</p>
+<p>在[开发应用](./developing_applications.html)主题中，我们能够看到 Fabric SDK 如何提供了高级的编程抽象，从而能够帮助那些应用程序和智能合约的开发者们聚焦在他们的业务问题上，而不是将目光放在如何与 Fabric 网络交互的这些细节中。</p>
+<p>智能合约（Smart Contract）是一种高级编程抽象的例子，可以在链码容器中定义智能合约。当一个链码被安装到 Peer 节点并部署到通道后，链码内所有的智能合约对你的应用来说都是可用的。</p>
+<p>![contract.chaincode](./develop.diagram.20.png)
+<em>多个智能合约能够被定义在同一个链码内。每一个智能合约都通过链码内的名字而被唯一标识。</em></p>
+<p>在[上图](#链码)中，链码 A 中定义了三个智能合约，然而链码 B 中有四个智能合约。看一下链码名称如何被用于限定一个特定的智能合约。</p>
+<p>账本结构由一组已经部署的智能合约所定义。那是因为账本包括了一些有关网络所感兴趣的业务对象（例如 PaperNet 内的商业票据），并且这些业务对象通过智能合约内定义的交易功能在其生命周期（例如：发行，购买，赎回）中移动。</p>
+<p>在大多数情况下，一个链码内仅仅只定义了一个智能合约。然而，将相关联的智能合约放在一个链码中是有意义的。比如，以不同货币计价的商业票据中，可能有 <cite>EuroPaperContract</cite>, <cite>DollarPaperContract</cite>, <cite>YenPaperContract</cite>，这些智能合约在部署他们的通道内可能要互相保持同步。</p>
+<p>## 命名</p>
+<p>链码里的每一个智能合约都通过合约名称被唯一标识。当智能合约可以在构造类时显示分配这个名称，或者让 <cite>Contract</cite> 类隐式分配一个默认名称。</p>
+<p>查看 papercontract.js 链码[文件](<a class="reference external" href="https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/papercontract.js#L31">https://github.com/hyperledger/fabric-samples/blob/master/commercial-paper/organization/magnetocorp/contract/lib/papercontract.js#L31</a>)：</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>javascript
+class CommercialPaperContract extends Contract {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>constructor() {</dt><dd><p>// Unique name when multiple contracts per chaincode file
+super(‘org.papernet.commercialpaper’);</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>看一下 <cite>CommercialPaperContract</cite> 构造函数是如何将合约名称指定为 <cite>org.papernet.commercialpaper</cite> 的。结果是：在 <cite>papercontract</cite> 链码内，这个智能合约现在与合约名 <cite>org.papernet.commercialpaper</cite> 相关联。</p>
+<p>如果没有明确指定一个合约名，则会分配一个默认的名字——类名。在我们的例子中，默认的合约名是 <cite>CommercialPaperContract</cite>。</p>
+<p>细心地选择你的名字。不仅仅每一个智能合约必须有一个唯一的名字，而且一个精心挑选的名字也是很有启发性的。特别地，建议使用显式的 DNS 样式命名方法，对组织清晰、有意义的名称有帮助； <cite>org.papernet.commercialpaper</cite> 表达了 PaperNet 网络已经定义了一个标准的商业票据智能合约。</p>
+<p>在一个给定链码内，合约名称也有利于消除具有相同名字的不同合约方法交易函数之间的歧义。当智能合约紧密联系的时候，这种歧义就容易发生；他们的交易名称往往倾向于一致。我们能够看到，通过链码和智能合约的名字的组合，一个交易被唯一地定义在通道内。</p>
+<p>合约名称在链码文件内必须是唯一的。在部署前，一些代码编辑器将会检测是否存在具有相同类名的多个定义的情况。如果存在多个类使用了相同的合约名，无论是显式还是隐式指定，链码都将会返回错误。</p>
+<p>## 应用程序</p>
+<p>一旦链码安装在一个 Peer 节点而且部署在一个通道上，链码里的智能合约对于应用程序来说是可访问的：</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><cite>javascript
+const network = await gateway.getNetwork(`papernet</cite>);</p>
+<p>const contract = await network.getContract(‘papercontract’, ‘org.papernet.commercialpaper’);</p>
+<p>const issueResponse = await contract.submitTransaction(‘issue’, ‘MagnetoCorp’, ‘00001’, ‘2020-05-31’, ‘2020-11-30’, ‘5000000’);
+<a href="#id11"><span class="problematic" id="id12">``</span></a><a href="#id13"><span class="problematic" id="id14">`</span></a></p>
+<p>看一下应用程序如何通过 <cite>network.getContract()</cite> 方法访问智能合约。<cite>papercontract</cite> 链码的名 <cite>org.papernet.commercialpaper</cite> 返回了一个引用，此引用使用 <cite>contract.submitTransaction()</cite> 接口去提交发布商业票据的交易。</p>
+<p>## 默认合约</p>
+<p>被定义在链码内的第一个智能合约被成为*默认*合约。这个默认是有用的，因为链码内往往有一个被定义的智能合约；这个默认的智能合约允许应用程序直接地访问这些交易，而不需要特殊指定合约名称。</p>
+<p>![default.contract](./develop.diagram.21.png)
+<em>一个默认地智能合约是第一个被定义在链码的智能合约。</em></p>
+<p>在这个图表中，<cite>CommercialPaperContract</cite> 就是那个默认的智能合约。即使我们有两个智能合约，默认的智能合约让我们[当前](#应用程序)的例子更加容易去编写。</p>
+<p><a href="#id15"><span class="problematic" id="id16">``</span></a><cite>javascript
+const network = await gateway.getNetwork(`papernet</cite>);</p>
+<p>const contract = await network.getContract(‘papercontract’);</p>
+<p>const issueResponse = await contract.submitTransaction(‘issue’, ‘MagnetoCorp’, ‘00001’, ‘2020-05-31’, ‘2020-11-30’, ‘5000000’);
+<a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a></p>
+<p>在 <cite>papercontract</cite> 链码内，<cite>CommercialPaperContract</cite> 就是那个默认的智能合约，同时它有一个 <cite>issue</cite> 交易。注意，在 <cite>BondContract</cite> 内发布的交易事务仅仅能通过显示地寻址指来调用。同样地，即使 <cite>cancel</cite> 交易是唯一的（因为 <cite>BondContract</cite> 不是默认的智能合约），它也必须要显示地寻址。</p>
+<p>在大多数情况下，一个链码仅仅只包括一个单一的智能合约，所以对链码仔细命名，能够降低开发者将链码视为概念来关注的需求。在[上述](#默认合约)代码例子中，感觉 <cite>papercontract</cite> 像是一个智能合约。</p>
+<p>总而言之，在一个给定的链码内，合约名称是一些简单的机制去标识独自的智能合约。合约名称让应用程序更加容易的发现特定的智能合约而且更方便地使用它访问账本。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="chaincodenamespace.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="designelements.html" class="btn btn-neutral" title="应用程序设计元素" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

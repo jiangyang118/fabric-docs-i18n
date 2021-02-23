@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Section 1.1 Title" href="style_guide.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="docs_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="CONTRIBUTING.html">欢迎贡献！</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/international_languages.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 国际语言</p>
+<p><strong>本章节面向的读者</strong>: 任何想给非英语的Fabric文档做出贡献的人。</p>
+<p>这篇简短的指引将叙述如何为Fabric支持的众多语言做出修改。如果你刚刚开始，本文档将告诉您如何加入一个已存在的翻译小组，或新建一个尚未支持语言的翻译小组。</p>
+<p>在这个章节中，我们将介绍：
+* [Fabric语言支持简介](#简介)
+* [如何加入一个已存在的翻译组](#加入小组)
+* [如何建立一个新语言的翻译组](#创建小组)
+* [与其它翻译贡献者交流](#联系交流)</p>
+<p>## 简介</p>
+<p>[Fabric主仓库](<a class="reference external" href="https://github.com/hyperledger/fabric">https://github.com/hyperledger/fabric</a>)存放在GitHub的Hyperledger组织下。在它的`/docs/source`文件夹下包含英语版本的文档。当编译时，这个文件夹下的文件将在[文档网站](<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/en/latest/">https://hyperledger-fabric.readthedocs.io/en/latest/</a>)显示出来。
+（译者注：本段疑为原文错误，上段为暂译，下方贴出原文:
+in GitHub under the Hyperledger organization. It contains an English translation
+of the documentation in the <cite>/docs/source</cite> folder. When built, the files in this
+folder result contribute to the in the [documentation
+website](<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/en/latest/">https://hyperledger-fabric.readthedocs.io/en/latest/</a>).）</p>
+<p>这个网站也有其它语言的翻译，如[中文](<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/zh_CN/latest/">https://hyperledger-fabric.readthedocs.io/zh_CN/latest/</a>)。然而，这些语言存储在[HL
+Labs organization](<a class="reference external" href="https://github.com/hyperledger-labs">https://github.com/hyperledger-labs</a>)的其它特定语言仓库中。例如，中文文档存储在[这个仓库](<a class="reference external" href="https://github.com/hyperledger-labs/fabric-docs-cn">https://github.com/hyperledger-labs/fabric-docs-cn</a>)下。</p>
+<p>语言仓库有一个精简过的文件结构；它只包含文档相关的文件夹和文件：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">(base)</span> <span class="pre">user/git/fabric-docs-ml</span> <span class="pre">ls</span> <span class="pre">-l</span>
+<span class="pre">total</span> <span class="pre">48</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">user</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">11357</span> <span class="pre">14</span> <span class="pre">May</span> <span class="pre">10:47</span> <span class="pre">LICENSE</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">user</span>&#160; <span class="pre">staff</span>&#160;&#160; <span class="pre">3228</span> <span class="pre">14</span> <span class="pre">May</span> <span class="pre">17:01</span> <span class="pre">README.md</span>
+<span class="pre">drwxr-xr-x</span>&#160; <span class="pre">12</span> <span class="pre">user</span>&#160; <span class="pre">staff</span>&#160;&#160;&#160; <span class="pre">384</span> <span class="pre">15</span> <span class="pre">May</span> <span class="pre">07:40</span> <span class="pre">docs</span>
+<span class="pre">`</span></code></p>
+<p>因为此结构是主Fabric repo的子集，所以您可以使用相同的工具和流程来帮助进行任何语言翻译；您只需使用适当的存储库即可。</p>
+<p>## 加入小组</p>
+<p>虽然Hyperledger Fabric的默认语言是英语，就我们所知，它也支持其它翻译。[中文文档](<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/zh_CN/latest/">https://hyperledger-fabric.readthedocs.io/zh_CN/latest/</a>)的翻译就很好，其它语言诸如巴西葡萄牙语和马拉雅姆语翻译也在进行中。</p>
+<p>你可以在Hyperledger wiki找到所有的[当前国际化小组](<a class="reference external" href="https://wiki.hyperledger.org/display/fabric/International+groups">https://wiki.hyperledger.org/display/fabric/International+groups</a>)。你可以联系这些小组列出中的活跃翻译者。他们会欢迎你加入它们举行的定期会议。</p>
+<p>请遵循[这份介绍](./docs_guide.html)来向任何语言仓库贡献文档。这里有一份当前语言仓库的列表：</p>
+<ul class="simple">
+<li><p>[英语](<a class="reference external" href="https://github.com/hyperledger/fabric/tree/master/docs">https://github.com/hyperledger/fabric/tree/master/docs</a>)</p></li>
+<li><p>[中文](<a class="reference external" href="https://github.com/hyperledger-labs/fabric-docs-cn">https://github.com/hyperledger-labs/fabric-docs-cn</a>)</p></li>
+<li><p>[马拉雅姆语](<a class="reference external" href="https://github.com/hyperledger-labs/fabric-docs-ml">https://github.com/hyperledger-labs/fabric-docs-ml</a>)</p></li>
+<li><p>[巴西葡萄牙语]() – 即将发布.</p></li>
+</ul>
+<p>## 创建小组</p>
+<p>如果您选择了一个还不支持的语言，那为什么不创立一个新的语言翻译？它相对容易开始。工作组能帮助你组织和分享工作来帮助翻译，维护和管理翻译仓库。对于您和其他Fabric用户来说，和其他翻译贡献者和维护者共事都是一个愉快的活动。</p>
+<p>按照以下说明创建您自己的语言库。我们的说明将以梵文为例：</p>
+<ol class="arabic simple">
+<li><p>找出[ISO 639-1](<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes</a>)中代表您选择语言的两个字母。代表梵文的是`sa`。</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>克隆Fabric主仓库到您本地机器，在克隆时重命名仓库：
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:hyperledger/fabric.git</span> <span class="pre">fabric-docs-sa</span>
+<span class="pre">`</span></code></p></li>
+</ol>
+<ol class="arabic">
+<li><p>选择一个Fabric版本作为您开始翻译的基线。我们建议您从至少Fabric 2.1开始，最好是长支持版本例如 2.2。您可以之后添加其他版本。</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">cd</span> <span class="pre">fabric-docs-sa</span>
+<span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">origin</span>
+<span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">release-2.1</span>
+<span class="pre">`</span></code></p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>从根目录删除除`/doc`以外的其他文件夹。同样的，移除除了`LICENCE` 和 <a href="#id1"><span class="problematic" id="id2">`</span></a>README.md`以外的其它文件，您剩下的文件应该如下所示：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">ls</span> <span class="pre">-l</span>
+<span class="pre">total</span> <span class="pre">40</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">user</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">11358</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">14:38</span> <span class="pre">LICENSE</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">user</span>&#160; <span class="pre">staff</span>&#160;&#160; <span class="pre">4822</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">15:09</span> <span class="pre">README.md</span>
+<span class="pre">drwxr-xr-x</span>&#160; <span class="pre">11</span> <span class="pre">user</span>&#160; <span class="pre">staff</span>&#160;&#160;&#160; <span class="pre">352</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">14:38</span> <span class="pre">docs</span>
+<span class="pre">`</span></code></p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>用 [这个](<a class="reference external" href="https://github.com/hyperledger-labs/fabric-docs-ml/blob/master/README.md">https://github.com/hyperledger-labs/fabric-docs-ml/blob/master/README.md</a>)作为例子更新`README.md` 文件。</p>
+<p>用您的新语言定制`README.md`文件。</p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>[像这样](<a class="reference external" href="https://github.com/hyperledger-labs/fabric-docs-ml/blob/master/.readthedocs.yml">https://github.com/hyperledger-labs/fabric-docs-ml/blob/master/.readthedocs.yml</a>)在您的顶级文件夹下添加一个`.readthedocs.yml`文件。这个文件会配置关闭ReadTheDocs PDF编译，因为如果您使用非拉丁字符集可能会编译失败。您的顶级仓库文件夹现在看起来像：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">(base)</span> <span class="pre">anthonyodowd/git/fabric-docs-sa</span> <span class="pre">ls</span> <span class="pre">-al</span>
+<span class="pre">total</span> <span class="pre">96</span>
+<span class="pre">...</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">anthonyodowd</span>&#160; <span class="pre">staff</span>&#160;&#160;&#160; <span class="pre">574</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">15:49</span> <span class="pre">.readthedocs.yml</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">anthonyodowd</span>&#160; <span class="pre">staff</span>&#160; <span class="pre">11358</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">14:38</span> <span class="pre">LICENSE</span>
+<span class="pre">-rw-r--r--</span>&#160;&#160; <span class="pre">1</span> <span class="pre">anthonyodowd</span>&#160; <span class="pre">staff</span>&#160;&#160; <span class="pre">4822</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">15:09</span> <span class="pre">README.md</span>
+<span class="pre">drwxr-xr-x</span>&#160; <span class="pre">11</span> <span class="pre">anthonyodowd</span>&#160; <span class="pre">staff</span>&#160;&#160;&#160; <span class="pre">352</span>&#160; <span class="pre">5</span> <span class="pre">Jun</span> <span class="pre">14:38</span> <span class="pre">docs</span>
+<span class="pre">`</span></code></p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>在您本地仓库提交更改:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span>
+<span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-s</span> <span class="pre">-m</span> <span class="pre">&quot;Initial</span> <span class="pre">commit&quot;</span>
+<span class="pre">`</span></code></p>
+</li>
+</ol>
+<ol class="arabic simple">
+<li><p>在您的GitHub账户下创建一个 <cite>fabric-docs-sa`仓库。在描述中写入`Hyperledger Fabric documentation in Sanskrit
+language</cite>。</p></li>
+</ol>
+<ol class="arabic">
+<li><p>更新您本地git <cite>origin`指向这个仓库，把`YOURGITHUBID</cite> 改为你的GitHub ID:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span> <span class="pre">origin</span> <span class="pre">git&#64;github.com:YOURGITHUBID/fabric-docs-sa.git</span>
+<span class="pre">`</span></code></p>
+<p>在当前步骤，还不能设置`upstream`因为`fabric-docs-sa`仓库还没有被HL Labs
+organization创建；我们晚点再来做。</p>
+<p>现在，确认`origin`已经配置了：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span>
+<span class="pre">origin</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">git&#64;github.com:ODOWDAIBM/fabric-docs-sa.git</span> <span class="pre">(fetch)</span>
+<span class="pre">origin</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">git&#64;github.com:ODOWDAIBM/fabric-docs-sa.git</span> <span class="pre">(push)</span>
+<span class="pre">`</span></code></p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>向这个仓库中推送您的 <cite>release-2.1`分支作为`master</cite> 分支：</p>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a>bash
+git push origin release-2.1:master</p>
+<p>Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 1.72 KiB | 1.72 MiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:ODOWDAIBM/fabric-docs-sa.git
+b3b9389be..7d627aeb0  release-2.1 -&gt; master
+<a href="#id7"><span class="problematic" id="id8">``</span></a><a href="#id9"><span class="problematic" id="id10">`</span></a></p>
+</li>
+</ol>
+<ol class="arabic simple">
+<li><p>确认您的新仓库`fabric-docs-sa`推送到了GitHub的`master`分支下。</p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>用这篇[简介](./docs_guide.html#building-on-github)将您的仓库连接到ReadTheDocs。确认您的文档已经正确编译。</p></li>
+</ol>
+<ol class="arabic">
+<li><p>您可以开始在`fabric-docs-sa`提交翻译更新了。</p>
+<p>我们建议您在开始之前至少翻译[Fabric前端页面](<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/en/latest/">https://hyperledger-fabric.readthedocs.io/en/latest/</a>) 和
+[简介](<a class="reference external" href="https://hyperledger-fabric.readthedocs.io/en/latest/whatis.html">https://hyperledger-fabric.readthedocs.io/en/latest/whatis.html</a>)。这样，用户就能知道您想翻译Fabric文档，这能帮助您获取贡献者。
+更多可以参考[later](#get-connected)。</p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>当您对您的仓库满意时，您可以在Hyperledger Labs organization创建一个请求建立相同的仓库，步骤 参考[这个简介](<a class="reference external" href="https://github.com/hyperledger-labs/hyperledger-labs.github.io">https://github.com/hyperledger-labs/hyperledger-labs.github.io</a>)。</p>
+<p>这里是一个 [PR 示例](<a class="reference external" href="https://github.com/hyperledger-labs/hyperledger-labs.github.io/pull/126">https://github.com/hyperledger-labs/hyperledger-labs.github.io/pull/126</a>)来展示工作的过程。</p>
+</li>
+</ol>
+<ol class="arabic">
+<li><p>一旦您的仓库被同意创建，您可以添加 <a href="#id11"><span class="problematic" id="id12">`</span></a>upstream`（上游）：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span> <span class="pre">git&#64;github.com:hyperledger-labs/fabric-docs-sa.git</span>
+<span class="pre">`</span></code></p>
+<p>确认您的`origin`  和 <a href="#id13"><span class="problematic" id="id14">`</span></a>upstream`远程现在设置成:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span>
+<span class="pre">origin</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">git&#64;github.com:ODOWDAIBM/fabric-docs-sa.git</span> <span class="pre">(fetch)</span>
+<span class="pre">origin</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">git&#64;github.com:ODOWDAIBM/fabric-docs-sa.git</span> <span class="pre">(push)</span>
+<span class="pre">upstream</span>&#160;&#160;&#160;&#160; <span class="pre">git&#64;github.com:hyperledger-labs/fabric-docs-sa.git</span> <span class="pre">(fetch)</span>
+<span class="pre">upstream</span>&#160;&#160;&#160;&#160; <span class="pre">git&#64;github.com:hyperledger-labs/fabric-docs-sa.git</span> <span class="pre">(push)</span>
+<span class="pre">`</span></code></p>
+<p>恭喜！您已经可以为您新创立的国际化语言仓库创建一个贡献者社区了。</p>
+</li>
+</ol>
+<p>## 联系交流</p>
+<p>这里有些方法能让您联系其他有意向翻译国际语言的人：</p>
+<blockquote>
+<div><ul>
+<li><p>Rocket chat</p>
+<p>在[Fabric documentation rocket
+channel](<a class="reference external" href="https://chat.hyperledger.org/channel/fabric-documentation">https://chat.hyperledger.org/channel/fabric-documentation</a>)阅读对话或者交流问题。您可以找到新手和专家在文档共享信息。</p>
+<p>这还有一个专门的频道，专门针对[国际化](<a class="reference external" href="https://chat.hyperledger.org/channel/i18n">https://chat.hyperledger.org/channel/i18n</a>)。</p>
+</li>
+<li><p>加入一个文档工作组电话会议</p>
+<p>工作组电话会议是一个绝佳的认识为文档做出贡献的人的机会。会议通常在对东西半球都方便的时间定期举行。会议日程提前公布，每次会议都有记录和录音。[查阅这里](<a class="reference external" href="https://wiki.hyperledger.org/display/fabric/Documentation+Working+Group">https://wiki.hyperledger.org/display/fabric/Documentation+Working+Group</a>)。</p>
+</li>
+<li><p>加入一个语言翻译工作组</p>
+<p>每个国际化语言都有一个工作组，欢迎和鼓励大家加入。查阅[国际化工作组列表](<a class="reference external" href="https://wiki.hyperledger.org/display/fabric/International+groups">https://wiki.hyperledger.org/display/fabric/International+groups</a>)。看看您最喜欢的工作组现在在做什么，并且联系他们；每个工作组都有个成员列表和他们的联系方式。</p>
+</li>
+<li><p>创建一个语言翻译工作组页面</p>
+<p>如果您决定创立一个新的语言翻译，把您的工作组加在[国际化工作组列表](<a class="reference external" href="https://wiki.hyperledger.org/display/fabric/International+groups">https://wiki.hyperledger.org/display/fabric/International+groups</a>)中，利用一个已有的工作组页面作为一个例子。</p>
+</li>
+<li><p>使用其他Fabric机制诸如邮件列表，贡献者会议，维护者会议。阅读更多参见[这里](./contributing.html)。</p></li>
+</ul>
+</div></blockquote>
+<p>祝您好运，感谢您对Hyperledger Fabric做出的贡献。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="style_guide.html" class="btn btn-neutral float-right" title="Section 1.1 Title" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="docs_guide.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

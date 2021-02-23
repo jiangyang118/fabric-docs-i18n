@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>操作服务 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Metrics Reference" href="metrics_reference.html" />
+    <link rel="prev" title="身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）" href="idemixgen.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">操作服务</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">配置操作服务</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">排序节点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">操作安全</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">日志级别管理</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">健康检查</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metrics">指标数据（Metrics）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">配置 Metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statsd">StatsD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">版本</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging-control.html">日志控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>操作服务</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/operations_service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>操作服务<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Peer 和 orderer 管理一个 HTTP 服务器，该服务器提供 RESTful “操作” API。此API与Fabric网络服务无关，旨在供操作人员使用，而非网络管理员或“用户”。</p>
+<p>该 API 提供了以下功能：</p>
+<ul class="simple">
+<li><p>日志级别管理</p></li>
+<li><p>健康检查</p></li>
+<li><p>（当API被配置时）操作指标数据的Prometheus目标</p></li>
+</ul>
+<div class="section" id="id2">
+<h2>配置操作服务<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>操作服务需要两层基本的配置</p>
+<ul class="simple">
+<li><p>要监听的 <strong>地址</strong> 和 <strong>端口</strong> 。</p></li>
+<li><p>用于身份验证和加密的 <strong>TLS（传输层安全协议）证书</strong> 和 <strong>密钥</strong> 。</p></li>
+</ul>
+<p>注意，<strong>这些证书必须由另外一个专门的CA（证书授权中心）来生成</strong>，不能由已为某通道上的组织生成过证书的CA来生成。</p>
+<div class="section" id="id3">
+<h3>节点<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>对每个 peer 来说，可在 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 部分的 <code class="docutils literal notranslate"><span class="pre">operations</span></code> 中配置操作服务器：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">operations</span><span class="p">:</span>
+  <span class="c1"># host and port for the operations server</span>
+  <span class="nt">listenAddress</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:9443</span>
+
+  <span class="c1"># TLS configuration for the operations endpoint</span>
+  <span class="nt">tls</span><span class="p">:</span>
+    <span class="c1"># TLS enabled</span>
+    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+    <span class="c1"># path to PEM encoded server certificate for the operations server</span>
+    <span class="nt">cert</span><span class="p">:</span>
+      <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tls/server.crt</span>
+
+    <span class="c1"># path to PEM encoded server key for the operations server</span>
+    <span class="nt">key</span><span class="p">:</span>
+      <span class="nt">file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tls/server.key</span>
+
+    <span class="c1"># most operations service endpoints require client authentication when TLS</span>
+    <span class="c1"># is enabled. clientAuthRequired requires client certificate authentication</span>
+    <span class="c1"># at the TLS layer to access all resources.</span>
+    <span class="nt">clientAuthRequired</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+    <span class="c1"># paths to PEM encoded ca certificates to trust for client authentication</span>
+    <span class="nt">clientRootCAs</span><span class="p">:</span>
+      <span class="nt">files</span><span class="p">:</span> <span class="p p-Indicator">[]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">listenAddress</span></code> 键定义了操作服务器将执行监听的主机和端口。如果服务器要监听所有地址，则可以忽略主机部分。</p>
+<p><code class="docutils literal notranslate"><span class="pre">tls</span></code> 部分用于指明是否为操作服务启用了TLS，还指明了该服务的证书和私钥的位置以及客户端身份验证应该信任的证书颁发机构根证书的位置。当 <code class="docutils literal notranslate"><span class="pre">enabled</span></code> 是真实的，多数操作服务端点会要要求客户验证，因此必须设定 <code class="docutils literal notranslate"><span class="pre">clientRootCAs.files</span></code> 。当 <code class="docutils literal notranslate"><span class="pre">clientAuthRequired</span></code> 是 <code class="docutils literal notranslate"><span class="pre">true</span></code>，TLS层将需要客户在每次请求时都提供一份证书以供验证。参考下面操作安全部分的内容来获取更多信息。</p>
+</div>
+<div class="section" id="id4">
+<h3>排序节点<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>对每个orderer来说，运行服务器都可配置在的 <code class="docutils literal notranslate"><span class="pre">orderer.yaml</span></code> 的 <em>Operations</em> 部分。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">Operations</span><span class="p">:</span>
+  <span class="c1"># host and port for the operations server</span>
+  <span class="nt">ListenAddress</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:8443</span>
+
+  <span class="c1"># TLS configuration for the operations endpoint</span>
+  <span class="nt">TLS</span><span class="p">:</span>
+    <span class="c1"># TLS enabled</span>
+    <span class="nt">Enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+    <span class="c1"># PrivateKey: PEM-encoded tls key for the operations endpoint</span>
+    <span class="nt">PrivateKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tls/server.key</span>
+
+    <span class="c1"># Certificate governs the file location of the server TLS certificate.</span>
+    <span class="nt">Certificate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tls/server.crt</span>
+
+    <span class="c1"># Paths to PEM encoded ca certificates to trust for client authentication</span>
+    <span class="nt">ClientRootCAs</span><span class="p">:</span> <span class="p p-Indicator">[]</span>
+
+    <span class="c1"># Most operations service endpoints require client authentication when TLS</span>
+    <span class="c1"># is enabled. ClientAuthRequired requires client certificate authentication</span>
+    <span class="c1"># at the TLS layer to access all resources.</span>
+    <span class="nt">ClientAuthRequired</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ListenAddress</span></code> 键定义了操作服务器将监听的主机和端口。如果服务器要监听所有地址，则可忽略主机部分。</p>
+<p><code class="docutils literal notranslate"><span class="pre">TLS</span></code> 部分用于指明是否为操作服务启用了TLS，还指明了该服务的证书和私钥的位置以及客户端身份验证应该信任的证书授权中心根证书的位置。当 <code class="docutils literal notranslate"><span class="pre">Enabled</span></code> 是真实的，多数操作服务端点会要要求客户验证，因此必须设定 <code class="docutils literal notranslate"><span class="pre">RootCAs</span></code> 。当 <code class="docutils literal notranslate"><span class="pre">clientAuthRequired</span></code> 是 <code class="docutils literal notranslate"><span class="pre">true</span></code>，TLS层将需要客户在每次请求时都提供一份证书以供验证。参考下面 操作安全部分的内容来获取更多信息。</p>
+</div>
+<div class="section" id="id5">
+<h3>操作安全<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>由于操作服务专注于操作，与 Fabric 网络无关，因此它不是用MSP（成员服务提供者）来进行访问控制，而是完全依赖于具有客户端证书身份验证功能的双向 TLS。</p>
+<p>禁用TLS后，授权将被绕过，这样一来，任何能连接到运行端点的客户端都可以使用API（应用程序编程接口）。</p>
+<p>启用TLS后，除非下面另有说明，否则必须提供有效的客户端证书才能访问所有资源。</p>
+<p>若同时启用了 clientAuthRequired 时，无论访问的是什么资源，TLS 层都将需要有效的客户端证书。</p>
+</div>
+<div class="section" id="id6">
+<h3>日志级别管理<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>操作服务提供了 <code class="docutils literal notranslate"><span class="pre">/logspec</span></code> 资源，操作人员可用该资源来管理peer或orderer的活跃日志记录规范。该资源是常规的REST资源，支持 <code class="docutils literal notranslate"><span class="pre">GET</span></code> 和 <code class="docutils literal notranslate"><span class="pre">PUT</span></code> 请求。</p>
+<p>当操作服务接收到 <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/logspec</span></code> 请求时，它将使用包含当前日志记录规范的 JSON 有效负载进行响应：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="s2">&quot;info&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>当操作服务接收到 <code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/logspec</span></code> 请求时，它将把 body 读取为 JASON 有效负载。有效负载必须包含名为 <code class="docutils literal notranslate"><span class="pre">spec</span></code> 的单个属性。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;spec&quot;</span><span class="p">:</span><span class="s2">&quot;chaincode=debug:info&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>如果规范成功激活，服务将回复 <code class="docutils literal notranslate"><span class="pre">204</span> <span class="pre">&quot;No</span> <span class="pre">Content&quot;</span></code> 。如果出现错误，服务将回复 <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">&quot;Bad</span> <span class="pre">Request&quot;</span></code> 以及一个错误有效负载：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;error message&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>健康检查<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>操作服务提供了 <code class="docutils literal notranslate"><span class="pre">/healthz</span></code> 资源，操作人员可用该资源来确定 peer 和 orderer 的活跃度及健康状况。该资源是支持GET请求的常规REST资源。它的实现旨在与 Kubernetes 使用的活跃度探针模型兼容，不过还可以在其他场景中进行。</p>
+<p>当操作服务收到 <code class="docutils literal notranslate"><span class="pre">GET/healthz</span></code> 请求，它将调用所有已注册的运行状况检查程序来执行该流程。当所有运行状况检查程序都成功返回时，操作服务将以 <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">&quot;OK&quot;</span></code> 和 JSON body 进行回应：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2009-11-10T23:00:00Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果运行状况检查程序中的一个或多个返回错误时，运行服务将响应 <code class="docutils literal notranslate"><span class="pre">503</span> <span class="pre">&quot;Service</span> <span class="pre">Unavailable&quot;</span></code> 和一个包含未成功的运行状况检查程序的JASON body：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Service Unavailable&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2009-11-10T23:00:00Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;failed_checks&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;component&quot;</span><span class="p">:</span> <span class="s2">&quot;docker&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;failed to connect to Docker daemon: invalid endpoint&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在当前版本中，唯一注册的运行状况检查程序是针对Docker的。后期版本将增加额外的运行状况检查程序。</p>
+<p>当启用TLS时，不需要提供有效的客户端证书就可以使用该服务，除非 <code class="docutils literal notranslate"><span class="pre">clientAuthRequired</span></code> 被设置为 <code class="docutils literal notranslate"><span class="pre">true</span></code>。</p>
+</div>
+<div class="section" id="metrics">
+<h2>指标数据（Metrics）<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
+<p>Fabric的peer和orderer的某些组件获取metrics，这些metrics可帮助深入了解系统行为。通过这些信息，操作人员和管理人员可以更好地理解系统随着时间的推移是如何运行的。</p>
+<div class="section" id="id8">
+<h3>配置 Metrics<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Fabric提供了两种获取metrics的方法：一种是基于Prometheus的 <strong>拉式</strong> 模型，另一种是基于StatsD的 <strong>推式</strong> 模型。</p>
+<p>Prometheus</p>
+<p>典型的Prometheus部署通过从已检测目标公开的HTTP端点请求指标来获取指标数据。由于Prometheus负责请求metrics，因此它被看成是一种拉式系统。</p>
+<p>当配置完成，Fabric的peer或orderer将在操作服务中展示 /metrics 资源。</p>
+<div class="section" id="id9">
+<h4>节点<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>通过在 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 部分的 <code class="docutils literal notranslate"><span class="pre">metrics</span></code> 中将metrics获取方式设置为prometheus ，可对peer进行配置，从而获取 <code class="docutils literal notranslate"><span class="pre">/metrics</span></code> 端点，以供Prometheus使用。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">metrics</span><span class="p">:</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">prometheus</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>排序节点<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<p>通过在 <code class="docutils literal notranslate"><span class="pre">orderer.yaml</span></code> 部分的 <code class="docutils literal notranslate"><span class="pre">Metrics</span></code> 中将 metrics 获取方式设置为bprometheus ，可对orderer进行配置，从而获取 <code class="docutils literal notranslate"><span class="pre">/metrics</span></code> 端点，以供 Prometheus 使用。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">Metrics</span><span class="p">:</span>
+  <span class="nt">Provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">prometheus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="statsd">
+<h3>StatsD<a class="headerlink" href="#statsd" title="Permalink to this headline">¶</a></h3>
+<p>StatsD是一个简单的统计聚合守护程序。Metrics被发送到 <code class="docutils literal notranslate"><span class="pre">statsd</span></code> 守护程序进行收集、汇总并推送至后端以进行可视化和警报。由于该模型需要辅助型流程来将metrics数据发送至StatsD,因此它被视为一种推式系统。</p>
+<div class="section" id="id11">
+<h4>节点<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<p>通过在 <code class="docutils literal notranslate"><span class="pre">core.yaml</span></code> 部分的 <code class="docutils literal notranslate"><span class="pre">metrics</span></code> 中将metrics获取方式设置为 <code class="docutils literal notranslate"><span class="pre">statsd</span></code>，可对节点进行配置，从而使metrics被发送至StatsD.  <code class="docutils literal notranslate"><span class="pre">statsd</span></code> 子节必须配置有StatsD守护程序的地址、要使用的网络类型( <code class="docutils literal notranslate"><span class="pre">tcp</span></code> or <code class="docutils literal notranslate"><span class="pre">udp</span></code> )以及发送metrics的频率。通过指定一个可选 <code class="docutils literal notranslate"><span class="pre">prefix</span></code> ，可帮助区分metrics的来源（例如，区分来自不同peer的metrics），这些metrics将被添加到所有已生成的metrics中。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">metrics</span><span class="p">:</span>
+  <span class="nt">provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">statsd</span>
+  <span class="nt">statsd</span><span class="p">:</span>
+    <span class="nt">network</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">udp</span>
+    <span class="nt">address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:8125</span>
+    <span class="nt">writeInterval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10s</span>
+    <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">peer-0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h4>排序节点<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<p>通过在 <code class="docutils literal notranslate"><span class="pre">orderer.yaml</span></code> 部分的 <code class="docutils literal notranslate"><span class="pre">Metrics</span></code> 中将metrics获取方式设置为 <code class="docutils literal notranslate"><span class="pre">statsd</span></code> ，可对排序节点进行配置，使得metrics被发送至StatsD. <code class="docutils literal notranslate"><span class="pre">Statsd</span></code> 子节必须配置有StatsD守护程序的地址、要使用的网络类型( <code class="docutils literal notranslate"><span class="pre">tcp</span></code> or <code class="docutils literal notranslate"><span class="pre">udp</span></code> )以及发送metrics的频率。通过指定一个可选 <code class="docutils literal notranslate"><span class="pre">prefix</span></code> ，可帮助区分metrics的来源。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">Metrics</span><span class="p">:</span>
+    <span class="nt">Provider</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">statsd</span>
+    <span class="nt">Statsd</span><span class="p">:</span>
+      <span class="nt">Network</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">udp</span>
+      <span class="nt">Address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:8125</span>
+      <span class="nt">WriteInterval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30s</span>
+      <span class="nt">Prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org-orderer</span>
+</pre></div>
+</div>
+<p>想了解已生成的不同metrics，请参考 <a class="reference internal" href="metrics_reference.html"><span class="doc">Metrics Reference</span></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>版本<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>The orderer and peer both expose a <code class="docutils literal notranslate"><span class="pre">/version</span></code> endpoint. This endpoint
+serves a JSON document containing the orderer or peer version and the commit
+SHA on which the release was created.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="metrics_reference.html" class="btn btn-neutral float-right" title="Metrics Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="idemixgen.html" class="btn btn-neutral" title="身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

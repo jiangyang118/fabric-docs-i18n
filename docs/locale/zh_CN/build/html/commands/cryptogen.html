@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="服务发现命令行界面" href="../discovery-cli.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="configtxlator.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../command_ref.html">命令参考</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/commands/cryptogen.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># cryptogen</p>
+<p><cite>cryptogen</cite> 是用来生成 Hyperledger Fabric 密钥材料的工具。它为测试提供了一种预配置网络的工具。通常它不应使用在生产环境中。</p>
+<p>## 语法</p>
+<p><code class="docutils literal notranslate"><span class="pre">cryptogen</span></code> 有如下五个子命令:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>help</p></li>
+<li><p>generate</p></li>
+<li><p>showtemplate</p></li>
+<li><p>extend</p></li>
+<li><p>version</p></li>
+</ul>
+</div></blockquote>
+<p>## cryptogen help
+<a href="#id1"><span class="problematic" id="id2">``</span></a>`
+usage: cryptogen [&lt;flags&gt;] &lt;command&gt; [&lt;args&gt; …]</p>
+<p>生成 Hyperledger Fabric 密钥材料的工具。</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+</dl>
+</dd>
+<dt>Commands:</dt><dd><dl class="simple">
+<dt>help [&lt;command&gt;…]</dt><dd><p>显示帮助。</p>
+</dd>
+<dt>generate [&lt;flags&gt;]</dt><dd><p>生成密钥材料。</p>
+</dd>
+<dt>showtemplate</dt><dd><p>显示默认配置模板。</p>
+</dd>
+<dt>version</dt><dd><p>显示版本信息。</p>
+</dd>
+<dt>extend [&lt;flags&gt;]</dt><dd><p>扩展现有网络。</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>## cryptogen generate
+<a href="#id7"><span class="problematic" id="id8">``</span></a>`
+usage: cryptogen generate [&lt;flags&gt;]</p>
+<p>生成密钥材料</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+</dl>
+<p>–output=”crypto-config”  用来存放构件的输出目录。
+–config=CONFIG           使用的配置模板。</p>
+</dd>
+</dl>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<p>## cryptogen showtemplate
+<a href="#id13"><span class="problematic" id="id14">``</span></a>`
+usage: cryptogen showtemplate</p>
+<p>Show the default configuration template</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>Show context-sensitive help (also try –help-long and –help-man).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a></p>
+<p>## cryptogen extend
+<a href="#id19"><span class="problematic" id="id20">``</span></a>`
+usage: cryptogen extend [&lt;flags&gt;]</p>
+<p>扩展现有网络。</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+</dl>
+<p>–input=”crypto-config”  存放现有网络的输入目录。、existing network place
+–config=CONFIG          使用的配置模板。</p>
+</dd>
+</dl>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p>## cryptogen version
+<a href="#id25"><span class="problematic" id="id26">``</span></a>`
+usage: cryptogen version</p>
+<p>显示版本信息。</p>
+<dl>
+<dt>Flags:</dt><dd><dl class="option-list">
+<dt><kbd><span class="option">--help</span></kbd></dt>
+<dd><p>查看完整的帮助（可以尝试 –help-long 和 –help-man）。</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a></p>
+<p>## 用法</p>
+<p>这里有一个例子，在 <code class="docutils literal notranslate"><span class="pre">cryptogen</span> <span class="pre">extend</span></code> 命令上使用不同的标识（flag）。</p>
+<dl>
+<dt><a href="#id31"><span class="problematic" id="id32">``</span></a><a href="#id33"><span class="problematic" id="id34">`</span></a></dt><dd><p>cryptogen extend –input=”crypto-config” –config=config.yaml</p>
+<p>org3.example.com</p>
+</dd>
+</dl>
+<p><a href="#id35"><span class="problematic" id="id36">``</span></a><a href="#id37"><span class="problematic" id="id38">`</span></a></p>
+<p>这里 config.yaml 添加了一个新组织 <code class="docutils literal notranslate"><span class="pre">org3.example.com</span></code>。</p>
+<p>&lt;a rel=”license” href=”<a class="reference external" href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>”&gt;&lt;img alt=”Creative Commons License” style=”border-width:0” src=”https://i.creativecommons.org/l/by/4.0/88x31.png” /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel=”license” href=”http://creativecommons.org/licenses/by/4.0/”&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../discovery-cli.html" class="btn btn-neutral float-right" title="服务发现命令行界面" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configtxlator.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

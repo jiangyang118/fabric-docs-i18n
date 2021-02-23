@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="成员服务提供者 (MSP)" href="msp.html" />
+    <link rel="prev" title="操作指南" href="ops_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/orderer_deploy.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 设置排序节点</p>
+<p>本章中，我们将介绍启动排序节点的过程。如果想了解更多有关不同排序服务实现及其优缺点的信息，请查看[conceptual documentation about ordering](./orderer/ordering_service.html)。</p>
+<p>总体来说，本章将涉及以下步骤：</p>
+<ol class="arabic simple">
+<li><p>创建排序节点所属的组织（如果尚未创建）</p></li>
+<li><p>配置节点 （使用 <cite>orderer.yaml</cite>）</p></li>
+<li><p>为排序系统通道创建创世块</p></li>
+<li><p>引导排序节点</p></li>
+</ol>
+<p>注意：本章假定您已从 docker hub 中拉取了 Hyperledger Fabric orderer 镜像。</p>
+<p>## 创建组织定义</p>
+<p>和 Peer 节点一样，所有排序节点都必须属于已存在的组织。该组织拥有[成员服务提供者](./membership/membership.html)（MSP），MSP 由 CA（Certificate Authority）创建，CA 专门为该组织创建证书和 MSP 。</p>
+<p>有关创建 CA 以及使用 CA 创建用户和 MSP 的信息，请参阅 [Fabric CA user’s guide](<a class="reference external" href="https://hyperledger-fabric-ca.readthedocs.io/en/latest/users-guide.html">https://hyperledger-fabric-ca.readthedocs.io/en/latest/users-guide.html</a>)。</p>
+<p>## 配置节点</p>
+<p>排序节点通过名为 <cite>orderer.yaml</cite> 的 <cite>yaml</cite> 文件来进行配置。其中 <cite>FABRIC_CFG_PATH</cite> 环境变量需指向一个已经配置好的 <cite>orderer.yaml</cite> 文件，该文件将在文件系统中提取一系列文件和证书。</p>
+<p>示例 <cite>orderer.yaml</cite> 请查看 [<cite>fabric-samples</cite> github repo](<a class="reference external" href="https://github.com/hyperledger/fabric/blob/release-2.0/sampleconfig/orderer.yaml">https://github.com/hyperledger/fabric/blob/release-2.0/sampleconfig/orderer.yaml</a>)，在继续下一步之前**仔细阅读和研究** 。需要特别注意以下值：</p>
+<ul class="simple">
+<li><p><cite>LocalMSPID</cite> —— 这是排序组织的 MSP 的名称，由 CA 生成，并在这里列出了排序组织管理员。</p></li>
+<li><p><cite>LocalMSPDir</cite> —— 文件系统中本地 MSP 所在的位置。</p></li>
+<li><p><cite># TLS enabled</cite>, <cite>Enabled: false</cite>。在这里可以指定是否要[启用 TLS ](enable_tls.html)。如果将此值设置为 <cite>true</cite> , 则必须指定相关 TLS 证书的位置。请注意，这对于 Raft 节点是必须的。</p></li>
+<li><p><cite>BootstrapFile</cite> —— 这是您将为此排序服务生成的创世块的名称。</p></li>
+<li><p><cite>BootstrapMethod</cite> —— 给定引导区块的方法。目前，这里只能是 <cite>file</cite>，引导文件是 <cite>BootstrapFile</cite> 中所指定的文件。</p></li>
+</ul>
+<p>如果将此节点部署为集群的一部分（例如，作为 Raft 节点集群的一部分），请注意 <cite>Cluster</cite> 和 <cite>Consensus</cite> 部分。</p>
+<p>如果想要部署基于 Kafka 的排序服务，则需要完成 <cite>Kafka</cite> 部分。</p>
+<p>## 创建排序节点的创世区块</p>
+<p>新创建通道的第一个区块称为“创世区块”。如果在创建**新网络**的过程中创建了创世区块（换言之，正在创建的排序节点不会加入现有的排序节点集群），则该创世区块将是“排序系统通道”的第一个区块，“排序系统通道”是一个特殊的通道，它由排序管理员管理，排序管理员包括了允许创建通道的组织列表。<em>排序系统通道的创世区块很特殊：必须先创建它并将其包含在节点的配置中，然后才能启动该节点。</em></p>
+<p>想要了解如何使用 <cite>configtxgen</cite> 创建创世区块，请查阅 [通道配置（configtx）](configtx.html)</p>
+<p>## 引导排序节点</p>
+<p>当您完成构建镜像，创建 MSP，配置 <cite>orderer.yaml</cite> 并创建了创世区块之后，就可以使用类似下面的命令来启动排序节点：</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">docker-compose</span> <span class="pre">-f</span> <span class="pre">docker-compose-cli.yaml</span> <span class="pre">up</span> <span class="pre">-d</span> <span class="pre">--no-deps</span> <span class="pre">orderer.example.com</span>
+<span class="pre">`</span></code></p>
+<p>注意用你的排序节点地址来替换 <cite>orderer.example.com</cite>。</p>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>) –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="msp.html" class="btn btn-neutral float-right" title="成员服务提供者 (MSP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ops_guide.html" class="btn btn-neutral" title="操作指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

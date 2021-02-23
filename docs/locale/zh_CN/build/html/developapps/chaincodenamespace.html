@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>&lt;no title&gt; &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="}" href="transactioncontext.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="contractname.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="../index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=../_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="../_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="../_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="../_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="../_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops_guide.html">操作指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="developing_applications.html">开发应用</a> &raquo;</li>
+        
+          <li><a href="designelements.html">应用程序设计元素</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/developapps/chaincodenamespace.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p># 链码命名空间</p>
+<p><strong>本文面向的读者是</strong>: 架构师，应用程序和智能合约开发人员，管理员</p>
+<p>链码命名空间允许其保持自己的世界状态与其他链码的不同。具体来说，同链码的智能合约对相同的世界状态都拥有直接的访问权，而不同链码的智能合约无法直接访问对方的世界状态。如果一个智能合约需要访问其他链码的世界状态，可通过执行链码-对-链码的调用来完成。最后，区块链可以包含涉及了不同世界状态的交易。</p>
+<p>本文我们将讲述以下内容：</p>
+<ul class="simple">
+<li><p>[命名空间的重要性](#动机)</p></li>
+<li><p>[什么是链码命名空间](#情景)</p></li>
+<li><p>[通道和链码命名空间](#通道)</p></li>
+<li><p>[如何使用链码命名空间](#usage)</p></li>
+<li><p>[如何使用智能合约来访问世界状态](#跨链码访问)</p></li>
+<li><p>[链码命名空间的设计考虑](#思考)</p></li>
+</ul>
+<p>## 动机</p>
+<p>命名空间是一个常见的概念。我们知道虽然*公园街道，纽约和帕克街道，西雅图*这些属于不同街道，但是他们有共同的名字。城市为公园街提供了一个**命名空间**，同时赋予了它自由度和清晰度。</p>
+<p>在电脑系统中也是如此。命名空间实现了让不同用户在不影响其他方操作的情况下对一个共享系统的不同部分进行编程和操作。许多编程语言都有命名空间，这就使得程序可以轻松地分配独特的识别符，如变量名，而无须担心其他程序也在进行相同操作。下文中会介绍到Hyperledger Fabric通过命名空间使得智能合约可以保持自己的账本世界状态与其他智能合约的不同。</p>
+<p>## 情景</p>
+<p>让我们通过下面的图表来看一下账本世界状态如何管理对通道组织很重要的商业对象的相关事实。无论对象是商业票据，债券，还是车牌号码，无论这些对象位于生命周期的什么位置，它们都会被作为状态维持在账本数据状态数据库中。智能合约通过与账本（世界状态和区块链）交互来管理这些商业对象，而多数情况下这一过程会涉及到智能合约查询或更新账本世界状态。</p>
+<p>账本世界状态是通过访问该状态的智能合约的链码来进行划分的，理解这一点至关重要 。这种划分或者*命名空间*对架构师、管理员和程序员来说是一点非常重要的设计考虑。</p>
+<p>![chaincodens.scenario](./develop.diagram.50.png) <em>账本世界状态根据访问其状态的链码被分成不同命名空间。在一个给定通道上，相同链码的智能合约共享相同世界状态，不同链码的智能合约无法直接访问对方的世界状态。同样的道理，区块链可以包含与不同链码世界状态相关的交易。</em></p>
+<p>在我们的示例中可以看到两种不同的链码中定义了四种智能合约，每个都位于它们自己的链码容器里。  <cite>euroPaper</cite> 和`yenPaper` 智能合约被定义在  <cite>papers</cite> 链码中。  <cite>euroBond</cite> 和 <cite>yenBond</cite>  智能合约的情况也类似——它们被定义在`bonds`链码中。该设计可帮助应用程序员们理解他们的工作对象，是商业票据还是欧元或日元的债券，因为各金融产品的规则不会受货币种类影响，这就使得用相同链码管理这些金融产品的部署成为可能。</p>
+<blockquote>
+<div><p>[上图](#情景) 还展示了这一部署选择的结果。数据库管理系统为 <cite>papers</cite> 和 <cite>bonds</cite> 链码以及各自其中包含的智能合约创建了不同的世界状态数据库。 <cite>World state A</cite> 和 <cite>world state B</cite> 被分别放在不同的数据库中；其中的数据也被分隔开，从而使得一个单独的世界状态查询（比如）不会同时访问两个世界状态。据说世界状态根据其链码进行了*命名空间设定*。</p>
+</div></blockquote>
+<p>看看  <cite>world state A</cite> 是如何包含两个列表的商业票据 <cite>paperListEuro</cite> 和 <cite>paperListYen</cite> 。状态  <cite>PAP11</cite> 和`PAP21` 分别是由  <cite>euroPaper</cite> 和 <cite>yenPaper</cite> 智能合约管理的每个票据的示例。由于这些智能合约共享同样的链码命名空间，因此它们的key(<cite>PAPxyz</cite>) 必须在 <cite>papers</cite> 链码的命名空间里是唯一的。要注意怎样能在`papers` 链码上写一个能对所有商业票据（无论是欧元还是日元）执行汇总计算的智能合约，因为这些商业票据共享相同的命名空间。债券的情况也类似——债券保存在  <cite>world state B</cite> 中，  <cite>world state B</cite> 与另一个`bonds` 数据库形成映射，它们的key必须都是唯一的。</p>
+<p>同样重要的一点是，命名空间意味着  <cite>euroPaper</cite> 和 <cite>yenPaper</cite> 无法直接访问  <cite>world state B</cite> ，也意味着  <cite>euroBond</cite> 和 <cite>yenBond</cite> 无法直接访问  <cite>world state A</cite> 。这样的分隔是有帮助的，因为商业票据和债券是相差很大的两种金融工具，它们各有不同的属性和规定。同时命名空间还意味着 <cite>papers</cite> 和 <cite>bonds</cite>  可以有相同的key，因为它们在不同的命名空间。这是有帮助的，因为它为命名提供了足够大的自由空间。以此来为不同的商业对象命名。</p>
+<p>最重要的一点是，我们可以看到区块链是与在特定通道上运行的节点相关的，它包括了影响 <cite>world state A</cite> 和 <cite>world state B</cite> 的交易。这就解释了为什么区块链是节点中最基础的数据结构。因为世界状态集是区块链交易的汇总结构，所以它总是能从区块链中重新创建。世界状态通常仅要求该状态的当前值，所以它可以简化智能合约，提升智能合约的效率。通过命名空间来让世界状态彼此各不相同，这能帮助智能合约将各自逻辑从其他智能合约中隔离出来，而不需要担心那些与不同世界状态通信的交易。例如， <cite>bonds</cite>  合约不需要担心 <cite>paper</cite>  交易，因为该合约无法看到由它所造成的世界状态。</p>
+<p>同样值得注意的是，节点，链码容器和数据库管理系统（DBMS）在逻辑上来说都是不同的过程。节点和其所有的链码容器始终位于不同的操作系统进程中，但是 DBMS 可被配置为嵌入或分离，这取决于它的[类型](../ledger/ledger.html#world-state-database-options)。对于 LevelDB 来说，DBMS 整体被包含在节点中，但是对于 CouchDB 来说，这是另外一个操作系统进程。</p>
+<p>要记住，该示例中命名空间的选择是商业上要求共享不同币种商业票据的结果，但是要将商业票据与债券区别开，这一点很重要。想想如何对命名空间的结果进行修改以满足保持每个金融资产等级互不相同这一商业需求，或者来共享所有商业票据和债券。</p>
+<p>## 通道</p>
+<p>如果一个节点加入了多个通道，那么将会为每个通道创建、管理一条新的区块链。而且每当有链码部署在一条新通道上，就会为其创建一个新的世界状态数据库。这就意味着通道还可以随着链码命名空间来为世界状态生成一种命名空间。</p>
+<p>然而，相同的节点和链码容器流程可同时加入多个通道，与区块链和世界状态数据库不同，这些流程不会随着加入的通道数而增加。</p>
+<p>例如，如果链码 <cite>papers</cite> 和 <cite>bonds</cite>  在一个新的通道上被部署了，将会有一个完全不同的区块链和两个新的世界状态数据库被创建出来。但是，节点和链码容器不会随之增加；它们只会各自连接到更多相应的通道上。</p>
+<p>## 使用</p>
+<p>让我们来用商业票据的[例子](#情景)讲解一个应用程序是如何使用带有命名空间的智能合约的。值得注意的是应用程序与节点交互，该节点将请求发送到对应的链码容器，随后，该链码容器访问DBMS。请求的传输是由下图中的节点**核心**组件完成的。</p>
+<p>以下是使用商业票据和债券的应用程序代码，以欧元和日元定价。该代码可以说是不言自明的：</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>javascript
+const euroPaper = network.getContract(papers, euroPaper);
+paper1 = euroPaper.submit(issue, PAP11);</p>
+<p>const yenPaper = network.getContract(papers, yenPaper);
+paper2 = yenPaper.submit(redeem, PAP21);</p>
+<p>const euroBond = network.getContract(bonds, euroBond);
+bond1 = euroBond.submit(buy, BON31);</p>
+<p>const yenBond = network.getContract(bonds, yenBond);
+bond2 = yenBond.submit(sell, BON41);
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>看一下应用程序是怎么：</p>
+<ul class="simple">
+<li><p>访问`euroPaper` 和 <cite>yenPaper</cite> 合约，用 <cite>getContract() ` API指明`paper</cite> 的链码。看交互点**1a**和**2a**。</p></li>
+<li><p>访问  <cite>euroBond</cite> 和 <cite>yenBond</cite>  合约，用 <cite>getContract()</cite>  API指明`bonds`链码。看交互点**3a**和**4a**。</p></li>
+<li><p>向网络提交一个  <cite>issue</cite> 交易，以使 <cite>PAP11</cite>  票据使用  <cite>euroPaper</cite> 合约。看交互点**1a**。这就产生了由  <cite>world state A</cite> 中的  <cite>PAP11</cite>  状态代表的商业票据；交互点**1b**。这一操作在交互点**1c**上被捕获为区块链的一项交易。</p></li>
+<li><p>向网络发送一个  <cite>redeem</cite> 交易，让商业票据 <cite>PAP21</cite> 来使用 <cite>yenPaper</cite> 合约。看交互点**2a**。这就产生了由   <cite>world state A</cite> 中 <cite>PAP21</cite>  代表的一个商业票据；交互点**2b**。该操作在交互点**2c**被捕获为区块链的一项交易。</p></li>
+<li><p>向网络发送一个  <cite>buy</cite> 交易，让债券 <cite>BON31</cite> 来使用 <cite>euroBond</cite> 合约。看交互点**3a**。这就产生了由   <cite>world state B</cite> 中 <cite>BON31</cite>  代表的一个商业票据；交互点**3b**。该操作在交互点**3c**被捕获为区块链的一项交易。</p></li>
+<li><p>向网络发送一个  <cite>sell</cite> 交易，让债券 <cite>BON41</cite> 来使用 <cite>yenBond</cite> 合约。看交互点**4a**。这就产生了由   <cite>world state B</cite> 中 <cite>BON41</cite>  代表的一个商业票据；交互点**4b**。该操作在交互点**4c**被捕获为区块链的一项交易。</p></li>
+</ul>
+<p>我们来看看智能合约是如何与世界状态交互的：</p>
+<ul class="simple">
+<li><p><cite>euroPaper</cite> 和 <cite>yenPaper</cite>  合约可直接访问 <cite>world state A</cite>，但无法直接访问 <cite>world state B</cite>。 <a href="#id9"><span class="problematic" id="id10">`</span></a>world state A`储存在与`papers`链码相对应的数据库管理系统中的`papers`数据库里面。</p></li>
+<li><p><cite>euroBond</cite> 和 <cite>yenBond</cite>  合约可以直接访问`world state B`，但是无法直接访问`world state A`。<a href="#id11"><span class="problematic" id="id12">`</span></a>world state B`储存在与`bonds`链码相对应的数据库管理系统中的`bonds`数据库里面。</p></li>
+</ul>
+<p>看看区块链是如何为所有世界状态捕获交易的：</p>
+<ul class="simple">
+<li><p>与交易相对应的交互点**1c**和**2c**分别创建和更新商业票据 <cite>PAP11</cite> 和 <cite>PAP21</cite>。它们都包含在    <cite>world state A</cite> 中。</p></li>
+<li><p>与交易相对应的交互点**3c**和**4c**都会对  <cite>BON31</cite> 和 <cite>BON41</cite> 进行更新。它们都包含在`world state B` 中。</p></li>
+<li><p>如果 <cite>world state A</cite> 或 <cite>world state B</cite> 因任何原因被破坏，可通过重新进行区块链上的所有交易来重新创建`world state A` 或 <cite>world state B</cite>。</p></li>
+</ul>
+<p>## 跨链码访问</p>
+<p>如 [情景](#情景)中的示例可见， <cite>euroPaper</cite> 和 <cite>yenPaper</cite>  无法直接访问` world state B <cite>。这是因为我们对链码和智能合约进行了设置，使得这些链码和世界状态各自之间保持不同。不过，我们来想象一下 `euroPaper</cite> 需要访问 <cite>world state B</cite>。</p>
+<p>为什么会发生这种情况呢？想象一下当发行商业票据时，智能合约想根据到期日相似的债券的当前收益情况来对票据进行定价。这种情况时，需要  <cite>euroPaper</cite> 合约能够在 <a href="#id13"><span class="problematic" id="id14">`</span></a>world state B`中查询债券价格。看以下图表来研究一下应该如何设计交互的结构。</p>
+<p>![chaincodens.scenario](./develop.diagram.51.png) <em>链码和智能合约如何能够直接访问其他世界状态——通过自己的链码。</em></p>
+<p>注意如何：</p>
+<ul class="simple">
+<li><p>应用程序在 <cite>euroPaper</cite> 智能合约中发送 <cite>issue</cite> 交易来颁布 <cite>PAP11</cite>。看交互点 <strong>1a</strong>。</p></li>
+<li><p><cite>euroPaper</cite> 智能合约中的 <cite>issue</cite> 交易在 <cite>euroBond</cite> 智能合约中调用 <cite>query</cite> 交易。看交互点 <strong>1b</strong>。</p></li>
+<li><p><cite>euroBond</cite> 中的 <cite>query</cite> 从 <cite>world state B</cite> 中索取信息。看交互点 <strong>1c</strong>。</p></li>
+<li><p>当控制返回到 <cite>issue</cite> 交易，它可利用响应中的信息对票据定价，并使用信息来更新 <cite>world state A</cite>。看交互点 <strong>1d</strong>。</p></li>
+<li><p>发行以日元定价的商务票据的控制流程也是一样的。看交互点 <strong>2a</strong>，<strong>2b</strong>，<strong>2c</strong> 和 <strong>2d</strong>。</p></li>
+</ul>
+<p>链码间的控制传递是利用 <cite>invokeChiancode()</cite>
+[API](<a class="reference external" href="https://hyperledger.github.io/fabric-chaincode-node/master/api/fabric-shim.ChaincodeStub.html#invokeChaincode__anchor">https://hyperledger.github.io/fabric-chaincode-node/master/api/fabric-shim.ChaincodeStub.html#invokeChaincode__anchor</a>)来实现的。</p>
+<p>该 API 将控制权从一个链码传递到另一个链码。</p>
+<p>虽然我们在示例中只谈论了查询交易，但是用户也能够调用一个将更新所谓链码世界状态的智能合约。请参考下面的 [思考](#思考) 部分。</p>
+<p>## 思考</p>
+<ul class="simple">
+<li><p>大体上来说，每各链码都包含一个智能合约。</p></li>
+<li><p>若多个智能合约之间关系紧密，应该把它们部署在同一链码中。通常，只有当这些智能合约共享相同的世界状态时才需要这样做。</p></li>
+<li><p>链码命名空间将不同的世界状态分隔开来。这大体上会将彼此不相关的数据区分开。注意，命名空间是由 Hyperledger Fabric 分配并直接映射到链码名字的，用户无法选择。</p></li>
+<li><p>对于使用 <cite>invokeChaincode()</cite> API 的链码间交互，必须将这两个链码安装在相同节点上。</p>
+<ul>
+<li><p>对于仅需要查询被调用链码的世界状态的交互，该调用可发生在与调用发起者链码不同的通道上。</p></li>
+<li><p>对于需要更新背调用链码世界状态的交互，调用必须发生在与调用发起者链码相同的通道上。</p></li>
+</ul>
+</li>
+</ul>
+<p>&lt;!— Licensed under Creative Commons Attribution 4.0 International License
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a> –&gt;</p>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="transactioncontext.html" class="btn btn-neutral float-right" title="}" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contractname.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

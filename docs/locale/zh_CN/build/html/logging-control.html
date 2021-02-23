@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>日志控制 &mdash; hyperledger-fabricdocs master documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用 TLS（Transport Layer Security）保护通信" href="enable_tls.html" />
+    <link rel="prev" title="错误处理" href="error-handling.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+
+          
+            <a href="index.html" class="icon icon-home"> hyperledger-fabricdocs
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+
+<br><img style="background-color: #fff; height: unset; width: unset;" alt="Hyperledger Fabric" src=_images/hyperledger_fabric_logo_color.png />
+<br>
+<a href="https://github.com/hyperledger/fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="GitHub" src="_static/images/github_button.png"/></a>
+&nbsp;<a href="https://stackoverflow.com/questions/tagged/hyperledger-fabric"><img style="padding: 0px; margin: auto auto auto auto;" alt="StackOverflow" src="_static/images/stackoverflow_button.png"/></a>
+&nbsp;<a href="https://chat.hyperledger.org"><img style="padding: 0px; margin: auto auto auto auto;" alt="Rocket Chat" src="_static/images/rocketchat_button.png"/></a>
+&nbsp;<a href="https://www.youtube.com/playlist?list=PL0MZ85B_96CH7wvtrRzV7SvtRY0sI0DEg"><img style="padding: 0px; margin: auto auto auto auto;" alt="Youtube Channel" src="_static/images/youtube_button.png"/></a>
+
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html">Hyperledger Fabric v2.0 更新说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatsnew.html#id7">发行说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="key_concepts.html">关键概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developapps/developing_applications.html">开发应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_guide_overview.html">部署一个生产网络</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ops_guide.html">操作指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="msp.html">成员服务提供者 (MSP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hsm.html">```</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configtx.html">通道配置（configtx）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endorsement-policies.html">背书策略</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pluggable_endorsement_and_validation.html">可插拔交易背书与交易验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">},</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemix.html">使用身份混合器（Identity Mixer）的 MSP 实现</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idemixgen.html">身份混合器（Identity Mixer） MSP 配置生成器（idemixgen）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operations_service.html">操作服务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics_reference.html">Metrics Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_launcher.html#id17">fi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cc_service.html#id62">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">错误处理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">日志控制</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">日志规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">记录格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">链码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="enable_tls.html">使用 TLS（Transport Layer Security）保护通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kafka.html">启用基于 Kafka 的排序服务</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade.html">升级到最新版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command_ref.html">命令参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">架构参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fabric-FAQ.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">欢迎贡献！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releases.html">版本发布</a></li>
+<li class="toctree-l1"><a class="reference internal" href="questions.html">仍有问题？</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">状态</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hyperledger-fabricdocs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="ops_guide.html">操作指南</a> &raquo;</li>
+        
+      <li>日志控制</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/logging-control.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>日志控制<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">peer</span></code> 和 <code class="docutils literal notranslate"><span class="pre">orderer</span></code> 中的日志是由 <code class="docutils literal notranslate"><span class="pre">common/flogging</span></code> 包提供的，这个包支持：</p>
+<ul class="simple">
+<li><p>根据消息的严重性进行日志记录控制</p></li>
+<li><p>根据生成消息的软件 <em>记录器</em> 的记录控制</p></li>
+<li><p>根据消息的严重性，提供不同的漂亮的打印选项</p></li>
+</ul>
+<p>目前所有日志都输出到 <code class="docutils literal notranslate"><span class="pre">stderr</span></code>。为用户和开发人员提供了按严重性对日志进行全局和日志级别的控制。目前没有针对每个严重性级别提供信息类型的正式规范。提交错误报告时，开发人员可能希望在 DEBUG 级别查看完整的日志</p>
+<p>在正常打印的日志中，日志记录级别由不同颜色的四个字符的代码表示，例如，”ERRO” 表示错误（ERROR），”DEBU” 表示调试（DEBUG），等等。在日志记录上下文中，<em>记录器</em> 是由开发人员对相关消息组的命名（字符串）。在下面的正常打印的示例，记录器 <code class="docutils literal notranslate"><span class="pre">ledgermgmt</span></code>、<code class="docutils literal notranslate"><span class="pre">kvledger</span></code> 和 <code class="docutils literal notranslate"><span class="pre">peer</span></code> 都在生成日志。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">38.268</span> <span class="n">UTC</span> <span class="p">[</span><span class="n">ledgermgmt</span><span class="p">]</span> <span class="n">initialize</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">002</span> <span class="n">Initializing</span> <span class="n">ledger</span> <span class="n">mgmt</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">38.268</span> <span class="n">UTC</span> <span class="p">[</span><span class="n">kvledger</span><span class="p">]</span> <span class="n">NewProvider</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">003</span> <span class="n">Initializing</span> <span class="n">ledger</span> <span class="n">provider</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">38.342</span> <span class="n">UTC</span> <span class="p">[</span><span class="n">kvledger</span><span class="p">]</span> <span class="n">NewProvider</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">004</span> <span class="n">ledger</span> <span class="n">provider</span> <span class="n">Initialized</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">38.357</span> <span class="n">UTC</span> <span class="p">[</span><span class="n">ledgermgmt</span><span class="p">]</span> <span class="n">initialize</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">005</span> <span class="n">ledger</span> <span class="n">mgmt</span> <span class="n">initialized</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">38.357</span> <span class="n">UTC</span> <span class="p">[</span><span class="n">peer</span><span class="p">]</span> <span class="n">func1</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">006</span> <span class="n">Auto</span><span class="o">-</span><span class="n">detected</span> <span class="n">peer</span> <span class="n">address</span><span class="p">:</span> <span class="mf">172.24</span><span class="o">.</span><span class="mf">0.3</span><span class="p">:</span><span class="mi">7051</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">01</span> <span class="mi">15</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">38.357</span> <span class="n">UTC</span> <span class="p">[</span><span class="n">peer</span><span class="p">]</span> <span class="n">func1</span> <span class="o">-&gt;</span> <span class="n">INFO</span> <span class="mi">007</span> <span class="n">Returning</span> <span class="n">peer0</span><span class="o">.</span><span class="n">org1</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">7051</span>
+</pre></div>
+</div>
+<p>可以在运行时创建任意数量的记录器，因此没有记录器的“主列表”，并且日志控件结构无法检查记录器是否确实存在或将生成。</p>
+</div>
+<div class="section" id="id3">
+<h2>日志规范<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">peer</span></code> 和 <code class="docutils literal notranslate"><span class="pre">orderer</span></code> 命令的日志记录级别由日志记录规范控制，该规范是通过``FABRIC_LOGGING_SPEC`` 环境变量设置的。</p>
+<p>完整的日志记录级别规范具有以下形式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="p">[,</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;...</span><span class="p">]</span><span class="o">=</span><span class="p">]</span><span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;</span><span class="p">[:[</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="p">[,</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;...</span><span class="p">]</span><span class="o">=</span><span class="p">]</span><span class="o">&lt;</span><span class="n">level</span><span class="o">&gt;...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>日志记录严重性级别使用不区分大小写的字符串指定</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FATAL</span> <span class="o">|</span> <span class="n">PANIC</span> <span class="o">|</span> <span class="n">ERROR</span> <span class="o">|</span> <span class="n">WARNING</span> <span class="o">|</span> <span class="n">INFO</span> <span class="o">|</span> <span class="n">DEBUG</span>
+</pre></div>
+</div>
+<p>日志记录级别有默认值。但是，可以使用如下语法来指定某个或某组记录器</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;</span><span class="p">[,</span><span class="o">&lt;</span><span class="n">logger</span><span class="o">&gt;...</span><span class="p">]</span><span class="o">=&lt;</span><span class="n">level</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>示例如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">info</span>                                        <span class="o">-</span> <span class="n">Set</span> <span class="n">default</span> <span class="n">to</span> <span class="n">INFO</span>
+<span class="n">warning</span><span class="p">:</span><span class="n">msp</span><span class="p">,</span><span class="n">gossip</span><span class="o">=</span><span class="n">warning</span><span class="p">:</span><span class="n">chaincode</span><span class="o">=</span><span class="n">info</span>   <span class="o">-</span> <span class="n">Default</span> <span class="n">WARNING</span><span class="p">;</span> <span class="n">Override</span> <span class="k">for</span> <span class="n">msp</span><span class="p">,</span> <span class="n">gossip</span><span class="p">,</span> <span class="ow">and</span> <span class="n">chaincode</span>
+<span class="n">chaincode</span><span class="o">=</span><span class="n">info</span><span class="p">:</span><span class="n">msp</span><span class="p">,</span><span class="n">gossip</span><span class="o">=</span><span class="n">warning</span><span class="p">:</span><span class="n">warning</span>   <span class="o">-</span> <span class="n">Same</span> <span class="k">as</span> <span class="n">above</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>记录格式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">peer</span></code> 和 <code class="docutils literal notranslate"><span class="pre">orderer</span></code> 命令的日志记录格式是通过 <code class="docutils literal notranslate"><span class="pre">FABRIC_LOGGING_FORMAT</span></code> 环境变量控制的。可以将其设置为格式化的字符串，例如默认打印为可读的控制台格式：</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;%</span><span class="si">{color}</span><span class="s2">%{time:2006-01-02 15:04:05.000 MST} [%</span><span class="si">{module}</span><span class="s2">] %</span><span class="si">{shortfunc}</span><span class="s2"> -&gt; %</span><span class="si">{level:.4s}</span><span class="s2"> %</span><span class="si">{id:03x}</span><span class="s2">%{color:reset} %</span><span class="si">{message}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>也可以将其设置为 <code class="docutils literal notranslate"><span class="pre">json</span></code>，按照 JSON 格式输出日志。</p>
+</div>
+<div class="section" id="id5">
+<h2>链码<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p><strong>链码日志是链码开发人员的责任。</strong></p>
+<p>作为独立执行的程序，技术上用户提供的链码也可以在 stdout / stderr 上生成输出。这自然对 “devmode” 很有用，但在生产环境中通道一般会禁用该模式以减轻有破坏性或恶意代码的滥用。然而，可以通过配置 CORE_VM_DOCKER_ATTACHSTDOUT = true 选项，在每个 Peer 节点管理容器（例如，“netmode”）上启用此输出。</p>
+<p>一旦启用，每个链码都将收到以其自身容器 ID 为键的日志记录通道。写入到 stdout 或 stderr 的任何输出都将逐行集成到 Peer 节点的日志中。不建议将其用于生产。</p>
+<p>可以使用适用于容器平台的标准命令，从链码容器查看未转发到 Peer 容器的 stdout 和 stderr。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">logs</span> <span class="o">&lt;</span><span class="n">chaincode_container_id</span><span class="o">&gt;</span>
+<span class="n">kubectl</span> <span class="n">logs</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">namespace</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">pod_name</span><span class="o">&gt;</span>
+<span class="n">oc</span> <span class="n">logs</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">namespace</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">pod_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="enable_tls.html" class="btn btn-neutral float-right" title="使用 TLS（Transport Layer Security）保护通信" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="error-handling.html" class="btn btn-neutral" title="错误处理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Hyperledger 2020.
+    <br>
+      <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
