@@ -4,7 +4,7 @@
       Você pode alterá-lo usando o seletor na parte inferior
       painel de navegação.
 
-Uma plataforma de Blockchain para a empresas
+U水水水水算得上是所所所所所所所ma plataforma de Blockchain para a empresas
 ============================================
 
 .. image:: images/hyperledger_fabric_logo_color.png
